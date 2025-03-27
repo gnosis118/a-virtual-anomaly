@@ -9,9 +9,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { ChevronDown } from 'lucide-react';
 
 interface BlogCategoryMenubarProps {
   categories: string[];
@@ -68,11 +66,11 @@ const BlogCategoryMenubar = ({
             </NavigationMenuItem>
 
             {Object.entries(categoryGroups).map(([groupName, groupCategories]) => (
-              <NavigationMenuItem key={groupName}>
+              <NavigationMenuItem key={groupName} className="relative">
                 <NavigationMenuTrigger>
                   {groupName}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent>
+                <NavigationMenuContent className="absolute left-0 top-full">
                   <ul className="grid w-[300px] gap-1 p-2">
                     {groupCategories.map(category => (
                       <li key={category} className="w-full">

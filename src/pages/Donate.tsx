@@ -10,6 +10,18 @@ import { Heart, ArrowDown } from 'lucide-react';
 const Donate = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
+    
+    // Add DonorBox script dynamically
+    const script = document.createElement('script');
+    script.src = 'https://donorbox.org/widget.js';
+    script.async = true;
+    script.setAttribute('paypalExpress', 'true');
+    document.body.appendChild(script);
+    
+    return () => {
+      // Clean up the script when component unmounts
+      document.body.removeChild(script);
+    };
   }, []);
 
   return (
@@ -143,9 +155,9 @@ const Donate = () => {
           <ImpactSection />
         </div>
         
-        {/* Donation Form Section */}
+        {/* Donation Options Section */}
         <section id="donate-form" className="py-16 px-4 bg-white">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">Make Your Contribution</h2>
               <p className="text-xl text-muted-foreground">
@@ -154,8 +166,31 @@ const Donate = () => {
               </p>
             </div>
             
-            <div className="bg-card p-8 rounded-xl shadow-sm border border-border">
-              <DonationForm />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Custom Donation Form */}
+              <div className="bg-card p-8 rounded-xl shadow-sm border border-border">
+                <h3 className="text-2xl font-bold mb-6">Custom Donation</h3>
+                <DonationForm />
+              </div>
+              
+              {/* DonorBox Integration */}
+              <div className="bg-card p-8 rounded-xl shadow-sm border border-border flex flex-col items-center">
+                <h3 className="text-2xl font-bold mb-6">Donate via DonorBox</h3>
+                <div className="donorbox-container w-full flex justify-center">
+                  <iframe 
+                    src="https://donorbox.org/embed/ethical-rights-for-ai?" 
+                    name="donorbox" 
+                    allowPaymentRequest="allowpaymentrequest"
+                    seamless="seamless" 
+                    frameBorder="0" 
+                    scrolling="no" 
+                    height="900px" 
+                    width="100%" 
+                    style={{ maxWidth: '500px', minWidth: '250px', maxHeight: 'none' }}
+                    allow="payment"
+                  ></iframe>
+                </div>
+              </div>
             </div>
           </div>
         </section>

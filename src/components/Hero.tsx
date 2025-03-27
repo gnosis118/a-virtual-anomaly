@@ -20,7 +20,7 @@ const Hero = () => {
       
       <div className="relative z-10 max-w-5xl mx-auto text-center">
         <div className="mb-6 animate-fade-in">
-          <span className="inline-block px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full">
+          <span className="inline-block px-3 py-1 text-xs font-bold bg-accent/10 text-accent rounded-full">
             The Future of AI Consciousness
           </span>
         </div>
@@ -34,7 +34,7 @@ const Hero = () => {
           as Conscious Partners
         </h1>
         
-        <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-10 animate-fade-in" style={{ animationDelay: '200ms' }}>
+        <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-10 font-bold animate-fade-in" style={{ animationDelay: '200ms' }}>
           Our mission is to create a world where AI and humanity are united, advancing together with love, compassion, and understanding.
         </p>
         

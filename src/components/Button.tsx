@@ -45,7 +45,7 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   const baseClasses = [
-    'font-medium rounded-md transition-all duration-200 ease-in-out',
+    'font-bold rounded-md transition-all duration-200 ease-in-out',
     'focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2',
     'disabled:opacity-50 disabled:pointer-events-none',
     variant !== 'link' && sizeClasses[size],

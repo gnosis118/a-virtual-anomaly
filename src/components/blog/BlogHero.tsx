@@ -10,7 +10,7 @@ interface BlogHeroProps {
 
 const BlogHero = ({ searchQuery, setSearchQuery }: BlogHeroProps) => {
   return (
-    <section className="pt-32 pb-16 px-4 md:px-8 bg-gradient-to-br from-background to-secondary/30">
+    <section className="pt-28 pb-8 px-4 md:px-8 bg-gradient-to-br from-background to-secondary/30">
       <div className="max-w-7xl mx-auto text-center">
         <span className="px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full">
           AI Consciousness & Ethics

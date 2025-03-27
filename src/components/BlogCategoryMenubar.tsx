@@ -1,15 +1,17 @@
 
 import React from 'react';
 import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarSeparator,
-  MenubarShortcut,
-  MenubarTrigger,
-} from "@/components/ui/menubar";
-import { ChevronDown, List } from 'lucide-react';
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from "@/components/ui/navigation-menu";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
+import { ChevronDown } from 'lucide-react';
 
 interface BlogCategoryMenubarProps {
   categories: string[];
@@ -49,48 +51,51 @@ const BlogCategoryMenubar = ({
   };
 
   return (
-    <div className="w-full mb-8">
-      <Menubar className="border-none shadow-sm bg-background/50 backdrop-blur-xs justify-between">
-        <MenubarMenu>
-          <MenubarTrigger className="font-medium">
-            <List className="mr-2 h-4 w-4" />
-            {selectedCategory ? selectedCategory : 'All Categories'}
-            <ChevronDown className="ml-2 h-4 w-4" />
-          </MenubarTrigger>
-          <MenubarContent className="w-[220px] max-h-[70vh] overflow-y-auto">
-            <MenubarItem 
-              onClick={() => onCategorySelect('')}
-              className={!selectedCategory ? "bg-accent text-accent-foreground" : ""}
-            >
-              All Categories
-            </MenubarItem>
-            <MenubarSeparator />
-            
+    <div className="w-full mb-8 mt-8 border-b border-t py-2 bg-background/80 backdrop-blur-sm sticky top-16 z-30">
+      <div className="max-w-7xl mx-auto">
+        <NavigationMenu className="justify-start w-full max-w-full">
+          <NavigationMenuList className="flex-wrap justify-start w-full">
+            <NavigationMenuItem>
+              <NavigationMenuLink 
+                className={cn(
+                  navigationMenuTriggerStyle(),
+                  !selectedCategory ? "bg-accent text-accent-foreground" : ""
+                )}
+                onClick={() => onCategorySelect('')}
+              >
+                All Categories
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+
             {Object.entries(categoryGroups).map(([groupName, groupCategories]) => (
-              <React.Fragment key={groupName}>
-                <div className="px-2 py-1.5 text-xs font-semibold text-muted-foreground">
+              <NavigationMenuItem key={groupName}>
+                <NavigationMenuTrigger>
                   {groupName}
-                </div>
-                {groupCategories.map(category => (
-                  <MenubarItem 
-                    key={category}
-                    onClick={() => onCategorySelect(category)}
-                    className={selectedCategory === category ? "bg-accent text-accent-foreground" : ""}
-                  >
-                    {category}
-                    {categories.includes(category) && (
-                      <MenubarShortcut>
-                        <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                      </MenubarShortcut>
-                    )}
-                  </MenubarItem>
-                ))}
-                <MenubarSeparator />
-              </React.Fragment>
+                </NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[300px] gap-1 p-2">
+                    {groupCategories.map(category => (
+                      <li key={category} className="w-full">
+                        <NavigationMenuLink asChild>
+                          <button
+                            onClick={() => onCategorySelect(category)}
+                            className={cn(
+                              "w-full block select-none space-y-1 rounded-md p-3 text-left leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground",
+                              selectedCategory === category ? "bg-accent text-accent-foreground" : ""
+                            )}
+                          >
+                            <div className="text-sm font-medium leading-none">{category}</div>
+                          </button>
+                        </NavigationMenuLink>
+                      </li>
+                    ))}
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
             ))}
-          </MenubarContent>
-        </MenubarMenu>
-      </Menubar>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </div>
     </div>
   );
 };

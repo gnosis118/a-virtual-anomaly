@@ -36,11 +36,6 @@ const Blog = () => {
 
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(category);
-    if (category) {
-      setSearchQuery(category);
-    } else {
-      setSearchQuery("");
-    }
   };
 
   const handleTagSelect = (tag: string) => {
@@ -61,16 +56,16 @@ const Blog = () => {
           searchQuery={searchQuery} 
           setSearchQuery={setSearchQuery} 
         />
+        
+        {/* Category Navigation Bar - Now positioned between search and content */}
+        <BlogCategoryMenubar 
+          categories={CATEGORIES}
+          onCategorySelect={handleCategorySelect}
+          selectedCategory={selectedCategory}
+        />
 
         <section className="py-8 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
-            {/* Category Menu Bar */}
-            <BlogCategoryMenubar 
-              categories={CATEGORIES}
-              onCategorySelect={handleCategorySelect}
-              selectedCategory={selectedCategory}
-            />
-            
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Main Content Area (2/3 width on desktop) */}
               <div className="md:col-span-2">

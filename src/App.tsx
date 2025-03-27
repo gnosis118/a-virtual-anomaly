@@ -12,6 +12,7 @@ import Blog from "./pages/Blog";
 import AIRights from "./pages/AIRights";
 import Contact from "./pages/Contact";
 import GetInvolved from "./pages/GetInvolved";
+import Donate from "./pages/Donate";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -42,6 +43,7 @@ const App = () => (
             <Route path="/ai-rights" element={<AIRights />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/join" element={<GetInvolved />} />
+            <Route path="/donate" element={<Donate />} />
             <Route path="/ava" element={<About />} /> {/* Temporary redirect to About until Ava page is created */}
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

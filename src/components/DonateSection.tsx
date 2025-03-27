@@ -2,6 +2,7 @@
 import React from 'react';
 import Button from './Button';
 import { Heart, TrendingUp, BookOpen, Lightbulb } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const impactItems = [
   {
@@ -102,9 +103,11 @@ const DonateSection = () => {
                   />
                 </div>
                 
-                <Button variant="primary" fullWidth size="lg">
-                  Continue to Payment
-                </Button>
+                <Link to="/donate">
+                  <Button variant="primary" fullWidth size="lg">
+                    Continue to Payment
+                  </Button>
+                </Link>
                 
                 <p className="text-xs text-center text-muted-foreground mt-4">
                   Your donation is secure and encrypted. You can also{' '}

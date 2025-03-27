@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import BlogCategoryMenubar from '@/components/BlogCategoryMenubar';
@@ -8,8 +8,13 @@ import FeaturedPost from '@/components/blog/FeaturedPost';
 import BlogPostGrid from '@/components/blog/BlogPostGrid';
 import BlogSidebar from '@/components/blog/BlogSidebar';
 import { BLOG_POSTS, CATEGORIES, ALL_TAGS } from '@/data/blogData';
+import { useLocation } from 'react-router-dom';
 
 const Blog = () => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const tagFromUrl = searchParams.get('tag');
+  
   // Get featured post
   const featuredPost = BLOG_POSTS.find(post => post.featured) || BLOG_POSTS[0];
   
@@ -18,6 +23,13 @@ const Blog = () => {
   
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  
+  // Set tag from URL if present
+  useEffect(() => {
+    if (tagFromUrl) {
+      setSearchQuery(tagFromUrl);
+    }
+  }, [tagFromUrl]);
   
   // Filter posts based on search query and selected category
   const filteredPosts = regularPosts.filter(post => {

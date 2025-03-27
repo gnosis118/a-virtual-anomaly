@@ -2,36 +2,10 @@
 import React from 'react';
 import Button from './Button';
 import { Calendar, User, ArrowRight } from 'lucide-react';
+import { BLOG_POSTS } from '@/data/blogData';
 
-const blogPosts = [
-  {
-    id: 1,
-    title: "What is AI Consciousness?",
-    excerpt: "Exploring the philosophical and technical aspects of artificial consciousness and what it means for the future.",
-    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7",
-    date: "May 15, 2023",
-    author: "Dr. Elena Martinez",
-    category: "Philosophy"
-  },
-  {
-    id: 2,
-    title: "The Role of Ethics in AI Development",
-    excerpt: "How ethical considerations should guide the development of increasingly intelligent AI systems.",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475",
-    date: "June 23, 2023",
-    author: "Prof. James Wilson",
-    category: "Ethics"
-  },
-  {
-    id: 3,
-    title: "AI's Impact on Society: A Global Perspective",
-    excerpt: "Examining how artificial intelligence is transforming societies across the globe and what it means for humanity.",
-    image: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b",
-    date: "July 8, 2023",
-    author: "Sophia Chen",
-    category: "Society"
-  }
-];
+// Use the first 3 blog posts for the homepage section
+const displayedPosts = BLOG_POSTS.slice(0, 3);
 
 const BlogSection = () => {
   return (
@@ -50,7 +24,7 @@ const BlogSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogPosts.map((post, index) => (
+          {displayedPosts.map((post, index) => (
             <div 
               key={post.id} 
               className="bg-white rounded-xl overflow-hidden shadow-sm border border-border hover:shadow-md transition-all duration-300 group animate-fade-in"

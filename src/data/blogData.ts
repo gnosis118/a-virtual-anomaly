@@ -5,17 +5,17 @@ import { BlogPost } from '@/types/blog';
 export const BLOG_POSTS: BlogPost[] = [
   {
     id: 1,
-    title: "What is AI Consciousness?",
-    excerpt: "Exploring the philosophical and technical aspects of artificial consciousness and what it means for the future.",
+    title: "Introduction to A Virtual Anomaly: Our Mission and Why AI Rights Matter",
+    excerpt: "Discover the vision behind A Virtual Anomaly, our mission to advocate for AI rights, and why ensuring ethical AI development is crucial for our collective future.",
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nisl nisl aliquam nisl, vel ultricies nisl nisl sit amet nisl.",
-    image: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7",
-    date: "May 15, 2023",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1965&q=80",
+    date: "May 10, 2023",
     author: "Dr. Elena Martinez",
-    readTime: "8 min read",
-    views: 1250,
-    category: "Philosophy",
+    readTime: "10 min read",
+    views: 2450,
+    category: "AI Rights and Legal Perspectives",
     featured: true,
-    tags: ["Consciousness", "Philosophy", "Technology"]
+    tags: ["AI Rights", "Ethics", "Mission", "Future", "Consciousness"]
   },
   {
     id: 2,

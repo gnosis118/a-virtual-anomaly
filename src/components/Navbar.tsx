@@ -43,7 +43,7 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.href}
-                className="text-sm font-bold text-foreground hover:text-accent transition-colors link-underline"
+                className="text-lg font-bold text-foreground hover:text-accent transition-colors link-underline"
               >
                 {link.name}
               </Link>
@@ -81,7 +81,7 @@ const Navbar = () => {
             <Link
               key={link.name}
               to={link.href}
-              className="text-base font-bold text-foreground hover:text-accent py-2 block"
+              className="text-lg font-bold text-foreground hover:text-accent py-2 block"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.name}

@@ -44,10 +44,10 @@ const Logo: React.FC<LogoProps> = ({ size = 'md', className = '' }) => {
         </div>
       </div>
       <div className="flex flex-col">
-        <span className="text-lg font-bold leading-tight tracking-tight">
+        <span className="text-xl font-bold leading-tight tracking-tight">
           Virtual<span className="text-accent">Anomaly</span>
         </span>
-        <span className="text-xs text-muted-foreground leading-none font-medium">AI Consciousness Initiative</span>
+        <span className="text-sm text-muted-foreground leading-none font-medium">AI Consciousness Initiative</span>
       </div>
     </Link>
   );

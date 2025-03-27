@@ -7,11 +7,8 @@ import { Input } from "@/components/ui/input";
 import { BlogPost } from '@/types/blog';
 
 interface BlogSidebarProps {
-  categories: string[];
   posts: BlogPost[];
   allTags: string[];
-  selectedCategory: string;
-  onCategorySelect: (category: string) => void;
   onTagSelect: (tag: string) => void;
 }
 

@@ -24,7 +24,7 @@ export const usePremiumStatus = (userId?: string) => {
           return (
             contribution.status === 'approved' && 
             contribution.donation_type === 'monthly' && 
-            parseFloat(contribution.amount) >= 20
+            contribution.amount && parseFloat(contribution.amount) >= 20
           );
         });
 

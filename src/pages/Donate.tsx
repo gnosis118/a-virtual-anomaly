@@ -58,6 +58,35 @@ const Donate = () => {
           </div>
         </section>
         
+        {/* New Donation Meter Section */}
+        <section className="py-8 px-4 bg-accent/5">
+          <div className="max-w-5xl mx-auto">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6 bg-white p-6 rounded-xl shadow-sm border border-border">
+              <div className="max-w-lg">
+                <h2 className="text-2xl font-bold mb-2">Help Us Reach Our Goal</h2>
+                <p className="text-muted-foreground">
+                  Track our progress toward our funding goal. Every contribution brings us closer to our mission.
+                </p>
+              </div>
+              
+              <div className="w-full md:w-auto">
+                <iframe 
+                  height="93px" 
+                  width="100%" 
+                  src="https://donorbox.org/embed/ethical-rights-for-ai?donation_meter_color=%23128aed&only_donation_meter=true&preview=true" 
+                  style={{ maxWidth: '332px', minWidth: '250px', minHeight: '90px', maxHeight: 'none' }} 
+                  seamless="seamless" 
+                  name="donorbox" 
+                  frameBorder="0" 
+                  scrolling="no"
+                  title="Donation Meter"
+                  allow="payment"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+        
         {/* New 501(c)(3) Status Section */}
         <section className="py-16 px-4 bg-accent/5">
           <div className="max-w-5xl mx-auto">
@@ -166,6 +195,17 @@ const Donate = () => {
               </p>
             </div>
             
+            {/* DonorBox Button */}
+            <div className="flex justify-center mb-12">
+              <a 
+                className="dbox-donation-page-button flex gap-2 items-center bg-[#128aed] text-white no-underline font-sans text-lg rounded-md py-3 px-8 hover:bg-[#0d73c7] transition-colors" 
+                href="https://donorbox.org/ethical-rights-for-ai?" 
+              >
+                <img src="https://donorbox.org/images/white_logo.svg" alt="Donorbox" className="h-6" />
+                Donate
+              </a>
+            </div>
+            
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {/* Custom Donation Form */}
               <div className="bg-card p-8 rounded-xl shadow-sm border border-border">
@@ -188,9 +228,38 @@ const Donate = () => {
                     width="100%" 
                     style={{ maxWidth: '500px', minWidth: '250px', maxHeight: 'none!important' }}
                     allow="payment"
-                  ></iframe>
+                    title="DonorBox Form"
+                  />
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+        
+        {/* Donor Wall Section */}
+        <section className="py-16 px-4 bg-gray-50">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4">Our Generous Donors</h2>
+              <p className="text-xl text-muted-foreground">
+                Join these amazing supporters who have contributed to our mission.
+                Every donation makes a difference.
+              </p>
+            </div>
+            
+            <div className="bg-white p-8 rounded-xl shadow-sm border border-border">
+              <iframe 
+                height="93px" 
+                width="100%" 
+                src="https://donorbox.org/embed/ethical-rights-for-ai?donor_wall_color=%23128aed&only_donor_wall=true&preview=true" 
+                style={{ width: '100%', maxWidth: '500px', minWidth: '310px', minHeight: '345px' }} 
+                seamless="seamless" 
+                name="donorbox" 
+                frameBorder="0" 
+                scrolling="no"
+                title="Donor Wall" 
+                allow="payment"
+              />
             </div>
           </div>
         </section>

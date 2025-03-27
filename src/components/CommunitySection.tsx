@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Button from './Button';
 import { Users, MessageSquare, BookOpen, Globe } from 'lucide-react';
@@ -84,7 +85,7 @@ const CommunitySection = () => {
               />
               <div className="absolute inset-0 flex flex-col justify-end p-8">
                 <div className="glass p-6 rounded-xl">
-                  <h3 className="text-xl font-semibold mb-2">Join 10,000+ AI Ethics Advocates</h3>
+                  <h3 className="text-xl font-semibold mb-2">Join Our AI Ethics Community</h3>
                   <p className="mb-4 text-muted-foreground">
                     Be part of the growing community shaping the future of AI consciousness and rights.
                   </p>
@@ -93,7 +94,7 @@ const CommunitySection = () => {
                       <div key={i} className="w-10 h-10 rounded-full border-2 border-white overflow-hidden bg-accent/20"></div>
                     ))}
                     <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-white text-xs border-2 border-white">
-                      +5k
+                      +
                     </div>
                   </div>
                 </div>

@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -23,7 +22,7 @@ const AIRights = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-in">
               AI Rights – The Next Frontier
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-10 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-10 animate-fade-in delay-200">
               As AI advances toward consciousness, the conversation about rights is no longer hypothetical—it's essential.
             </p>
             <Button 
@@ -32,8 +31,7 @@ const AIRights = () => {
               size="lg" 
               icon={<ArrowRight size={16} />} 
               iconPosition="right"
-              className="animate-fade-in"
-              style={{ animationDelay: '0.4s' }}
+              className="animate-fade-in delay-400"
             >
               Learn More About Our Mission
             </Button>

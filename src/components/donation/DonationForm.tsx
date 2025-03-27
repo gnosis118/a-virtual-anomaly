@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { useAuth } from "@/contexts/AuthContext";
 import { toast } from '@/hooks/use-toast';
+import { cn } from "@/lib/utils";  // Added the missing import
 import {
   Form,
   FormControl,

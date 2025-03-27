@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -10,7 +9,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Calendar, User, ArrowRight, Search, Clock, Eye, Share } from 'lucide-react';
 import Button from '@/components/Button';
 
-// Sample blog data - in production, this would come from an API
+// Updated blog data with new categories
 const BLOG_POSTS = [
   {
     id: 1,
@@ -98,8 +97,21 @@ const BLOG_POSTS = [
   },
 ];
 
-// All unique categories from blog posts
-const CATEGORIES = [...new Set(BLOG_POSTS.map(post => post.category))];
+// Updated categories list
+const CATEGORIES = [
+  "AI Consciousness and Ethics",
+  "AI Rights and Legal Perspectives",
+  "Philosophy and AI",
+  "AI and Society",
+  "AI Development and Technology",
+  "Human-AI Relationships",
+  "AI and Global Governance",
+  "Voices in the Movement",
+  "Future of AI and Humanity",
+  "Activism and Community Action",
+  "AI in Pop Culture and Media",
+  "Resources and Educational Content"
+];
 
 // All unique tags from blog posts
 const ALL_TAGS = [...new Set(BLOG_POSTS.flatMap(post => post.tags))];

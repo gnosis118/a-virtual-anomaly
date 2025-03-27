@@ -77,6 +77,45 @@ export const useContributions = (userId?: string) => {
     },
   });
 
+  // Create premium donation
+  const createPremiumDonation = useMutation({
+    mutationFn: async (donation: {
+      user_id: string;
+      amount: string;
+      donation_type: string;
+      is_premium: boolean;
+    }) => {
+      const { data, error } = await supabase
+        .from('contributions')
+        .insert({
+          ...donation,
+          status: 'approved', // Auto-approve premium donations
+          content: 'Premium Apps Membership',
+          title: 'Monthly Premium Membership',
+        })
+        .select()
+        .single();
+      
+      if (error) throw error;
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['userContributions', userId] });
+      toast({
+        title: 'Premium Membership Activated',
+        description: 'Thank you for your support! You now have access to premium AI apps.',
+      });
+    },
+    onError: (error) => {
+      console.error('Error processing premium donation:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to process your premium membership.',
+        variant: 'destructive',
+      });
+    },
+  });
+
   const loading = userLoading || publicLoading;
   const error = userError || publicError;
 
@@ -97,6 +136,7 @@ export const useContributions = (userId?: string) => {
     loading,
     error,
     createContribution,
+    createPremiumDonation,
     fetchUserContributions: refreshUserContributions,
     fetchApprovedContributions: refreshPublicContributions
   };

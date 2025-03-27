@@ -75,7 +75,7 @@ const Donate = () => {
                   width="100%" 
                   src="https://donorbox.org/embed/ethical-rights-for-ai?donation_meter_color=%23128aed&only_donation_meter=true&preview=true" 
                   style={{ maxWidth: '332px', minWidth: '250px', minHeight: '90px', maxHeight: 'none' }} 
-                  seamless="seamless" 
+                  seamless={true} 
                   name="donorbox" 
                   frameBorder="0" 
                   scrolling="no"
@@ -221,7 +221,7 @@ const Donate = () => {
                     src="https://donorbox.org/embed/ethical-rights-for-ai?show_content=true" 
                     name="donorbox" 
                     allowPaymentRequest={true}
-                    seamless="seamless" 
+                    seamless={true} 
                     frameBorder="0" 
                     scrolling="no" 
                     height="900px" 
@@ -253,7 +253,7 @@ const Donate = () => {
                 width="100%" 
                 src="https://donorbox.org/embed/ethical-rights-for-ai?donor_wall_color=%23128aed&only_donor_wall=true&preview=true" 
                 style={{ width: '100%', maxWidth: '500px', minWidth: '310px', minHeight: '345px' }} 
-                seamless="seamless" 
+                seamless={true} 
                 name="donorbox" 
                 frameBorder="0" 
                 scrolling="no"

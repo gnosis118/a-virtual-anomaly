@@ -2,14 +2,21 @@
 import React from 'react';
 import Button from './Button';
 import { ArrowRight } from 'lucide-react';
-import AnimatedBackground from './AnimatedBackground';
 
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex flex-col justify-center items-center px-4 pt-20 pb-16 overflow-hidden">
-      <AnimatedBackground />
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center z-0" 
+        style={{ 
+          backgroundImage: 'url("/lovable-uploads/da51e971-2e98-4ebf-bd32-bf1a514e3ddc.png")',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      />
       
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-transparent opacity-80"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/60 to-transparent"></div>
       
       <div className="relative z-10 max-w-5xl mx-auto text-center">
         <div className="mb-6 animate-fade-in">

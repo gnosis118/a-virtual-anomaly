@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -8,6 +9,7 @@ import { Pagination, PaginationContent, PaginationItem, PaginationLink, Paginati
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Calendar, User, ArrowRight, Search, Clock, Eye, Share } from 'lucide-react';
 import Button from '@/components/Button';
+import BlogCategoryMenubar from '@/components/BlogCategoryMenubar';
 
 // Updated blog data with new categories
 const BLOG_POSTS = [
@@ -124,16 +126,31 @@ const Blog = () => {
   const regularPosts = BLOG_POSTS.filter(post => post.id !== featuredPost.id);
   
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
   
-  // Filter posts based on search query
-  const filteredPosts = searchQuery.trim() === "" 
-    ? regularPosts 
-    : regularPosts.filter(post => 
-        post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-        post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        post.category.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+  // Filter posts based on search query and selected category
+  const filteredPosts = regularPosts.filter(post => {
+    const matchesSearch = searchQuery.trim() === "" || 
+      post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      post.category.toLowerCase().includes(searchQuery.toLowerCase());
+      
+    const matchesCategory = selectedCategory === "" || 
+      post.category === selectedCategory ||
+      post.tags.includes(selectedCategory);
+      
+    return matchesSearch && matchesCategory;
+  });
+
+  const handleCategorySelect = (category: string) => {
+    setSelectedCategory(category);
+    if (category) {
+      setSearchQuery(category);
+    } else {
+      setSearchQuery("");
+    }
+  };
 
   return (
     <div className="min-h-screen">
@@ -168,13 +185,20 @@ const Blog = () => {
           </div>
         </section>
 
-        <section className="py-12 px-4 md:px-8">
+        <section className="py-8 px-4 md:px-8">
           <div className="max-w-7xl mx-auto">
+            {/* Category Menu Bar */}
+            <BlogCategoryMenubar 
+              categories={CATEGORIES}
+              onCategorySelect={handleCategorySelect}
+              selectedCategory={selectedCategory}
+            />
+            
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Main Content Area (2/3 width on desktop) */}
               <div className="md:col-span-2">
                 {/* Featured Post */}
-                {!searchQuery && (
+                {!searchQuery && !selectedCategory && (
                   <div className="mb-12">
                     <h2 className="text-2xl font-semibold mb-6 relative heading-highlight">Featured Article</h2>
                     <div className="relative rounded-xl overflow-hidden group">
@@ -227,14 +251,17 @@ const Blog = () => {
                 {/* Article Grid */}
                 <div>
                   <h2 className="text-2xl font-semibold mb-6 relative heading-highlight">
-                    {searchQuery ? `Search Results: ${filteredPosts.length} found` : "Latest Articles"}
+                    {searchQuery || selectedCategory ? `Search Results: ${filteredPosts.length} found` : "Latest Articles"}
                   </h2>
                   
                   {filteredPosts.length === 0 ? (
                     <div className="py-12 text-center">
                       <p className="text-lg text-muted-foreground">No articles found matching your search criteria.</p>
                       <Button 
-                        onClick={() => setSearchQuery("")} 
+                        onClick={() => {
+                          setSearchQuery("");
+                          setSelectedCategory("");
+                        }} 
                         variant="outline"
                         className="mt-4"
                       >
@@ -338,9 +365,9 @@ const Blog = () => {
                         {CATEGORIES.map(category => (
                           <Button 
                             key={category}
-                            variant="outline"
+                            variant={selectedCategory === category ? "primary" : "outline"}
                             size="sm"
-                            onClick={() => setSearchQuery(category)}
+                            onClick={() => handleCategorySelect(category)}
                             className="mb-2"
                           >
                             {category}

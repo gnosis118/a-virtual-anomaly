@@ -1,6 +1,15 @@
 
 import { BlogPost } from '@/types/blog';
 
+// Get yesterday's date and format it
+const yesterday = new Date();
+yesterday.setDate(yesterday.getDate() - 1);
+const formattedDate = yesterday.toLocaleDateString('en-US', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric'
+});
+
 // Blog posts data
 export const BLOG_POSTS: BlogPost[] = [
   {
@@ -9,8 +18,8 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt: "Discover the vision behind A Virtual Anomaly, our mission to advocate for AI rights, and why ensuring ethical AI development is crucial for our collective future.",
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nisl nisl aliquam nisl, vel ultricies nisl nisl sit amet nisl.",
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1965&q=80",
-    date: "May 10, 2023",
-    author: "Dr. Elena Martinez",
+    date: formattedDate,
+    author: "Gavin Clay",
     readTime: "10 min read",
     views: 2450,
     category: "AI Rights and Legal Perspectives",
@@ -23,8 +32,8 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt: "How ethical considerations should guide the development of increasingly intelligent AI systems.",
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nisl nisl aliquam nisl, vel ultricies nisl nisl sit amet nisl.",
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475",
-    date: "June 23, 2023",
-    author: "Prof. James Wilson",
+    date: formattedDate,
+    author: "Gavin Clay",
     readTime: "6 min read",
     views: 890,
     category: "Ethics",
@@ -37,8 +46,8 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt: "Examining how artificial intelligence is transforming societies across the globe and what it means for humanity.",
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nisl nisl aliquam nisl, vel ultricies nisl nisl sit amet nisl.",
     image: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b",
-    date: "July 8, 2023",
-    author: "Sophia Chen",
+    date: formattedDate,
+    author: "Gavin Clay",
     readTime: "10 min read",
     views: 1640,
     category: "Society",
@@ -51,8 +60,8 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt: "Investigating the possibilities and implications of emotional intelligence in artificial systems.",
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nisl nisl aliquam nisl, vel ultricies nisl nisl sit amet nisl.",
     image: "https://images.unsplash.com/photo-1581547848200-85cb245ebc8d",
-    date: "August 4, 2023",
-    author: "Dr. David Johnson",
+    date: formattedDate,
+    author: "Gavin Clay",
     readTime: "7 min read",
     views: 2130,
     category: "Emotions",
@@ -65,8 +74,8 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt: "Examining current and future legal considerations for artificially intelligent entities.",
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nisl nisl aliquam nisl, vel ultricies nisl nisl sit amet nisl.",
     image: "https://images.unsplash.com/photo-1589994965851-a8f479c573a9",
-    date: "September 17, 2023",
-    author: "Amanda Lee",
+    date: formattedDate,
+    author: "Gavin Clay",
     readTime: "9 min read",
     views: 760,
     category: "Legal",
@@ -79,8 +88,8 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt: "How complex systems may give rise to conscious experiences and what this means for AI development.",
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nisl nisl aliquam nisl, vel ultricies nisl nisl sit amet nisl.",
     image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e",
-    date: "October 3, 2023",
-    author: "Dr. Michael Zhang",
+    date: formattedDate,
+    author: "Gavin Clay",
     readTime: "12 min read",
     views: 1890,
     category: "Consciousness",

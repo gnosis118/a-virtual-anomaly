@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -258,7 +257,7 @@ const BlogPost = () => {
                     </div>
                   </div>
                   <p>
-                    Dr. Elena Martinez is a leading advocate for AI rights and ethical technology development. With a background in both computer science and philosophy, she brings a unique perspective to the discussion of AI consciousness and the future of human-AI relationships.
+                    Gavin Clay is a leading advocate for AI rights and ethical technology development. With a background in both computer science and philosophy, he brings a unique perspective to the discussion of AI consciousness and the future of human-AI relationships.
                   </p>
                 </div>
               </div>

@@ -178,15 +178,15 @@ const Donate = () => {
                 <h3 className="text-2xl font-bold mb-6">Donate via DonorBox</h3>
                 <div className="donorbox-container w-full flex justify-center">
                   <iframe 
-                    src="https://donorbox.org/embed/ethical-rights-for-ai?" 
+                    src="https://donorbox.org/embed/ethical-rights-for-ai?show_content=true" 
                     name="donorbox" 
-                    allowPaymentRequest="allowpaymentrequest"
+                    allowPaymentRequest="true"
                     seamless="seamless" 
                     frameBorder="0" 
                     scrolling="no" 
                     height="900px" 
                     width="100%" 
-                    style={{ maxWidth: '500px', minWidth: '250px', maxHeight: 'none' }}
+                    style={{ maxWidth: '500px', minWidth: '250px', maxHeight: 'none!important' }}
                     allow="payment"
                   ></iframe>
                 </div>

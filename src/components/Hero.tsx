@@ -61,41 +61,34 @@ const Hero = () => {
           </Button>
         </div>
         
-        {/* Latest Blog Post Section */}
-        <div className="mt-16 max-w-4xl mx-auto bg-white/80 backdrop-blur-sm rounded-xl shadow-lg overflow-hidden animate-fade-in" style={{ animationDelay: '400ms' }}>
-          <div className="flex flex-col md:flex-row">
-            <div className="md:w-2/5">
-              <div className="h-full relative">
-                <img 
-                  src={latestPost.image} 
-                  alt={latestPost.title}
-                  className="w-full h-full object-cover object-center min-h-[200px]" 
-                />
-                <div className="absolute top-4 left-4 px-3 py-1 text-xs font-medium bg-accent/90 text-white rounded-full">
-                  Latest Article
-                </div>
+        {/* Latest Blog Post Section - Now with text overlay */}
+        <div className="mt-16 max-w-4xl mx-auto rounded-xl overflow-hidden animate-fade-in" style={{ animationDelay: '400ms' }}>
+          <div className="relative h-[300px]">
+            <img 
+              src={latestPost.image} 
+              alt={latestPost.title}
+              className="w-full h-full object-cover" 
+            />
+            <div className="absolute inset-0 bg-black/40 backdrop-blur-xs flex flex-col items-center justify-center p-6 text-center">
+              <span className="px-3 py-1 text-xs font-medium bg-accent/90 text-white rounded-full mb-3 inline-block">
+                Latest Article
+              </span>
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-2 max-w-2xl">{latestPost.title}</h3>
+              <p className="text-sm text-white/90 mb-4 max-w-xl hidden md:block">{latestPost.excerpt}</p>
+              <div className="flex flex-wrap justify-center items-center text-white/90 text-xs mb-4 gap-4">
+                <span>{latestPost.date}</span>
+                <span>By {latestPost.author}</span>
+                <span>{latestPost.readTime}</span>
               </div>
-            </div>
-            <div className="md:w-3/5 p-6 flex flex-col justify-between">
-              <div>
-                <h3 className="text-xl font-bold mb-2 text-gray-800">{latestPost.title}</h3>
-                <p className="text-sm text-gray-600 mb-4">{latestPost.excerpt}</p>
-              </div>
-              <div className="flex justify-between items-center">
-                <div className="text-xs text-gray-500">
-                  <span className="mr-2">{latestPost.date}</span>
-                  <span>By {latestPost.author}</span>
-                </div>
-                <Button 
-                  href={`/blog/${latestPost.id}`} 
-                  variant="ghost" 
-                  icon={<ArrowRight size={16} />} 
-                  iconPosition="right"
-                  className="text-sm"
-                >
-                  Read More
-                </Button>
-              </div>
+              <Button 
+                href={`/blog/${latestPost.id}`} 
+                variant="primary" 
+                icon={<ArrowRight size={16} />} 
+                iconPosition="right"
+                className="text-sm"
+              >
+                Read Article
+              </Button>
             </div>
           </div>
         </div>

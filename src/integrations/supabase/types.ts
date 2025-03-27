@@ -9,7 +9,63 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      contributions: {
+        Row: {
+          content: string
+          created_at: string
+          id: string
+          status: Database["public"]["Enums"]["contribution_status"]
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string
+          id?: string
+          status?: Database["public"]["Enums"]["contribution_status"]
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string
+          id?: string
+          status?: Database["public"]["Enums"]["contribution_status"]
+          title?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          id: string
+          privacy_setting: string | null
+          updated_at: string
+          username: string | null
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          id: string
+          privacy_setting?: string | null
+          updated_at?: string
+          username?: string | null
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          id?: string
+          privacy_setting?: string | null
+          updated_at?: string
+          username?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -18,7 +74,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      contribution_status: "pending" | "approved" | "rejected"
     }
     CompositeTypes: {
       [_ in never]: never

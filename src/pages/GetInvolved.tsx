@@ -30,20 +30,24 @@ import {
 } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
+// Define types for the contributions based on our database schema
+type ContributionStatus = 'pending' | 'approved' | 'rejected';
+
+type Contribution = {
+  id: string;
+  title: string;
+  content: string;
+  status: ContributionStatus;
+  created_at: string;
+  user_id: string;
+};
+
 const contributionSchema = z.object({
   title: z.string().min(5, { message: 'Title must be at least 5 characters' }),
   content: z.string().min(20, { message: 'Content must be at least 20 characters' }),
 });
 
 type ContributionFormValues = z.infer<typeof contributionSchema>;
-
-type Contribution = {
-  id: string;
-  title: string;
-  content: string;
-  status: 'pending' | 'approved' | 'rejected';
-  created_at: string;
-};
 
 const GetInvolved = () => {
   const { user, loading } = useAuth();
@@ -118,6 +122,7 @@ const GetInvolved = () => {
             user_id: user.id,
             title: data.title,
             content: data.content,
+            status: 'pending' as ContributionStatus,
           },
         ]);
       

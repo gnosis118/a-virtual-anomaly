@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -10,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { useAuth } from "@/contexts/AuthContext";
 import { toast } from '@/hooks/use-toast';
-import { cn } from "@/lib/utils";  // Added the missing import
+import { cn } from "@/lib/utils";
 import {
   Form,
   FormControl,
@@ -75,13 +74,32 @@ const DonationForm: React.FC = () => {
     setSelectedAmount(null);
   };
 
-  const onSubmit = (values: FormValues) => {
+  const onSubmit = async (values: FormValues) => {
     console.log("Donation values:", values);
+    
     // Here you would integrate with a payment processor
+    // For now, we'll just show a toast notification
+    
     toast({
       title: "Thank you for your donation!",
       description: `Your ${values.frequency === 'monthly' ? 'monthly' : 'one-time'} donation of $${values.amount} will help support AI rights.`,
     });
+    
+    // If user is logged in, we could save the donation to Supabase
+    // This is just a placeholder for future implementation
+    if (user) {
+      try {
+        // Placeholder for future donation tracking
+        console.log("Logged in user made donation:", {
+          user_id: user.id,
+          amount: values.amount,
+          frequency: values.frequency,
+          date: new Date().toISOString(),
+        });
+      } catch (error) {
+        console.error("Error recording donation:", error);
+      }
+    }
   };
 
   return (

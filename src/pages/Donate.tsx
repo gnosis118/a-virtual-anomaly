@@ -180,7 +180,7 @@ const Donate = () => {
                   <iframe 
                     src="https://donorbox.org/embed/ethical-rights-for-ai?show_content=true" 
                     name="donorbox" 
-                    allowPaymentRequest="true"
+                    allowPaymentRequest={true}
                     seamless="seamless" 
                     frameBorder="0" 
                     scrolling="no" 

@@ -16,60 +16,13 @@ interface BlogSidebarProps {
 }
 
 const BlogSidebar = ({ 
-  categories, 
   posts, 
   allTags, 
-  selectedCategory, 
-  onCategorySelect, 
   onTagSelect 
 }: BlogSidebarProps) => {
   return (
     <div className="sticky top-24 space-y-8">
-      {/* Categories Section */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-xl">Categories</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-wrap gap-2">
-            {categories.map(category => (
-              <Button 
-                key={category}
-                variant={selectedCategory === category ? "primary" : "outline"}
-                size="sm"
-                onClick={() => onCategorySelect(category)}
-                className="mb-2"
-              >
-                {category}
-              </Button>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-      
-      {/* Popular Tags */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-xl">Popular Tags</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-wrap gap-2">
-            {allTags.map(tag => (
-              <Button 
-                key={tag}
-                variant="secondary"
-                size="sm"
-                onClick={() => onTagSelect(tag)}
-                className="mb-2 text-xs"
-              >
-                #{tag}
-              </Button>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-      
-      {/* Recent Posts */}
+      {/* Recent Posts - Now positioned at the top where categories used to be */}
       <Card>
         <CardHeader>
           <CardTitle className="text-xl">Recent Posts</CardTitle>
@@ -98,6 +51,28 @@ const BlogSidebar = ({
               ))}
             </div>
           </ScrollArea>
+        </CardContent>
+      </Card>
+      
+      {/* Popular Tags */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-xl">Popular Tags</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-wrap gap-2">
+            {allTags.map(tag => (
+              <Button 
+                key={tag}
+                variant="secondary"
+                size="sm"
+                onClick={() => onTagSelect(tag)}
+                className="mb-2 text-xs"
+              >
+                #{tag}
+              </Button>
+            ))}
+          </div>
         </CardContent>
       </Card>
       

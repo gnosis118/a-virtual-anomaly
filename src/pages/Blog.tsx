@@ -83,14 +83,11 @@ const Blog = () => {
                 />
               </div>
               
-              {/* Sidebar (1/3 width on desktop) */}
+              {/* Sidebar (1/3 width on desktop) - Now with categories removed */}
               <div>
                 <BlogSidebar 
-                  categories={CATEGORIES}
                   posts={BLOG_POSTS}
                   allTags={ALL_TAGS}
-                  selectedCategory={selectedCategory}
-                  onCategorySelect={handleCategorySelect}
                   onTagSelect={handleTagSelect}
                 />
               </div>

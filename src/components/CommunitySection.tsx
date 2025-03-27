@@ -1,7 +1,7 @@
-
 import React from 'react';
 import Button from './Button';
 import { Users, MessageSquare, BookOpen, Globe } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface CommunityCardProps {
   icon: React.ReactNode;

@@ -31,11 +31,11 @@ const Button: React.FC<ButtonProps> = ({
   iconPosition = 'left',
 }) => {
   const variantClasses = {
-    primary: 'bg-accent text-white hover:bg-accent/90 active:bg-accent/80',
-    secondary: 'bg-secondary text-foreground hover:bg-secondary/80 active:bg-secondary/90',
-    outline: 'bg-transparent border border-accent text-accent hover:bg-accent/10 active:bg-accent/20',
-    ghost: 'bg-transparent text-foreground hover:bg-muted active:bg-muted/70',
-    link: 'bg-transparent text-accent hover:underline p-0 h-auto',
+    primary: 'bg-accent text-black hover:bg-accent/90 active:bg-accent/80',
+    secondary: 'bg-secondary text-black hover:bg-secondary/80 active:bg-secondary/90',
+    outline: 'bg-transparent border border-accent text-black hover:bg-accent/10 active:bg-accent/20',
+    ghost: 'bg-transparent text-black hover:bg-muted active:bg-muted/70',
+    link: 'bg-transparent text-black hover:underline p-0 h-auto',
   };
 
   const sizeClasses = {

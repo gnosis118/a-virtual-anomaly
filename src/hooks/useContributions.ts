@@ -1,18 +1,22 @@
 
-import { useState, useEffect } from 'react';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { supabase } from '@/integrations/supabase/client';
 import { Contribution } from '@/components/contributions/types';
 import { toast } from '@/hooks/use-toast';
 
 export const useContributions = (userId?: string) => {
-  const [userContributions, setUserContributions] = useState<Contribution[]>([]);
-  const [publicContributions, setPublicContributions] = useState<Contribution[]>([]);
-  const [loading, setLoading] = useState(true);
+  const queryClient = useQueryClient();
 
-  const fetchUserContributions = async () => {
-    if (!userId) return;
-    
-    try {
+  // Fetch user contributions
+  const { 
+    data: userContributions = [], 
+    isLoading: userLoading,
+    error: userError 
+  } = useQuery({
+    queryKey: ['userContributions', userId],
+    queryFn: async () => {
+      if (!userId) return [];
+      
       const { data, error } = await supabase
         .from('contributions')
         .select('*')
@@ -20,19 +24,19 @@ export const useContributions = (userId?: string) => {
         .order('created_at', { ascending: false });
       
       if (error) throw error;
-      setUserContributions(data || []);
-    } catch (error) {
-      console.error('Error fetching user contributions:', error);
-      toast({
-        title: 'Error',
-        description: 'Failed to load your contributions.',
-        variant: 'destructive',
-      });
-    }
-  };
+      return data as Contribution[];
+    },
+    enabled: !!userId,
+  });
 
-  const fetchApprovedContributions = async () => {
-    try {
+  // Fetch public contributions (approved)
+  const { 
+    data: publicContributions = [], 
+    isLoading: publicLoading,
+    error: publicError 
+  } = useQuery({
+    queryKey: ['publicContributions'],
+    queryFn: async () => {
       const { data, error } = await supabase
         .from('contributions')
         .select('*')
@@ -40,29 +44,60 @@ export const useContributions = (userId?: string) => {
         .order('created_at', { ascending: false });
       
       if (error) throw error;
-      setPublicContributions(data || []);
-    } catch (error) {
-      console.error('Error fetching approved contributions:', error);
-    } finally {
-      setLoading(false);
+      return data as Contribution[];
+    },
+  });
+
+  // Create new contribution
+  const createContribution = useMutation({
+    mutationFn: async (newContribution: Omit<Contribution, 'id' | 'created_at' | 'updated_at' | 'status'>) => {
+      const { data, error } = await supabase
+        .from('contributions')
+        .insert(newContribution)
+        .select()
+        .single();
+      
+      if (error) throw error;
+      return data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['userContributions', userId] });
+      toast({
+        title: 'Success',
+        description: 'Your contribution has been submitted for review.',
+      });
+    },
+    onError: (error) => {
+      console.error('Error creating contribution:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to submit your contribution.',
+        variant: 'destructive',
+      });
+    },
+  });
+
+  const loading = userLoading || publicLoading;
+  const error = userError || publicError;
+
+  // Using invalidation rather than direct fetching
+  const refreshUserContributions = () => {
+    if (userId) {
+      queryClient.invalidateQueries({ queryKey: ['userContributions', userId] });
     }
   };
 
-  useEffect(() => {
-    fetchApprovedContributions();
-  }, []);
-
-  useEffect(() => {
-    if (userId) {
-      fetchUserContributions();
-    }
-  }, [userId]);
+  const refreshPublicContributions = () => {
+    queryClient.invalidateQueries({ queryKey: ['publicContributions'] });
+  };
 
   return {
     userContributions,
     publicContributions,
     loading,
-    fetchUserContributions,
-    fetchApprovedContributions
+    error,
+    createContribution,
+    fetchUserContributions: refreshUserContributions,
+    fetchApprovedContributions: refreshPublicContributions
   };
 };

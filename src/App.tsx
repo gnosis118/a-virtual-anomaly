@@ -15,6 +15,7 @@ import Contact from "./pages/Contact";
 import GetInvolved from "./pages/GetInvolved";
 import Donate from "./pages/Donate";
 import PremiumApps from "./pages/PremiumApps";
+import ContentCalendar from "./pages/ContentCalendar";
 import NotFound from "./pages/NotFound";
 
 // Scroll to top on route change
@@ -50,6 +51,7 @@ const App = () => {
               <Route path="/join" element={<GetInvolved />} />
               <Route path="/donate" element={<Donate />} />
               <Route path="/premium-apps" element={<PremiumApps />} />
+              <Route path="/calendar" element={<ContentCalendar />} />
               <Route path="/ava" element={<About />} /> {/* Temporary redirect to About until Ava page is created */}
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />

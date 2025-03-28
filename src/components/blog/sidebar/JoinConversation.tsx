@@ -10,7 +10,7 @@ const JoinConversation: React.FC = () => {
       <CardContent className="p-6">
         <h3 className="text-xl font-semibold mb-3">Join the Conversation</h3>
         <p className="text-muted-foreground mb-4">
-          Have thoughts on AI consciousness? Share your perspective and contribute to this important dialogue.
+          Have thoughts on AI consciousness? Share your perspective and follow our 90-day AI rights content series.
         </p>
         <div className="space-y-3">
           <Button 

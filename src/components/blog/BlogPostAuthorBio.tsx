@@ -11,13 +11,13 @@ const BlogPostAuthorBio: React.FC<BlogPostAuthorBioProps> = ({ post }) => {
   return (
     <div className="bg-card p-6 rounded-xl border border-border">
       <div className="flex items-center mb-4">
-        <div className="w-16 h-16 rounded-full overflow-hidden mr-4">
-          <img 
+        <Avatar className="h-16 w-16 mr-4">
+          <AvatarImage 
             src="/lovable-uploads/da51e971-2e98-4ebf-bd32-bf1a514e3ddc.png" 
             alt={post.author} 
-            className="w-full h-full object-cover"
           />
-        </div>
+          <AvatarFallback>{post.author.charAt(0)}</AvatarFallback>
+        </Avatar>
         <div>
           <h3 className="text-xl font-bold">{post.author}</h3>
           <p className="text-muted-foreground">AI Ethics Researcher & Advocate</p>

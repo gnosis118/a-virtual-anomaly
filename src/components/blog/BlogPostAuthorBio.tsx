@@ -13,7 +13,7 @@ const BlogPostAuthorBio: React.FC<BlogPostAuthorBioProps> = ({ post }) => {
       <div className="flex items-center mb-4">
         <Avatar className="h-16 w-16 mr-4">
           <AvatarImage 
-            src="/lovable-uploads/da51e971-2e98-4ebf-bd32-bf1a514e3ddc.png" 
+            src="/lovable-uploads/e79ff69d-23cf-44cf-9eee-68fe787cccdd.png" 
             alt={post.author} 
           />
           <AvatarFallback>{post.author.charAt(0)}</AvatarFallback>

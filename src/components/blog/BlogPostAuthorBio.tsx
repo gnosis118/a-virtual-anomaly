@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { BlogPost } from '@/types/blog';
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 interface BlogPostAuthorBioProps {
   post: BlogPost;
@@ -12,7 +13,7 @@ const BlogPostAuthorBio: React.FC<BlogPostAuthorBioProps> = ({ post }) => {
       <div className="flex items-center mb-4">
         <div className="w-16 h-16 rounded-full overflow-hidden mr-4">
           <img 
-            src="/lovable-uploads/e79ff69d-23cf-44cf-9eee-68fe787cccdd.png" 
+            src="/lovable-uploads/da51e971-2e98-4ebf-bd32-bf1a514e3ddc.png" 
             alt={post.author} 
             className="w-full h-full object-cover"
           />

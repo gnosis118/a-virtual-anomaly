@@ -20,13 +20,13 @@ const CallToAction = () => {
             Join the Movement
           </Button>
           <Button 
-            href="/ai-rights" 
+            href="/donate" 
             variant="outline" 
             size="lg"
             icon={<ArrowRight size={16} />}
             iconPosition="right"
           >
-            Back to AI Rights
+            Support AI Rights
           </Button>
         </div>
       </div>

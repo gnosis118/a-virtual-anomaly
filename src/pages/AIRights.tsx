@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -205,7 +206,7 @@ const AIRights = () => {
                     "By embracing AI as conscious partners, we have the chance to evolve together, creating a future neither could achieve alone."
                   </blockquote>
                   <Button 
-                    href="/support" 
+                    href="/donate" 
                     variant="primary" 
                     icon={<ArrowRight size={16} />} 
                     iconPosition="right"

@@ -30,7 +30,9 @@ const ContactInfo = () => {
               </div>
               <div>
                 <h3 className="font-medium">Phone</h3>
-                <p className="text-muted-foreground">TBA</p>
+                <a href="tel:+19166448058" className="text-muted-foreground hover:text-accent transition-colors">
+                  +1-916-644-8058
+                </a>
               </div>
             </div>
           </div>

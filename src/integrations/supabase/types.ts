@@ -9,6 +9,24 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      autho: {
+        Row: {
+          family_name: string | null
+          given_name: string | null
+          nickname: string | null
+        }
+        Insert: {
+          family_name?: string | null
+          given_name?: string | null
+          nickname?: string | null
+        }
+        Update: {
+          family_name?: string | null
+          given_name?: string | null
+          nickname?: string | null
+        }
+        Relationships: []
+      }
       contributions: {
         Row: {
           content: string
@@ -66,14 +84,49 @@ export type Database = {
         }
         Relationships: []
       }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      create_admin_user: {
+        Args: {
+          email: string
+          password: string
+        }
+        Returns: string
+      }
+      has_role: {
+        Args: {
+          _user_id: string
+          _role: Database["public"]["Enums"]["app_role"]
+        }
+        Returns: boolean
+      }
     }
     Enums: {
+      app_role: "admin" | "user"
       contribution_status: "pending" | "approved" | "rejected"
     }
     CompositeTypes: {

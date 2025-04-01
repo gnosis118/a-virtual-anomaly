@@ -5,6 +5,8 @@ import Footer from '@/components/Footer';
 import ContentCalendar from '@/components/blog/ContentCalendar';
 import SchedulePostForm from '@/components/blog/SchedulePostForm';
 import { Separator } from "@/components/ui/separator";
+import { AlertCircle } from 'lucide-react';
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 
 const ContentCalendarPage = () => {
   return (
@@ -27,6 +29,16 @@ const ContentCalendarPage = () => {
         
         <section className="py-4 px-4">
           <div className="max-w-7xl mx-auto">
+            <Alert className="mb-8 border-accent/50 bg-accent/10">
+              <AlertCircle className="h-4 w-4 text-accent" />
+              <AlertTitle>Automatic Content Generation</AlertTitle>
+              <AlertDescription>
+                This calendar now includes automatic content generation and publishing. When posts reach their scheduled date, 
+                our AI system will create 4000+ word articles with relevant images and videos based on your title and description.
+                You can control this feature in the auto-publishing settings panel.
+              </AlertDescription>
+            </Alert>
+            
             <div className="bg-accent/5 rounded-lg p-6 mb-8">
               <h2 className="text-2xl font-semibold mb-3">About Our Content Plan</h2>
               <p className="mb-4">

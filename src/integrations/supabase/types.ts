@@ -84,6 +84,21 @@ export type Database = {
         }
         Relationships: []
       }
+      "tier prices": {
+        Row: {
+          attrs: Json | null
+          net: number | null
+        }
+        Insert: {
+          attrs?: Json | null
+          net?: number | null
+        }
+        Update: {
+          attrs?: Json | null
+          net?: number | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string

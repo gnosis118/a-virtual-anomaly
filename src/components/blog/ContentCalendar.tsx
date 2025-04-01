@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { ScheduledPost, getPostsForDate, daysWithPosts } from '@/data/contentCalendarData';
 import CalendarView from './calendar/CalendarView';
 import PostList from './calendar/PostList';
+import AutoPublishSettings from './AutoPublishSettings';
 
 const ContentCalendar: React.FC = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -12,19 +13,25 @@ const ContentCalendar: React.FC = () => {
   const postsForSelectedDate = getPostsForDate(date);
   
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <CalendarView 
-        date={date}
-        setDate={setDate}
-        daysWithPosts={daysWithPosts}
-      />
+    <div className="space-y-6">
+      {/* Auto-Publishing Settings Component */}
+      <AutoPublishSettings />
       
-      <PostList 
-        date={date}
-        postsForSelectedDate={postsForSelectedDate}
-        setSelectedPost={setSelectedPost}
-        selectedPost={selectedPost}
-      />
+      {/* Calendar and Post List */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <CalendarView 
+          date={date}
+          setDate={setDate}
+          daysWithPosts={daysWithPosts}
+        />
+        
+        <PostList 
+          date={date}
+          postsForSelectedDate={postsForSelectedDate}
+          setSelectedPost={setSelectedPost}
+          selectedPost={selectedPost}
+        />
+      </div>
     </div>
   );
 };

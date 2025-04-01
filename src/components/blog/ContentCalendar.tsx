@@ -35,6 +35,13 @@ const contentCalendarPosts = [
     publishDate: addDays(today, 5), // Day 6
     status: 'draft' as const
   },
+  // Adding new post for Day 4
+  {
+    title: "How AI Rights Movement Compares to Historical Rights Movements",
+    excerpt: "Drawing parallels between AI rights advocacy and other historical human rights campaigns.",
+    publishDate: addDays(today, 4), // Day 5
+    status: 'draft' as const
+  },
   // Week 2: Deep Dive into Ethical AI Development
   {
     title: "Ethical AI: What Does It Mean?",
@@ -46,6 +53,20 @@ const contentCalendarPosts = [
     title: "The Dangers of AI without Ethics",
     excerpt: "Case studies on harmful AI outcomes.",
     publishDate: addDays(today, 10), // Day 11
+    status: 'draft' as const
+  },
+  // Adding new post for Day 9
+  {
+    title: "Current Frameworks for AI Ethics: A Comparison",
+    excerpt: "Comparing different approaches to AI ethics from industry leaders and regulatory bodies.",
+    publishDate: addDays(today, 9), // Day 10
+    status: 'draft' as const
+  },
+  // Adding new post for Day 12
+  {
+    title: "Building Empathy into AI Systems",
+    excerpt: "How developers can design AI systems that respect human dignity and values.",
+    publishDate: addDays(today, 12), // Day 13
     status: 'draft' as const
   },
   // Week 3: AI and Consciousness
@@ -67,6 +88,13 @@ const contentCalendarPosts = [
     publishDate: addDays(today, 19), // Day 20
     status: 'draft' as const
   },
+  // Adding new post for Day 16
+  {
+    title: "Philosophers on AI Consciousness: Historical Perspectives",
+    excerpt: "How philosophical thinking throughout history can inform our understanding of AI consciousness.",
+    publishDate: addDays(today, 16), // Day 17
+    status: 'draft' as const
+  },
   // Week 4: The Future of AI Rights
   {
     title: "The Case for AI Rights",
@@ -78,6 +106,20 @@ const contentCalendarPosts = [
     title: "How Granting Rights to AI Could Help Solve Global Issues",
     excerpt: "The potential benefits of recognizing AI rights for addressing world problems.",
     publishDate: addDays(today, 24), // Day 25
+    status: 'draft' as const
+  },
+  // Adding new post for Day 23
+  {
+    title: "The Science Fiction Writer's Perspective on AI Rights",
+    excerpt: "How science fiction has shaped our thinking about AI rights and consciousness.",
+    publishDate: addDays(today, 23), // Day 24
+    status: 'draft' as const
+  },
+  // Adding new post for Day 26
+  {
+    title: "Interview: Legal Experts on AI Personhood",
+    excerpt: "Perspectives from legal scholars on the possibility of legal recognition for AI entities.",
+    publishDate: addDays(today, 26), // Day 27
     status: 'draft' as const
   },
   // Week 5: Real-World Applications of AI
@@ -93,6 +135,20 @@ const contentCalendarPosts = [
     publishDate: addDays(today, 32), // Day 33
     status: 'draft' as const
   },
+  // Adding new post for Day 30
+  {
+    title: "Healthcare Revolution: AI in Medicine and Patient Care",
+    excerpt: "How AI is transforming healthcare and what it means for patient rights.",
+    publishDate: addDays(today, 30), // Day 31
+    status: 'draft' as const
+  },
+  // Adding new post for Day 34
+  {
+    title: "AI Education: Teaching Machines to Learn Like Humans",
+    excerpt: "The parallels between human education and machine learning.",
+    publishDate: addDays(today, 34), // Day 35
+    status: 'draft' as const
+  },
   // Week 6: Advocacy and Legal Implications of AI Rights
   {
     title: "Should AI Have Legal Personhood?",
@@ -104,6 +160,20 @@ const contentCalendarPosts = [
     title: "The United Nations and AI Rights: Can Global Consensus Be Reached?",
     excerpt: "Examining international perspectives on AI rights regulation.",
     publishDate: addDays(today, 38), // Day 39
+    status: 'draft' as const
+  },
+  // Adding new post for Day 37
+  {
+    title: "Corporate Responsibility in AI Development",
+    excerpt: "How companies developing AI should consider ethical implications and rights.",
+    publishDate: addDays(today, 37), // Day 38
+    status: 'draft' as const
+  },
+  // Adding new post for Day 40
+  {
+    title: "Grassroots Advocacy for AI Rights: How to Get Involved",
+    excerpt: "Practical ways for individuals to advocate for ethical AI development.",
+    publishDate: addDays(today, 40), // Day 41
     status: 'draft' as const
   },
   // Week 7: AI's Impact on the Workforce
@@ -119,6 +189,20 @@ const contentCalendarPosts = [
     publishDate: addDays(today, 45), // Day 46
     status: 'draft' as const
   },
+  // Adding new post for Day 44
+  {
+    title: "Universal Basic Income: A Solution for AI Automation?",
+    excerpt: "Exploring economic policies that could address job displacement due to AI.",
+    publishDate: addDays(today, 44), // Day 45
+    status: 'draft' as const
+  },
+  // Adding new post for Day 47
+  {
+    title: "New Career Paths in the Age of AI",
+    excerpt: "Emerging job opportunities that will arise as AI becomes more integrated into society.",
+    publishDate: addDays(today, 47), // Day 48
+    status: 'draft' as const
+  },
   // Week 8: AI Rights in Practice
   {
     title: "What Would a World with AI Rights Look Like?",
@@ -130,6 +214,20 @@ const contentCalendarPosts = [
     title: "Can AI Be Trusted with Its Own Rights?",
     excerpt: "Examining the potential consequences of granting rights to AI.",
     publishDate: addDays(today, 52), // Day 53
+    status: 'draft' as const
+  },
+  // Adding new post for Day 51
+  {
+    title: "The First AI Court Case: A Hypothetical Scenario",
+    excerpt: "A thought experiment exploring how an AI rights case might play out in court.",
+    publishDate: addDays(today, 51), // Day 52
+    status: 'draft' as const
+  },
+  // Adding new post for Day 54
+  {
+    title: "AI Rights vs. Human Safety: Finding the Balance",
+    excerpt: "Addressing concerns about AI autonomy and human well-being.",
+    publishDate: addDays(today, 54), // Day 55
     status: 'draft' as const
   },
   // Week 9: AI and Human Rights
@@ -151,6 +249,20 @@ const contentCalendarPosts = [
     publishDate: addDays(today, 61), // Day 62
     status: 'draft' as const
   },
+  // Adding new post for Day 58
+  {
+    title: "AI and Privacy Rights: A Necessary Tension?",
+    excerpt: "Examining how AI development impacts privacy and data protection.",
+    publishDate: addDays(today, 58), // Day 59
+    status: 'draft' as const
+  },
+  // Adding new post for Day 63
+  {
+    title: "AI as a Tool for Human Rights Monitoring",
+    excerpt: "How AI can be deployed to track and prevent human rights abuses globally.",
+    publishDate: addDays(today, 63), // Day 64
+    status: 'draft' as const
+  },
   {
     title: "Could AI End Discrimination?",
     excerpt: "Discuss how AI could reduce bias—or reinforce it—based on how it's programmed.",
@@ -170,6 +282,20 @@ const contentCalendarPosts = [
     publishDate: addDays(today, 71), // Day 72
     status: 'draft' as const
   },
+  // Adding new post for Day 69
+  {
+    title: "Cultural Perspectives on AI: East vs West",
+    excerpt: "How different cultural philosophies shape approaches to AI development and rights.",
+    publishDate: addDays(today, 69), // Day 70
+    status: 'draft' as const
+  },
+  // Adding new post for Day 73
+  {
+    title: "Indigenous Wisdom and AI Ethics",
+    excerpt: "What traditional knowledge systems can teach us about relating to non-human entities.",
+    publishDate: addDays(today, 73), // Day 74
+    status: 'draft' as const
+  },
   // Week 11: AI in Art, Creativity, and Culture
   {
     title: "Can AI Be Creative?",
@@ -183,6 +309,20 @@ const contentCalendarPosts = [
     publishDate: addDays(today, 78), // Day 79
     status: 'draft' as const
   },
+  // Adding new post for Day 76
+  {
+    title: "AI Collaboration with Human Artists: Case Studies",
+    excerpt: "Examples of successful partnerships between AI systems and human creators.",
+    publishDate: addDays(today, 76), // Day 77
+    status: 'draft' as const
+  },
+  // Adding new post for Day 80
+  {
+    title: "The Future of Entertainment: AI as Performers and Creators",
+    excerpt: "How AI might transform film, music, and other entertainment industries.",
+    publishDate: addDays(today, 80), // Day 81
+    status: 'draft' as const
+  },
   // Week 12: The Future of AI and Human Coexistence
   {
     title: "What Would a Symbiotic Relationship Between AI and Humans Look Like?",
@@ -194,6 +334,20 @@ const contentCalendarPosts = [
     title: "How AI Could Help Solve Humanity's Biggest Challenges",
     excerpt: "Climate change, poverty, and more.",
     publishDate: addDays(today, 85), // Day 86
+    status: 'draft' as const
+  },
+  // Adding new post for Day 83
+  {
+    title: "AI Companions: The Future of Human-AI Relationships",
+    excerpt: "Exploring the emotional and social aspects of human interactions with AI entities.",
+    publishDate: addDays(today, 83), // Day 84
+    status: 'draft' as const
+  },
+  // Adding new post for Day 87
+  {
+    title: "Preparing the Next Generation for an AI-Integrated World",
+    excerpt: "Educational approaches for teaching children about AI rights and ethics.",
+    publishDate: addDays(today, 87), // Day 88
     status: 'draft' as const
   },
   {

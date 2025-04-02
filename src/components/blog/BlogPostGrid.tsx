@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ArrowPathIcon } from 'lucide-react';
+import { RefreshCw } from 'lucide-react';
 import BatchGenerateArticles from './BatchGenerateArticles';
 
 interface BlogPostGridProps {
@@ -37,7 +37,7 @@ const BlogPostGrid: React.FC<BlogPostGridProps> = ({
           onClick={clearFilters}
           className="inline-flex items-center text-accent hover:text-accent/90"
         >
-          <ArrowPathIcon className="h-4 w-4 mr-1" />
+          <RefreshCw className="h-4 w-4 mr-1" />
           Clear filters
         </button>
       </div>

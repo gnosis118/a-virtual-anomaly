@@ -1,3 +1,4 @@
+
 import React from 'react';
 import ArticleHeader from '../article-components/ArticleHeader';
 import ArticleSection from '../article-components/ArticleSection';
@@ -47,7 +48,7 @@ const EmotionalLandscapeArticle = () => {
           </div>
           <div>
             <img 
-              src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=2070&auto=format&fit=crop" 
+              src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?q=80&w=2070&auto=format&fit=crop" 
               alt="Scientific researcher examining neural data on multiple screens" 
               className="rounded-lg w-full aspect-square object-cover"
             />

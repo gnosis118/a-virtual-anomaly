@@ -1,5 +1,8 @@
 
 import React from 'react';
+import ArticleHeader from '../article-components/ArticleHeader';
+import ArticleSection from '../article-components/ArticleSection';
+import ArticleCallout from '../article-components/ArticleCallout';
 
 interface DefaultArticleStateProps {
   title?: string;
@@ -8,18 +11,28 @@ interface DefaultArticleStateProps {
 const DefaultArticleState: React.FC<DefaultArticleStateProps> = ({ title }) => {
   return (
     <div className="prose prose-lg max-w-none">
-      <div className="text-center py-10">
-        {title ? (
-          <div>
-            <h1 className="text-2xl font-bold mb-4">{title}</h1>
+      {title ? (
+        <>
+          <ArticleHeader 
+            title={title} 
+            subtitle="This article is coming soon."
+          />
+          
+          <ArticleSection>
             <p className="text-muted-foreground">
-              This article is coming soon. Check back later for content about "{title}".
+              We're currently working on this content. Check back later for more information about "{title}".
             </p>
-          </div>
-        ) : (
+            
+            <ArticleCallout title="Subscribe for Updates" variant="accent">
+              <p>Want to be notified when this article is published? Subscribe to our newsletter to stay updated on the latest content.</p>
+            </ArticleCallout>
+          </ArticleSection>
+        </>
+      ) : (
+        <div className="text-center py-10">
           <p className="text-muted-foreground mb-6">This article content is not available yet.</p>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };

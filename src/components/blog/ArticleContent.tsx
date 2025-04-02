@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import RoleOfEthicsArticle from './articles/RoleOfEthicsArticle';
 import AIImpactArticle from './articles/AIImpactArticle';
 import AIEmotionalFrontierArticle from './articles/AIEmotionalFrontierArticle';
@@ -22,25 +22,37 @@ interface ArticleContentProps {
 const ArticleContent: React.FC<ArticleContentProps> = ({ id, title, content, loading }) => {
   // Show loading state if loading prop is true
   if (loading) {
-    return (
-      <div className="animate-pulse space-y-4">
-        <div className="h-6 bg-gray-200 rounded w-3/4"></div>
-        <div className="h-4 bg-gray-200 rounded w-full"></div>
-        <div className="h-4 bg-gray-200 rounded w-full"></div>
-        <div className="h-4 bg-gray-200 rounded w-5/6"></div>
-      </div>
-    );
+    return <ArticleLoadingState />;
   }
   
   // If we have direct content from the API, render it
   if (content) {
-    return (
-      <div className="prose prose-slate max-w-none">
-        <div dangerouslySetInnerHTML={{ __html: content.replace(/\n/g, '<br/>') }} />
-      </div>
-    );
+    return <DynamicArticleContent content={content} />;
   }
   
+  // Return the appropriate article component based on ID or title
+  return <ArticleSelector id={id} title={title} />;
+};
+
+// Loading state component
+const ArticleLoadingState = () => (
+  <div className="animate-pulse space-y-4">
+    <div className="h-6 bg-gray-200 rounded w-3/4"></div>
+    <div className="h-4 bg-gray-200 rounded w-full"></div>
+    <div className="h-4 bg-gray-200 rounded w-full"></div>
+    <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+  </div>
+);
+
+// Dynamic content from API
+const DynamicArticleContent = ({ content }: { content: string }) => (
+  <div className="prose prose-slate max-w-none">
+    <div dangerouslySetInnerHTML={{ __html: content.replace(/\n/g, '<br/>') }} />
+  </div>
+);
+
+// Article selector logic
+const ArticleSelector = ({ id, title }: { id?: string | number, title?: string }) => {
   // Check for specific article by ID first (most reliable)
   if (id === 4 || id === "4") {
     return <AIEmotionalFrontierArticle />;
@@ -59,7 +71,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ id, title, content, loa
     return <EmotionalLandscapeArticle />;
   }
   
-  // Also match by title for flexibility
+  // Match by title for flexibility
   if (title) {
     if (title.includes("Can AI Experience Love?") || title.includes("Emotional Frontier")) {
       return <AIEmotionalFrontierArticle />;
@@ -85,10 +97,8 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ id, title, content, loa
       return <EmotionalLandscapeArticle />;
     }
     
-    // For all other titles, use the title to generate a somewhat relevant content
-    // This ensures each post has unique content instead of the same default
+    // For all other titles, use the title to generate somewhat relevant content
     if (title.length > 0) {
-      // We'll use the DefaultArticleState but will customize it there with the title
       return <DefaultArticleState title={title} />;
     }
   }

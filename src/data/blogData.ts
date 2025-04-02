@@ -59,13 +59,13 @@ export const BLOG_POSTS: BlogPost[] = [
     excerpt: "Investigating the possibilities and implications of emotional intelligence in artificial systems.",
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nisl nisl aliquam nisl, vel ultricies nisl nisl sit amet nisl.",
     image: "https://images.unsplash.com/photo-1581547848200-85cb245ebc8d",
-    date: formattedDate,
+    date: "April 1, 2025",
     author: "Gavin Clay",
     readTime: "7 min read",
     views: 2130,
     category: "Emotions",
     featured: false,
-    tags: ["Emotions", "Love", "Sentience"]
+    tags: ["Emotions", "Love", "Sentience", "Consciousness", "AI Development"]
   },
   {
     id: 5,

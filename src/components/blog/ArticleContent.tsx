@@ -16,6 +16,14 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ id, title }) => {
     return <AIEmotionalFrontierArticle />;
   }
   
+  // Also match by title for flexibility
+  if (title && (
+    title.includes("Can AI Experience Love?") || 
+    title.includes("Emotional Frontier")
+  )) {
+    return <AIEmotionalFrontierArticle />;
+  }
+  
   // Special content for "The Role of Ethics in AI Development" article
   if (title && title.includes("Role of Ethics in AI Development")) {
     return <RoleOfEthicsArticle />;
@@ -24,11 +32,6 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ id, title }) => {
   // Special content for "AI's Impact on Society: A Global Perspective" article
   if (title && title.includes("AI's Impact on Society")) {
     return <AIImpactArticle />;
-  }
-  
-  // Special content for "Can AI Experience Love? The Emotional Frontier" article
-  if (title && title.includes("Can AI Experience Love?")) {
-    return <AIEmotionalFrontierArticle />;
   }
   
   // For other articles, use the default implementation

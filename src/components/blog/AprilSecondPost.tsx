@@ -12,12 +12,14 @@ import BlogPostTags from '@/components/blog/BlogPostTags';
 import BlogPostAuthorBio from '@/components/blog/BlogPostAuthorBio';
 import { ALL_TAGS, BLOG_POSTS } from '@/data/blogData';
 import PostImage from './PostImage';
+import { toast } from "@/components/ui/use-toast";
+import { Loader2 } from 'lucide-react';
 
 interface AprilSecondPostProps {
-  id: string;
+  id?: string;
 }
 
-const AprilSecondPost: React.FC<AprilSecondPostProps> = ({ id }) => {
+const AprilSecondPost: React.FC<AprilSecondPostProps> = ({ id = "april2" }) => {
   const navigate = useNavigate();
   const [dynamicContent, setDynamicContent] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -33,7 +35,7 @@ const AprilSecondPost: React.FC<AprilSecondPostProps> = ({ id }) => {
         const { data, error } = await supabase
           .from('scheduled_posts')
           .select('content, image_url, title, excerpt, author, category, tags')
-          .eq('id', id)
+          .eq('id', id || 'april2')
           .maybeSingle();
         
         if (!error && data && data.content) {
@@ -44,11 +46,21 @@ const AprilSecondPost: React.FC<AprilSecondPostProps> = ({ id }) => {
           }
         } else if (id === "april2" || id === "april-2") {
           // Special case for April 2nd content - generate it now
+          toast({
+            title: "Generating Article",
+            description: "The AI Rights special article is being generated. This may take a moment...",
+          });
+          
           const { data: generatedData, error: generateError } = await supabase.functions.invoke('generate-blog-content', {
             body: { postId: 'april2' }
           });
           
           if (!generateError && generatedData && generatedData.success) {
+            toast({
+              title: "Article Generated",
+              description: "The AI Rights special article has been generated successfully.",
+            });
+            
             // Fetch the newly generated content
             const { data: freshData } = await supabase
               .from('scheduled_posts')
@@ -62,10 +74,21 @@ const AprilSecondPost: React.FC<AprilSecondPostProps> = ({ id }) => {
                 setDynamicImage(freshData.image_url);
               }
             }
+          } else {
+            toast({
+              title: "Generation Failed",
+              description: "Could not generate the article. Using default content.",
+              variant: "destructive",
+            });
           }
         }
       } catch (err) {
         console.error('Error fetching dynamic content:', err);
+        toast({
+          title: "Error",
+          description: "Could not fetch article content. Please try again later.",
+          variant: "destructive",
+        });
       } finally {
         setLoading(false);
       }
@@ -76,7 +99,7 @@ const AprilSecondPost: React.FC<AprilSecondPostProps> = ({ id }) => {
   
   // Create a mock post object for April 2nd
   const april2Post = {
-    id: 999, // Use a unique ID
+    id: id === "april2" ? 999 : parseInt(id || "999"), // Use a unique ID
     title: "The Emotional Landscape of Artificial Intelligence",
     excerpt: "Can AIs experience emotions? This article explores the neurological basis of emotions and their potential artificial analogs.",
     author: "Gavin Clay",
@@ -104,14 +127,21 @@ const AprilSecondPost: React.FC<AprilSecondPostProps> = ({ id }) => {
               {/* Main Content */}
               <div className="md:col-span-2">
                 <div className="rounded-xl overflow-hidden mb-8">
-                  <PostImage 
-                    src={dynamicImage || april2Post.image}
-                    alt={april2Post.title}
-                  />
+                  {loading ? (
+                    <div className="flex items-center justify-center bg-muted h-80">
+                      <Loader2 className="h-16 w-16 animate-spin text-muted-foreground" />
+                    </div>
+                  ) : (
+                    <PostImage 
+                      src={dynamicImage || april2Post.image}
+                      alt={april2Post.title}
+                      className="w-full h-auto aspect-video object-cover"
+                    />
+                  )}
                 </div>
                 
                 <ArticleContent 
-                  id={id}
+                  id={id || "april2"}
                   title={april2Post.title} 
                   content={dynamicContent || undefined}
                   loading={loading}

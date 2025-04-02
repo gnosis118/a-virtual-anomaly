@@ -3,10 +3,12 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Loader2, CalendarX, Eye, Pencil } from 'lucide-react';
+import { Loader2, CalendarX, Eye, Pencil, ArrowRight } from 'lucide-react';
 import { ScheduledPost } from '@/data/contentCalendarData';
 import { format } from 'date-fns';
 import GenerateArticleButton from '../GenerateArticleButton';
+import PostImage from '../PostImage';
+import { Link } from 'react-router-dom';
 
 interface PostListProps {
   date: Date | undefined;
@@ -39,6 +41,7 @@ const PostList: React.FC<PostListProps> = ({
   }
   
   const formattedDate = format(date, 'MMMM d, yyyy');
+  const isAprilSecond = date && date.getMonth() === 3 && date.getDate() === 2; // April is month 3 (0-indexed)
   
   return (
     <Card className="md:col-span-2 flex-1">
@@ -89,6 +92,17 @@ const PostList: React.FC<PostListProps> = ({
                 }`}
                 onClick={() => setSelectedPost(post)}
               >
+                {/* Display post image, particularly for April 2nd posts */}
+                {(isAprilSecond || post.image_url) && (
+                  <div className="mb-4 rounded-md overflow-hidden">
+                    <PostImage 
+                      src={post.image_url || "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80"}
+                      alt={post.title}
+                      className="w-full h-48 object-cover"
+                    />
+                  </div>
+                )}
+                
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="font-medium">{post.title}</h3>
                   <Badge variant={
@@ -108,11 +122,29 @@ const PostList: React.FC<PostListProps> = ({
                   </span>
                 </div>
                 
-                {isAdmin && post.status === 'scheduled' && (
-                  <div className="mt-4 flex justify-end">
+                <div className="mt-4 flex justify-between items-center">
+                  {/* View Article button (visible for all posts, but with special handling for April 2nd) */}
+                  {isAprilSecond ? (
+                    <Link to="/blog/april2" className="inline-flex items-center text-accent hover:text-accent/80 text-sm">
+                      Read full article
+                      <ArrowRight className="h-3 w-3 ml-1" />
+                    </Link>
+                  ) : post.status === 'published' ? (
+                    <Link to={`/blog/${post.id}`} className="inline-flex items-center text-accent hover:text-accent/80 text-sm">
+                      Read full article
+                      <ArrowRight className="h-3 w-3 ml-1" />
+                    </Link>
+                  ) : (
+                    <span className="text-xs text-muted-foreground italic">
+                      {post.status === 'scheduled' ? "This article will be available on the scheduled date" : "Draft article"}
+                    </span>
+                  )}
+                  
+                  {/* Generate Article button (only for admins and scheduled posts) */}
+                  {isAdmin && post.status === 'scheduled' && (
                     <GenerateArticleButton postId={post.id.toString()} />
-                  </div>
-                )}
+                  )}
+                </div>
               </div>
             ))}
           </div>

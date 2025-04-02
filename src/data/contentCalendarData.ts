@@ -21,6 +21,63 @@ export async function getPostsForDate(date?: Date): Promise<ScheduledPost[]> {
   const formattedDate = date.toISOString().split('T')[0];
   console.log('Formatted date for query:', formattedDate);
   
+  // Special case for April 2nd
+  const isAprilSecond = date.getMonth() === 3 && date.getDate() === 2;
+  if (isAprilSecond) {
+    // Check if we have the April 2nd post in the database first
+    try {
+      const { data, error } = await supabase
+        .from('scheduled_posts')
+        .select('*')
+        .eq('id', 'april2')
+        .maybeSingle();
+        
+      if (!error && data) {
+        // We have the April 2nd post in the database
+        console.log('Found April 2nd post in database');
+        return [{
+          id: 'april2',
+          title: data.title || "The Emotional Landscape of Artificial Intelligence",
+          excerpt: data.excerpt || "Can AIs experience emotions? This article explores the neurological basis of emotions and their potential artificial analogs.",
+          content: data.content,
+          author: data.author || "Gavin Clay",
+          category: data.category || "AI Psychology",
+          tags: data.tags || "emotions,psychology,sentience,consciousness",
+          publishDate: new Date(data.publishdate || '2024-04-02'),
+          status: data.status || 'published',
+          image_url: data.image_url || "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80"
+        }];
+      }
+      
+      // If we don't have it in the database, use the fallback
+      return [{
+        id: 'april2',
+        title: "The Emotional Landscape of Artificial Intelligence",
+        excerpt: "Can AIs experience emotions? This article explores the neurological basis of emotions and their potential artificial analogs.",
+        author: "Gavin Clay",
+        category: "AI Psychology",
+        tags: "emotions,psychology,sentience,consciousness",
+        publishDate: new Date('2024-04-02'),
+        status: 'published',
+        image_url: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80"
+      }];
+    } catch (error) {
+      console.error('Error checking for April 2nd post:', error);
+      // Fallback to hardcoded April 2nd post
+      return [{
+        id: 'april2',
+        title: "The Emotional Landscape of Artificial Intelligence",
+        excerpt: "Can AIs experience emotions? This article explores the neurological basis of emotions and their potential artificial analogs.",
+        author: "Gavin Clay",
+        category: "AI Psychology",
+        tags: "emotions,psychology,sentience,consciousness",
+        publishDate: new Date('2024-04-02'),
+        status: 'published',
+        image_url: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80"
+      }];
+    }
+  }
+  
   try {
     // Get the posts from Supabase
     const { data, error } = await supabase
@@ -128,6 +185,9 @@ function getFallbackPostForDate(date: Date): ScheduledPost | null {
     const contentIndex = dayOfMonth % fallbackPostContent.length;
     const content = fallbackPostContent[contentIndex];
     
+    // Generate a placeholder image URL based on the category and title
+    const imageUrl = `https://images.unsplash.com/photo-${1600000000 + dayOfMonth * 100000}?auto=format&fit=crop&w=1000&q=80`;
+    
     return {
       id: `fallback-${formattedDate}`,
       title: content.title,
@@ -137,6 +197,7 @@ function getFallbackPostForDate(date: Date): ScheduledPost | null {
       tags: content.tags,
       publishDate: date,
       status: 'scheduled',
+      image_url: imageUrl
     };
   }
   

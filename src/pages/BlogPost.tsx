@@ -99,7 +99,7 @@ const BlogPost = () => {
       category: "AI Psychology",
       tags: ["emotions", "psychology", "sentience", "consciousness"],
       featured: false,
-      image: dynamicImage || "https://cdn.pixabay.com/photo/2017/09/08/20/29/artificial-intelligence-2730793_1280.jpg",
+      image: dynamicImage || "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1765&auto=format&fit=crop",
       content: "" // This will be filled by the dynamic content
     };
     
@@ -121,6 +121,10 @@ const BlogPost = () => {
                       src={dynamicImage || april2Post.image} 
                       alt={april2Post.title} 
                       className="w-full h-auto object-cover aspect-video"
+                      onError={(e) => {
+                        // Fallback in case the image doesn't load
+                        e.currentTarget.src = "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1765&auto=format&fit=crop";
+                      }}
                     />
                   </div>
                   
@@ -191,6 +195,10 @@ const BlogPost = () => {
                     src={dynamicImage || post.image} 
                     alt={post.title} 
                     className="w-full h-auto object-cover aspect-video"
+                    onError={(e) => {
+                      // Fallback in case the image doesn't load
+                      e.currentTarget.src = "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1765&auto=format&fit=crop";
+                    }}
                   />
                 </div>
                 

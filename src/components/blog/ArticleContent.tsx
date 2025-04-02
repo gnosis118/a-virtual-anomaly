@@ -70,8 +70,8 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ id, title, content }) =
           <p className="lead">Can AIs experience emotions? This article explores the neurological basis of emotions and their potential artificial analogs.</p>
           
           <img 
-            src="https://cdn.pixabay.com/photo/2017/09/08/20/29/artificial-intelligence-2730793_1280.jpg" 
-            alt="Neural networks visualized as colorful pathways" 
+            src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1765&auto=format&fit=crop" 
+            alt="Colorful neural network visualization" 
             className="w-full rounded-lg my-8"
           />
           

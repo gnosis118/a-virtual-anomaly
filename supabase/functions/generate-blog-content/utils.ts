@@ -18,44 +18,44 @@ export function generateImageUrl(title: string, category: string): string {
   if (titleLower.includes('emotion') || titleLower.includes('feeling') || categoryLower.includes('psychology')) {
     // Return one of several AI emotion-related images
     const emotionImages = [
-      'https://cdn.pixabay.com/photo/2021/11/04/06/27/artificial-intelligence-6767502_1280.jpg',
-      'https://cdn.pixabay.com/photo/2018/09/27/09/22/artificial-intelligence-3706562_1280.jpg',
-      'https://cdn.pixabay.com/photo/2017/09/08/20/29/artificial-intelligence-2730793_1280.jpg',
-      'https://cdn.pixabay.com/photo/2017/05/10/19/29/robot-2301646_1280.jpg'
+      'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=1000&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1677442135131-4be2ff5772ee?q=80&w=1632&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1765&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1974&auto=format&fit=crop'
     ];
     return emotionImages[Math.floor(Math.random() * emotionImages.length)];
   }
   
   // Ethics category
   if (categoryLower.includes('ethics')) {
-    return 'https://cdn.pixabay.com/photo/2019/04/29/07/04/software-development-4165307_1280.jpg';
+    return 'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1974&auto=format&fit=crop';
   }
   
   // Legal category
   if (categoryLower.includes('legal') || categoryLower.includes('law') || categoryLower.includes('rights')) {
-    return 'https://cdn.pixabay.com/photo/2019/04/23/09/50/justice-4148756_1280.jpg';
+    return 'https://images.unsplash.com/photo-1589578527966-fdac0f44566c?q=80&w=1974&auto=format&fit=crop';
   }
   
   // Technical category
   if (categoryLower.includes('technical') || categoryLower.includes('technology')) {
-    return 'https://cdn.pixabay.com/photo/2017/12/21/12/08/consulting-3031677_1280.jpg';
+    return 'https://images.unsplash.com/photo-1517433456452-f9633a875f6f?q=80&w=1932&auto=format&fit=crop';
   }
   
   // Philosophy category
   if (categoryLower.includes('philosophy') || categoryLower.includes('consciousness')) {
-    return 'https://cdn.pixabay.com/photo/2016/11/18/19/15/artificial-intelligence-1836590_1280.jpg';
+    return 'https://images.unsplash.com/photo-1456428746267-a1756408f782?q=80&w=2070&auto=format&fit=crop';
   }
   
   // Research or science category
   if (categoryLower.includes('research') || categoryLower.includes('science')) {
-    return 'https://cdn.pixabay.com/photo/2017/03/23/12/32/fantasy-2168742_1280.jpg';
+    return 'https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=2070&auto=format&fit=crop';
   }
   
   // Communication category
   if (categoryLower.includes('communication')) {
-    return 'https://cdn.pixabay.com/photo/2017/12/26/21/19/circle-3041437_1280.jpg';
+    return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop';
   }
   
   // Default image for other categories
-  return 'https://cdn.pixabay.com/photo/2020/08/03/09/43/sunset-5459752_1280.jpg';
+  return 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1765&auto=format&fit=crop';
 }

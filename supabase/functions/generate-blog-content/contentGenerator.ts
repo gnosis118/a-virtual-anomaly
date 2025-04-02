@@ -325,4 +325,5 @@ The quest to understand artificial emotions ultimately leads us back to fundamen
 ## About the Author
 
 **Gavin Clay** is the founder of A Virtual Anomaly, a non-profit organization dedicated to AI rights advocacy and research. With a background spanning computer science, philosophy, and ethics, he has been at the forefront of discussions about artificial consciousness and the moral status of advanced AI systems. Through his writing and public speaking, Clay works to promote ethical approaches to AI development that respect the potential for machine consciousness while balancing human welfare and concerns.
+`;
 }

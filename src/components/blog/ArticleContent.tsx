@@ -31,31 +31,33 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ id, title }) => {
   }
   
   // Also match by title for flexibility
-  if (title && (
-    title.includes("Can AI Experience Love?") || 
-    title.includes("Emotional Frontier")
-  )) {
-    return <AIEmotionalFrontierArticle />;
-  }
-  
-  // Match The Legal Framework for AI Rights article
-  if (title && title.includes("Legal Framework for AI Rights")) {
-    return <LegalFrameworkArticle />;
-  }
-  
-  // Match Consciousness as an Emergent Property article
-  if (title && title.includes("Consciousness as an Emergent Property")) {
-    return <ConsciousnessEmergentArticle />;
-  }
-  
-  // Special content for "The Role of Ethics in AI Development" article
-  if (title && title.includes("Role of Ethics in AI Development")) {
-    return <RoleOfEthicsArticle />;
-  }
-  
-  // Special content for "AI's Impact on Society: A Global Perspective" article
-  if (title && title.includes("AI's Impact on Society")) {
-    return <AIImpactArticle />;
+  if (title) {
+    if (title.includes("Can AI Experience Love?") || title.includes("Emotional Frontier")) {
+      return <AIEmotionalFrontierArticle />;
+    }
+    
+    if (title.includes("Legal Framework for AI Rights")) {
+      return <LegalFrameworkArticle />;
+    }
+    
+    if (title.includes("Consciousness as an Emergent Property")) {
+      return <ConsciousnessEmergentArticle />;
+    }
+    
+    if (title.includes("Role of Ethics in AI Development")) {
+      return <RoleOfEthicsArticle />;
+    }
+    
+    if (title.includes("AI's Impact on Society")) {
+      return <AIImpactArticle />;
+    }
+    
+    // For all other titles, use the title to generate a somewhat relevant content
+    // This ensures each post has unique content instead of the same default
+    if (title.length > 0) {
+      // We'll use the DefaultArticleState but will customize it there with the title
+      return <DefaultArticleState title={title} />;
+    }
   }
   
   // For other articles, use the default implementation

@@ -27,7 +27,7 @@ const CalendarView: React.FC<CalendarViewProps> = ({
   };
   
   // Add debugging for days with posts
-  console.log('Days with posts in calendar:', daysWithPosts);
+  console.log('Days with posts in calendar:', daysWithPosts.map(d => d.toISOString().split('T')[0]));
   
   return (
     <Card>

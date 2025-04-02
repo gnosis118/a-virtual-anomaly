@@ -47,7 +47,8 @@ export async function getPostsForDate(date?: Date): Promise<ScheduledPost[]> {
       tags: post.tags,
       publishDate: new Date(post.publishdate), // Convert DB publishdate to frontend publishDate
       status: post.status as 'draft' | 'scheduled' | 'published',
-      image_url: post.image_url
+      // Safely handle image_url which may not exist in the database yet
+      image_url: post.image_url || null
     }));
   } catch (error) {
     console.error('Error in getPostsForDate:', error);

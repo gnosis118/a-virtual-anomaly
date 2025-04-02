@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -73,8 +72,8 @@ const LegalFrameworkArticle: React.FC = () => {
         
         <div className="not-prose my-8">
           <img 
-            src="https://images.unsplash.com/photo-1607723419793-bc7544388e93?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
-            alt="Futuristic AI concept with digital code representing current legal categorization" 
+            src="https://images.unsplash.com/photo-1554098415-788601d7c098?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
+            alt="Advanced AI robot concept with circuit patterns representing current legal status" 
             className="w-full h-auto rounded-xl object-cover aspect-video mb-6"
           />
         </div>
@@ -171,8 +170,8 @@ const LegalFrameworkArticle: React.FC = () => {
         
         <div className="not-prose my-8">
           <img 
-            src="https://images.unsplash.com/photo-1462618939261-a016b90970c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
-            alt="Digital network representing potential AI legal systems" 
+            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
+            alt="Futuristic network connections representing potential AI legal frameworks" 
             className="w-full h-auto rounded-xl object-cover aspect-video mb-6"
           />
         </div>
@@ -303,7 +302,7 @@ const LegalFrameworkArticle: React.FC = () => {
         
         <div className="not-prose my-8">
           <img 
-            src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
+            src="https://images.unsplash.com/photo-1521587760476-a016b90970c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
             alt="Global map representing different legal approaches to AI rights" 
             className="w-full h-auto rounded-xl object-cover aspect-video mb-6"
           />

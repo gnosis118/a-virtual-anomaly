@@ -1,119 +1,92 @@
 
 import React from 'react';
-import { Clock, Calendar, Share, ArrowRight } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import Button from '@/components/Button';
-import { BlogPost } from '@/types/blog';
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
+import { ArrowPathIcon } from 'lucide-react';
+import BatchGenerateArticles from './BatchGenerateArticles';
 
 interface BlogPostGridProps {
-  posts: BlogPost[];
+  posts: any[];
   searchQuery: string;
   selectedCategory: string;
   clearFilters: () => void;
 }
 
-const BlogPostGrid = ({ posts, searchQuery, selectedCategory, clearFilters }: BlogPostGridProps) => {
+const BlogPostGrid: React.FC<BlogPostGridProps> = ({ 
+  posts, 
+  searchQuery, 
+  selectedCategory,
+  clearFilters
+}) => {
+  // Check if there are no posts that match the search criteria
+  const hasFilteredPosts = posts.length > 0;
+  
+  // Show a message when no posts are found
+  if (!hasFilteredPosts) {
+    return (
+      <div className="bg-muted/30 rounded-lg p-6 text-center">
+        <h3 className="text-lg font-medium mb-2">No posts found</h3>
+        <p className="text-muted-foreground mb-4">
+          {searchQuery && selectedCategory 
+            ? `No articles match "${searchQuery}" in the ${selectedCategory} category.`
+            : searchQuery 
+              ? `No articles match "${searchQuery}".`
+              : selectedCategory 
+                ? `No articles found in the ${selectedCategory} category.`
+                : "No articles found."}
+        </p>
+        <button 
+          onClick={clearFilters}
+          className="inline-flex items-center text-accent hover:text-accent/90"
+        >
+          <ArrowPathIcon className="h-4 w-4 mr-1" />
+          Clear filters
+        </button>
+      </div>
+    );
+  }
+  
   return (
     <div>
-      <h2 className="text-2xl font-semibold mb-6 relative heading-highlight">
-        {searchQuery || selectedCategory ? `Search Results: ${posts.length} found` : "Latest Articles"}
-      </h2>
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-xl font-semibold">{posts.length} Articles</h2>
+        <BatchGenerateArticles />
+      </div>
       
-      {posts.length === 0 ? (
-        <div className="py-12 text-center">
-          <p className="text-lg text-muted-foreground">No articles found matching your search criteria.</p>
-          <Button 
-            onClick={clearFilters} 
-            variant="outline"
-            className="mt-4"
+      <div className="grid gap-6">
+        {posts.map((post) => (
+          <div 
+            key={post.id}
+            className="bg-card rounded-lg shadow-sm border border-border overflow-hidden hover:shadow-md transition-shadow duration-300"
           >
-            Clear Search
-          </Button>
-        </div>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {posts.map((post) => (
-            <Card 
-              key={post.id}
-              className="overflow-hidden group hover:shadow-md transition-all duration-300 border border-border"
-            >
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={post.image} 
-                  alt={post.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute top-4 left-4 px-2 py-1 bg-accent/90 text-white text-xs font-medium rounded">
+            <div className="md:flex">
+              <div className="md:w-1/3 h-48 md:h-auto relative">
+                <a href={`/blog/${post.id}`}>
+                  <img 
+                    src={post.image} 
+                    alt={post.title} 
+                    className="w-full h-full object-cover"
+                  />
+                </a>
+                <div className="absolute top-2 left-2 px-2 py-1 bg-accent/90 text-white text-xs font-medium rounded">
                   {post.category}
                 </div>
               </div>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-xl group-hover:text-accent transition-colors">
-                  {post.title}
-                </CardTitle>
-                <CardDescription className="flex items-center text-xs text-muted-foreground mt-2">
-                  <span className="flex items-center mr-3">
-                    <Calendar className="mr-1 h-3 w-3" />
-                    {post.date}
-                  </span>
-                  <span className="flex items-center">
-                    <Clock className="mr-1 h-3 w-3" />
-                    {post.readTime}
-                  </span>
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground line-clamp-2">
-                  {post.excerpt}
-                </p>
-              </CardContent>
-              <CardFooter className="flex justify-between pt-0">
-                <Button 
-                  href={`/blog/${post.id}`} 
-                  variant="ghost" 
-                  icon={<ArrowRight size={16} />} 
-                  iconPosition="right"
-                  className="p-0 h-auto text-accent"
-                >
-                  Read More
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="p-2 h-auto text-muted-foreground"
-                  aria-label="Share this post"
-                >
-                  <Share size={16} />
-                </Button>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
-      )}
-      
-      {/* Pagination */}
-      {posts.length > 0 && (
-        <Pagination className="mt-10">
-          <PaginationContent>
-            <PaginationItem>
-              <PaginationPrevious href="#" />
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#" isActive>1</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">2</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">3</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationNext href="#" />
-            </PaginationItem>
-          </PaginationContent>
-        </Pagination>
-      )}
+              <div className="p-6 md:w-2/3">
+                <h3 className="text-lg font-semibold mb-2">
+                  <a href={`/blog/${post.id}`} className="hover:text-accent transition-colors">
+                    {post.title}
+                  </a>
+                </h3>
+                <p className="text-muted-foreground mb-4 line-clamp-2">{post.excerpt}</p>
+                <div className="flex items-center text-xs text-muted-foreground">
+                  <span>{post.date}</span>
+                  <span className="mx-2">•</span>
+                  <span>{post.author}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

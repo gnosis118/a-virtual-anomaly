@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ArticleHeader from '../article-components/ArticleHeader';
 import ArticleSection from '../article-components/ArticleSection';
@@ -40,8 +39,8 @@ const EmotionalLandscapeArticle = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
           <div>
             <img 
-              src="https://images.unsplash.com/photo-1583468982228-19f19164aee6?q=80&w=2071&auto=format&fit=crop" 
-              alt="Detailed fMRI scan of human brain activity during emotional processing" 
+              src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=2070&auto=format&fit=crop" 
+              alt="Brain imaging reveals the complex neural networks activated during emotional experiences" 
               className="rounded-lg w-full aspect-square object-cover"
             />
             <p className="text-sm text-muted-foreground mt-2">Brain imaging reveals the complex neural networks activated during emotional experiences.</p>

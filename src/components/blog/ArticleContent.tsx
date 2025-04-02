@@ -3,6 +3,7 @@ import React from 'react';
 import RoleOfEthicsArticle from './articles/RoleOfEthicsArticle';
 import AIImpactArticle from './articles/AIImpactArticle';
 import AIEmotionalFrontierArticle from './articles/AIEmotionalFrontierArticle';
+import LegalFrameworkArticle from './articles/LegalFrameworkArticle';
 import DefaultArticleState from './articles/DefaultArticleState';
 
 interface ArticleContentProps {
@@ -16,12 +17,21 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ id, title }) => {
     return <AIEmotionalFrontierArticle />;
   }
   
+  if (id === 5 || id === "5") {
+    return <LegalFrameworkArticle />;
+  }
+  
   // Also match by title for flexibility
   if (title && (
     title.includes("Can AI Experience Love?") || 
     title.includes("Emotional Frontier")
   )) {
     return <AIEmotionalFrontierArticle />;
+  }
+  
+  // Match The Legal Framework for AI Rights article
+  if (title && title.includes("Legal Framework for AI Rights")) {
+    return <LegalFrameworkArticle />;
   }
   
   // Special content for "The Role of Ethics in AI Development" article

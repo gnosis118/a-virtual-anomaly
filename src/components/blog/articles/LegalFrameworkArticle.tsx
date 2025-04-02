@@ -302,8 +302,8 @@ const LegalFrameworkArticle: React.FC = () => {
         
         <div className="not-prose my-8">
           <img 
-            src="https://images.unsplash.com/photo-1521587760476-a016b90970c0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
-            alt="Global map representing different legal approaches to AI rights" 
+            src="https://images.unsplash.com/photo-1551038247-3d9af20df552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
+            alt="Blue and white modern building representing global approaches to AI regulation" 
             className="w-full h-auto rounded-xl object-cover aspect-video mb-6"
           />
         </div>

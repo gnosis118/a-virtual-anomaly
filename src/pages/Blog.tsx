@@ -2,23 +2,17 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import BlogCategoryMenubar from '@/components/BlogCategoryMenubar';
 import BlogHero from '@/components/blog/BlogHero';
-import BlogSidebar from '@/components/blog/BlogSidebar';
-import BlogMainContent from '@/components/blog/BlogMainContent';
-import { BLOG_POSTS, CATEGORIES, ALL_TAGS } from '@/data/blogData';
+import { BLOG_POSTS, CATEGORIES } from '@/data/blogData';
 import { useLocation } from 'react-router-dom';
+import FeaturedArticlesSection from '@/components/blog/FeaturedArticlesSection';
+import PastArticlesSection from '@/components/blog/PastArticlesSection';
+import CategoryFilter from '@/components/blog/CategoryFilter';
 
 const Blog = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const tagFromUrl = searchParams.get('tag');
-  
-  // Get featured post
-  const featuredPost = BLOG_POSTS.find(post => post.featured) || BLOG_POSTS[0];
-  
-  // Regular posts (excluding featured)
-  const regularPosts = BLOG_POSTS.filter(post => post.id !== featuredPost.id);
   
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -33,7 +27,7 @@ const Blog = () => {
   }, [tagFromUrl]);
   
   // Filter posts based on search query and selected category
-  const filteredPosts = regularPosts.filter(post => {
+  const filteredPosts = BLOG_POSTS.filter(post => {
     const matchesSearch = searchQuery.trim() === "" || 
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
       post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -41,26 +35,29 @@ const Blog = () => {
       post.category.toLowerCase().includes(searchQuery.toLowerCase());
       
     const matchesCategory = selectedCategory === "" || 
-      post.category === selectedCategory ||
-      post.tags.includes(selectedCategory);
+      post.category === selectedCategory;
       
     return matchesSearch && matchesCategory;
   });
 
-  // Calculate pagination
+  // Get the featured/recent posts (5 most recent)
+  const featuredPosts = [...BLOG_POSTS]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 5);
+
+  // Get past articles (excluding the featured ones)
+  const featuredPostIds = new Set(featuredPosts.map(post => post.id));
+  const pastPosts = filteredPosts.filter(post => !featuredPostIds.has(post.id));
+
+  // Calculate pagination for past articles
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
-  const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
+  const currentPastPosts = pastPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(pastPosts.length / postsPerPage);
 
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(category);
     setCurrentPage(1); // Reset to first page when changing categories
-  };
-
-  const handleTagSelect = (tag: string) => {
-    setSearchQuery(tag);
-    setCurrentPage(1); // Reset to first page when changing tags
   };
 
   const clearFilters = () => {
@@ -68,9 +65,6 @@ const Blog = () => {
     setSelectedCategory("");
     setCurrentPage(1);
   };
-
-  // Recent posts for top section (5 most recent)
-  const recentPosts = regularPosts.slice(0, 5);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -82,41 +76,30 @@ const Blog = () => {
           setSearchQuery={setSearchQuery} 
         />
         
-        {/* Category Navigation Bar */}
-        <BlogCategoryMenubar 
-          categories={CATEGORIES}
-          onCategorySelect={handleCategorySelect}
-          selectedCategory={selectedCategory}
-        />
-
-        <section className="py-8 px-4 md:px-8">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {/* Main Content Area (2/3 width on desktop) */}
-              <BlogMainContent 
-                searchQuery={searchQuery}
-                selectedCategory={selectedCategory}
-                recentPosts={recentPosts}
-                featuredPost={featuredPost}
-                currentPosts={currentPosts}
-                filteredPosts={filteredPosts}
-                totalPages={totalPages}
-                currentPage={currentPage}
-                setCurrentPage={setCurrentPage}
-                clearFilters={clearFilters}
-              />
-              
-              {/* Sidebar (1/3 width on desktop) */}
-              <div>
-                <BlogSidebar 
-                  posts={BLOG_POSTS}
-                  allTags={ALL_TAGS}
-                  onTagSelect={handleTagSelect}
-                />
-              </div>
-            </div>
-          </div>
-        </section>
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
+          {/* Category Filter */}
+          <CategoryFilter 
+            categories={CATEGORIES}
+            selectedCategory={selectedCategory}
+            onCategorySelect={handleCategorySelect}
+            clearFilters={clearFilters}
+          />
+          
+          {/* Featured Articles Section (shows 5 most recent posts) */}
+          {!searchQuery && !selectedCategory && (
+            <FeaturedArticlesSection posts={featuredPosts} />
+          )}
+          
+          {/* Past Articles Section */}
+          <PastArticlesSection 
+            posts={currentPastPosts}
+            searchQuery={searchQuery}
+            selectedCategory={selectedCategory}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            setCurrentPage={setCurrentPage}
+          />
+        </div>
       </main>
       <Footer />
     </div>

@@ -1,10 +1,9 @@
+
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { BLOG_POSTS } from '@/data/blogData';
-import DefaultArticleState from './articles/DefaultArticleState';
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/components/ui/use-toast";
 import { Loader2 } from 'lucide-react';
+import DefaultArticleState from './articles/DefaultArticleState';
 
 const BlogPostContent: React.FC<{ postId: number }> = ({ postId }) => {
   const [content, setContent] = useState<string | null>(null);
@@ -15,10 +14,11 @@ const BlogPostContent: React.FC<{ postId: number }> = ({ postId }) => {
       setIsLoading(true);
       try {
         // Fetch the blog post content from Supabase
+        // Convert postId to string since Supabase expects string for UUID
         const { data, error } = await supabase
           .from('scheduled_posts')
           .select('content')
-          .eq('id', postId)
+          .eq('id', postId.toString())
           .single();
         
         if (error) {

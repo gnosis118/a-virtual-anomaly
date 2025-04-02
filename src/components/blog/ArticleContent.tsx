@@ -21,14 +21,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ id, title }) => {
   }
   
   // For other articles, use the default implementation
-  return (
-    <DefaultArticleState 
-      onGenerateClick={() => {
-        // This would normally trigger article generation
-        alert("Article generation would be triggered here");
-      }} 
-    />
-  );
+  return <DefaultArticleState />;
 };
 
 export default ArticleContent;

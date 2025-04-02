@@ -30,7 +30,7 @@ export async function generateArticle(supabaseClient, postId) {
         id: postId,
         title: "AI Ethics and Rights",
         excerpt: "Exploring the ethical implications of artificial intelligence and the case for AI rights.",
-        author: "A Virtual Anomaly Team",
+        author: "Gavin Clay",
         category: "Ethics",
         tags: "ethics,ai,consciousness,rights",
         status: "scheduled"

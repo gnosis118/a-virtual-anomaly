@@ -99,7 +99,8 @@ const BatchGenerateArticles: React.FC = () => {
       onClick={generateAllArticles}
       disabled={isGenerating}
       variant="default"
-      className="gap-2"
+      className="gap-2 bg-accent text-black hover:bg-accent/90"
+      size="lg"
     >
       {isGenerating ? (
         <>

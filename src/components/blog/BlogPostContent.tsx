@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Button from '@/components/Button';
+import GenerateArticleButton from './GenerateArticleButton';
 
 interface BlogPostContentProps {
   postId: number;
@@ -117,10 +118,20 @@ const BlogPostContent: React.FC<BlogPostContentProps> = ({ postId }) => {
       );
     }
     
-    // For other posts, just return a placeholder
+    // For other posts, check if they have content in the database first
+    // If not, show a generate button
     return (
       <div className="prose prose-lg max-w-none">
-        <p>Content for this post will be added soon.</p>
+        <div className="text-center py-10">
+          <p className="text-muted-foreground mb-6">This article hasn't been generated yet.</p>
+          <GenerateArticleButton 
+            postId={postId.toString()} 
+            onSuccess={() => {
+              // Reload the page to show the newly generated content
+              window.location.reload();
+            }} 
+          />
+        </div>
       </div>
     );
   };

@@ -48,7 +48,9 @@ const BlogPostGrid: React.FC<BlogPostGridProps> = ({
     <div>
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-semibold">{posts.length} Articles</h2>
-        <BatchGenerateArticles />
+        <div className="flex">
+          <BatchGenerateArticles />
+        </div>
       </div>
       
       <div className="grid gap-6">
@@ -77,10 +79,20 @@ const BlogPostGrid: React.FC<BlogPostGridProps> = ({
                   </a>
                 </h3>
                 <p className="text-muted-foreground mb-4 line-clamp-2">{post.excerpt}</p>
-                <div className="flex items-center text-xs text-muted-foreground">
-                  <span>{post.date}</span>
-                  <span className="mx-2">•</span>
-                  <span>{post.author}</span>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center text-xs text-muted-foreground">
+                    <span>{post.date}</span>
+                    <span className="mx-2">•</span>
+                    <span>{post.author}</span>
+                  </div>
+                  {!post.content && (
+                    <a 
+                      href={`/blog/${post.id}`} 
+                      className="text-xs font-medium text-accent hover:text-accent/80"
+                    >
+                      Generate Article →
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

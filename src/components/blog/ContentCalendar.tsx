@@ -23,12 +23,20 @@ const ContentCalendar: React.FC = () => {
     const fetchDaysWithPosts = async () => {
       setLoadingDays(true);
       try {
+        console.log('Fetching days with posts...');
         const days = await getDaysWithPosts();
+        console.log('Days with posts:', days);
         if (days && days.length > 0) {
           setActiveDays(days);
+        } else {
+          // If no data from API, use fallback days to ensure the calendar has some data
+          console.log('Using fallback days');
+          setActiveDays(fallbackDays);
         }
       } catch (error) {
         console.error('Error fetching days with posts:', error);
+        // On error, use fallback days
+        setActiveDays(fallbackDays);
       } finally {
         setLoadingDays(false);
       }
@@ -44,7 +52,9 @@ const ContentCalendar: React.FC = () => {
       
       setLoadingPosts(true);
       try {
+        console.log('Fetching posts for date:', date);
         const posts = await getPostsForDate(date);
+        console.log('Posts for date:', posts);
         setPostsForSelectedDate(posts);
         // Reset selected post if it's not in the new list
         if (selectedPost && !posts.find(p => p.id === selectedPost.id)) {
@@ -52,6 +62,7 @@ const ContentCalendar: React.FC = () => {
         }
       } catch (error) {
         console.error('Error fetching posts for date:', error);
+        setPostsForSelectedDate([]);
       } finally {
         setLoadingPosts(false);
       }

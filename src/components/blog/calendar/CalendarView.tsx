@@ -26,6 +26,9 @@ const CalendarView: React.FC<CalendarViewProps> = ({
     );
   };
   
+  // Add debugging for days with posts
+  console.log('Days with posts in calendar:', daysWithPosts);
+  
   return (
     <Card>
       <CardHeader>

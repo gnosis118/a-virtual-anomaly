@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -8,6 +7,8 @@ import { useLocation } from 'react-router-dom';
 import FeaturedArticlesSection from '@/components/blog/FeaturedArticlesSection';
 import PastArticlesSection from '@/components/blog/PastArticlesSection';
 import CategoryFilter from '@/components/blog/CategoryFilter';
+import ContentCalendar from '@/components/blog/ContentCalendar';
+import { Separator } from "@/components/ui/separator";
 
 const Blog = () => {
   const location = useLocation();
@@ -19,14 +20,12 @@ const Blog = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 6;
   
-  // Set tag from URL if present
   useEffect(() => {
     if (tagFromUrl) {
       setSearchQuery(tagFromUrl);
     }
   }, [tagFromUrl]);
   
-  // Filter posts based on search query and selected category
   const filteredPosts = BLOG_POSTS.filter(post => {
     const matchesSearch = searchQuery.trim() === "" || 
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
@@ -40,16 +39,13 @@ const Blog = () => {
     return matchesSearch && matchesCategory;
   });
 
-  // Get the featured/recent posts (5 most recent)
   const featuredPosts = [...BLOG_POSTS]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 5);
 
-  // Get past articles (excluding the featured ones)
   const featuredPostIds = new Set(featuredPosts.map(post => post.id));
   const pastPosts = filteredPosts.filter(post => !featuredPostIds.has(post.id));
 
-  // Calculate pagination for past articles
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPastPosts = pastPosts.slice(indexOfFirstPost, indexOfLastPost);
@@ -57,7 +53,7 @@ const Blog = () => {
 
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(category);
-    setCurrentPage(1); // Reset to first page when changing categories
+    setCurrentPage(1);
   };
 
   const clearFilters = () => {
@@ -70,14 +66,12 @@ const Blog = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
-        {/* Blog Hero Section with Search */}
         <BlogHero 
           searchQuery={searchQuery} 
           setSearchQuery={setSearchQuery} 
         />
         
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
-          {/* Category Filter */}
           <CategoryFilter 
             categories={CATEGORIES}
             selectedCategory={selectedCategory}
@@ -85,12 +79,10 @@ const Blog = () => {
             clearFilters={clearFilters}
           />
           
-          {/* Featured Articles Section (shows 5 most recent posts) */}
           {!searchQuery && selectedCategory === "all" && (
             <FeaturedArticlesSection posts={featuredPosts} />
           )}
           
-          {/* Past Articles Section */}
           <PastArticlesSection 
             posts={currentPastPosts}
             searchQuery={searchQuery}
@@ -99,6 +91,16 @@ const Blog = () => {
             totalPages={totalPages}
             setCurrentPage={setCurrentPage}
           />
+          
+          <Separator className="my-12" />
+          
+          <div className="mb-10">
+            <h2 className="text-3xl font-bold mb-6">Content Calendar</h2>
+            <p className="text-muted-foreground mb-8">
+              Browse our scheduled content for the next 90 days. Each highlighted date on the calendar indicates scheduled article publications. Click on a date to view details about upcoming content.
+            </p>
+            <ContentCalendar />
+          </div>
         </div>
       </main>
       <Footer />

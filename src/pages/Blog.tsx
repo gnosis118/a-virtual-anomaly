@@ -9,6 +9,8 @@ import BlogPostGrid from '@/components/blog/BlogPostGrid';
 import BlogSidebar from '@/components/blog/BlogSidebar';
 import { BLOG_POSTS, CATEGORIES, ALL_TAGS } from '@/data/blogData';
 import { useLocation } from 'react-router-dom';
+import { Button } from "@/components/ui/button";
+import { Calendar } from "lucide-react";
 
 const Blog = () => {
   const location = useLocation();
@@ -81,6 +83,25 @@ const Blog = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Main Content Area (2/3 width on desktop) */}
               <div className="md:col-span-2">
+                {/* Special April 2nd Highlight Banner */}
+                <div className="bg-accent/10 border border-accent/20 rounded-lg p-6 mb-8 shadow-sm">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <div className="flex items-center mb-2">
+                        <Calendar className="h-5 w-5 text-accent mr-2" />
+                        <span className="text-sm font-medium text-accent">Featured Article — April 2, 2024</span>
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2">The Emotional Landscape of Artificial Intelligence</h3>
+                      <p className="text-muted-foreground mb-4">
+                        Can AIs experience emotions? This article explores the neurological basis of emotions and their potential artificial analogs.
+                      </p>
+                    </div>
+                    <Button variant="outline" className="flex-shrink-0" asChild>
+                      <a href="/blog/april2">Read Article</a>
+                    </Button>
+                  </div>
+                </div>
+                
                 {/* Featured Post */}
                 {!searchQuery && !selectedCategory && (
                   <FeaturedPost post={featuredPost} />

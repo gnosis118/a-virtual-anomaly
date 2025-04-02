@@ -24,15 +24,14 @@ export async function generateArticle(supabaseClient, postId) {
     if (!postData) {
       console.log(`No database record found for post ID ${postId}, using static data`);
       
-      // We'll use some default values for generation
-      // In a real implementation, you would fetch this from a local database or API
+      // For April 2nd post, we'll create a specific emotional AI article
       const defaultPostData = {
         id: postId,
-        title: "AI Ethics and Rights",
-        excerpt: "Exploring the ethical implications of artificial intelligence and the case for AI rights.",
+        title: "The Emotional Landscape of Artificial Intelligence",
+        excerpt: "Can AIs experience emotions? This article explores the neurological basis of emotions and their potential artificial analogs.",
         author: "Gavin Clay",
-        category: "Ethics",
-        tags: "ethics,ai,consciousness,rights",
+        category: "AI Psychology",
+        tags: "emotions,psychology,sentience",
         status: "scheduled"
       };
       
@@ -42,16 +41,37 @@ export async function generateArticle(supabaseClient, postId) {
       // Generate or use existing image URL
       const imageUrl = generateImageUrl(defaultPostData.title, defaultPostData.category);
       
+      // Create a new entry in scheduled_posts for this article
+      const { error: insertError } = await supabaseClient
+        .from('scheduled_posts')
+        .insert({
+          id: postId,
+          title: defaultPostData.title,
+          excerpt: defaultPostData.excerpt,
+          author: defaultPostData.author,
+          category: defaultPostData.category,
+          tags: defaultPostData.tags,
+          content: content,
+          image_url: imageUrl,
+          publishdate: '2024-04-02', // April 2nd
+          status: 'published'
+        });
+        
+      if (insertError) {
+        console.error('Error inserting new post:', insertError);
+        throw new Error(`Failed to insert new post: ${insertError.message}`);
+      }
+      
       return {
         success: true,
         postId: postId,
         title: defaultPostData.title,
         contentSample: content.substring(0, 100) + '...',
-        note: "Generated with default data (no database record found)"
+        note: "Generated and inserted new article for April 2nd"
       };
     }
     
-    // Generate the article content
+    // If we already have data, generate the article content
     const content = await generateArticleContent({
       id: postData.id,
       title: postData.title,

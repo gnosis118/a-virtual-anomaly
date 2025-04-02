@@ -20,6 +20,15 @@ const PostImage: React.FC<PostImageProps> = ({ src, alt, className = "w-full h-a
   const [fallbackIndex, setFallbackIndex] = useState(0);
   const [isError, setIsError] = useState(false);
 
+  // Function to ensure URLs are absolute (needed for social media sharing)
+  const getAbsoluteUrl = (url: string) => {
+    if (url.startsWith('http')) return url;
+    
+    // Assuming we're hosted at virtualanomaly.org
+    const baseUrl = 'https://virtualanomaly.org';
+    return url.startsWith('/') ? `${baseUrl}${url}` : `${baseUrl}/${url}`;
+  };
+
   const handleImageError = () => {
     if (fallbackIndex < FALLBACK_IMAGES.length - 1) {
       setFallbackIndex(fallbackIndex + 1);
@@ -39,7 +48,7 @@ const PostImage: React.FC<PostImageProps> = ({ src, alt, className = "w-full h-a
 
   return (
     <img 
-      src={imageSource} 
+      src={getAbsoluteUrl(imageSource)} 
       alt={alt} 
       className={className}
       onError={handleImageError}

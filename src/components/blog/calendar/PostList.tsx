@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CalendarCheck2, EditIcon, ChevronRight, RotateCw } from "lucide-react";
 import { format } from "date-fns";
 import { ScheduledPost } from '@/data/contentCalendarData';
-import GenerateArticleButton from '../GenerateArticleButton';
 
 interface PostListProps {
   date: Date | undefined;
@@ -87,15 +86,6 @@ const PostList: React.FC<PostListProps> = ({
                     </span>
                     <span className="text-xs text-muted-foreground">{post.category}</span>
                   </div>
-                  
-                  {post.status === 'scheduled' && !post.content && (
-                    <GenerateArticleButton 
-                      postId={post.id.toString()} 
-                      onSuccess={() => {
-                        // Refresh the post list or update the selected post as needed
-                      }}
-                    />
-                  )}
                 </div>
               </div>
             ))}

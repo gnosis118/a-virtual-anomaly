@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { RefreshCw } from 'lucide-react';
-import BatchGenerateArticles from './BatchGenerateArticles';
 
 interface BlogPostGridProps {
   posts: any[];
@@ -48,9 +47,6 @@ const BlogPostGrid: React.FC<BlogPostGridProps> = ({
     <div>
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-semibold">{posts.length} Articles</h2>
-        <div className="flex">
-          <BatchGenerateArticles />
-        </div>
       </div>
       
       <div className="grid gap-6">
@@ -85,14 +81,6 @@ const BlogPostGrid: React.FC<BlogPostGridProps> = ({
                     <span className="mx-2">•</span>
                     <span>{post.author}</span>
                   </div>
-                  {!post.content && (
-                    <a 
-                      href={`/blog/${post.id}`} 
-                      className="text-xs font-medium text-accent hover:text-accent/80"
-                    >
-                      Generate Article →
-                    </a>
-                  )}
                 </div>
               </div>
             </div>

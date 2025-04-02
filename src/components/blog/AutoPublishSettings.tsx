@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
@@ -11,23 +11,68 @@ import { supabase } from "@/integrations/supabase/client";
 const AutoPublishSettings = () => {
   const [isEnabled, setIsEnabled] = useState(true);
   const [isRunning, setIsRunning] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  
+  // Fetch current setting on component mount
+  useEffect(() => {
+    const fetchSetting = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('settings')
+          .select('value')
+          .eq('key', 'auto_publish')
+          .single();
+        
+        if (error) {
+          console.error('Error fetching auto-publish setting:', error);
+          return;
+        }
+        
+        // If data exists, set the state accordingly
+        if (data) {
+          setIsEnabled(data.value === true || data.value === 'true');
+        }
+      } catch (error) {
+        console.error('Error in fetchSetting:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    fetchSetting();
+  }, []);
   
   const toggleAutoPublish = async () => {
-    setIsEnabled(!isEnabled);
+    const newValue = !isEnabled;
+    setIsEnabled(newValue);
+    
     toast({
-      title: isEnabled ? "Auto-publishing disabled" : "Auto-publishing enabled",
-      description: isEnabled 
-        ? "Content will no longer be automatically published" 
-        : "Scheduled content will be automatically published on the specified date",
+      title: newValue ? "Auto-publishing enabled" : "Auto-publishing disabled",
+      description: newValue 
+        ? "Scheduled content will be automatically published on the specified date" 
+        : "Content will no longer be automatically published",
     });
     
-    // Here you would update a setting in your database to track this preference
+    // Update the setting in the database
     try {
-      await supabase
+      const { error } = await supabase
         .from('settings')
-        .upsert({ key: 'auto_publish', value: !isEnabled });
+        .upsert({ key: 'auto_publish', value: newValue });
+      
+      if (error) {
+        console.error('Error saving auto-publish setting:', error);
+        toast({
+          title: "Failed to save setting",
+          description: error.message,
+          variant: "destructive",
+        });
+        // Revert the UI state if save failed
+        setIsEnabled(!newValue);
+      }
     } catch (error) {
-      console.error('Error saving auto-publish setting:', error);
+      console.error('Error in toggleAutoPublish:', error);
+      // Revert the UI state if save failed
+      setIsEnabled(!newValue);
     }
   };
   
@@ -71,6 +116,19 @@ const AutoPublishSettings = () => {
       setIsRunning(false);
     }
   };
+  
+  if (isLoading) {
+    return (
+      <Card className="mb-8">
+        <CardContent className="pt-6">
+          <div className="flex items-center justify-center h-24">
+            <RotateCw className="h-5 w-5 animate-spin text-muted-foreground" />
+            <span className="ml-2 text-muted-foreground">Loading settings...</span>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
   
   return (
     <Card className="mb-8">

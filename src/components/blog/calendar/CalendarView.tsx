@@ -2,49 +2,55 @@
 import React from 'react';
 import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CalendarCheck2 } from 'lucide-react';
+import { RotateCw } from 'lucide-react';
 
 interface CalendarViewProps {
   date: Date | undefined;
   setDate: (date: Date | undefined) => void;
   daysWithPosts: Date[];
+  isLoading?: boolean;
 }
 
 const CalendarView: React.FC<CalendarViewProps> = ({ 
   date, 
   setDate, 
-  daysWithPosts 
+  daysWithPosts,
+  isLoading = false 
 }) => {
+  // Create a function to determine if a day has posts
+  const isDayWithPosts = (day: Date) => {
+    return daysWithPosts.some(d => 
+      d.getDate() === day.getDate() && 
+      d.getMonth() === day.getMonth() && 
+      d.getFullYear() === day.getFullYear()
+    );
+  };
+  
   return (
-    <Card className="md:col-span-1">
+    <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <CalendarCheck2 className="h-5 w-5 text-accent" />
-          Content Calendar
-        </CardTitle>
+        <CardTitle>Content Calendar</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="relative">
+        {isLoading && (
+          <div className="absolute inset-0 bg-background/80 z-10 flex items-center justify-center">
+            <RotateCw className="h-5 w-5 animate-spin text-muted-foreground" />
+          </div>
+        )}
         <Calendar
           mode="single"
           selected={date}
           onSelect={setDate}
-          className="rounded-md border"
+          className="w-full"
           modifiers={{
-            scheduled: daysWithPosts,
+            booked: isDayWithPosts,
           }}
-          modifiersStyles={{
-            scheduled: { 
-              fontWeight: 'bold',
-              backgroundColor: 'rgba(var(--accent) / 0.1)',
-              color: 'var(--accent)',
-            }
+          modifiersClassNames={{
+            booked: "bg-accent text-accent-foreground font-bold",
           }}
         />
-        <div className="mt-4 text-sm text-muted-foreground">
-          <div className="flex items-center gap-2">
-            <div className="h-3 w-3 rounded-full bg-accent/30"></div>
-            <span>Days with scheduled content</span>
-          </div>
+        <div className="mt-4 text-xs text-muted-foreground">
+          <p>Dates with <span className="font-bold text-accent">highlighted</span> backgrounds have scheduled content.</p>
         </div>
       </CardContent>
     </Card>

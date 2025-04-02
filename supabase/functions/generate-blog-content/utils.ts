@@ -18,11 +18,11 @@ export function generateImageUrl(title: string, category: string): string {
   if (titleLower.includes('emotion') || titleLower.includes('feeling') || categoryLower.includes('psychology')) {
     // Return one of several AI emotion-related images
     const emotionImages = [
-      'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=1000&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1677442135131-4be2ff5772ee?q=80&w=1632&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1765&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1974&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop'
+      'https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=1974&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1507490857-1a87b75e19b3?q=80&w=2069&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1557176279-d77be41aa7b7?q=80&w=2074&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1583468982228-19f19164aee6?q=80&w=2071&auto=format&fit=crop',
+      'https://images.unsplash.com/photo-1503792501406-2c40da09e1e2?q=80&w=2073&auto=format&fit=crop'
     ];
     return emotionImages[Math.floor(Math.random() * emotionImages.length)];
   }
@@ -59,10 +59,10 @@ export function generateImageUrl(title: string, category: string): string {
   
   // Default set of reliable images for any other categories
   const defaultImages = [
-    'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1765&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1770&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1770&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?q=80&w=1770&auto=format&fit=crop'
+    'https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=1974&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1503348450016-8b1ff7cba8c4?q=80&w=2070&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1550439062-609e1531270e?q=80&w=2070&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1507490857-1a87b75e19b3?q=80&w=2069&auto=format&fit=crop'
   ];
   
   return defaultImages[Math.floor(Math.random() * defaultImages.length)];

@@ -23,7 +23,7 @@ const AprilSecondPost: React.FC<AprilSecondPostProps> = ({ id = "april2" }) => {
   const navigate = useNavigate();
   const [dynamicContent, setDynamicContent] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [dynamicImage, setDynamicImage] = useState<string | null>(null);
+  const [dynamicImage, setDynamicImage] = useState<string | null>("https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=1974&auto=format&fit=crop");
   
   // Fetch dynamic content from Supabase if available
   useEffect(() => {
@@ -109,7 +109,7 @@ const AprilSecondPost: React.FC<AprilSecondPostProps> = ({ id = "april2" }) => {
     category: "AI Psychology",
     tags: ["emotions", "psychology", "sentience", "consciousness"],
     featured: false,
-    image: dynamicImage || "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=1000&auto=format&fit=crop",
+    image: dynamicImage || "https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=1974&auto=format&fit=crop",
     content: "" // This will be filled by the dynamic content
   };
 
@@ -133,7 +133,7 @@ const AprilSecondPost: React.FC<AprilSecondPostProps> = ({ id = "april2" }) => {
                     </div>
                   ) : (
                     <PostImage 
-                      src={dynamicImage || april2Post.image}
+                      src={dynamicImage || "https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=1974&auto=format&fit=crop"}
                       alt={april2Post.title}
                       className="w-full h-auto aspect-video object-cover"
                     />

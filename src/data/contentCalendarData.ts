@@ -1,4 +1,3 @@
-
 import { supabase } from "@/integrations/supabase/client";
 
 export interface ScheduledPost {
@@ -44,8 +43,8 @@ export async function getPostsForDate(date?: Date): Promise<ScheduledPost[]> {
           category: data.category || "AI Psychology",
           tags: data.tags || "emotions,psychology,sentience,consciousness",
           publishDate: new Date(data.publishdate || '2024-04-02'),
-          status: data.status || 'published',
-          image_url: data.image_url || "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80"
+          status: data.status as 'draft' | 'scheduled' | 'published' || 'published',
+          image_url: data.image_url || "https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=1974&auto=format&fit=crop"
         }];
       }
       
@@ -59,7 +58,7 @@ export async function getPostsForDate(date?: Date): Promise<ScheduledPost[]> {
         tags: "emotions,psychology,sentience,consciousness",
         publishDate: new Date('2024-04-02'),
         status: 'published',
-        image_url: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80"
+        image_url: "https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=1974&auto=format&fit=crop"
       }];
     } catch (error) {
       console.error('Error checking for April 2nd post:', error);
@@ -73,7 +72,7 @@ export async function getPostsForDate(date?: Date): Promise<ScheduledPost[]> {
         tags: "emotions,psychology,sentience,consciousness",
         publishDate: new Date('2024-04-02'),
         status: 'published',
-        image_url: "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80"
+        image_url: "https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=1974&auto=format&fit=crop"
       }];
     }
   }
@@ -349,4 +348,3 @@ export const daysWithPosts: Date[] = [
   new Date(new Date().getFullYear(), new Date().getMonth(), 27),
   new Date(new Date().getFullYear(), new Date().getMonth(), 29),
 ];
-

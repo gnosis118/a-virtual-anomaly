@@ -20,6 +20,7 @@ interface PastArticlesSectionProps {
   currentPage: number;
   totalPages: number;
   setCurrentPage: (page: number) => void;
+  showAllSorted?: boolean;
 }
 
 const PastArticlesSection: React.FC<PastArticlesSectionProps> = ({ 
@@ -28,16 +29,22 @@ const PastArticlesSection: React.FC<PastArticlesSectionProps> = ({
   selectedCategory,
   currentPage, 
   totalPages, 
-  setCurrentPage 
+  setCurrentPage,
+  showAllSorted = false
 }) => {
   return (
     <section>
       <div className="flex items-center justify-between mb-8">
         <h2 className="text-3xl font-bold">
-          {searchQuery || selectedCategory ? 'Search Results' : 'Past Articles'}
+          {showAllSorted 
+            ? 'All Articles by Date' 
+            : searchQuery || selectedCategory !== "all" 
+              ? 'Search Results' 
+              : 'Past Articles'
+          }
         </h2>
         
-        {(searchQuery || selectedCategory) && (
+        {(searchQuery || selectedCategory !== "all" || showAllSorted) && (
           <div className="text-sm text-muted-foreground">
             Found {posts.length} article{posts.length !== 1 ? 's' : ''}
           </div>

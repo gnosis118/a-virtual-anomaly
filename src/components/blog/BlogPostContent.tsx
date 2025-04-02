@@ -119,6 +119,11 @@ const BlogPostContent: React.FC<BlogPostContentProps> = ({ postId }) => {
   }
   
   // For a post about the role of ethics in AI development
+  if (postId === 2) {
+    return <ArticleContent id={postId} title="The Role of Ethics in AI Development" />;
+  }
+  
+  // Keep the existing article content for post ID 3
   if (postId === 3) {
     return <ArticleContent id={postId} title="The Role of Ethics in AI Development" />;
   }

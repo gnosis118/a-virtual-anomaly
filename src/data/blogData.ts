@@ -1,4 +1,3 @@
-
 import { BlogPost } from '@/types/blog';
 
 // Get yesterday's date and format it
@@ -31,14 +30,14 @@ export const BLOG_POSTS: BlogPost[] = [
     title: "The Role of Ethics in AI Development",
     excerpt: "How ethical considerations should guide the development of increasingly intelligent AI systems.",
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nisl nisl aliquam nisl, vel ultricies nisl nisl sit amet nisl.",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475",
+    image: "https://images.unsplash.com/photo-1507146153580-69a1fe6d8aa1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
     date: formattedDate,
     author: "Gavin Clay",
-    readTime: "6 min read",
-    views: 890,
+    readTime: "12 min read",
+    views: 1890,
     category: "Ethics",
     featured: false,
-    tags: ["Ethics", "Development", "Guidelines"]
+    tags: ["Ethics", "Development", "Guidelines", "AI Rights"]
   },
   {
     id: 3,

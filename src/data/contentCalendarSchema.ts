@@ -12,6 +12,7 @@ export interface ScheduledPost {
   tags: string;
   publishDate: Date;
   status: 'draft' | 'scheduled' | 'published';
+  image_url?: string; // Added image_url as optional
 }
 
 export interface BlogPost {
@@ -35,7 +36,7 @@ export function convertToBlogPost(scheduledPost: ScheduledPost, imageUrl: string
     title: scheduledPost.title,
     excerpt: scheduledPost.excerpt,
     content: scheduledPost.content || '',
-    image: imageUrl,
+    image: imageUrl || scheduledPost.image_url || '', // Use provided imageUrl or fallback to post's image_url
     category: scheduledPost.category,
     tags: scheduledPost.tags.split(',').map(tag => tag.trim()),
     author: scheduledPost.author,

@@ -11,7 +11,7 @@ export interface ScheduledPost {
   tags: string;
   publishDate: Date; // Frontend representation uses camelCase
   status: 'draft' | 'scheduled' | 'published';
-  image_url?: string; // Optional image URL
+  image_url?: string; // Explicitly defined as optional
 }
 
 // Function to get posts for a specific date
@@ -47,8 +47,7 @@ export async function getPostsForDate(date?: Date): Promise<ScheduledPost[]> {
       tags: post.tags,
       publishDate: new Date(post.publishdate), // Convert DB publishdate to frontend publishDate
       status: post.status as 'draft' | 'scheduled' | 'published',
-      // Safely handle image_url which may not exist in the database yet
-      image_url: post.image_url || null
+      image_url: post.image_url || null // Safely handle image_url which may be null
     }));
   } catch (error) {
     console.error('Error in getPostsForDate:', error);

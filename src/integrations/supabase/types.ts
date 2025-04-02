@@ -92,6 +92,7 @@ export type Database = {
           created_at: string
           excerpt: string
           id: string
+          image_url: string | null
           publishdate: string
           status: string
           tags: string
@@ -105,6 +106,7 @@ export type Database = {
           created_at?: string
           excerpt: string
           id?: string
+          image_url?: string | null
           publishdate: string
           status?: string
           tags: string
@@ -118,6 +120,7 @@ export type Database = {
           created_at?: string
           excerpt?: string
           id?: string
+          image_url?: string | null
           publishdate?: string
           status?: string
           tags?: string

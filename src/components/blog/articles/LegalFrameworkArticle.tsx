@@ -72,8 +72,8 @@ const LegalFrameworkArticle: React.FC = () => {
         
         <div className="not-prose my-8">
           <img 
-            src="https://images.unsplash.com/photo-1554098415-788601d7c098?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
-            alt="Advanced AI robot concept with circuit patterns representing current legal status" 
+            src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
+            alt="Macro photography of black circuit board representing AI systems' current legal status" 
             className="w-full h-auto rounded-xl object-cover aspect-video mb-6"
           />
         </div>

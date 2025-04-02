@@ -24,7 +24,7 @@ const socialLinks = [
   { name: 'Twitter', href: '#', icon: <Twitter size={18} /> },
   { name: 'Instagram', href: '#', icon: <Instagram size={18} /> },
   { name: 'LinkedIn', href: '#', icon: <Linkedin size={18} /> },
-  { name: 'YouTube', href: '#', icon: <Youtube size={18} /> },
+  { name: 'YouTube', href: 'https://www.youtube.com/@AVirtualAnomly', icon: <Youtube size={18} /> },
 ];
 
 const Footer = () => {

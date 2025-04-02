@@ -2,6 +2,7 @@
 import React from 'react';
 import RoleOfEthicsArticle from './articles/RoleOfEthicsArticle';
 import AIImpactArticle from './articles/AIImpactArticle';
+import AIEmotionalFrontierArticle from './articles/AIEmotionalFrontierArticle';
 import DefaultArticleState from './articles/DefaultArticleState';
 
 interface ArticleContentProps {
@@ -18,6 +19,11 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ id, title }) => {
   // Special content for "AI's Impact on Society: A Global Perspective" article
   if (title && title.includes("AI's Impact on Society")) {
     return <AIImpactArticle />;
+  }
+  
+  // Special content for "Can AI Experience Love? The Emotional Frontier" article
+  if (title && title.includes("Can AI Experience Love?")) {
+    return <AIEmotionalFrontierArticle />;
   }
   
   // For other articles, use the default implementation

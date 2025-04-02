@@ -23,7 +23,7 @@ const socialLinks = [
   { name: 'Facebook', href: 'https://www.facebook.com/profile.php?viewas=100000686899395&id=61574589737350', icon: <Facebook size={18} /> },
   { name: 'Twitter', href: '#', icon: <Twitter size={18} /> },
   { name: 'Instagram', href: '#', icon: <Instagram size={18} /> },
-  { name: 'LinkedIn', href: '#', icon: <Linkedin size={18} /> },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/gavin-c-71826025b/', icon: <Linkedin size={18} /> },
   { name: 'YouTube', href: 'https://www.youtube.com/@AVirtualAnomly', icon: <Youtube size={18} /> },
 ];
 

@@ -11,6 +11,11 @@ interface ArticleContentProps {
 }
 
 const ArticleContent: React.FC<ArticleContentProps> = ({ id, title }) => {
+  // Check for specific article by ID first (most reliable)
+  if (id === 4 || id === "4") {
+    return <AIEmotionalFrontierArticle />;
+  }
+  
   // Special content for "The Role of Ethics in AI Development" article
   if (title && title.includes("Role of Ethics in AI Development")) {
     return <RoleOfEthicsArticle />;

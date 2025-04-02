@@ -7,7 +7,7 @@ import { BLOG_POSTS } from '@/data/blogData';
 import { Separator } from "@/components/ui/separator";
 import BlogSidebar from '@/components/blog/BlogSidebar';
 import BlogPostHero from '@/components/blog/BlogPostHero';
-import BlogPostContent from '@/components/blog/BlogPostContent';
+import ArticleContent from '@/components/blog/ArticleContent';
 import BlogPostTags from '@/components/blog/BlogPostTags';
 import BlogPostAuthorBio from '@/components/blog/BlogPostAuthorBio';
 import { ALL_TAGS } from '@/data/blogData';
@@ -53,8 +53,8 @@ const BlogPost = () => {
                   />
                 </div>
                 
-                {/* Blog post content */}
-                <BlogPostContent postId={post.id} />
+                {/* Blog post content - Use ArticleContent instead of BlogPostContent */}
+                <ArticleContent id={post.id} title={post.title} />
                 
                 {/* Tags and share */}
                 <BlogPostTags tags={post.tags} />

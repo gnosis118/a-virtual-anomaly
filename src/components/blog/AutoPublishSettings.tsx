@@ -19,7 +19,7 @@ const AutoPublishSettings = () => {
       try {
         const { data, error } = await supabase
           .from('settings')
-          .select('value')
+          .select('*')
           .eq('key', 'auto_publish')
           .single();
         

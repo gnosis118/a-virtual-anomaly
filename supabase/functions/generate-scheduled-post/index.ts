@@ -2,8 +2,8 @@
 // Follow this setup guide to integrate the Deno runtime into your application:
 // https://deno.land/manual/examples/deploy_node_server
 
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.7'
-import { corsHeaders } from '../_shared/cors.ts'
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.7';
+import { corsHeaders } from '../_shared/cors.ts';
 
 type ScheduledPost = {
   id: number | string;
@@ -15,7 +15,7 @@ type ScheduledPost = {
   tags: string;
   publishDate: string;
   status: 'draft' | 'scheduled' | 'published';
-}
+};
 
 type BlogPost = {
   id?: number;
@@ -30,14 +30,14 @@ type BlogPost = {
   category: string;
   featured: boolean;
   tags: string[];
-}
+};
 
 // Create a placeholder image URL
 const generateImageUrl = (title: string, category: string): string => {
   // In a real implementation, this would generate or fetch a relevant image
   // For now, we'll return a placeholder image
   return `https://placehold.co/600x400/9370DB/ffffff?text=${encodeURIComponent(category)}`;
-}
+};
 
 // Convert ScheduledPost to BlogPost
 const convertToBlogPost = (scheduledPost: ScheduledPost): BlogPost => {
@@ -58,7 +58,7 @@ const convertToBlogPost = (scheduledPost: ScheduledPost): BlogPost => {
     views: 0,
     featured: false
   };
-}
+};
 
 // Generate article content based on the scheduled post details
 async function generateArticleContent(post: ScheduledPost): Promise<string> {
@@ -96,7 +96,7 @@ async function processScheduledPosts(supabaseClient: any) {
   // Check if auto-publish is enabled
   const { data: settingsData, error: settingsError } = await supabaseClient
     .from('settings')
-    .select('value')
+    .select('*')
     .eq('key', 'auto_publish')
     .single();
   

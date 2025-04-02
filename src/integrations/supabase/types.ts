@@ -84,6 +84,48 @@ export type Database = {
         }
         Relationships: []
       }
+      scheduled_posts: {
+        Row: {
+          author: string
+          category: string
+          content: string | null
+          created_at: string
+          excerpt: string
+          id: string
+          publishdate: string
+          status: string
+          tags: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author: string
+          category: string
+          content?: string | null
+          created_at?: string
+          excerpt: string
+          id?: string
+          publishdate: string
+          status?: string
+          tags: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author?: string
+          category?: string
+          content?: string | null
+          created_at?: string
+          excerpt?: string
+          id?: string
+          publishdate?: string
+          status?: string
+          tags?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       settings: {
         Row: {
           created_at: string

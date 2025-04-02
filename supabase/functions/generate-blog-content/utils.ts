@@ -1,5 +1,5 @@
 
-import { BlogPost } from './types';
+import { BlogPost } from './types.ts';
 
 // Generate a placeholder image URL
 export const generateImageUrl = (title: string, category: string): string => {

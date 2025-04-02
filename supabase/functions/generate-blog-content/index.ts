@@ -3,8 +3,8 @@
 // https://deno.land/manual/examples/deploy_node_server
 
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.7';
-import { corsHeaders } from './utils';
-import { generateArticle } from './database';
+import { corsHeaders } from './utils.ts';
+import { generateArticle } from './database.ts';
 
 // Main function to handle requests
 Deno.serve(async (req) => {

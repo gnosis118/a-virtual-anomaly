@@ -1,8 +1,8 @@
 
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.7';
-import { BlogPost } from './types';
-import { generateImageUrl } from './utils';
-import { generateArticleContent } from './contentGenerator';
+import { BlogPost } from './types.ts';
+import { generateImageUrl } from './utils.ts';
+import { generateArticleContent } from './contentGenerator.ts';
 
 export async function generateArticle(supabaseClient, postId) {
   try {

@@ -1,5 +1,5 @@
 
-import { BlogPost } from './types';
+import { BlogPost } from './types.ts';
 
 // Generate article content based on the post details
 export async function generateArticleContent(post: BlogPost): Promise<string> {

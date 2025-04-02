@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Button from '@/components/Button';
 import GenerateArticleButton from './GenerateArticleButton';
@@ -123,9 +124,9 @@ const BlogPostContent: React.FC<BlogPostContentProps> = ({ postId }) => {
     return <ArticleContent id={postId} title="The Role of Ethics in AI Development" />;
   }
   
-  // Keep the existing article content for post ID 3
+  // For AI's Impact on Society article
   if (postId === 3) {
-    return <ArticleContent id={postId} title="The Role of Ethics in AI Development" />;
+    return <ArticleContent id={postId} title="AI's Impact on Society: A Global Perspective" />;
   }
   
   // For other posts, check if they have content in the database first

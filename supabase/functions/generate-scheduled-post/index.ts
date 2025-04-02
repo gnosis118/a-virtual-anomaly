@@ -74,7 +74,7 @@ async function generateArticleContent(post: ScheduledPost): Promise<string> {
     "## Understanding the Topic",
     "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.\n\n",
     
-    "## Key Considerations",
+    `## Key Considerations on ${post.category}`,
     "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.\n\n",
     
     "## Future Implications",
@@ -113,8 +113,9 @@ async function processScheduledPosts(supabaseClient: any) {
   
   // Current date in ISO format, without time
   const today = new Date().toISOString().split('T')[0];
+  console.log('Processing scheduled posts for date:', today);
   
-  // Get all scheduled posts that are due today
+  // Get all scheduled posts that are due today or older
   const { data: scheduledPosts, error: fetchError } = await supabaseClient
     .from('scheduled_posts')
     .select('*')
@@ -130,12 +131,19 @@ async function processScheduledPosts(supabaseClient: any) {
     return { success: true, message: 'No posts scheduled for today', results: [] };
   }
   
+  console.log(`Found ${scheduledPosts.length} posts due for publication`);
+  
   // Process each scheduled post
   const results = await Promise.all(
     scheduledPosts.map(async (post: ScheduledPost) => {
       try {
-        // Generate the full article content
-        const content = await generateArticleContent(post);
+        console.log(`Processing post: ${post.id} - ${post.title}`);
+        
+        // Generate the full article content if it doesn't already exist
+        const content = post.content || await generateArticleContent(post);
+        
+        // Generate an image URL if one doesn't exist
+        const imageUrl = post.image_url || generateImageUrl(post.title, post.category);
         
         // Convert to blog post format
         const blogPost = convertToBlogPost({
@@ -144,20 +152,24 @@ async function processScheduledPosts(supabaseClient: any) {
         });
         
         // In a real implementation, we would save this to the blog_posts table
-        // For now, we'll just simulate the save
+        // For now, we'll just update the scheduled post
         
         // Mark the scheduled post as published
         const { error: updateError } = await supabaseClient
           .from('scheduled_posts')
           .update({ 
             status: 'published',
-            content: content
+            content: content,
+            image_url: imageUrl
           })
           .eq('id', post.id);
         
         if (updateError) {
+          console.error(`Error updating post ${post.id}:`, updateError);
           throw updateError;
         }
+        
+        console.log(`Successfully published post: ${post.id}`);
         
         return { 
           success: true, 
@@ -190,6 +202,8 @@ Deno.serve(async (req) => {
   }
 
   try {
+    console.log('Function invoked: generate-scheduled-post');
+    
     // Create Supabase client
     const supabaseUrl = Deno.env.get('SUPABASE_URL') || '';
     const supabaseKey = Deno.env.get('SUPABASE_ANON_KEY') || '';
@@ -197,6 +211,8 @@ Deno.serve(async (req) => {
     
     // Process the scheduled posts
     const result = await processScheduledPosts(supabaseClient);
+    
+    console.log('Function completed with result:', JSON.stringify(result));
     
     return new Response(
       JSON.stringify(result),

@@ -80,6 +80,33 @@ export async function getDaysWithPosts(): Promise<Date[]> {
   }
 }
 
+// Function to trigger automatic publishing of scheduled posts
+export async function triggerAutomaticPublishing(): Promise<{ success: boolean; message: string }> {
+  try {
+    const { data, error } = await supabase.functions.invoke('generate-scheduled-post');
+    
+    if (error) {
+      console.error('Error invoking generate-scheduled-post:', error);
+      return { success: false, message: error.message };
+    }
+    
+    if (!data || !data.success) {
+      return { 
+        success: false, 
+        message: data?.error || 'Unknown error occurred during automatic publishing'
+      };
+    }
+    
+    return { 
+      success: true, 
+      message: `Successfully processed ${data.results?.length || 0} posts`
+    };
+  } catch (error) {
+    console.error('Error in triggerAutomaticPublishing:', error);
+    return { success: false, message: error.message || 'An error occurred' };
+  }
+}
+
 // Hard-coded data for fallback
 export const daysWithPosts: Date[] = [
   new Date(2024, 8, 1),  // Sept 1, 2024

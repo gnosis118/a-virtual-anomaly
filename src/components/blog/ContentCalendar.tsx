@@ -4,6 +4,8 @@ import { ScheduledPost, getPostsForDate, getDaysWithPosts, daysWithPosts as fall
 import CalendarView from './calendar/CalendarView';
 import PostList from './calendar/PostList';
 import AutoPublishSettings from './AutoPublishSettings';
+import { toast } from "@/components/ui/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const ContentCalendar: React.FC = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -12,6 +14,7 @@ const ContentCalendar: React.FC = () => {
   const [loadingPosts, setLoadingPosts] = useState(false);
   const [activeDays, setActiveDays] = useState<Date[]>(fallbackDays);
   const [loadingDays, setLoadingDays] = useState(false);
+  const [processedToday, setProcessedToday] = useState(false);
   
   // Fetch days with posts on component mount
   useEffect(() => {
@@ -53,7 +56,77 @@ const ContentCalendar: React.FC = () => {
     };
     
     fetchPosts();
-  }, [date]);
+  }, [date, selectedPost]);
+  
+  // Check for scheduled posts that need to be published automatically
+  useEffect(() => {
+    // Only run this check once per component mount
+    if (processedToday) return;
+    
+    const checkScheduledPosts = async () => {
+      try {
+        // Checks if auto-publish is enabled
+        const { data: settingsData, error: settingsError } = await supabase
+          .from('settings')
+          .select('*')
+          .eq('key', 'auto_publish')
+          .single();
+        
+        if (settingsError) {
+          console.error('Error fetching auto-publish setting:', settingsError);
+          return;
+        }
+        
+        const autoPublishEnabled = settingsData?.value === true || settingsData?.value === 'true';
+        
+        if (!autoPublishEnabled) {
+          console.log('Auto-publish is disabled, skipping scheduled post check');
+          return;
+        }
+        
+        console.log('Checking for scheduled posts to publish...');
+        const { data, error } = await supabase.functions.invoke('generate-scheduled-post');
+        
+        if (error) {
+          console.error('Error invoking generate-scheduled-post function:', error);
+          return;
+        }
+        
+        if (data && data.success) {
+          const processedCount = data.results?.length || 0;
+          
+          if (processedCount > 0) {
+            toast({
+              title: "Posts automatically published",
+              description: `${processedCount} scheduled posts have been generated and published.`,
+            });
+            
+            // Refresh the calendar days to reflect the new published posts
+            const days = await getDaysWithPosts();
+            if (days && days.length > 0) {
+              setActiveDays(days);
+            }
+            
+            // If current date has posts, refresh them
+            if (date) {
+              const posts = await getPostsForDate(date);
+              setPostsForSelectedDate(posts);
+            }
+          } else {
+            console.log('No posts needed to be published today');
+          }
+        }
+        
+        // Mark as processed so we don't run this again in this session
+        setProcessedToday(true);
+      } catch (error) {
+        console.error('Error in automatic post publishing:', error);
+      }
+    };
+    
+    // Run the check when the component mounts
+    checkScheduledPosts();
+  }, [date, processedToday]);
   
   return (
     <div className="space-y-6">

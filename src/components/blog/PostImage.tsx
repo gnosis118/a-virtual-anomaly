@@ -23,15 +23,23 @@ const PostImage: React.FC<PostImageProps> = ({ src, alt, className = "w-full h-a
   const handleImageError = () => {
     if (fallbackIndex < FALLBACK_IMAGES.length - 1) {
       setFallbackIndex(fallbackIndex + 1);
+      setIsError(true);
     } else {
-      // If we've gone through all fallbacks, set error state
+      // If we've gone through all fallbacks, just stay on the last one
       setIsError(true);
     }
   };
 
+  // If the original source is one of our fallback images already, use it directly
+  const isSourceAlreadyFallback = FALLBACK_IMAGES.includes(src);
+  
+  const imageSource = isError || !src 
+    ? FALLBACK_IMAGES[fallbackIndex] 
+    : (isSourceAlreadyFallback ? src : src);
+
   return (
     <img 
-      src={isError ? FALLBACK_IMAGES[0] : (src || FALLBACK_IMAGES[fallbackIndex])} 
+      src={imageSource} 
       alt={alt} 
       className={className}
       onError={handleImageError}

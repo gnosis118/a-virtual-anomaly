@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -11,14 +11,49 @@ import ArticleContent from '@/components/blog/ArticleContent';
 import BlogPostTags from '@/components/blog/BlogPostTags';
 import BlogPostAuthorBio from '@/components/blog/BlogPostAuthorBio';
 import { ALL_TAGS } from '@/data/blogData';
+import { supabase } from "@/integrations/supabase/client";
 
 const BlogPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const postId = parseInt(id || '1');
+  const [dynamicContent, setDynamicContent] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   
   // Find the blog post by ID
   const post = BLOG_POSTS.find(post => post.id === postId);
+  
+  // Fetch dynamic content from Supabase if available
+  useEffect(() => {
+    const fetchDynamicContent = async () => {
+      try {
+        setLoading(true);
+        
+        // Try to get content from scheduled_posts table
+        const { data, error } = await supabase
+          .from('scheduled_posts')
+          .select('content, image_url')
+          .eq('id', id)
+          .maybeSingle();
+        
+        if (!error && data && data.content) {
+          setDynamicContent(data.content);
+          // If we have a dynamic image, update the post object
+          if (data.image_url && post) {
+            post.image = data.image_url;
+          }
+        }
+      } catch (err) {
+        console.error('Error fetching dynamic content:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    if (id) {
+      fetchDynamicContent();
+    }
+  }, [id, post]);
   
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -53,8 +88,12 @@ const BlogPost = () => {
                   />
                 </div>
                 
-                {/* Blog post content - Use ArticleContent instead of BlogPostContent */}
-                <ArticleContent id={post.id} title={post.title} />
+                {/* If we have dynamic content, use it, otherwise use the static content */}
+                <ArticleContent 
+                  id={post.id} 
+                  title={post.title} 
+                  content={dynamicContent || undefined}
+                />
                 
                 {/* Tags and share */}
                 <BlogPostTags tags={post.tags} />

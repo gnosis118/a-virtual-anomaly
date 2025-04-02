@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Separator } from "@/components/ui/separator";
 import Button from '@/components/Button';
@@ -17,8 +16,8 @@ const AIImpactArticle = () => {
       
       <div className="my-8 rounded-xl overflow-hidden">
         <img 
-          src="https://images.unsplash.com/photo-1605810230434-7631ac76ec81" 
-          alt="People interacting with AI systems" 
+          src="https://images.unsplash.com/photo-1550645612-83f5d594b671?q=80&w=2070&auto=format&fit=crop" 
+          alt="Global AI influence on societies" 
           className="w-full h-auto"
         />
         <p className="text-sm text-muted-foreground mt-2 italic text-center">
@@ -80,8 +79,8 @@ const AIImpactArticle = () => {
       
       <div className="my-8 rounded-xl overflow-hidden">
         <img 
-          src="https://images.unsplash.com/photo-1531297484001-80022131f5a1" 
-          alt="Modern workplace with AI technology" 
+          src="https://images.unsplash.com/photo-1580894894513-541e068a3e2b?q=80&w=2070&auto=format&fit=crop" 
+          alt="Modern workplace with AI technology integration" 
           className="w-full h-auto"
         />
         <p className="text-sm text-muted-foreground mt-2 italic text-center">
@@ -188,7 +187,7 @@ const AIImpactArticle = () => {
       
       <div className="my-8 rounded-xl overflow-hidden">
         <img 
-          src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5" 
+          src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2070&auto=format&fit=crop" 
           alt="Digital surveillance and governance" 
           className="w-full h-auto"
         />
@@ -256,7 +255,7 @@ const AIImpactArticle = () => {
       
       <div className="my-8 rounded-xl overflow-hidden">
         <img 
-          src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e" 
+          src="https://images.unsplash.com/photo-1575318634028-6a0cfcb60c49?q=80&w=2070&auto=format&fit=crop" 
           alt="AI and human creativity" 
           className="w-full h-auto"
         />

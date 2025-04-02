@@ -12,6 +12,10 @@ interface ArticleContentProps {
   title?: string;
 }
 
+/**
+ * ArticleContent component that loads the appropriate article based on ID or title
+ * This component is used on the public-facing blog and does not contain any admin features
+ */
 const ArticleContent: React.FC<ArticleContentProps> = ({ id, title }) => {
   // Check for specific article by ID first (most reliable)
   if (id === 4 || id === "4") {

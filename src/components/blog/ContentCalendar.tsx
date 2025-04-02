@@ -6,6 +6,7 @@ import PostList from './calendar/PostList';
 import AutoPublishSettings from './AutoPublishSettings';
 import { toast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useAuth } from '@/contexts/AuthContext';
 
 const ContentCalendar: React.FC = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
@@ -15,6 +16,7 @@ const ContentCalendar: React.FC = () => {
   const [activeDays, setActiveDays] = useState<Date[]>(fallbackDays);
   const [loadingDays, setLoadingDays] = useState(false);
   const [processedToday, setProcessedToday] = useState(false);
+  const { user } = useAuth();
   
   // Fetch days with posts on component mount
   useEffect(() => {
@@ -60,8 +62,8 @@ const ContentCalendar: React.FC = () => {
   
   // Check for scheduled posts that need to be published automatically
   useEffect(() => {
-    // Only run this check once per component mount
-    if (processedToday) return;
+    // Only run this check once per component mount and only if user is authenticated
+    if (processedToday || !user) return;
     
     const checkScheduledPosts = async () => {
       try {
@@ -124,14 +126,16 @@ const ContentCalendar: React.FC = () => {
       }
     };
     
-    // Run the check when the component mounts
-    checkScheduledPosts();
-  }, [date, processedToday]);
+    // Run the check when the component mounts and user is authenticated
+    if (user) {
+      checkScheduledPosts();
+    }
+  }, [date, processedToday, user]);
   
   return (
     <div className="space-y-6">
-      {/* Auto-Publishing Settings Component */}
-      <AutoPublishSettings />
+      {/* Auto-Publishing Settings Component - Only shown to authenticated users */}
+      {user && <AutoPublishSettings />}
       
       {/* Calendar and Post List */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -148,6 +152,7 @@ const ContentCalendar: React.FC = () => {
           setSelectedPost={setSelectedPost}
           selectedPost={selectedPost}
           isLoading={loadingPosts}
+          isAdmin={!!user}
         />
       </div>
     </div>

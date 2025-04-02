@@ -15,7 +15,7 @@ const Blog = () => {
   const tagFromUrl = searchParams.get('tag');
   
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const postsPerPage = 6;
   
@@ -34,7 +34,7 @@ const Blog = () => {
       post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())) ||
       post.category.toLowerCase().includes(searchQuery.toLowerCase());
       
-    const matchesCategory = selectedCategory === "" || 
+    const matchesCategory = selectedCategory === "all" || 
       post.category === selectedCategory;
       
     return matchesSearch && matchesCategory;
@@ -62,7 +62,7 @@ const Blog = () => {
 
   const clearFilters = () => {
     setSearchQuery("");
-    setSelectedCategory("");
+    setSelectedCategory("all");
     setCurrentPage(1);
   };
 
@@ -86,7 +86,7 @@ const Blog = () => {
           />
           
           {/* Featured Articles Section (shows 5 most recent posts) */}
-          {!searchQuery && !selectedCategory && (
+          {!searchQuery && selectedCategory === "all" && (
             <FeaturedArticlesSection posts={featuredPosts} />
           )}
           

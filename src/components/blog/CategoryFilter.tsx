@@ -39,7 +39,7 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
             <SelectValue placeholder="All Categories" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Categories</SelectItem>
+            <SelectItem value="all">All Categories</SelectItem>
             {categories.map((category) => (
               <SelectItem key={category} value={category}>
                 {category}
@@ -48,7 +48,7 @@ const CategoryFilter: React.FC<CategoryFilterProps> = ({
           </SelectContent>
         </Select>
         
-        {(selectedCategory) && (
+        {(selectedCategory !== "all") && (
           <Button 
             variant="ghost" 
             size="icon"

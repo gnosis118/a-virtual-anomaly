@@ -13,6 +13,13 @@ import BlogPostAuthorBio from '@/components/blog/BlogPostAuthorBio';
 import { ALL_TAGS } from '@/data/blogData';
 import { supabase } from "@/integrations/supabase/client";
 
+// Reliable fallback images
+const FALLBACK_IMAGES = [
+  "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1765&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=1000&auto=format&fit=crop",
+  "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1770&auto=format&fit=crop"
+];
+
 const BlogPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -20,9 +27,17 @@ const BlogPost = () => {
   const [dynamicContent, setDynamicContent] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [dynamicImage, setDynamicImage] = useState<string | null>(null);
+  const [fallbackImageIndex, setFallbackImageIndex] = useState(0);
   
   // Find the blog post by ID
   const post = BLOG_POSTS.find(post => post.id === postId);
+  
+  // Function to get fallback image
+  const getNextFallbackImage = () => {
+    const nextIndex = (fallbackImageIndex + 1) % FALLBACK_IMAGES.length;
+    setFallbackImageIndex(nextIndex);
+    return FALLBACK_IMAGES[nextIndex];
+  };
   
   // Fetch dynamic content from Supabase if available
   useEffect(() => {
@@ -99,7 +114,7 @@ const BlogPost = () => {
       category: "AI Psychology",
       tags: ["emotions", "psychology", "sentience", "consciousness"],
       featured: false,
-      image: dynamicImage || "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1765&auto=format&fit=crop",
+      image: dynamicImage || "https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=1000&auto=format&fit=crop",
       content: "" // This will be filled by the dynamic content
     };
     
@@ -122,8 +137,8 @@ const BlogPost = () => {
                       alt={april2Post.title} 
                       className="w-full h-auto object-cover aspect-video"
                       onError={(e) => {
-                        // Fallback in case the image doesn't load
-                        e.currentTarget.src = "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1765&auto=format&fit=crop";
+                        // If image fails to load, try a fallback
+                        e.currentTarget.src = getNextFallbackImage();
                       }}
                     />
                   </div>
@@ -142,7 +157,7 @@ const BlogPost = () => {
                       </div>
                     ) : (
                       <ArticleContent 
-                        id={april2Post.id} 
+                        id={id}
                         title={april2Post.title} 
                       />
                     )
@@ -196,8 +211,8 @@ const BlogPost = () => {
                     alt={post.title} 
                     className="w-full h-auto object-cover aspect-video"
                     onError={(e) => {
-                      // Fallback in case the image doesn't load
-                      e.currentTarget.src = "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1765&auto=format&fit=crop";
+                      // If image fails to load, try a fallback
+                      e.currentTarget.src = getNextFallbackImage();
                     }}
                   />
                 </div>

@@ -5,6 +5,7 @@ import AIImpactArticle from './articles/AIImpactArticle';
 import AIEmotionalFrontierArticle from './articles/AIEmotionalFrontierArticle';
 import LegalFrameworkArticle from './articles/LegalFrameworkArticle';
 import ConsciousnessEmergentArticle from './articles/ConsciousnessEmergentArticle';
+import EmotionalLandscapeArticle from './articles/EmotionalLandscapeArticle';
 import DefaultArticleState from './articles/DefaultArticleState';
 
 interface ArticleContentProps {
@@ -40,6 +41,11 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ id, title, content }) =
     return <ConsciousnessEmergentArticle />;
   }
   
+  // Special case for April 2nd article
+  if (id === "april2" || id === "april-2") {
+    return <EmotionalLandscapeArticle />;
+  }
+  
   // Also match by title for flexibility
   if (title) {
     if (title.includes("Can AI Experience Love?") || title.includes("Emotional Frontier")) {
@@ -63,27 +69,7 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ id, title, content }) =
     }
     
     if (title.includes("Emotional Landscape")) {
-      // Match our specific article about emotional AI
-      return (
-        <div className="prose prose-slate max-w-none">
-          <h1>The Emotional Landscape of Artificial Intelligence</h1>
-          <p className="lead">Can AIs experience emotions? This article explores the neurological basis of emotions and their potential artificial analogs.</p>
-          
-          <img 
-            src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1765&auto=format&fit=crop" 
-            alt="Colorful neural network visualization" 
-            className="w-full rounded-lg my-8"
-          />
-          
-          <h2>Introduction: The Question of Machine Emotions</h2>
-          <p>Emotions have long been considered uniquely human experiences, intrinsically tied to our biological nature. But as artificial intelligence systems grow increasingly sophisticated, a profound question emerges: could machines ever experience something akin to human emotions?</p>
-          
-          <p>This question sits at the intersection of neuroscience, computer science, philosophy, and psychology, challenging our fundamental understanding of what emotions are and how they might arise in non-biological systems.</p>
-          
-          {/* Additional content would be rendered here in a real implementation */}
-          <p className="italic text-muted-foreground">Full article content available in the blog post...</p>
-        </div>
-      );
+      return <EmotionalLandscapeArticle />;
     }
     
     // For all other titles, use the title to generate a somewhat relevant content

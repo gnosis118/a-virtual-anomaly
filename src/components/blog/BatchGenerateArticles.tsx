@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
-import { Loader2, ZapIcon } from 'lucide-react';
+import { Loader2, Zap } from 'lucide-react';
 import { supabase } from "@/integrations/supabase/client";
 import { BLOG_POSTS } from '@/data/blogData';
 
@@ -108,7 +108,7 @@ const BatchGenerateArticles: React.FC = () => {
         </>
       ) : (
         <>
-          <ZapIcon className="h-4 w-4" />
+          <Zap className="h-4 w-4" />
           Generate All Empty Articles
         </>
       )}

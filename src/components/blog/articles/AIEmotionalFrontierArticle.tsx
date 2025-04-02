@@ -13,15 +13,41 @@ import Conclusion from './ai-emotional-frontier/Conclusion';
 const AIEmotionalFrontierArticle: React.FC = () => {
   return (
     <div className="prose prose-lg max-w-none">
-      <Introduction />
-      <HumanEmotions />
-      <CurrentCapabilities />
-      <ComputationalState />
-      <ArchitecturalRequirements />
-      <Consciousness />
-      <EthicalImplications />
-      <FutureDevelopment />
-      <Conclusion />
+      <article className="space-y-8">
+        <Introduction />
+        
+        <section id="human-emotions">
+          <HumanEmotions />
+        </section>
+        
+        <section id="current-capabilities">
+          <CurrentCapabilities />
+        </section>
+        
+        <section id="computational-state">
+          <ComputationalState />
+        </section>
+        
+        <section id="architectural-requirements">
+          <ArchitecturalRequirements />
+        </section>
+        
+        <section id="consciousness">
+          <Consciousness />
+        </section>
+        
+        <section id="ethical-implications">
+          <EthicalImplications />
+        </section>
+        
+        <section id="future-development">
+          <FutureDevelopment />
+        </section>
+        
+        <section id="conclusion">
+          <Conclusion />
+        </section>
+      </article>
     </div>
   );
 };

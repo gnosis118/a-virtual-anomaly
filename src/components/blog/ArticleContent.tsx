@@ -4,6 +4,7 @@ import RoleOfEthicsArticle from './articles/RoleOfEthicsArticle';
 import AIImpactArticle from './articles/AIImpactArticle';
 import AIEmotionalFrontierArticle from './articles/AIEmotionalFrontierArticle';
 import LegalFrameworkArticle from './articles/LegalFrameworkArticle';
+import ConsciousnessEmergentArticle from './articles/ConsciousnessEmergentArticle';
 import DefaultArticleState from './articles/DefaultArticleState';
 
 interface ArticleContentProps {
@@ -21,6 +22,10 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ id, title }) => {
     return <LegalFrameworkArticle />;
   }
   
+  if (id === 6 || id === "6") {
+    return <ConsciousnessEmergentArticle />;
+  }
+  
   // Also match by title for flexibility
   if (title && (
     title.includes("Can AI Experience Love?") || 
@@ -32,6 +37,11 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ id, title }) => {
   // Match The Legal Framework for AI Rights article
   if (title && title.includes("Legal Framework for AI Rights")) {
     return <LegalFrameworkArticle />;
+  }
+  
+  // Match Consciousness as an Emergent Property article
+  if (title && title.includes("Consciousness as an Emergent Property")) {
+    return <ConsciousnessEmergentArticle />;
   }
   
   // Special content for "The Role of Ethics in AI Development" article

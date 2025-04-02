@@ -1,3 +1,4 @@
+
 import { BlogPost } from '@/types/blog';
 
 // Get yesterday's date and format it
@@ -72,7 +73,7 @@ export const BLOG_POSTS: BlogPost[] = [
     title: "The Legal Framework for AI Rights",
     excerpt: "Examining current and future legal considerations for artificially intelligent entities.",
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nisl nisl aliquam nisl, vel ultricies nisl nisl sit amet nisl.",
-    image: "https://images.unsplash.com/photo-1589994965851-a8f479c573a9",
+    image: "https://images.unsplash.com/photo-1589994965851-a8f479c573a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80",
     date: formattedDate,
     author: "Gavin Clay",
     readTime: "9 min read",
@@ -86,7 +87,7 @@ export const BLOG_POSTS: BlogPost[] = [
     title: "Consciousness as an Emergent Property",
     excerpt: "How complex systems may give rise to conscious experiences and what this means for AI development.",
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nisl nisl aliquam nisl, vel ultricies nisl nisl sit amet nisl.",
-    image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e",
+    image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80",
     date: formattedDate,
     author: "Gavin Clay",
     readTime: "12 min read",

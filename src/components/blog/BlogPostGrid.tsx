@@ -62,6 +62,10 @@ const BlogPostGrid: React.FC<BlogPostGridProps> = ({
                     src={post.image} 
                     alt={post.title} 
                     className="w-full h-full object-cover"
+                    onError={(e) => {
+                      // Fallback in case the image doesn't load
+                      e.currentTarget.src = "https://images.unsplash.com/photo-1581547848200-85cb245ebc8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1965&q=80";
+                    }}
                   />
                 </a>
                 <div className="absolute top-2 left-2 px-2 py-1 bg-accent/90 text-white text-xs font-medium rounded">

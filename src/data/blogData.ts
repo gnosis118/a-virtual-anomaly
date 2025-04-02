@@ -44,7 +44,7 @@ export const BLOG_POSTS: BlogPost[] = [
     title: "AI's Impact on Society: A Global Perspective",
     excerpt: "Examining how artificial intelligence is transforming societies across the globe and what it means for humanity.",
     content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies lacinia, nisl nisl aliquam nisl, vel ultricies nisl nisl sit amet nisl.",
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81",
+    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80",
     date: formattedDate,
     author: "Gavin Clay",
     readTime: "20 min read",

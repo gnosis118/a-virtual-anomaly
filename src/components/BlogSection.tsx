@@ -35,6 +35,10 @@ const BlogSection = () => {
                   src={post.image} 
                   alt={post.title} 
                   className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                  onError={(e) => {
+                    // Fallback in case the image doesn't load
+                    e.currentTarget.src = "https://images.unsplash.com/photo-1581547848200-85cb245ebc8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1965&q=80";
+                  }}
                 />
                 <div className="absolute top-4 left-4 px-2 py-1 bg-accent/90 text-white text-xs font-medium rounded">
                   {post.category}

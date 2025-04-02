@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import RoleOfEthicsArticle from './articles/RoleOfEthicsArticle';
 import AIImpactArticle from './articles/AIImpactArticle';
 import AIEmotionalFrontierArticle from './articles/AIEmotionalFrontierArticle';
@@ -12,13 +12,26 @@ interface ArticleContentProps {
   id?: string | number;
   title?: string;
   content?: string;
+  loading?: boolean;
 }
 
 /**
  * ArticleContent component that loads the appropriate article based on ID or title
  * This component is used on the public-facing blog and does not contain any admin features
  */
-const ArticleContent: React.FC<ArticleContentProps> = ({ id, title, content }) => {
+const ArticleContent: React.FC<ArticleContentProps> = ({ id, title, content, loading }) => {
+  // Show loading state if loading prop is true
+  if (loading) {
+    return (
+      <div className="animate-pulse space-y-4">
+        <div className="h-6 bg-gray-200 rounded w-3/4"></div>
+        <div className="h-4 bg-gray-200 rounded w-full"></div>
+        <div className="h-4 bg-gray-200 rounded w-full"></div>
+        <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+      </div>
+    );
+  }
+  
   // If we have direct content from the API, render it
   if (content) {
     return (

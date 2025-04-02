@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import Button from '@/components/Button';
+import { Tag } from 'lucide-react';
 
 interface PopularTagsProps {
   tags: string[];
@@ -11,21 +11,22 @@ interface PopularTagsProps {
 const PopularTags: React.FC<PopularTagsProps> = ({ tags, onTagSelect }) => {
   return (
     <Card>
-      <CardHeader>
-        <CardTitle className="text-xl">Popular Tags</CardTitle>
+      <CardHeader className="pb-3">
+        <CardTitle className="flex items-center gap-2 text-xl">
+          <Tag className="h-5 w-5 text-accent" />
+          Popular Tags
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex flex-wrap gap-2">
           {tags.map(tag => (
-            <Button 
+            <button
               key={tag}
-              variant="secondary"
-              size="sm"
               onClick={() => onTagSelect(tag)}
-              className="mb-2 text-xs"
+              className="bg-secondary/30 hover:bg-accent/20 px-3 py-1 rounded-full text-sm transition-colors"
             >
-              #{tag}
-            </Button>
+              {tag}
+            </button>
           ))}
         </div>
       </CardContent>

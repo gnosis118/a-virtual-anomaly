@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { RefreshCw } from 'lucide-react';
+import { RefreshCw, ArrowRight, Calendar, User, Clock } from 'lucide-react';
+import { Button } from "@/components/ui/button";
 
 interface BlogPostGridProps {
   posts: any[];
@@ -46,7 +47,22 @@ const BlogPostGrid: React.FC<BlogPostGridProps> = ({
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-semibold">{posts.length} Articles</h2>
+        <h2 className="text-xl font-semibold">
+          {searchQuery || selectedCategory ? 'Search Results' : 'All Articles'}
+          {posts.length > 0 && <span className="text-sm font-normal text-muted-foreground ml-2">({posts.length})</span>}
+        </h2>
+        
+        {(searchQuery || selectedCategory) && (
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            onClick={clearFilters}
+            className="text-muted-foreground text-xs"
+          >
+            <RefreshCw className="h-3 w-3 mr-1" />
+            Clear filters
+          </Button>
+        )}
       </div>
       
       <div className="grid gap-6">
@@ -79,12 +95,29 @@ const BlogPostGrid: React.FC<BlogPostGridProps> = ({
                   </a>
                 </h3>
                 <p className="text-muted-foreground mb-4 line-clamp-2">{post.excerpt}</p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center text-xs text-muted-foreground">
-                    <span>{post.date}</span>
-                    <span className="mx-2">•</span>
-                    <span>{post.author}</span>
+                
+                <div className="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between">
+                  <div className="flex items-center text-xs text-muted-foreground space-x-4">
+                    <span className="flex items-center">
+                      <Calendar className="h-3 w-3 mr-1" />
+                      {post.date}
+                    </span>
+                    <span className="flex items-center">
+                      <User className="h-3 w-3 mr-1" />
+                      {post.author}
+                    </span>
+                    <span className="flex items-center">
+                      <Clock className="h-3 w-3 mr-1" />
+                      {post.readTime}
+                    </span>
                   </div>
+                  
+                  <Button size="sm" variant="ghost" asChild className="self-start">
+                    <a href={`/blog/${post.id}`} className="flex items-center gap-1 text-xs">
+                      Read more
+                      <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
+                    </a>
+                  </Button>
                 </div>
               </div>
             </div>

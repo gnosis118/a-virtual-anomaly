@@ -2,14 +2,14 @@
 import { supabase } from "@/integrations/supabase/client";
 
 export interface ScheduledPost {
-  id: number | string;
+  id: string | number;
   title: string;
   excerpt: string;
   content?: string;
   author: string;
   category: string;
   tags: string;
-  publishDate: Date;
+  publishDate: Date; // Frontend representation uses camelCase
   status: 'draft' | 'scheduled' | 'published';
 }
 
@@ -24,17 +24,28 @@ export async function getPostsForDate(date?: Date): Promise<ScheduledPost[]> {
     const { data, error } = await supabase
       .from('scheduled_posts')
       .select('*')
-      .eq('publishDate', formattedDate);
+      .eq('publishdate', formattedDate); // Use lowercase 'publishdate' to match DB column
     
     if (error) {
       console.error('Error fetching posts:', error);
       return [];
     }
     
-    // Convert the date strings to Date objects
+    if (!data || data.length === 0) {
+      return [];
+    }
+    
+    // Convert the date strings to Date objects and map to our ScheduledPost interface
     return data.map(post => ({
-      ...post,
-      publishDate: new Date(post.publishDate)
+      id: post.id,
+      title: post.title,
+      excerpt: post.excerpt,
+      content: post.content,
+      author: post.author,
+      category: post.category,
+      tags: post.tags,
+      publishDate: new Date(post.publishdate), // Convert DB publishdate to frontend publishDate
+      status: post.status as 'draft' | 'scheduled' | 'published'
     }));
   } catch (error) {
     console.error('Error in getPostsForDate:', error);
@@ -47,16 +58,20 @@ export async function getDaysWithPosts(): Promise<Date[]> {
   try {
     const { data, error } = await supabase
       .from('scheduled_posts')
-      .select('publishDate');
+      .select('publishdate'); // Use lowercase 'publishdate' to match DB column
     
     if (error) {
       console.error('Error fetching days with posts:', error);
       return [];
     }
     
+    if (!data || data.length === 0) {
+      return [];
+    }
+    
     // Convert the date strings to Date objects and remove duplicates
-    const dates = data.map(item => new Date(item.publishDate));
-    return [...new Set(dates.map(date => date.toISOString().split('T')[0]))].map(dateStr => new Date(dateStr));
+    const uniqueDates = [...new Set(data.map(item => item.publishdate))];
+    return uniqueDates.map(dateStr => new Date(dateStr));
   } catch (error) {
     console.error('Error in getDaysWithPosts:', error);
     return [];

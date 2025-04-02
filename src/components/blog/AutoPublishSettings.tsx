@@ -57,7 +57,10 @@ const AutoPublishSettings = () => {
     try {
       const { error } = await supabase
         .from('settings')
-        .upsert({ key: 'auto_publish', value: newValue });
+        .upsert({ 
+          key: 'auto_publish', 
+          value: newValue 
+        });
       
       if (error) {
         console.error('Error saving auto-publish setting:', error);

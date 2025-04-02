@@ -13,7 +13,7 @@ type ScheduledPost = {
   author: string;
   category: string;
   tags: string;
-  publishDate: string;
+  publishdate: string; // lowercase to match the database column
   status: 'draft' | 'scheduled' | 'published';
 };
 
@@ -119,7 +119,7 @@ async function processScheduledPosts(supabaseClient: any) {
     .from('scheduled_posts')
     .select('*')
     .eq('status', 'scheduled')
-    .lte('publishDate', today);
+    .lte('publishdate', today); // Use lowercase 'publishdate' to match DB column
   
   if (fetchError) {
     console.error('Error fetching scheduled posts:', fetchError);

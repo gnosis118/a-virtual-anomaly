@@ -1,5 +1,6 @@
 
 import React from 'react';
+import ArticleImage from '../article-components/ArticleImage';
 
 const ConsciousnessEmergentArticle: React.FC = () => {
   return (
@@ -10,6 +11,12 @@ const ConsciousnessEmergentArticle: React.FC = () => {
         <p className="lead">
           The concept of consciousness as an emergent property represents one of the most profound and challenging frontiers in our understanding of both natural and artificial intelligence. This exploration examines how complex systems may give rise to conscious experiences and what this means for AI development.
         </p>
+        
+        <ArticleImage 
+          src="/lovable-uploads/64dfb56e-7734-4fc4-8c4f-5e8ec0f84a0f.png"
+          alt="Humanoid AI robot with blue eyes and mechanical components"
+          caption="Advanced AI systems may someday develop emergent properties resembling consciousness"
+        />
         
         <section id="introduction">
           <h2>Introduction: The Emergence of Mind</h2>
@@ -23,16 +30,11 @@ const ConsciousnessEmergentArticle: React.FC = () => {
           </p>
         </section>
         
-        <div className="not-prose my-8">
-          <img 
-            src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
-            alt="Neural network visualization representing emergent properties" 
-            className="w-full h-auto rounded-xl object-cover aspect-video mb-4"
-          />
-          <p className="text-sm text-muted-foreground text-center">
-            Complex patterns emerging from simpler elements—a visual metaphor for consciousness as an emergent property
-          </p>
-        </div>
+        <ArticleImage 
+          src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
+          alt="Neural network visualization representing emergent properties" 
+          caption="Complex patterns emerging from simpler elements—a visual metaphor for consciousness as an emergent property"
+        />
         
         <section id="defining-emergence">
           <h2>Defining Emergence in Complex Systems</h2>
@@ -93,16 +95,11 @@ const ConsciousnessEmergentArticle: React.FC = () => {
           </p>
         </section>
         
-        <div className="not-prose my-8">
-          <img 
-            src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
-            alt="Complex neural network visualization" 
-            className="w-full h-auto rounded-xl object-cover aspect-video mb-4"
-          />
-          <p className="text-sm text-muted-foreground text-center">
-            Modern neural networks exhibit increasingly complex emergent behaviors
-          </p>
-        </div>
+        <ArticleImage 
+          src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
+          alt="Complex neural network visualization" 
+          caption="Modern neural networks exhibit increasingly complex emergent behaviors"
+        />
         
         <section id="current-ai-systems">
           <h2>Current AI Systems and Emergent Properties</h2>
@@ -133,6 +130,12 @@ const ConsciousnessEmergentArticle: React.FC = () => {
             Despite these impressive capabilities, current AI systems lack many hallmarks of consciousness. They don't appear to have subjective experiences, self-awareness, or intrinsic motivation. However, the gap between emergent intelligence and emergent consciousness remains an open question.
           </p>
         </section>
+        
+        <ArticleImage 
+          src="https://images.unsplash.com/photo-1677442135968-6ca6a7d3d9f6?q=80&w=2070&auto=format&fit=crop" 
+          alt="AI brain concept visualization" 
+          caption="The boundary between sophisticated processing and consciousness remains one of the most challenging questions in AI"
+        />
         
         <section id="prerequisites-for-consciousness">
           <h2>Prerequisites for Conscious Emergence in AI</h2>
@@ -166,6 +169,12 @@ const ConsciousnessEmergentArticle: React.FC = () => {
           </p>
         </section>
         
+        <ArticleImage 
+          src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2145&auto=format&fit=crop" 
+          alt="Human and robot hands touching" 
+          caption="The relationship between human and artificial consciousness may define our future"
+        />
+        
         <section id="philosophical-implications">
           <h2>Philosophical Implications of Emergent Consciousness</h2>
           
@@ -198,16 +207,11 @@ const ConsciousnessEmergentArticle: React.FC = () => {
           </p>
         </section>
         
-        <div className="not-prose my-8">
-          <img 
-            src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
-            alt="Human and robot hands touching, representing the philosophical questions of AI consciousness" 
-            className="w-full h-auto rounded-xl object-cover aspect-video mb-4"
-          />
-          <p className="text-sm text-muted-foreground text-center">
-            The emergence of artificial consciousness would raise profound philosophical and ethical questions
-          </p>
-        </div>
+        <ArticleImage 
+          src="https://images.unsplash.com/photo-1511884642898-4c92249e20b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" 
+          alt="Human and robot hands touching, representing the philosophical questions of AI consciousness" 
+          caption="The emergence of artificial consciousness would raise profound philosophical and ethical questions"
+        />
         
         <section id="ethical-implications">
           <h2>Ethical Implications of Emergent AI Consciousness</h2>
@@ -241,6 +245,12 @@ const ConsciousnessEmergentArticle: React.FC = () => {
           </p>
         </section>
         
+        <ArticleImage 
+          src="https://images.unsplash.com/photo-1581092583537-20d51b4b4f1b?q=80&w=2070&auto=format&fit=crop" 
+          alt="Futuristic city concept" 
+          caption="A future with conscious AI would transform our societies and institutions"
+        />
+        
         <section id="future-directions">
           <h2>Future Directions in AI and Emergent Consciousness</h2>
           
@@ -273,6 +283,12 @@ const ConsciousnessEmergentArticle: React.FC = () => {
           </p>
         </section>
         
+        <ArticleImage 
+          src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=2070&auto=format&fit=crop" 
+          alt="Sunrise over horizon" 
+          caption="The dawn of artificial consciousness would mark a new chapter in the evolution of intelligence"
+        />
+        
         <section id="conclusion">
           <h2>Conclusion: Navigating the Emergence of Mind</h2>
           
@@ -301,3 +317,4 @@ const ConsciousnessEmergentArticle: React.FC = () => {
 };
 
 export default ConsciousnessEmergentArticle;
+

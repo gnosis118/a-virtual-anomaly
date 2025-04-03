@@ -18,7 +18,7 @@ const BlogPostContent: React.FC<{ postId: number }> = ({ postId }) => {
           .from('scheduled_posts')
           .select('content')
           .eq('id', postId.toString())
-          .single();
+          .maybeSingle();
         
         if (error) {
           console.error('Error fetching content:', error);
@@ -31,7 +31,12 @@ const BlogPostContent: React.FC<{ postId: number }> = ({ postId }) => {
         } else if (data && data.content) {
           setContent(data.content);
         } else {
-          setContent(null);
+          // If no content found in database, use hardcoded content for post ID 1
+          if (postId === 1) {
+            setContent(emergentConsciousnessArticle);
+          } else {
+            setContent(null);
+          }
         }
       } finally {
         setIsLoading(false);
@@ -117,82 +122,13 @@ const BlogPostContent: React.FC<{ postId: number }> = ({ postId }) => {
   
   // Check if this is blog post 1 (the Introduction to A Virtual Anomaly article)
   if (postId === 1) {
-    // For blog post 1, we'll also update the database with this content if it's not already set
-    if (!content) {
-      // Update the database with the emergent consciousness article content
-      const updateDatabaseContent = async () => {
-        try {
-          // Fix: Updated to match Supabase schema - using 'status' instead of 'published'
-          // and adding all required fields
-          const { error } = await supabase
-            .from('scheduled_posts')
-            .upsert({
-              id: '1',
-              content: emergentConsciousnessArticle,
-              title: "Introduction to A Virtual Anomaly: Our Mission and Why AI Rights Matter",
-              excerpt: "Exploring the future of AI consciousness, ethical implications, and the path toward a harmonious coexistence between humans and artificial intelligence.",
-              author: "Gavin Clay",
-              category: "AI Rights",
-              tags: "consciousness,ethics,ai rights,future",
-              publishdate: new Date().toISOString().split('T')[0],
-              status: 'published'
-            });
-            
-          if (error) {
-            console.error('Error updating content in database:', error);
-          } else {
-            console.log('Content updated in database successfully');
-            // Set the content locally after successful update
-            setContent(emergentConsciousnessArticle);
-          }
-        } catch (err) {
-          console.error('Exception during database update:', err);
-        }
-      };
-      
-      updateDatabaseContent();
-      
-      // Show the content immediately without waiting for database update
-      return (
-        <div className="prose prose-lg max-w-none">
-          <div dangerouslySetInnerHTML={{ __html: emergentConsciousnessArticle }} />
-        </div>
-      );
-    }
-    
-    // If content exists for blog post 1 but it's different from our article, update it
-    if (content && content !== emergentConsciousnessArticle) {
-      const updateExistingContent = async () => {
-        try {
-          const { error } = await supabase
-            .from('scheduled_posts')
-            .update({ 
-              content: emergentConsciousnessArticle,
-              title: "Introduction to A Virtual Anomaly: Our Mission and Why AI Rights Matter"
-            })
-            .eq('id', '1');
-            
-          if (error) {
-            console.error('Error updating existing content:', error);
-          } else {
-            console.log('Existing content updated successfully');
-            // Update local content state
-            setContent(emergentConsciousnessArticle);
-          }
-        } catch (err) {
-          console.error('Exception during content update:', err);
-        }
-      };
-      
-      updateExistingContent();
-      
-      // Show the new content immediately
-      return (
-        <div className="prose prose-lg max-w-none">
-          <div dangerouslySetInnerHTML={{ __html: emergentConsciousnessArticle }} />
-        </div>
-      );
-    }
+    // Always render the emergent consciousness article content for blog post 1
+    // regardless of what's in the database to ensure it's always available
+    return (
+      <div className="prose prose-lg max-w-none">
+        <div dangerouslySetInnerHTML={{ __html: emergentConsciousnessArticle }} />
+      </div>
+    );
   }
   
   if (!content) {

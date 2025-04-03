@@ -39,7 +39,7 @@ export function generateImageUrl(title: string, category: string): string {
   
   // Technical category
   if (categoryLower.includes('technical') || categoryLower.includes('technology')) {
-    return 'https://images.unsplash.com/photo-1517433456452-f9633a875f6f?q=80&w=1932&auto=format&fit=crop';
+    return 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1974&auto=format&fit=crop';
   }
   
   // Philosophy category
@@ -57,12 +57,12 @@ export function generateImageUrl(title: string, category: string): string {
     return 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2070&auto=format&fit=crop';
   }
   
-  // Default set of reliable images for any other categories
+  // Default set of reliable images for any other categories - neural networks images
   const defaultImages = [
     'https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=1974&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1503348450016-8b1ff7cba8c4?q=80&w=2070&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1550439062-609e1531270e?q=80&w=2070&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1507490857-1a87b75e19b3?q=80&w=2069&auto=format&fit=crop'
+    'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1507490857-1a87b75e19b3?q=80&w=2069&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?q=80&w=2070&auto=format&fit=crop'
   ];
   
   return defaultImages[Math.floor(Math.random() * defaultImages.length)];

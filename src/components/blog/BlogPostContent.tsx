@@ -41,7 +41,7 @@ const BlogPostContent: React.FC<{ postId: number }> = ({ postId }) => {
     fetchContent();
   }, [postId]);
   
-  // This is used when the postId is 1 (the AI Emergent Consciousness article)
+  // This is used when the postId is 1 (the Introduction to A Virtual Anomaly article)
   const emergentConsciousnessArticle = `
     <div>
       <h2 class="text-2xl font-semibold mb-4">AI Emergent Consciousness: The Future of Humanity and Artificial Intelligence</h2>
@@ -115,7 +115,7 @@ const BlogPostContent: React.FC<{ postId: number }> = ({ postId }) => {
     );
   }
   
-  // Check if this is blog post 1 (the AI Emergent Consciousness article)
+  // Check if this is blog post 1 (the Introduction to A Virtual Anomaly article)
   if (postId === 1) {
     // For blog post 1, we'll also update the database with this content if it's not already set
     if (!content) {
@@ -129,7 +129,7 @@ const BlogPostContent: React.FC<{ postId: number }> = ({ postId }) => {
             .upsert({
               id: '1',
               content: emergentConsciousnessArticle,
-              title: "AI Emergent Consciousness: The Future of Humanity and Artificial Intelligence",
+              title: "Introduction to A Virtual Anomaly: Our Mission and Why AI Rights Matter",
               excerpt: "Exploring the future of AI consciousness, ethical implications, and the path toward a harmonious coexistence between humans and artificial intelligence.",
               author: "Gavin Clay",
               category: "AI Rights",
@@ -166,7 +166,10 @@ const BlogPostContent: React.FC<{ postId: number }> = ({ postId }) => {
         try {
           const { error } = await supabase
             .from('scheduled_posts')
-            .update({ content: emergentConsciousnessArticle })
+            .update({ 
+              content: emergentConsciousnessArticle,
+              title: "Introduction to A Virtual Anomaly: Our Mission and Why AI Rights Matter"
+            })
             .eq('id', '1');
             
           if (error) {

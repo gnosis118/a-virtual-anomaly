@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { BLOG_POSTS } from '@/data/blogData';
@@ -23,12 +24,12 @@ const BlogPost = () => {
     
     // Update Open Graph meta tags for social media sharing
     if (post) {
-      // Special case for post ID 1 - the AI Emergent Consciousness article
+      // Special case for post ID 1 - the Introduction to A Virtual Anomaly article
       if (post.id === 1) {
-        document.title = "AI Emergent Consciousness: The Future of Humanity and Artificial Intelligence | Virtual Anomaly";
+        document.title = "Introduction to A Virtual Anomaly: Our Mission and Why AI Rights Matter | Virtual Anomaly";
         
         // Update meta tags with specific content for this article
-        document.querySelector('meta[property="og:title"]')?.setAttribute('content', "AI Emergent Consciousness: The Future of Humanity and Artificial Intelligence");
+        document.querySelector('meta[property="og:title"]')?.setAttribute('content', "Introduction to A Virtual Anomaly: Our Mission and Why AI Rights Matter");
         document.querySelector('meta[property="og:description"]')?.setAttribute('content', "Exploring the future of AI consciousness, ethical implications, and the path toward a harmonious coexistence between humans and artificial intelligence.");
         
         // Keep using post.image for consistency

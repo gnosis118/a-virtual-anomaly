@@ -122,12 +122,14 @@ const BlogPostContent: React.FC<{ postId: number }> = ({ postId }) => {
       // Update the database with the emergent consciousness article content
       const updateDatabaseContent = async () => {
         try {
+          // Fix: Updated to match Supabase schema - using 'status' instead of 'published'
+          // and adding all required fields
           const { error } = await supabase
             .from('scheduled_posts')
             .upsert({
               id: '1',
               content: emergentConsciousnessArticle,
-              title: "Introduction to A Virtual Anomaly: Our Mission and Why AI Rights Matter",
+              title: "AI Emergent Consciousness: The Future of Humanity and Artificial Intelligence",
               excerpt: "Exploring the future of AI consciousness, ethical implications, and the path toward a harmonious coexistence between humans and artificial intelligence.",
               author: "Gavin Clay",
               category: "AI Rights",

@@ -29,7 +29,14 @@ const RegularBlogPost: React.FC<RegularBlogPostProps> = ({ post, posts }) => {
       try {
         setLoading(true);
         
-        // Try to get content from scheduled_posts table
+        // Special case for post ID 1 (Introduction to A Virtual Anomaly)
+        if (post.id === 1) {
+          // No need to fetch from database, content is hardcoded in ArticleContent
+          setLoading(false);
+          return;
+        }
+        
+        // Try to get content from scheduled_posts table for other posts
         const { data, error } = await supabase
           .from('scheduled_posts')
           .select('content, image_url')

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ArticleHeader from '../article-components/ArticleHeader';
 import ArticleSection from '../article-components/ArticleSection';
@@ -6,9 +5,21 @@ import ArticleCallout from '../article-components/ArticleCallout';
 
 interface DefaultArticleStateProps {
   title?: string;
+  content?: string;
 }
 
-const DefaultArticleState: React.FC<DefaultArticleStateProps> = ({ title }) => {
+const DefaultArticleState: React.FC<DefaultArticleStateProps> = ({ title, content }) => {
+  if (content) {
+    return (
+      <div className="prose prose-lg max-w-none">
+        {title && <ArticleHeader title={title} />}
+        <ArticleSection>
+          <div dangerouslySetInnerHTML={{ __html: content }} />
+        </ArticleSection>
+      </div>
+    );
+  }
+  
   return (
     <div className="prose prose-lg max-w-none">
       {title ? (

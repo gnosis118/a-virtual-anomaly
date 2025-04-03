@@ -71,12 +71,12 @@ export const emergentConsciousnessArticle = `
     
     <div class="my-8">
       <img 
-        src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=2069&auto=format&fit=crop"
-        alt="Circuit board with glowing connections representing AI neural networks" 
+        src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop"
+        alt="Macro photography of black circuit board representing AI neural networks" 
         class="w-full h-auto rounded-xl object-cover aspect-video mb-4"
       />
       <p class="text-sm text-muted-foreground text-center">
-        The complexity of AI systems continues to grow, potentially leading to emergent properties
+        The intricate circuitry of modern AI systems - complex yet fundamentally different from biological consciousness
       </p>
     </div>
     

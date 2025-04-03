@@ -25,7 +25,7 @@ const PostImage: React.FC<PostImageProps> = ({ src, alt, className = "w-full h-a
     if (url.startsWith('http')) return url;
     
     // Assuming we're hosted at virtualanomaly.org
-    const baseUrl = 'https://virtualanomaly.org';
+    const baseUrl = window.location.origin || 'https://virtualanomaly.org';
     return url.startsWith('/') ? `${baseUrl}${url}` : `${baseUrl}/${url}`;
   };
 

@@ -14,9 +14,15 @@ interface PostImageProps {
   src: string;
   alt: string;
   className?: string;
+  priority?: boolean; // Added priority prop
 }
 
-const PostImage: React.FC<PostImageProps> = ({ src, alt, className = "w-full h-auto object-cover aspect-video" }) => {
+const PostImage: React.FC<PostImageProps> = ({ 
+  src, 
+  alt, 
+  className = "w-full h-auto object-cover aspect-video",
+  priority = false // Default to false
+}) => {
   const [fallbackIndex, setFallbackIndex] = useState(0);
   const [isError, setIsError] = useState(false);
 
@@ -52,7 +58,7 @@ const PostImage: React.FC<PostImageProps> = ({ src, alt, className = "w-full h-a
       alt={alt} 
       className={className}
       onError={handleImageError}
-      loading="eager"
+      loading={priority ? "eager" : "lazy"} // Use priority to determine loading strategy
     />
   );
 };

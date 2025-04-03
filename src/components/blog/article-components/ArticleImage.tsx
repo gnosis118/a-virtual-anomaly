@@ -26,7 +26,7 @@ const ArticleImage: React.FC<ArticleImageProps> = ({
         priority={priority}
       />
       {caption && (
-        <p className="text-sm text-muted-foreground text-center">
+        <p className="text-sm text-muted-foreground text-center mt-2">
           {caption}
         </p>
       )}

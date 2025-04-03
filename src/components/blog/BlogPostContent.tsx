@@ -128,7 +128,12 @@ const BlogPostContent: React.FC<{ postId: number }> = ({ postId }) => {
               id: '1',
               content: emergentConsciousnessArticle,
               title: "Introduction to A Virtual Anomaly: Our Mission and Why AI Rights Matter",
-              published: true
+              excerpt: "Exploring the future of AI consciousness, ethical implications, and the path toward a harmonious coexistence between humans and artificial intelligence.",
+              author: "Gavin Clay",
+              category: "AI Rights",
+              tags: "consciousness,ethics,ai rights,future",
+              publishdate: new Date().toISOString().split('T')[0],
+              status: 'published'
             });
             
           if (error) {

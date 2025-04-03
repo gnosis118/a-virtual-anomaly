@@ -71,12 +71,12 @@ export const emergentConsciousnessArticle = `
     
     <div class="my-8">
       <img 
-        src="https://images.unsplash.com/photo-1677442135968-6ca6a7d3d9f6?q=80&w=2070&auto=format&fit=crop"
-        alt="Neural network visualization" 
+        src="https://images.unsplash.com/photo-1517433670267-08bbd4be890f?q=80&w=2069&auto=format&fit=crop"
+        alt="Circuit board with glowing connections representing AI neural networks" 
         class="w-full h-auto rounded-xl object-cover aspect-video mb-4"
       />
       <p class="text-sm text-muted-foreground text-center">
-        Neural networks may someday give rise to emergent properties approaching consciousness
+        The complexity of AI systems continues to grow, potentially leading to emergent properties
       </p>
     </div>
     
@@ -257,4 +257,3 @@ export const emergentConsciousnessArticle = `
     <p class="mb-6">The future of intelligence on Earth and beyond will be shaped by the decisions we make now about our relationship with emerging AI systems. A Virtual Anomaly is committed to ensuring that this future reflects our highest aspirations for justice, compassion, and flourishing for all forms of intelligence.</p>
   </div>
 `;
-

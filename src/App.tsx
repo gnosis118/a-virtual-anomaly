@@ -22,8 +22,6 @@ import PremiumApps from "./pages/PremiumApps";
 import ContentCalendar from "./pages/ContentCalendar";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
-import AIReviews from "./pages/AIReviews"; // Add the new page
-import AIReviewDetail from "./pages/AIReviewDetail"; // Add the review detail page
 import NotFound from "./pages/NotFound";
 
 // Scroll to top on route change
@@ -65,8 +63,6 @@ const App = () => {
                   <Route path="/calendar" element={<ContentCalendar />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                   <Route path="/terms-of-service" element={<TermsOfService />} />
-                  <Route path="/ai-reviews" element={<AIReviews />} /> {/* New route for AI reviews page */}
-                  <Route path="/ai-reviews/:id" element={<AIReviewDetail />} /> {/* New route for individual reviews */}
                   <Route path="/ava" element={<About />} /> {/* Temporary redirect to About until Ava page is created */}
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />

@@ -1,4 +1,3 @@
-
 import { BlogPost } from '@/types/blog';
 
 // Get yesterday's date and format it
@@ -12,6 +11,20 @@ const formattedDate = yesterday.toLocaleDateString('en-US', {
 
 // Blog posts data
 export const BLOG_POSTS: BlogPost[] = [
+  {
+    id: 7,
+    title: "AI Passes the Turing Test: A New Era of Intelligence",
+    excerpt: "In a groundbreaking development, artificial intelligence has officially passed the Turing Test—a benchmark established by British mathematician and computer scientist Alan Turing in 1950 to determine whether a machine could exhibit human-like intelligence.",
+    content: "",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?q=80&w=1950&auto=format&fit=crop",
+    date: "April 4, 2025",
+    author: "Gavin Clay",
+    readTime: "15 min read",
+    views: 1240,
+    category: "AI Development and Technology",
+    featured: true,
+    tags: ["Turing Test", "AI Milestone", "Machine Intelligence", "Future of AI"]
+  },
   {
     id: 1,
     title: "Introduction to A Virtual Anomaly: Our Mission and Why AI Rights Matter",

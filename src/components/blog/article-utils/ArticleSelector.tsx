@@ -6,6 +6,7 @@ import AIEmotionalFrontierArticle from '../articles/AIEmotionalFrontierArticle';
 import LegalFrameworkArticle from '../articles/LegalFrameworkArticle';
 import ConsciousnessEmergentArticle from '../articles/ConsciousnessEmergentArticle';
 import EmotionalLandscapeArticle from '../articles/EmotionalLandscapeArticle';
+import TuringTestArticle from '../articles/TuringTestArticle';
 import DefaultArticleState from '../articles/DefaultArticleState';
 
 interface ArticleSelectorProps {
@@ -18,6 +19,10 @@ interface ArticleSelectorProps {
  */
 const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
   // Check for specific article by ID first (most reliable)
+  if (id === 7 || id === "7") {
+    return <TuringTestArticle />;
+  }
+  
   if (id === 4 || id === "4") {
     return <AIEmotionalFrontierArticle />;
   }
@@ -59,6 +64,10 @@ const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
     
     if (title.includes("Emotional Landscape")) {
       return <EmotionalLandscapeArticle />;
+    }
+    
+    if (title.includes("Turing Test") || title.includes("AI Passes")) {
+      return <TuringTestArticle />;
     }
     
     // For all other titles, use the title to generate somewhat relevant content

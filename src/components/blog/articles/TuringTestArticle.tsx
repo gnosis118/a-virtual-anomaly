@@ -104,7 +104,7 @@ const TuringTestArticle: React.FC = () => {
         </p>
       </ArticleSection>
 
-      <ArticleCallout type="info">
+      <ArticleCallout title="The Turing Test Origins" variant="info">
         The Turing Test is named after Alan Turing, who proposed it in his 1950 paper "Computing Machinery and Intelligence." Originally called "the imitation game," it has become the standard benchmark for conversational AI systems.
       </ArticleCallout>
 
@@ -163,7 +163,7 @@ const TuringTestArticle: React.FC = () => {
 
       <ArticleQuote 
         quote="The question is not whether intelligent machines can have emotions, but whether machines can be intelligent without emotions."
-        author="Marvin Minsky, AI Pioneer"
+        citation="Marvin Minsky, AI Pioneer"
       />
 
       <ArticleSection title="Ethical and Societal Implications">

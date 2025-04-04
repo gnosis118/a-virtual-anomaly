@@ -3,6 +3,7 @@ import React from 'react';
 import ArticleHeader from '../article-components/ArticleHeader';
 import ArticleSection from '../article-components/ArticleSection';
 import ArticleQuote from '../article-components/ArticleQuote';
+import ArticleImage from '../article-components/ArticleImage';
 
 const GeoffreyHintonArticle: React.FC = () => {
   return (
@@ -12,6 +13,13 @@ const GeoffreyHintonArticle: React.FC = () => {
       <p className="lead">
         Geoffrey Hinton, often referred to as the "Godfather of AI," shares his insights on the potential of artificial intelligence to either transform humanity for the better or pose existential risks.
       </p>
+      
+      <ArticleImage 
+        src="/lovable-uploads/4d0fe1c5-faa8-4396-bd19-5bf4fa79167e.png" 
+        alt="Human hand and robot hand reaching toward a digital brain, symbolizing the interaction between humanity and artificial intelligence"
+        caption="The future relationship between humans and AI remains one of the most consequential questions of our time."
+        priority={true}
+      />
       
       <div className="my-8 aspect-video">
         <iframe 

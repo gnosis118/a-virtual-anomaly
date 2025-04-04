@@ -17,7 +17,7 @@ export const BLOG_POSTS: BlogPost[] = [
     title: "Geoffrey Hinton: Will AI Save the World or End it? | The Agenda",
     excerpt: "Geoffrey Hinton, often referred to as the 'Godfather of AI,' shares his insights on the potential of artificial intelligence to either transform humanity for the better or pose existential risks.",
     content: "",
-    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2070&auto=format&fit=crop",
+    image: "/lovable-uploads/4d0fe1c5-faa8-4396-bd19-5bf4fa79167e.png",
     date: "April 3, 2025",
     author: "Gavin Clay",
     readTime: "8 min read",

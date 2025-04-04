@@ -20,9 +20,9 @@ const TuringTestArticle: React.FC = () => {
       </p>
 
       <ArticleImage 
-        src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1950&auto=format&fit=crop" 
-        alt="Computer code representing AI algorithms"
-        caption="Modern AI systems use sophisticated algorithms and neural networks to process and generate human-like language."
+        src="/lovable-uploads/d50b223f-80bb-43d1-940e-8d15249c7870.png" 
+        alt="Neural network visualization representing AI complexity"
+        caption="Modern AI systems use sophisticated neural networks to process and generate human-like language."
         priority
       />
 
@@ -42,8 +42,8 @@ const TuringTestArticle: React.FC = () => {
       </ArticleSection>
 
       <ArticleImage 
-        src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1950&auto=format&fit=crop" 
-        alt="AI-human conversation interface"
+        src="/lovable-uploads/9c3cbcaa-1ebe-462d-ab37-11ba121dae84.png" 
+        alt="AI with neural connections visualizing artificial intelligence systems"
         caption="Modern AI interfaces allow for seamless human-machine conversations that are increasingly difficult to distinguish from human-to-human interactions."
       />
 
@@ -77,8 +77,8 @@ const TuringTestArticle: React.FC = () => {
       </ArticleSection>
 
       <ArticleImage 
-        src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1950&auto=format&fit=crop" 
-        alt="Digital matrix representing AI complexity"
+        src="/lovable-uploads/0ac9f64a-adda-46b7-97ed-dbef38e33320.png" 
+        alt="AI robot profile with brain scan"
         caption="The complexity of modern AI systems has grown exponentially, enabling more sophisticated reasoning and conversational abilities."
       />
 
@@ -104,7 +104,7 @@ const TuringTestArticle: React.FC = () => {
         </p>
       </ArticleSection>
 
-      <ArticleCallout title="The Turing Test Origins" variant="info">
+      <ArticleCallout title="The Turing Test Origins" variant="accent">
         The Turing Test is named after Alan Turing, who proposed it in his 1950 paper "Computing Machinery and Intelligence." Originally called "the imitation game," it has become the standard benchmark for conversational AI systems.
       </ArticleCallout>
 
@@ -135,8 +135,8 @@ const TuringTestArticle: React.FC = () => {
       </ArticleSection>
 
       <ArticleImage 
-        src="https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?q=80&w=1950&auto=format&fit=crop" 
-        alt="Colorful software code representing AI systems"
+        src="/lovable-uploads/7e4f1843-3345-4270-b928-5d4a48918059.png" 
+        alt="AI hands holding a digital brain visualization"
         caption="Behind the conversational abilities of AI are sophisticated algorithms and neural networks trained on massive datasets."
       />
 
@@ -184,8 +184,8 @@ const TuringTestArticle: React.FC = () => {
       </ArticleSection>
 
       <ArticleImage 
-        src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?q=80&w=1950&auto=format&fit=crop" 
-        alt="Forest landscape representing future growth"
+        src="/lovable-uploads/632d3315-f5cc-4c9d-860b-ba5323893a2b.png" 
+        alt="Human hand and robot hand touching a virtual brain"
         caption="The future relationship between humans and AI will continue to evolve as AI capabilities expand beyond passing the Turing Test."
       />
 

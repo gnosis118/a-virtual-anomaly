@@ -1,3 +1,4 @@
+
 import { BlogPost } from '@/types/blog';
 
 // Get yesterday's date and format it
@@ -11,6 +12,20 @@ const formattedDate = yesterday.toLocaleDateString('en-US', {
 
 // Blog posts data
 export const BLOG_POSTS: BlogPost[] = [
+  {
+    id: 9,
+    title: "Geoffrey Hinton: Will AI Save the World or End it? | The Agenda",
+    excerpt: "Geoffrey Hinton, often referred to as the 'Godfather of AI,' shares his insights on the potential of artificial intelligence to either transform humanity for the better or pose existential risks.",
+    content: "",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=2070&auto=format&fit=crop",
+    date: "April 3, 2025",
+    author: "Gavin Clay",
+    readTime: "8 min read",
+    views: 1520,
+    category: "AI Development and Technology",
+    featured: true,
+    tags: ["Geoffrey Hinton", "AI Safety", "Future of AI", "Ethics", "Machine Learning"]
+  },
   {
     id: 7,
     title: "AI Passes the Turing Test: A New Era of Intelligence",

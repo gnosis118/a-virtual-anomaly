@@ -7,6 +7,7 @@ import LegalFrameworkArticle from '../articles/LegalFrameworkArticle';
 import ConsciousnessEmergentArticle from '../articles/ConsciousnessEmergentArticle';
 import EmotionalLandscapeArticle from '../articles/EmotionalLandscapeArticle';
 import TuringTestArticle from '../articles/TuringTestArticle';
+import ConsciousnessMeasurementArticle from '../articles/ConsciousnessMeasurementArticle';
 import DefaultArticleState from '../articles/DefaultArticleState';
 
 interface ArticleSelectorProps {
@@ -33,6 +34,10 @@ const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
   
   if (id === 6 || id === "6") {
     return <ConsciousnessEmergentArticle />;
+  }
+  
+  if (id === 8 || id === "8" || id === "april4") {
+    return <ConsciousnessMeasurementArticle />;
   }
   
   // Special case for April 2nd article
@@ -68,6 +73,10 @@ const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
     
     if (title.includes("Turing Test") || title.includes("AI Passes")) {
       return <TuringTestArticle />;
+    }
+    
+    if (title.includes("Measuring Consciousness") || title.includes("Quantitative Approaches")) {
+      return <ConsciousnessMeasurementArticle />;
     }
     
     // For all other titles, use the title to generate somewhat relevant content

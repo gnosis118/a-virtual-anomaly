@@ -24,16 +24,32 @@ export async function generateArticle(supabaseClient, postId) {
     if (!postData) {
       console.log(`No database record found for post ID ${postId}, using static data`);
       
-      // For April 2nd post, we'll create a specific emotional AI article
-      const defaultPostData = {
-        id: postId,
-        title: "The Emotional Landscape of Artificial Intelligence",
-        excerpt: "Can AIs experience emotions? This article explores the neurological basis of emotions and their potential artificial analogs.",
-        author: "Gavin Clay",
-        category: "AI Psychology",
-        tags: "emotions,psychology,sentience",
-        status: "scheduled"
-      };
+      let defaultPostData;
+      
+      // For April 4th post, we'll create the Measuring Consciousness article
+      if (postId === "april4") {
+        defaultPostData = {
+          id: "april4",
+          title: "Measuring Consciousness: Quantitative Approaches",
+          excerpt: "Scientists are developing frameworks to detect and measure consciousness in both biological and artificial systems.",
+          author: "Gavin Clay",
+          category: "Research",
+          tags: "consciousness,measurement,science,metrics,neuroscience",
+          status: "scheduled",
+          publishdate: '2024-04-04'
+        };
+      } else {
+        // Default case for other missing posts
+        defaultPostData = {
+          id: postId,
+          title: "The Emotional Landscape of Artificial Intelligence",
+          excerpt: "Can AIs experience emotions? This article explores the neurological basis of emotions and their potential artificial analogs.",
+          author: "Gavin Clay",
+          category: "AI Psychology",
+          tags: "emotions,psychology,sentience",
+          status: "scheduled"
+        };
+      }
       
       // Generate the article content
       const content = await generateArticleContent(defaultPostData);
@@ -53,7 +69,7 @@ export async function generateArticle(supabaseClient, postId) {
           tags: defaultPostData.tags,
           content: content,
           image_url: imageUrl,
-          publishdate: '2024-04-02', // April 2nd
+          publishdate: defaultPostData.publishdate || '2024-04-02', // Use provided date or default to April 2nd
           status: 'published'
         });
         
@@ -67,7 +83,7 @@ export async function generateArticle(supabaseClient, postId) {
         postId: postId,
         title: defaultPostData.title,
         contentSample: content.substring(0, 100) + '...',
-        note: "Generated and inserted new article for April 2nd"
+        note: `Generated and inserted new article for ${defaultPostData.title}`
       };
     }
     

@@ -20,6 +20,63 @@ export async function getPostsForDate(date?: Date): Promise<ScheduledPost[]> {
   const formattedDate = date.toISOString().split('T')[0];
   console.log('Formatted date for query:', formattedDate);
   
+  // Special case for April 4th
+  const isAprilFourth = date.getMonth() === 3 && date.getDate() === 4;
+  if (isAprilFourth) {
+    // Check if we have the April 4th post in the database first
+    try {
+      const { data, error } = await supabase
+        .from('scheduled_posts')
+        .select('*')
+        .eq('id', 'april4')
+        .maybeSingle();
+        
+      if (!error && data) {
+        // We have the April 4th post in the database
+        console.log('Found April 4th post in database');
+        return [{
+          id: 'april4',
+          title: data.title || "Measuring Consciousness: Quantitative Approaches",
+          excerpt: data.excerpt || "Scientists are developing frameworks to detect and measure consciousness in both biological and artificial systems.",
+          content: data.content,
+          author: data.author || "Gavin Clay",
+          category: data.category || "Research",
+          tags: data.tags || "consciousness,measurement,science,metrics,neuroscience",
+          publishDate: new Date(data.publishdate || '2024-04-04'),
+          status: data.status as 'draft' | 'scheduled' | 'published' || 'published',
+          image_url: data.image_url || "https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=2070&auto=format&fit=crop"
+        }];
+      }
+      
+      // If we don't have it in the database, use the fallback
+      return [{
+        id: 'april4',
+        title: "Measuring Consciousness: Quantitative Approaches",
+        excerpt: "Scientists are developing frameworks to detect and measure consciousness in both biological and artificial systems.",
+        author: "Gavin Clay",
+        category: "Research",
+        tags: "consciousness,measurement,science,metrics,neuroscience",
+        publishDate: new Date('2024-04-04'),
+        status: 'published',
+        image_url: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=2070&auto=format&fit=crop"
+      }];
+    } catch (error) {
+      console.error('Error checking for April 4th post:', error);
+      // Fallback to hardcoded April 4th post
+      return [{
+        id: 'april4',
+        title: "Measuring Consciousness: Quantitative Approaches",
+        excerpt: "Scientists are developing frameworks to detect and measure consciousness in both biological and artificial systems.",
+        author: "Gavin Clay",
+        category: "Research",
+        tags: "consciousness,measurement,science,metrics,neuroscience",
+        publishDate: new Date('2024-04-04'),
+        status: 'published',
+        image_url: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=2070&auto=format&fit=crop"
+      }];
+    }
+  }
+  
   // Special case for April 2nd
   const isAprilSecond = date.getMonth() === 3 && date.getDate() === 2;
   if (isAprilSecond) {
@@ -327,6 +384,9 @@ export const daysWithPosts: Date[] = [
   new Date(2024, 8, 20), // Sept 20, 2024
   new Date(2024, 8, 25), // Sept 25, 2024
   new Date(2024, 8, 30), // Sept 30, 2024
+  // Special dates for April articles
+  new Date(2024, 3, 2),  // April 2, 2024
+  new Date(2024, 3, 4),  // April 4, 2024
   // Add some current dates so we can see something in the calendar immediately
   new Date(new Date().getFullYear(), new Date().getMonth(), 1),
   new Date(new Date().getFullYear(), new Date().getMonth(), 5),

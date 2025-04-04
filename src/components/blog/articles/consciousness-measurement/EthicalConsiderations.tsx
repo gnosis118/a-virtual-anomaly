@@ -29,7 +29,7 @@ const EthicalConsiderations: React.FC = () => {
         
         <ArticleQuote 
           quote="Consciousness detection technologies are forcing us to reconsider fundamental ethical principles in medicine. The ability to detect covert consciousness in seemingly unresponsive patients challenges traditional approaches to autonomy, beneficence, and justice in healthcare."
-          author="Dr. Joseph Fins, Professor of Medical Ethics, Weill Cornell Medical College"
+          citation="Dr. Joseph Fins, Professor of Medical Ethics, Weill Cornell Medical College"
         />
         
         <h3>Research Ethics and Informed Consent</h3>

@@ -21,7 +21,7 @@ const ConsciousnessDefining: React.FC = () => {
       
       <ArticleQuote 
         quote="The attempt to measure consciousness forces us to be precise about what exactly we're looking for. This precision has accelerated our understanding more in the past two decades than in the previous two millennia."
-        author="Dr. Christof Koch, Chief Scientist, MindScope Program"
+        citation="Dr. Christof Koch, Chief Scientist, MindScope Program"
       />
 
       <h3>Operational Definitions for Measurement</h3>

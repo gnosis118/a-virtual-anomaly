@@ -23,7 +23,7 @@ const NeuroimagingApproaches: React.FC = () => {
 
         <ArticleQuote 
           quote="Neuroimaging has transformed our ability to detect consciousness in the absence of behavioral response. We now know that consciousness can persist even when patients appear entirely unresponsive."
-          author="Dr. Adrian Owen, Professor of Cognitive Neuroscience and Imaging"
+          citation="Dr. Adrian Owen, Professor of Cognitive Neuroscience and Imaging"
         />
         
         <h3>Electroencephalography (EEG) and Event-Related Potentials</h3>

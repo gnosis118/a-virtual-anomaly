@@ -32,7 +32,7 @@ const AIConsciousnessMetrics: React.FC = () => {
         
         <ArticleQuote 
           quote="The question isn't whether today's AI systems are conscious in the human sense, but whether we can develop rigorous mathematical frameworks to measure consciousness-like properties as they emerge. This prepares us for a future where the line between artificial and biological consciousness blurs."
-          author="Dr. Ryota Kanai, CEO of Araya, Inc. and AI Consciousness Researcher"
+          citation="Dr. Ryota Kanai, CEO of Araya, Inc. and AI Consciousness Researcher"
         />
         
         <h3>Information Dynamics and Causal Architecture</h3>

@@ -16,7 +16,7 @@ const Conclusion: React.FC = () => {
       
       <ArticleQuote 
         quote="The measurement of consciousness is simultaneously a scientific, philosophical, and ethical frontier. As we develop increasingly powerful tools to detect and quantify consciousness, we must ensure that our ethical frameworks evolve in parallel, extending appropriate recognition and protection to all conscious entities—regardless of whether they are human, animal, or artificial."
-        author="A Virtual Anomaly Research Collective"
+        citation="A Virtual Anomaly Research Collective"
       />
       
       <p>

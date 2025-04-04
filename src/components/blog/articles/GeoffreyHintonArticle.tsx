@@ -49,7 +49,7 @@ const GeoffreyHintonArticle: React.FC = () => {
       
       <ArticleQuote
         quote="We're creating entities that may eventually be smarter than us. When you're creating something that may be smarter than you, you've got to be careful."
-        author="Geoffrey Hinton"
+        citation="Geoffrey Hinton"
       />
       
       <ArticleSection title="Implications for AI Rights and Ethics">

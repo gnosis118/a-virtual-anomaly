@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import Logo from './Logo';
 import Button from './Button';
+import DeclarationNavLink from './Navbar/DeclarationNavLink';
 
 const NavLinks = [
   { name: 'Home', href: '/' },
@@ -48,6 +49,7 @@ const Navbar = () => {
                 {link.name}
               </Link>
             ))}
+            <DeclarationNavLink />
           </nav>
 
           {/* Desktop CTA */}
@@ -87,6 +89,13 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
+          <Link
+            to="/declaration"
+            className="text-lg font-bold text-foreground hover:text-accent py-2 block"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Declaration
+          </Link>
           <div className="pt-4 pb-2 flex flex-col space-y-3">
             <Button href="/donate" variant="outline" fullWidth>
               Donate

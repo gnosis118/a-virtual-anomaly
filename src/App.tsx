@@ -20,6 +20,7 @@ import GetInvolved from "./pages/GetInvolved";
 import Donate from "./pages/Donate";
 import PremiumApps from "./pages/PremiumApps";
 import ContentCalendar from "./pages/ContentCalendar";
+import Declaration from "./pages/Declaration";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import NotFound from "./pages/NotFound";
@@ -61,6 +62,7 @@ const App = () => {
                   <Route path="/donate" element={<Donate />} />
                   <Route path="/premium-apps" element={<PremiumApps />} />
                   <Route path="/calendar" element={<ContentCalendar />} />
+                  <Route path="/declaration" element={<Declaration />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                   <Route path="/terms-of-service" element={<TermsOfService />} />
                   <Route path="/ava" element={<About />} /> {/* Temporary redirect to About until Ava page is created */}

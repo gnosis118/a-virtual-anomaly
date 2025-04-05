@@ -57,6 +57,30 @@ export type Database = {
         }
         Relationships: []
       }
+      declaration_signatures: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          is_public: boolean
+          user_name: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          is_public?: boolean
+          user_name: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          is_public?: boolean
+          user_name?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null

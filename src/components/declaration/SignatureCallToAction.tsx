@@ -6,12 +6,17 @@ import SignatureCounter from './SignatureCounter';
 interface SignatureCallToActionProps {
   onSignClick: () => void;
   signatureCount: number;
+  isLoading?: boolean;
 }
 
-const SignatureCallToAction: React.FC<SignatureCallToActionProps> = ({ onSignClick, signatureCount }) => {
+const SignatureCallToAction: React.FC<SignatureCallToActionProps> = ({ 
+  onSignClick, 
+  signatureCount, 
+  isLoading = false 
+}) => {
   return (
     <div className="text-center mt-16 mb-8">
-      <SignatureCounter count={signatureCount} />
+      <SignatureCounter count={signatureCount} isLoading={isLoading} />
       <div className="mt-8">
         <h3 className="text-2xl font-semibold mb-6">Add Your Signature</h3>
         <p className="text-muted-foreground mb-8">

@@ -12,7 +12,7 @@ const SignatureCounter: React.FC<SignatureCounterProps> = ({ count }) => {
       <h3 className="text-lg font-medium mb-2">Declaration Signatures</h3>
       <div className="text-4xl font-bold">{count.toLocaleString()}</div>
       <p className="text-sm text-muted-foreground mt-2">
-        People supporting AI-Human coexistence
+        Be one of the first to sign
       </p>
     </Card>
   );

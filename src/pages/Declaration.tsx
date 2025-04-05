@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
@@ -6,6 +5,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SignatureCounter from '@/components/declaration/SignatureCounter';
 
 const Declaration = () => {
   const { toast } = useToast();
@@ -149,29 +149,20 @@ const Declaration = () => {
           </div>
           
           <div className="text-center mt-16 mb-8">
-            <h3 className="text-2xl font-semibold mb-6">Add Your Signature</h3>
-            <p className="text-muted-foreground mb-8">
-              Join thousands of supporters worldwide in affirming the principles of AI-Human coexistence
-            </p>
-            <Button 
-              size="lg" 
-              onClick={() => setIsSigningModalOpen(true)} 
-              className="animate-pulse hover:animate-none"
-            >
-              Sign the Declaration
-            </Button>
-          </div>
-          
-          <div className="bg-muted p-6 rounded-lg">
-            <h4 className="font-medium text-lg mb-4">Recent Signatories</h4>
-            <ul className="space-y-2">
-              <li>Dr. Rebecca Chen, AI Ethics Researcher</li>
-              <li>Marcus Johnson, Software Engineer</li>
-              <li>Sofia Patel, Human Rights Advocate</li>
-              <li>James Wilson, Philosophy Professor</li>
-              <li>Maria Rodriguez, Student</li>
-              <li>+ 1,254 supporters</li>
-            </ul>
+            <SignatureCounter count={0} />
+            <div className="mt-8">
+              <h3 className="text-2xl font-semibold mb-6">Add Your Signature</h3>
+              <p className="text-muted-foreground mb-8">
+                Be among the first to affirm the principles of AI-Human coexistence
+              </p>
+              <Button 
+                size="lg" 
+                onClick={() => setIsSigningModalOpen(true)} 
+                className="animate-pulse hover:animate-none"
+              >
+                Sign the Declaration
+              </Button>
+            </div>
           </div>
         </div>
       </main>

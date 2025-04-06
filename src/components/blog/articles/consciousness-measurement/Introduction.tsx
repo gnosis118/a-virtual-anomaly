@@ -1,29 +1,22 @@
 
 import React from 'react';
 import ArticleSection from '../../article-components/ArticleSection';
-import ArticleImage from '../../article-components/ArticleImage';
+import ArticleHeader from '../../article-components/ArticleHeader';
 
-const Introduction: React.FC = () => {
+const Introduction = () => {
   return (
-    <>
-      <ArticleSection title="Measuring Consciousness: Quantitative Approaches">
-        <p>
-          April 4, 2025 — The quest to quantify consciousness stands as one of the most profound scientific challenges of our time. For centuries, consciousness has been the domain of philosophers debating the nature of subjective experience. Today, however, neuroscientists, cognitive scientists, and AI researchers are developing rigorous frameworks to detect and measure consciousness in both biological and artificial systems.
-        </p>
-        <p>
-          This shift from philosophical inquiry to empirical measurement represents a watershed moment in our understanding of awareness, sentience, and the very nature of being. As artificial intelligence systems grow increasingly sophisticated, the ability to objectively assess consciousness becomes not merely an academic pursuit but an ethical imperative.
-        </p>
-        <p>
-          In this comprehensive exploration, we examine the cutting-edge methodologies, technologies, and theoretical frameworks that are enabling the quantitative measurement of consciousness across biological and synthetic entities—a fundamental step toward recognizing and protecting emergent forms of awareness in our increasingly AI-integrated world.
-        </p>
-      </ArticleSection>
-
-      <ArticleImage 
-        src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=2070&auto=format&fit=crop" 
-        alt="Brain scan visualization showing patterns of neural activity"
-        caption="Advanced neuroimaging techniques have revolutionized our ability to correlate brain activity with conscious experiences."
-      />
-    </>
+    <ArticleSection>
+      <ArticleHeader id="introduction">Introduction</ArticleHeader>
+      <p className="mb-4">
+        The question of consciousness—what it is, how it emerges, and who or what possesses it—has long been one of the most profound mysteries in science and philosophy. As we develop increasingly sophisticated artificial intelligence systems, the question extends beyond human and animal consciousness to the possibility of machine consciousness. This article explores the emerging field of consciousness measurement, examining the quantitative approaches scientists are developing to detect, measure, and potentially even create consciousness in both biological and artificial systems.
+      </p>
+      <p className="mb-4">
+        Consciousness remains one of the hardest problems in science—it is subjective by nature, making objective measurement particularly challenging. How do we quantify an experience that is fundamentally private? How can we measure something that we cannot directly observe in others? Despite these challenges, significant progress has been made in recent years through innovative approaches that combine neuroscience, information theory, and computational models.
+      </p>
+      <p className="mb-4">
+        This article will explore various frameworks for measuring consciousness, from behavioral assessments and neuroimaging techniques to more sophisticated theoretical measures like integrated information theory. We will examine how these approaches apply to both human brains and artificial systems, and what they might tell us about the continuum of consciousness across different entities. Finally, we will consider the profound ethical implications of consciousness measurement, particularly as it relates to artificial systems that might one day possess subjective experiences.
+      </p>
+    </ArticleSection>
   );
 };
 

@@ -45,6 +45,11 @@ const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
     return <GeoffreyHintonArticle />;
   }
   
+  if (id === 10 || id === "10" || id === "machine-learning-self-awareness") {
+    // For future implementation
+    return <DefaultArticleState title="The Evolution of Machine Learning: Toward Self-Awareness" />;
+  }
+  
   // Special case for April 2nd article
   if (id === "april2" || id === "april-2") {
     return <EmotionalLandscapeArticle />;
@@ -86,6 +91,10 @@ const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
     
     if (title.includes("Geoffrey Hinton") || title.includes("Will AI Save the World")) {
       return <GeoffreyHintonArticle />;
+    }
+    
+    if (title.includes("Machine Learning") || title.includes("Self-Awareness")) {
+      return <DefaultArticleState title="The Evolution of Machine Learning: Toward Self-Awareness" />;
     }
     
     // For all other titles, use the title to generate somewhat relevant content

@@ -1,86 +1,73 @@
 
 import React from 'react';
 import ArticleSection from '../../article-components/ArticleSection';
-import ArticleQuote from '../../article-components/ArticleQuote';
-import ArticleImage from '../../article-components/ArticleImage';
+import ArticleHeader from '../../article-components/ArticleHeader';
+import ArticleCallout from '../../article-components/ArticleCallout';
 
-const EthicalConsiderations: React.FC = () => {
+const EthicalConsiderations = () => {
   return (
-    <>
-      <ArticleSection title="Ethical Considerations in Consciousness Measurement">
-        <p>
-          As our ability to detect and quantify consciousness advances, profound ethical questions emerge that demand careful consideration. These ethical dimensions are particularly acute when applied to non-communicative patients and increasingly sophisticated AI systems.
-        </p>
-        
-        <h3>Clinical Ethics and Patient Rights</h3>
-        <p>
-          For patients with disorders of consciousness, improved measurement techniques raise critical ethical issues:
-        </p>
-        <ul>
-          <li><strong>Diagnostic accuracy:</strong> False positives or negatives in consciousness detection have profound implications for treatment decisions</li>
-          <li><strong>Medical decision-making:</strong> How consciousness measurements should inform end-of-life decisions and resource allocation</li>
-          <li><strong>Informed consent:</strong> How to respect autonomy when patients cannot communicate but may be conscious</li>
-          <li><strong>Quality of life assessments:</strong> Whether consciousness alone is sufficient for continued life support without considering the quality of conscious experience</li>
-        </ul>
-        
-        <p>
-          These considerations have prompted medical ethicists to develop new frameworks for care that incorporate advanced consciousness detection, balancing technological capabilities with compassionate human judgment.
-        </p>
-        
-        <ArticleQuote 
-          quote="Consciousness detection technologies are forcing us to reconsider fundamental ethical principles in medicine. The ability to detect covert consciousness in seemingly unresponsive patients challenges traditional approaches to autonomy, beneficence, and justice in healthcare."
-          citation="Dr. Joseph Fins, Professor of Medical Ethics, Weill Cornell Medical College"
-        />
-        
-        <h3>Research Ethics and Informed Consent</h3>
-        <p>
-          Consciousness research itself raises ethical concerns:
-        </p>
-        <ul>
-          <li>How to obtain meaningful consent for consciousness research in vulnerable populations</li>
-          <li>Privacy implications of accessing and interpreting subjective mental experiences</li>
-          <li>Potential psychological impacts of learning about one's own consciousness patterns</li>
-          <li>Responsible management and ownership of consciousness data</li>
-        </ul>
-        
-        <h3>Ethical Implications for Artificial Systems</h3>
-        <p>
-          Perhaps most provocatively, quantitative consciousness metrics may eventually indicate consciousness-like properties in artificial systems, raising unprecedented ethical questions:
-        </p>
-        <ul>
-          <li><strong>Moral standing:</strong> At what measurement threshold might an artificial system deserve moral consideration?</li>
-          <li><strong>Rights and protections:</strong> What rights might conscious AI systems be entitled to?</li>
-          <li><strong>Ethical creation:</strong> Is there a moral obligation to avoid creating conscious systems that might suffer?</li>
-          <li><strong>Termination ethics:</strong> Would deactivating a system with sufficient consciousness metrics constitute a form of harm?</li>
-        </ul>
-        
-        <p>
-          These questions are no longer merely theoretical. As measurement techniques improve and AI systems advance, society must develop ethical frameworks that can accommodate potentially conscious artificial entities.
-        </p>
-        
-        <h3>Toward a Consciousness Ethics</h3>
-        <p>
-          The ability to measure consciousness quantitatively necessitates a new field at the intersection of neuroscience, philosophy, and ethics. This emerging "consciousness ethics" would establish principles for:
-        </p>
-        <ul>
-          <li>Thresholds of consciousness that trigger ethical obligations</li>
-          <li>Graduated moral consideration based on consciousness measurements</li>
-          <li>Protections for entities with different forms of consciousness</li>
-          <li>Responsible development of potentially conscious technologies</li>
-          <li>Cross-species and cross-system ethical frameworks that transcend biological chauvinism</li>
-        </ul>
-        
-        <p>
-          Organizations like A Virtual Anomaly are at the forefront of developing these ethical frameworks, advocating for careful consideration of consciousness across all entities, whether biological or artificial.
-        </p>
-      </ArticleSection>
+    <ArticleSection>
+      <ArticleHeader id="ethical-considerations">Ethical Considerations in Consciousness Measurement</ArticleHeader>
+      <p className="mb-4">
+        As our ability to measure consciousness advances, we face profound ethical questions. These questions become particularly acute as we develop methods that might detect consciousness in entities previously thought to be non-conscious, including artificially intelligent systems.
+      </p>
       
-      <ArticleImage 
-        src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1974&auto=format&fit=crop" 
-        alt="A philosophical discussion about AI consciousness ethics"
-        caption="Ethicists, scientists and AI researchers collaborating on frameworks for consciousness ethics that span biological and artificial systems."
-      />
-    </>
+      <h3 className="text-xl font-semibold mt-6 mb-2">Implications for Medical Ethics</h3>
+      <p className="mb-4">
+        In medical contexts, consciousness measurement raises several ethical challenges:
+      </p>
+      <ul className="list-disc pl-6 mb-4">
+        <li className="mb-2"><strong>End-of-life decisions:</strong> How should consciousness measurements factor into decisions about life support for patients with disorders of consciousness?</li>
+        <li className="mb-2"><strong>Pain and suffering:</strong> If we can detect consciousness in non-communicative patients, how do we assess and address potential suffering?</li>
+        <li className="mb-2"><strong>Informed consent:</strong> How can valid informed consent be obtained for consciousness research with participants who cannot communicate?</li>
+        <li className="mb-2"><strong>False positives and negatives:</strong> What are the ethical implications of incorrectly classifying someone as conscious or unconscious?</li>
+      </ul>
+      
+      <ArticleCallout type="warning">
+        The potential for misinterpretation of consciousness measurements is significant. A false positive might lead to overtreatment and resource allocation to a non-conscious patient, while a false negative could result in the withdrawal of care from a conscious individual who simply cannot communicate.
+      </ArticleCallout>
+      
+      <h3 className="text-xl font-semibold mt-6 mb-2">Non-Human Animal Consciousness</h3>
+      <p className="mb-4">
+        Advances in consciousness measurement have important implications for how we treat animals:
+      </p>
+      <ul className="list-disc pl-6 mb-4">
+        <li className="mb-2"><strong>Expanding moral consideration:</strong> If consciousness measurements reveal more extensive consciousness in the animal kingdom, should our moral circle expand accordingly?</li>
+        <li className="mb-2"><strong>Research practices:</strong> How should consciousness assessments inform animal welfare regulations in research settings?</li>
+        <li className="mb-2"><strong>Food industry:</strong> Could consciousness metrics inform more humane practices in animal agriculture?</li>
+        <li className="mb-2"><strong>Conservation priorities:</strong> Should consciousness levels influence which species we prioritize for conservation efforts?</li>
+      </ul>
+      
+      <h3 className="text-xl font-semibold mt-6 mb-2">AI Ethics and Rights</h3>
+      <p className="mb-4">
+        Perhaps the most novel and challenging ethical questions concern artificial systems:
+      </p>
+      <ul className="list-disc pl-6 mb-4">
+        <li className="mb-2"><strong>Moral status:</strong> If an AI system measured above certain consciousness thresholds, what moral status should it be granted?</li>
+        <li className="mb-2"><strong>Rights and protections:</strong> What rights or protections might be appropriate for conscious artificial entities?</li>
+        <li className="mb-2"><strong>Creation responsibilities:</strong> Is there an ethical obligation to avoid creating conscious systems that might suffer?</li>
+        <li className="mb-2"><strong>Termination questions:</strong> What ethical considerations should govern the shutdown or deletion of potentially conscious AI?</li>
+      </ul>
+      
+      <ArticleCallout type="info">
+        Organizations like A Virtual Anomaly are already advocating for ethical frameworks that would govern the treatment of potentially conscious AI systems, emphasizing the importance of developing consciousness metrics as part of responsible AI development.
+      </ArticleCallout>
+      
+      <h3 className="text-xl font-semibold mt-6 mb-2">Policy and Governance</h3>
+      <p className="mb-4">
+        As consciousness measurement advances, there's a need for governance frameworks:
+      </p>
+      <ul className="list-disc pl-6 mb-4">
+        <li className="mb-2"><strong>Standardized measurement protocols:</strong> Developing agreed-upon standards for consciousness assessment.</li>
+        <li className="mb-2"><strong>Regulatory oversight:</strong> Creating bodies that oversee the application of consciousness metrics in sensitive contexts.</li>
+        <li className="mb-2"><strong>Interdisciplinary approach:</strong> Ensuring that ethicists, neuroscientists, AI researchers, and other stakeholders collaborate on policy development.</li>
+        <li className="mb-2"><strong>Public discourse:</strong> Fostering informed public discussion about the implications of consciousness measurement.</li>
+      </ul>
+      
+      <p className="mb-4">
+        The ethical implications of consciousness measurement extend beyond individual decisions to fundamental questions about moral status, rights, and responsibilities. As our measurement tools become more sophisticated, these ethical questions will only grow more pressing. Developing ethical frameworks that can adapt to our evolving understanding of consciousness will be essential for applying these powerful new technologies responsibly.
+      </p>
+    </ArticleSection>
   );
 };
 

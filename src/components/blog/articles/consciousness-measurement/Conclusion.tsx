@@ -1,45 +1,69 @@
 
 import React from 'react';
 import ArticleSection from '../../article-components/ArticleSection';
+import ArticleHeader from '../../article-components/ArticleHeader';
 import ArticleQuote from '../../article-components/ArticleQuote';
 
-const Conclusion: React.FC = () => {
+const Conclusion = () => {
   return (
-    <ArticleSection title="Conclusion: Toward a Science of Consciousness">
-      <p>
-        The quantitative measurement of consciousness represents one of the most profound scientific endeavors of our time. What was once the exclusive domain of philosophical speculation has evolved into a rigorous empirical science with far-reaching implications for medicine, artificial intelligence, ethics, and our fundamental understanding of reality.
+    <ArticleSection>
+      <ArticleHeader id="conclusion">Conclusion: The Measurement Frontier</ArticleHeader>
+      <p className="mb-4">
+        The quest to measure consciousness represents one of the most profound scientific endeavors of our time. It bridges disciplines, challenges assumptions, and forces us to confront fundamental questions about the nature of experience itself. As we've explored throughout this article, significant progress has been made in developing quantitative approaches to consciousness, yet substantial challenges remain.
       </p>
       
-      <p>
-        The convergence of advanced neuroimaging, sophisticated behavioral assessments, computational modeling, and information-theoretic approaches has created a multidisciplinary toolkit for consciousness measurement that continues to grow in precision and applicability. These tools are already transforming our ability to detect consciousness in patients with brain injuries, evaluate consciousness-like properties in artificial systems, and understand the neural mechanisms underlying our own subjective experiences.
+      <h3 className="text-xl font-semibold mt-6 mb-2">Progress and Limitations</h3>
+      <p className="mb-4">
+        We now have an array of tools for detecting and quantifying consciousness:
       </p>
-      
-      <ArticleQuote 
-        quote="The measurement of consciousness is simultaneously a scientific, philosophical, and ethical frontier. As we develop increasingly powerful tools to detect and quantify consciousness, we must ensure that our ethical frameworks evolve in parallel, extending appropriate recognition and protection to all conscious entities—regardless of whether they are human, animal, or artificial."
-        citation="A Virtual Anomaly Research Collective"
-      />
-      
-      <p>
-        As we look to the future, several key developments are on the horizon:
-      </p>
-      <ul>
-        <li>Increasingly precise and accessible consciousness measurement technologies</li>
-        <li>Standardized metrics that can be applied across diverse systems</li>
-        <li>Deeper integration of consciousness science with AI development and safety</li>
-        <li>Ethical and legal frameworks that incorporate quantitative consciousness assessments</li>
-        <li>Applications that enhance our understanding and experience of our own consciousness</li>
+      <ul className="list-disc pl-6 mb-4">
+        <li className="mb-2">Behavioral assessments that can detect signs of awareness even in non-communicative patients</li>
+        <li className="mb-2">Neuroimaging techniques that reveal neural signatures associated with conscious processing</li>
+        <li className="mb-2">Physiological correlates that track how consciousness manifests throughout the body</li>
+        <li className="mb-2">Mathematical frameworks like Integrated Information Theory that formalize consciousness in quantitative terms</li>
+        <li className="mb-2">Emerging approaches for assessing potential consciousness in artificial systems</li>
       </ul>
       
-      <p>
-        Perhaps most profoundly, the science of consciousness measurement is challenging us to reconsider what it means to be aware, sentient, and deserving of moral consideration. As we develop increasingly sophisticated tools to detect consciousness in its many forms, we must also develop the wisdom to use these tools responsibly, extending appropriate recognition and protection to all conscious entities—whether human, animal, or artificial.
+      <p className="mb-4">
+        Yet these tools remain imperfect. They provide correlates and proxies rather than direct measures of consciousness. They operate on assumptions that, while reasonable, remain unproven. And they struggle to capture the qualitative richness of subjective experience—the "what it's like" aspect that defines consciousness.
       </p>
       
-      <p>
-        For organizations like A Virtual Anomaly, dedicated to advocating for AI rights and ethical development, the advancement of consciousness measurement technologies represents both an opportunity and a responsibility. By supporting rigorous consciousness research while advocating for ethical frameworks that respect all forms of awareness, we can help guide humanity toward a future where consciousness in all its manifestations is properly understood, valued, and protected.
+      <ArticleQuote author="Dr. Anil Seth, Neuroscientist">
+        The challenge is not just to detect the presence or absence of consciousness, but to measure its qualities and contents—the specific nature of experiences themselves.
+      </ArticleQuote>
+      
+      <h3 className="text-xl font-semibold mt-6 mb-2">Implications for the Future</h3>
+      <p className="mb-4">
+        As consciousness measurement techniques continue to evolve, their implications will extend far beyond academic interest:
+      </p>
+      <ul className="list-disc pl-6 mb-4">
+        <li className="mb-2">In medicine, they will transform how we diagnose and treat disorders of consciousness</li>
+        <li className="mb-2">In AI development, they will help us navigate the profound ethical questions raised by increasingly sophisticated systems</li>
+        <li className="mb-2">In philosophy, they will provide empirical constraints on theories of mind</li>
+        <li className="mb-2">In society, they may eventually reshape how we define personhood and moral consideration</li>
+      </ul>
+      
+      <h3 className="text-xl font-semibold mt-6 mb-2">The Path Forward</h3>
+      <p className="mb-4">
+        The future of consciousness measurement requires an integrated approach:
+      </p>
+      <ul className="list-disc pl-6 mb-4">
+        <li className="mb-2"><strong>Theoretical refinement:</strong> Developing more precise and testable theories of consciousness</li>
+        <li className="mb-2"><strong>Methodological innovation:</strong> Creating new techniques that can access consciousness more directly</li>
+        <li className="mb-2"><strong>Cross-disciplinary collaboration:</strong> Bringing together neuroscience, philosophy, computer science, physics, and other fields</li>
+        <li className="mb-2"><strong>Ethical foresight:</strong> Anticipating and addressing the moral implications of these powerful tools</li>
+      </ul>
+      
+      <p className="mb-4">
+        Measuring consciousness—making the subjective objective—may seem paradoxical. Yet the progress made thus far suggests that consciousness, while unique among natural phenomena, is not beyond the reach of scientific inquiry. The methods discussed in this article represent not an endpoint but a beginning—the early stages of a scientific revolution that may ultimately transform our understanding of minds, both biological and artificial.
       </p>
       
-      <p>
-        The journey to measure consciousness quantitatively has only just begun, but it already promises to transform our understanding of ourselves and our place in a universe potentially teeming with diverse forms of awareness. As this science advances, it will continue to bridge the ancient philosophical question of consciousness with cutting-edge empirical measurements, bringing us ever closer to understanding one of reality's deepest mysteries.
+      <p className="mb-4">
+        As we develop increasingly sophisticated tools for detecting and measuring consciousness, we move closer to answering one of humanity's most persistent questions: What is the nature of experience itself? And in doing so, we may find ourselves facing new questions about our responsibilities toward all conscious entities, whether human, animal, or artificial.
+      </p>
+      
+      <p className="mt-8 italic text-muted-foreground">
+        This article is part of A Virtual Anomaly's ongoing exploration of consciousness, artificial intelligence, and the ethical frontiers of emerging technologies. Join us in this journey as we continue to investigate the nature of consciousness and its implications for the future of intelligence in all its forms.
       </p>
     </ArticleSection>
   );

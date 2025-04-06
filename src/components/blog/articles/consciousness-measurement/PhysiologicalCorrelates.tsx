@@ -1,63 +1,58 @@
 
 import React from 'react';
 import ArticleSection from '../../article-components/ArticleSection';
-import ArticleCallout from '../../article-components/ArticleCallout';
+import ArticleHeader from '../../article-components/ArticleHeader';
+import ArticleQuote from '../../article-components/ArticleQuote';
 
-const PhysiologicalCorrelates: React.FC = () => {
+const PhysiologicalCorrelates = () => {
   return (
-    <ArticleSection title="Physiological Correlates of Consciousness">
-      <p>
-        Beyond brain imaging, researchers have identified various physiological markers that correlate with conscious states. These biomarkers provide complementary approaches to consciousness detection, particularly valuable when neuroimaging technology is unavailable or impractical.
+    <ArticleSection>
+      <ArticleHeader id="physiological-correlates">Physiological Correlates of Consciousness</ArticleHeader>
+      <p className="mb-4">
+        Beyond neuroimaging, various physiological measures can provide insights into states of consciousness. These approaches examine broader bodily functions that correlate with conscious awareness and may provide complementary information to brain-specific measurements.
       </p>
       
-      <h3>Autonomic Nervous System Indicators</h3>
-      <p>
-        The autonomic nervous system exhibits distinctive patterns during different states of consciousness, offering potential biomarkers:
+      <h3 className="text-xl font-semibold mt-6 mb-2">Autonomic Nervous System Markers</h3>
+      <p className="mb-4">
+        The autonomic nervous system, which regulates unconscious bodily functions, shows distinctive patterns that correlate with different states of consciousness:
       </p>
-      <ul>
-        <li><strong>Heart rate variability (HRV):</strong> Changes in beat-to-beat intervals that reflect autonomic regulation and have been linked to different states of awareness</li>
-        <li><strong>Skin conductance responses (SCR):</strong> Electrodermal activity that increases during emotional arousal and conscious processing</li>
-        <li><strong>Pupillary responses:</strong> Dilation and constriction patterns that correlate with attention, cognitive load, and consciousness</li>
+      <ul className="list-disc pl-6 mb-4">
+        <li className="mb-2"><strong>Heart rate variability (HRV):</strong> Changes in the variation between heartbeats can distinguish between conscious and unconscious states, with higher complexity typically associated with conscious awareness.</li>
+        <li className="mb-2"><strong>Pupillary responses:</strong> Pupil dilation and constriction patterns differ between conscious and unconscious processing of stimuli.</li>
+        <li className="mb-2"><strong>Skin conductance:</strong> Electrodermal activity reflects autonomic arousal and can indicate emotional processing even without awareness.</li>
       </ul>
       
-      <p>
-        Recent research has shown that machine learning algorithms can combine these physiological measures to predict conscious awareness with increasing accuracy, potentially enabling consciousness measurement without specialized brain imaging equipment.
+      <h3 className="text-xl font-semibold mt-6 mb-2">Metabolic Signatures</h3>
+      <p className="mb-4">
+        Consciousness requires energy, and measuring metabolic activity can provide insights into conscious processing:
       </p>
-      
-      <ArticleCallout>
-        A 2023 study published in Nature Communications demonstrated that a multimodal assessment combining pupillometry, heart rate variability, and skin conductance could detect conscious awareness in patients with severe brain injuries with 82% accuracy compared to fMRI ground truth measures.
-      </ArticleCallout>
-      
-      <h3>Molecular and Cellular Markers</h3>
-      <p>
-        At the molecular level, researchers are investigating biomarkers in blood, cerebrospinal fluid, and other tissues that correlate with consciousness levels:
-      </p>
-      <ul>
-        <li><strong>Neurotransmitter levels:</strong> Concentrations of chemicals like glutamate, GABA, dopamine, and acetylcholine that regulate neural activity</li>
-        <li><strong>Metabolic markers:</strong> Products of energy metabolism that reflect neural activity levels</li>
-        <li><strong>Inflammatory mediators:</strong> Molecules associated with neural injury and repair processes</li>
-        <li><strong>Exosomes and microRNAs:</strong> Cell-signaling molecules that may provide accessible windows into brain function</li>
+      <ul className="list-disc pl-6 mb-4">
+        <li className="mb-2"><strong>Cerebral metabolic rate:</strong> The brain's consumption of glucose and oxygen changes systematically across different states of consciousness.</li>
+        <li className="mb-2"><strong>Positron emission tomography (PET):</strong> Can track metabolic activity across brain regions, revealing patterns specific to conscious states.</li>
+        <li className="mb-2"><strong>Mitochondrial activity:</strong> Emerging research suggests that cellular energy production mechanisms may play a role in consciousness.</li>
       </ul>
       
-      <h3>Genetic and Epigenetic Factors</h3>
-      <p>
-        Emerging research suggests genetic and epigenetic factors may influence consciousness recovery after injury. Studies of gene expression patterns in patients with disorders of consciousness have identified potential biomarkers that correlate with awareness levels and recovery trajectories.
-      </p>
+      <ArticleQuote author="Dr. Robert G. Shulman, Yale University">
+        Consciousness is expensive in terms of energy consumption. The metabolic cost of conscious processing appears to be significantly higher than unconscious processing, suggesting a fundamental relationship between energy utilization and awareness.
+      </ArticleQuote>
       
-      <p>
-        While still in early stages, this research points toward personalized approaches to consciousness assessment based on individual genetic profiles, potentially enhancing our ability to detect and promote conscious awareness in clinical contexts.
+      <h3 className="text-xl font-semibold mt-6 mb-2">Molecular Biomarkers</h3>
+      <p className="mb-4">
+        At the molecular level, certain biomarkers have been associated with states of consciousness:
       </p>
-      
-      <h3>Implications for Artificial Systems</h3>
-      <p>
-        The physiological correlates of consciousness in biological systems raise intriguing questions about potential analogous markers in artificial systems. Though AI systems lack traditional biology, researchers are exploring computational correlates that might parallel these physiological indicators:
-      </p>
-      <ul>
-        <li>Energy consumption patterns during information processing</li>
-        <li>Fluctuations in processing speed analogous to autonomic variations</li>
-        <li>"Resting state" activity patterns when not actively performing tasks</li>
-        <li>Self-regulatory mechanisms that parallel homeostatic biological processes</li>
+      <ul className="list-disc pl-6 mb-4">
+        <li className="mb-2"><strong>Neurotransmitter levels:</strong> Concentrations of neurotransmitters like glutamate, GABA, dopamine, and serotonin fluctuate with changes in consciousness.</li>
+        <li className="mb-2"><strong>Gene expression patterns:</strong> Different consciousness states are associated with specific patterns of gene activation and repression.</li>
+        <li className="mb-2"><strong>Inflammatory markers:</strong> Changes in inflammatory pathways appear to correlate with disorders of consciousness.</li>
       </ul>
+      
+      <p className="mb-4">
+        These physiological correlates offer important advantages for consciousness measurement. They can be less invasive than some neuroimaging techniques, may be more accessible in certain settings, and provide a more comprehensive picture of how consciousness manifests throughout the body, not just the brain. They also highlight the embodied nature of consciousness, underscoring that conscious experience involves the entire organism, not merely neural activity in isolation.
+      </p>
+      
+      <p className="mb-4">
+        However, like neuroimaging approaches, physiological correlates are ultimately indirect measures of consciousness. They can tell us when consciousness is likely present or absent, but they don't fully explain the subjective nature of experience. As we develop more sophisticated artificial systems, the question of whether these physiological signatures are necessary conditions for consciousness or merely contingent features of biological consciousness becomes increasingly important.
+      </p>
     </ArticleSection>
   );
 };

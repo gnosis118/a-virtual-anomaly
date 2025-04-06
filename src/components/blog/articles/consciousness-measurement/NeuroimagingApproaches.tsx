@@ -1,62 +1,63 @@
 
 import React from 'react';
 import ArticleSection from '../../article-components/ArticleSection';
+import ArticleHeader from '../../article-components/ArticleHeader';
 import ArticleImage from '../../article-components/ArticleImage';
-import ArticleQuote from '../../article-components/ArticleQuote';
+import ArticleCallout from '../../article-components/ArticleCallout';
 
-const NeuroimagingApproaches: React.FC = () => {
+const NeuroimagingApproaches = () => {
   return (
-    <>
-      <ArticleSection title="Neuroimaging Approaches to Consciousness Measurement">
-        <p>
-          Neuroimaging technologies have revolutionized consciousness science by allowing researchers to peer into the working brain, correlating subjective experiences with objective neural activity patterns. These techniques have been particularly valuable in detecting consciousness in patients unable to communicate behaviorally.
-        </p>
-        
-        <h3>Functional Magnetic Resonance Imaging (fMRI)</h3>
-        <p>
-          fMRI measures blood oxygen level-dependent (BOLD) signals as a proxy for neural activity. This technique has enabled researchers to identify specific brain regions and networks associated with conscious processing, such as the frontoparietal network and the default mode network.
-        </p>
-        
-        <p>
-          In groundbreaking research, Adrian Owen and colleagues used fMRI to demonstrate that some patients diagnosed as being in vegetative states could in fact follow commands by modulating their brain activity in specific ways—revealing hidden consciousness that behavioral assessments had missed.
-        </p>
-
-        <ArticleQuote 
-          quote="Neuroimaging has transformed our ability to detect consciousness in the absence of behavioral response. We now know that consciousness can persist even when patients appear entirely unresponsive."
-          citation="Dr. Adrian Owen, Professor of Cognitive Neuroscience and Imaging"
-        />
-        
-        <h3>Electroencephalography (EEG) and Event-Related Potentials</h3>
-        <p>
-          EEG measures electrical activity at the scalp, providing high temporal resolution that captures the rapid dynamics of conscious processing. Particular EEG signatures associated with consciousness include:
-        </p>
-        <ul>
-          <li><strong>P300 wave:</strong> A positive deflection occurring about 300ms after a meaningful stimulus</li>
-          <li><strong>Mismatch negativity (MMN):</strong> Neural response to unexpected stimulus changes</li>
-          <li><strong>Alpha and gamma oscillations:</strong> Frequency bands associated with attention and feature binding</li>
-          <li><strong>Complexity measures:</strong> Mathematical indices of signal diversity and integration</li>
-        </ul>
-        
-        <p>
-          The Perturbational Complexity Index (PCI), developed by Massimini and colleagues, uses transcranial magnetic stimulation (TMS) to perturb the brain while recording EEG responses. This approach quantifies the complexity of these responses as a measure of consciousness, providing remarkable accuracy in distinguishing between conscious and unconscious states.
-        </p>
-        
-        <h3>Multimodal Imaging and Machine Learning Applications</h3>
-        <p>
-          The future of consciousness measurement lies in multimodal approaches that combine multiple techniques (fMRI, EEG, MEG, PET) to capture different aspects of neural activity simultaneously. Machine learning algorithms applied to these rich datasets are identifying increasingly reliable neural signatures of consciousness.
-        </p>
-        
-        <p>
-          Recent studies using deep learning approaches have achieved over 90% accuracy in distinguishing between conscious and unconscious states in clinical populations, pointing toward the development of automated consciousness detection systems that could be deployed at scale.
-        </p>
-      </ArticleSection>
-
+    <ArticleSection>
+      <ArticleHeader id="neuroimaging-approaches">Neuroimaging Approaches to Consciousness</ArticleHeader>
+      <p className="mb-4">
+        Advancements in neuroimaging technologies have revolutionized our ability to measure consciousness by providing direct access to brain activity patterns. These techniques allow researchers to observe neural signatures associated with consciousness without requiring behavioral responses.
+      </p>
+      
+      <h3 className="text-xl font-semibold mt-6 mb-2">Functional Magnetic Resonance Imaging (fMRI)</h3>
+      <p className="mb-4">
+        fMRI measures brain activity by detecting changes in blood flow, which correlate with neural activity. Several fMRI-based approaches have been developed to assess consciousness:
+      </p>
+      <ul className="list-disc pl-6 mb-4">
+        <li className="mb-2"><strong>Default Mode Network (DMN) activity:</strong> This network shows distinctive activity patterns during conscious rest and is disrupted in states of unconsciousness.</li>
+        <li className="mb-2"><strong>Global Workspace activation:</strong> According to Global Workspace Theory, consciousness emerges when information becomes globally available across brain regions. fMRI can track this widespread activation.</li>
+        <li className="mb-2"><strong>Mental imagery tasks:</strong> Asking patients to imagine specific scenarios and observing corresponding brain activation patterns.</li>
+      </ul>
+      
       <ArticleImage 
-        src="https://images.unsplash.com/photo-1583468982228-19f19164aee6?q=80&w=2071&auto=format&fit=crop" 
-        alt="Advanced brain scanning equipment in a research laboratory"
-        caption="Multimodal neuroimaging setups combine multiple technologies to provide complementary measurements of conscious brain activity."
+        src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=1000&auto=format&fit=crop" 
+        alt="fMRI brain scan showing active regions"
+        caption="fMRI scan showing brain activity patterns that correlate with conscious processing."
       />
-    </>
+      
+      <h3 className="text-xl font-semibold mt-6 mb-2">Electroencephalography (EEG) Markers</h3>
+      <p className="mb-4">
+        EEG measures electrical activity of the brain through electrodes placed on the scalp. It provides excellent temporal resolution and has revealed several markers of consciousness:
+      </p>
+      <ul className="list-disc pl-6 mb-4">
+        <li className="mb-2"><strong>P300 wave:</strong> A positive deflection in voltage that occurs approximately 300ms after a stimulus, indicating recognition and processing.</li>
+        <li className="mb-2"><strong>Spectral complexity:</strong> Conscious states typically show more complex EEG patterns across different frequency bands.</li>
+        <li className="mb-2"><strong>Information integration metrics:</strong> Various mathematical measures of information sharing across brain regions.</li>
+        <li className="mb-2"><strong>Perturbational Complexity Index (PCI):</strong> Measures the brain's capacity to generate complex patterns in response to transcranial magnetic stimulation.</li>
+      </ul>
+      
+      <ArticleCallout type="info">
+        The Perturbational Complexity Index (PCI) has shown remarkable accuracy in distinguishing between conscious and unconscious states across different conditions, including sleep, anesthesia, and disorders of consciousness.
+      </ArticleCallout>
+      
+      <h3 className="text-xl font-semibold mt-6 mb-2">Multimodal Approaches</h3>
+      <p className="mb-4">
+        Increasingly, researchers combine multiple neuroimaging techniques to develop more robust measures of consciousness:
+      </p>
+      <ul className="list-disc pl-6 mb-4">
+        <li className="mb-2"><strong>EEG-fMRI integration:</strong> Combines temporal precision of EEG with spatial precision of fMRI.</li>
+        <li className="mb-2"><strong>PET-fMRI combinations:</strong> Links metabolic activity with blood flow changes.</li>
+        <li className="mb-2"><strong>TMS-EEG:</strong> Applies magnetic stimulation while recording electrical responses.</li>
+      </ul>
+      
+      <p className="mb-4">
+        These neuroimaging approaches have transformed consciousness science by providing objective markers of conscious processing. They've allowed researchers to detect consciousness in patients previously thought to be unaware and to track the neural correlates of consciousness with increasing precision. However, identifying neural correlates does not fully solve the "hard problem" of consciousness—how and why these neural patterns give rise to subjective experience remains an open question.
+      </p>
+    </ArticleSection>
   );
 };
 

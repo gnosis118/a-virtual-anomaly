@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -9,6 +10,7 @@ import PastArticlesSection from '@/components/blog/PastArticlesSection';
 import CategoryFilter from '@/components/blog/CategoryFilter';
 import ContentCalendar from '@/components/blog/ContentCalendar';
 import { Separator } from "@/components/ui/separator";
+import { addConsciousnessMeasurementArticle, addMachineLearningArticle } from '@/components/blog/scheduled-posts-handler';
 
 const Blog = () => {
   const location = useLocation();
@@ -24,6 +26,14 @@ const Blog = () => {
     if (tagFromUrl) {
       setSearchQuery(tagFromUrl);
     }
+    
+    // Initialize the articles in the database
+    const initializeArticles = async () => {
+      await addConsciousnessMeasurementArticle();
+      await addMachineLearningArticle();
+    };
+    
+    initializeArticles();
   }, [tagFromUrl]);
   
   const filteredPosts = BLOG_POSTS.filter(post => {

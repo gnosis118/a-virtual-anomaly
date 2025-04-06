@@ -17,8 +17,9 @@ const Declaration = () => {
   const fetchSignatureCount = async () => {
     setIsLoadingCount(true);
     try {
+      // Use the generic interface for the query
       const { count, error } = await supabase
-        .from('declaration_signatures')
+        .from('declaration_signatures' as any)
         .select('*', { count: 'exact', head: true });
       
       if (error) {

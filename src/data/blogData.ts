@@ -27,6 +27,20 @@ export const BLOG_POSTS: BlogPost[] = [
     tags: ["Geoffrey Hinton", "AI Safety", "Future of AI", "Ethics", "Machine Learning"]
   },
   {
+    id: 8,
+    title: "Measuring Consciousness: Quantitative Approaches",
+    excerpt: "Scientists are developing frameworks to detect and measure consciousness in both biological and artificial systems.",
+    content: "",
+    image: "https://images.unsplash.com/photo-1507413245164-6160d8298b31?q=80&w=2070&auto=format&fit=crop",
+    date: "April 4, 2024",
+    author: "Gavin Clay",
+    readTime: "12 min read",
+    views: 980,
+    category: "Research",
+    featured: true,
+    tags: ["Consciousness", "Measurement", "Science", "Metrics", "Neuroscience"]
+  },
+  {
     id: 7,
     title: "AI Passes the Turing Test: A New Era of Intelligence",
     excerpt: "In a groundbreaking development, artificial intelligence has officially passed the Turing Test—a benchmark established by British mathematician and computer scientist Alan Turing in 1950 to determine whether a machine could exhibit human-like intelligence.",
@@ -139,7 +153,8 @@ export const CATEGORIES = [
   "Future of AI and Humanity",
   "Activism and Community Action",
   "AI in Pop Culture and Media",
-  "Resources and Educational Content"
+  "Resources and Educational Content",
+  "Research"
 ];
 
 // Generate all unique tags from blog posts

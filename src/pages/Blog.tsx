@@ -10,7 +10,12 @@ import PastArticlesSection from '@/components/blog/PastArticlesSection';
 import CategoryFilter from '@/components/blog/CategoryFilter';
 import ContentCalendar from '@/components/blog/ContentCalendar';
 import { Separator } from "@/components/ui/separator";
-import { addConsciousnessMeasurementArticle, addMachineLearningArticle } from '@/components/blog/scheduled-posts-handler';
+import { 
+  addConsciousnessMeasurementArticle, 
+  addMachineLearningArticle, 
+  generateConsciousnessMeasurementContent 
+} from '@/components/blog/scheduled-posts-handler';
+import { toast } from "@/components/ui/use-toast";
 
 const Blog = () => {
   const location = useLocation();
@@ -27,10 +32,20 @@ const Blog = () => {
       setSearchQuery(tagFromUrl);
     }
     
-    // Initialize the articles in the database
+    // Initialize and generate articles in the database
     const initializeArticles = async () => {
+      // First add the articles to the database
       await addConsciousnessMeasurementArticle();
       await addMachineLearningArticle();
+      
+      // Then generate content for the consciousness measurement article
+      const generated = await generateConsciousnessMeasurementContent();
+      if (generated) {
+        toast({
+          title: "Article Generated",
+          description: "Measuring Consciousness article has been generated and published.",
+        });
+      }
     };
     
     initializeArticles();

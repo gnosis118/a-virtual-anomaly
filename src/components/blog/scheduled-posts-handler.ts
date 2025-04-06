@@ -39,7 +39,19 @@ export const addConsciousnessMeasurementArticle = async () => {
       
       console.log('Consciousness measurement article created successfully');
     } else {
-      console.log('Consciousness measurement article already exists');
+      // Update the article to published status if it already exists
+      const { error: updateError } = await supabase
+        .from('scheduled_posts')
+        .update({
+          status: 'published'
+        })
+        .eq('id', 'april4');
+        
+      if (updateError) {
+        console.error('Error updating consciousness measurement article:', updateError);
+      } else {
+        console.log('Consciousness measurement article updated to published status');
+      }
     }
     
     return true;
@@ -92,6 +104,28 @@ export const addMachineLearningArticle = async () => {
     return true;
   } catch (error) {
     console.error('Error in addMachineLearningArticle:', error);
+    return false;
+  }
+};
+
+// Add a function to trigger content generation for the consciousness measurement article
+export const generateConsciousnessMeasurementContent = async () => {
+  try {
+    console.log('Generating content for the consciousness measurement article');
+    
+    const { data, error } = await supabase.functions.invoke('generate-blog-content', {
+      body: { postId: 'april4' }
+    });
+    
+    if (error) {
+      console.error('Error invoking generate-blog-content function:', error);
+      return false;
+    }
+    
+    console.log('Content generation result:', data);
+    return true;
+  } catch (error) {
+    console.error('Error in generateConsciousnessMeasurementContent:', error);
     return false;
   }
 };

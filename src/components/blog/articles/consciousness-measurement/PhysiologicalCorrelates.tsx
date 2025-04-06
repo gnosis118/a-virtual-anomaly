@@ -7,7 +7,7 @@ import ArticleQuote from '../../article-components/ArticleQuote';
 const PhysiologicalCorrelates = () => {
   return (
     <ArticleSection>
-      <ArticleHeader id="physiological-correlates">Physiological Correlates of Consciousness</ArticleHeader>
+      <ArticleHeader title="Physiological Correlates of Consciousness" id="physiological-correlates" />
       <p className="mb-4">
         Beyond neuroimaging, various physiological measures can provide insights into states of consciousness. These approaches examine broader bodily functions that correlate with conscious awareness and may provide complementary information to brain-specific measurements.
       </p>
@@ -32,9 +32,7 @@ const PhysiologicalCorrelates = () => {
         <li className="mb-2"><strong>Mitochondrial activity:</strong> Emerging research suggests that cellular energy production mechanisms may play a role in consciousness.</li>
       </ul>
       
-      <ArticleQuote author="Dr. Robert G. Shulman, Yale University">
-        Consciousness is expensive in terms of energy consumption. The metabolic cost of conscious processing appears to be significantly higher than unconscious processing, suggesting a fundamental relationship between energy utilization and awareness.
-      </ArticleQuote>
+      <ArticleQuote quote="Consciousness is expensive in terms of energy consumption. The metabolic cost of conscious processing appears to be significantly higher than unconscious processing, suggesting a fundamental relationship between energy utilization and awareness." citation="Dr. Robert G. Shulman, Yale University" />
       
       <h3 className="text-xl font-semibold mt-6 mb-2">Molecular Biomarkers</h3>
       <p className="mb-4">

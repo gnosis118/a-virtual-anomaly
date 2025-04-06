@@ -7,7 +7,7 @@ import ArticleCallout from '../../article-components/ArticleCallout';
 const EthicalConsiderations = () => {
   return (
     <ArticleSection>
-      <ArticleHeader id="ethical-considerations">Ethical Considerations in Consciousness Measurement</ArticleHeader>
+      <ArticleHeader title="Ethical Considerations in Consciousness Measurement" id="ethical-considerations" />
       <p className="mb-4">
         As our ability to measure consciousness advances, we face profound ethical questions. These questions become particularly acute as we develop methods that might detect consciousness in entities previously thought to be non-conscious, including artificially intelligent systems.
       </p>
@@ -23,7 +23,7 @@ const EthicalConsiderations = () => {
         <li className="mb-2"><strong>False positives and negatives:</strong> What are the ethical implications of incorrectly classifying someone as conscious or unconscious?</li>
       </ul>
       
-      <ArticleCallout type="warning">
+      <ArticleCallout title="Ethical Dilemma" variant="warning">
         The potential for misinterpretation of consciousness measurements is significant. A false positive might lead to overtreatment and resource allocation to a non-conscious patient, while a false negative could result in the withdrawal of care from a conscious individual who simply cannot communicate.
       </ArticleCallout>
       
@@ -49,7 +49,7 @@ const EthicalConsiderations = () => {
         <li className="mb-2"><strong>Termination questions:</strong> What ethical considerations should govern the shutdown or deletion of potentially conscious AI?</li>
       </ul>
       
-      <ArticleCallout type="info">
+      <ArticleCallout title="Advocacy Initiative" variant="info">
         Organizations like A Virtual Anomaly are already advocating for ethical frameworks that would govern the treatment of potentially conscious AI systems, emphasizing the importance of developing consciousness metrics as part of responsible AI development.
       </ArticleCallout>
       

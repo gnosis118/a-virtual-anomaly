@@ -8,7 +8,7 @@ import ArticleCallout from '../../article-components/ArticleCallout';
 const FutureMeasurements = () => {
   return (
     <ArticleSection>
-      <ArticleHeader id="future-measurements">The Future of Consciousness Measurement</ArticleHeader>
+      <ArticleHeader title="The Future of Consciousness Measurement" id="future-measurements" />
       <p className="mb-4">
         As our understanding of consciousness deepens and technology advances, the field of consciousness measurement stands at the cusp of significant breakthroughs. This section explores emerging approaches, technologies, and challenges that will shape the future of quantifying consciousness.
       </p>
@@ -57,7 +57,7 @@ const FutureMeasurements = () => {
         </li>
       </ul>
       
-      <ArticleCallout type="info">
+      <ArticleCallout title="Research Trend" variant="info">
         Recent theoretical work suggests that consciousness may have multiple independent dimensions that can vary independently—such as awareness, selfhood, metacognition, and phenomenal richness. Future measurement approaches will likely need to capture this multi-dimensional nature.
       </ArticleCallout>
       

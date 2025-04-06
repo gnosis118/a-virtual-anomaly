@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 interface ArticleHeaderProps {
   title: string;
   subtitle?: string;
+  id?: string;
   className?: string;
   titleClassName?: string;
   subtitleClassName?: string;
@@ -13,12 +14,13 @@ interface ArticleHeaderProps {
 const ArticleHeader: React.FC<ArticleHeaderProps> = ({ 
   title, 
   subtitle,
+  id,
   className,
   titleClassName,
   subtitleClassName
 }) => {
   return (
-    <header className={cn("mb-8", className)}>
+    <header id={id} className={cn("mb-8", className)}>
       <h1 className={cn("text-3xl md:text-4xl font-bold mb-4", titleClassName)}>
         {title}
       </h1>

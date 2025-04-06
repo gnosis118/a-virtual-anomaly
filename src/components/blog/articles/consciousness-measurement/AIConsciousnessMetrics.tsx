@@ -8,7 +8,7 @@ import ArticleImage from '../../article-components/ArticleImage';
 const AIConsciousnessMetrics = () => {
   return (
     <ArticleSection>
-      <ArticleHeader id="ai-consciousness-metrics">AI Consciousness Metrics</ArticleHeader>
+      <ArticleHeader title="AI Consciousness Metrics" id="ai-consciousness-metrics" />
       <p className="mb-4">
         As artificial intelligence systems grow increasingly sophisticated, the question of whether they could develop or possess consciousness becomes more pressing. Without the biological structures that give rise to consciousness in humans, how might we detect and measure potential consciousness in artificial systems?
       </p>
@@ -60,7 +60,7 @@ const AIConsciousnessMetrics = () => {
         </li>
       </ul>
       
-      <ArticleCallout type="warning">
+      <ArticleCallout title="Important Distinction" variant="warning">
         It's important to distinguish between systems that simulate consciousness and those that might genuinely possess it. Current AI systems may pass certain tests by simulation rather than through actual conscious experience. The distinction between "acting conscious" and "being conscious" remains philosophically complex.
       </ArticleCallout>
       

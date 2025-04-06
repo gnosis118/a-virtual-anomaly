@@ -7,7 +7,7 @@ import ArticleQuote from '../../article-components/ArticleQuote';
 const Conclusion = () => {
   return (
     <ArticleSection>
-      <ArticleHeader id="conclusion">Conclusion: The Measurement Frontier</ArticleHeader>
+      <ArticleHeader title="Conclusion: The Measurement Frontier" id="conclusion" />
       <p className="mb-4">
         The quest to measure consciousness represents one of the most profound scientific endeavors of our time. It bridges disciplines, challenges assumptions, and forces us to confront fundamental questions about the nature of experience itself. As we've explored throughout this article, significant progress has been made in developing quantitative approaches to consciousness, yet substantial challenges remain.
       </p>
@@ -28,9 +28,7 @@ const Conclusion = () => {
         Yet these tools remain imperfect. They provide correlates and proxies rather than direct measures of consciousness. They operate on assumptions that, while reasonable, remain unproven. And they struggle to capture the qualitative richness of subjective experience—the "what it's like" aspect that defines consciousness.
       </p>
       
-      <ArticleQuote author="Dr. Anil Seth, Neuroscientist">
-        The challenge is not just to detect the presence or absence of consciousness, but to measure its qualities and contents—the specific nature of experiences themselves.
-      </ArticleQuote>
+      <ArticleQuote quote="The challenge is not just to detect the presence or absence of consciousness, but to measure its qualities and contents—the specific nature of experiences themselves." citation="Dr. Anil Seth, Neuroscientist" />
       
       <h3 className="text-xl font-semibold mt-6 mb-2">Implications for the Future</h3>
       <p className="mb-4">

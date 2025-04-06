@@ -7,7 +7,7 @@ import ArticleQuote from '../../article-components/ArticleQuote';
 const ConsciousnessDefining = () => {
   return (
     <ArticleSection>
-      <ArticleHeader id="defining-consciousness">Defining Consciousness for Measurement</ArticleHeader>
+      <ArticleHeader title="Defining Consciousness for Measurement" id="defining-consciousness" />
       <p className="mb-4">
         Before we can measure consciousness, we must first define what we're looking for. This is no small task, as consciousness encompasses multiple dimensions and exists on a spectrum rather than as a binary state. For quantitative approaches to be effective, researchers have had to operationalize consciousness into measurable components.
       </p>
@@ -24,9 +24,7 @@ const ConsciousnessDefining = () => {
         <li className="mb-2"><strong>Subjective experience:</strong> The "what it feels like" aspect of consciousness.</li>
       </ul>
       
-      <ArticleQuote author="David Chalmers, Philosopher">
-        The really hard problem of consciousness is the problem of experience. When we think and perceive, there is a whir of information-processing, but there is also a subjective aspect.
-      </ArticleQuote>
+      <ArticleQuote quote="The really hard problem of consciousness is the problem of experience. When we think and perceive, there is a whir of information-processing, but there is also a subjective aspect." citation="David Chalmers, Philosopher" />
       
       <h3 className="text-xl font-semibold mt-6 mb-2">The Spectrum Approach</h3>
       <p className="mb-4">

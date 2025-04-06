@@ -8,7 +8,7 @@ import ArticleCallout from '../../article-components/ArticleCallout';
 const BehavioralMeasures = () => {
   return (
     <ArticleSection>
-      <ArticleHeader id="behavioral-measures">Behavioral Measures of Consciousness</ArticleHeader>
+      <ArticleHeader title="Behavioral Measures of Consciousness" id="behavioral-measures" />
       <p className="mb-4">
         The oldest and most straightforward approaches to assessing consciousness rely on observable behaviors. These methods draw inferences about internal states based on external responses, providing indirect but valuable evidence of consciousness.
       </p>
@@ -39,7 +39,7 @@ const BehavioralMeasures = () => {
         <li className="mb-2">Tracking eye movements in response to instructions</li>
       </ul>
       
-      <ArticleCallout type="info">
+      <ArticleCallout title="Research Insight" variant="info">
         In a landmark 2010 study, researchers found that some patients diagnosed as being in a vegetative state could willfully modulate their brain activity in response to commands. This revealed a previously undetected form of consciousness, now sometimes called "cognitive motor dissociation."
       </ArticleCallout>
       

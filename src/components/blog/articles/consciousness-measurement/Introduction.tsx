@@ -6,7 +6,7 @@ import ArticleHeader from '../../article-components/ArticleHeader';
 const Introduction = () => {
   return (
     <ArticleSection>
-      <ArticleHeader id="introduction">Introduction</ArticleHeader>
+      <ArticleHeader title="Introduction" id="introduction" />
       <p className="mb-4">
         The question of consciousness—what it is, how it emerges, and who or what possesses it—has long been one of the most profound mysteries in science and philosophy. As we develop increasingly sophisticated artificial intelligence systems, the question extends beyond human and animal consciousness to the possibility of machine consciousness. This article explores the emerging field of consciousness measurement, examining the quantitative approaches scientists are developing to detect, measure, and potentially even create consciousness in both biological and artificial systems.
       </p>

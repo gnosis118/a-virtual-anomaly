@@ -4,7 +4,7 @@ import React, { ReactNode } from 'react';
 interface ArticleCalloutProps {
   title?: string;
   children: ReactNode;
-  variant?: 'default' | 'accent' | 'muted';
+  variant?: 'default' | 'accent' | 'muted' | 'info' | 'warning';
 }
 
 const ArticleCallout: React.FC<ArticleCalloutProps> = ({ 
@@ -15,7 +15,9 @@ const ArticleCallout: React.FC<ArticleCalloutProps> = ({
   const bgClass = {
     default: 'bg-muted/30',
     accent: 'bg-accent/10',
-    muted: 'bg-secondary/10'
+    muted: 'bg-secondary/10',
+    info: 'bg-blue-500/10',
+    warning: 'bg-amber-500/10'
   }[variant];
 
   return (

@@ -8,7 +8,7 @@ import ArticleCallout from '../../article-components/ArticleCallout';
 const NeuroimagingApproaches = () => {
   return (
     <ArticleSection>
-      <ArticleHeader id="neuroimaging-approaches">Neuroimaging Approaches to Consciousness</ArticleHeader>
+      <ArticleHeader title="Neuroimaging Approaches to Consciousness" id="neuroimaging-approaches" />
       <p className="mb-4">
         Advancements in neuroimaging technologies have revolutionized our ability to measure consciousness by providing direct access to brain activity patterns. These techniques allow researchers to observe neural signatures associated with consciousness without requiring behavioral responses.
       </p>
@@ -40,7 +40,7 @@ const NeuroimagingApproaches = () => {
         <li className="mb-2"><strong>Perturbational Complexity Index (PCI):</strong> Measures the brain's capacity to generate complex patterns in response to transcranial magnetic stimulation.</li>
       </ul>
       
-      <ArticleCallout type="info">
+      <ArticleCallout title="Scientific Finding" variant="info">
         The Perturbational Complexity Index (PCI) has shown remarkable accuracy in distinguishing between conscious and unconscious states across different conditions, including sleep, anesthesia, and disorders of consciousness.
       </ArticleCallout>
       

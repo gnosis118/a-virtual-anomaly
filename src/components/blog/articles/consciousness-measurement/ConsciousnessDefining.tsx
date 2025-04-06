@@ -24,7 +24,10 @@ const ConsciousnessDefining = () => {
         <li className="mb-2"><strong>Subjective experience:</strong> The "what it feels like" aspect of consciousness.</li>
       </ul>
       
-      <ArticleQuote quote="The really hard problem of consciousness is the problem of experience. When we think and perceive, there is a whir of information-processing, but there is also a subjective aspect." citation="David Chalmers, Philosopher" />
+      <ArticleQuote 
+        quote="The really hard problem of consciousness is the problem of experience. When we think and perceive, there is a whir of information-processing, but there is also a subjective aspect." 
+        citation="David Chalmers, Philosopher" 
+      />
       
       <h3 className="text-xl font-semibold mt-6 mb-2">The Spectrum Approach</h3>
       <p className="mb-4">

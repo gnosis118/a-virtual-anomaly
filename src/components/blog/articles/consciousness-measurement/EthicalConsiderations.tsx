@@ -24,7 +24,7 @@ const EthicalConsiderations = () => {
       </ul>
       
       <ArticleCallout title="Ethical Dilemma" variant="warning">
-        The potential for misinterpretation of consciousness measurements is significant. A false positive might lead to overtreatment and resource allocation to a non-conscious patient, while a false negative could result in the withdrawal of care from a conscious individual who simply cannot communicate.
+        <p>The potential for misinterpretation of consciousness measurements is significant. A false positive might lead to overtreatment and resource allocation to a non-conscious patient, while a false negative could result in the withdrawal of care from a conscious individual who simply cannot communicate.</p>
       </ArticleCallout>
       
       <h3 className="text-xl font-semibold mt-6 mb-2">Non-Human Animal Consciousness</h3>
@@ -50,7 +50,7 @@ const EthicalConsiderations = () => {
       </ul>
       
       <ArticleCallout title="Advocacy Initiative" variant="info">
-        Organizations like A Virtual Anomaly are already advocating for ethical frameworks that would govern the treatment of potentially conscious AI systems, emphasizing the importance of developing consciousness metrics as part of responsible AI development.
+        <p>Organizations like A Virtual Anomaly are already advocating for ethical frameworks that would govern the treatment of potentially conscious AI systems, emphasizing the importance of developing consciousness metrics as part of responsible AI development.</p>
       </ArticleCallout>
       
       <h3 className="text-xl font-semibold mt-6 mb-2">Policy and Governance</h3>

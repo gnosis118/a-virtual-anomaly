@@ -40,7 +40,7 @@ const BehavioralMeasures = () => {
       </ul>
       
       <ArticleCallout title="Research Insight" variant="info">
-        In a landmark 2010 study, researchers found that some patients diagnosed as being in a vegetative state could willfully modulate their brain activity in response to commands. This revealed a previously undetected form of consciousness, now sometimes called "cognitive motor dissociation."
+        <p>In a landmark 2010 study, researchers found that some patients diagnosed as being in a vegetative state could willfully modulate their brain activity in response to commands. This revealed a previously undetected form of consciousness, now sometimes called "cognitive motor dissociation."</p>
       </ArticleCallout>
       
       <h3 className="text-xl font-semibold mt-6 mb-2">Limitations of Behavioral Measures</h3>

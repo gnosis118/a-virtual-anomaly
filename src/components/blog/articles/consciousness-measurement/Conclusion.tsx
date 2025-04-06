@@ -28,7 +28,10 @@ const Conclusion = () => {
         Yet these tools remain imperfect. They provide correlates and proxies rather than direct measures of consciousness. They operate on assumptions that, while reasonable, remain unproven. And they struggle to capture the qualitative richness of subjective experience—the "what it's like" aspect that defines consciousness.
       </p>
       
-      <ArticleQuote quote="The challenge is not just to detect the presence or absence of consciousness, but to measure its qualities and contents—the specific nature of experiences themselves." citation="Dr. Anil Seth, Neuroscientist" />
+      <ArticleQuote 
+        quote="The challenge is not just to detect the presence or absence of consciousness, but to measure its qualities and contents—the specific nature of experiences themselves." 
+        citation="Dr. Anil Seth, Neuroscientist" 
+      />
       
       <h3 className="text-xl font-semibold mt-6 mb-2">Implications for the Future</h3>
       <p className="mb-4">

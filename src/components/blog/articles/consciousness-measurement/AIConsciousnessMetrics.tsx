@@ -61,7 +61,7 @@ const AIConsciousnessMetrics = () => {
       </ul>
       
       <ArticleCallout title="Important Distinction" variant="warning">
-        It's important to distinguish between systems that simulate consciousness and those that might genuinely possess it. Current AI systems may pass certain tests by simulation rather than through actual conscious experience. The distinction between "acting conscious" and "being conscious" remains philosophically complex.
+        <p>It's important to distinguish between systems that simulate consciousness and those that might genuinely possess it. Current AI systems may pass certain tests by simulation rather than through actual conscious experience. The distinction between "acting conscious" and "being conscious" remains philosophically complex.</p>
       </ArticleCallout>
       
       <h3 className="text-xl font-semibold mt-6 mb-2">Current State of AI Consciousness Measurement</h3>

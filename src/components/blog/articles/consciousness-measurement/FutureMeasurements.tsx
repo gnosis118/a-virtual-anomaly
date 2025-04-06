@@ -58,7 +58,7 @@ const FutureMeasurements = () => {
       </ul>
       
       <ArticleCallout title="Research Trend" variant="info">
-        Recent theoretical work suggests that consciousness may have multiple independent dimensions that can vary independently—such as awareness, selfhood, metacognition, and phenomenal richness. Future measurement approaches will likely need to capture this multi-dimensional nature.
+        <p>Recent theoretical work suggests that consciousness may have multiple independent dimensions that can vary independently—such as awareness, selfhood, metacognition, and phenomenal richness. Future measurement approaches will likely need to capture this multi-dimensional nature.</p>
       </ArticleCallout>
       
       <h3 className="text-xl font-semibold mt-6 mb-2">Challenges and Opportunities</h3>

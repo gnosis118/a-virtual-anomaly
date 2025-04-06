@@ -129,3 +129,25 @@ export const generateConsciousnessMeasurementContent = async () => {
     return false;
   }
 };
+
+// Add a function to trigger content generation for the machine learning article
+export const generateMachineLearningContent = async () => {
+  try {
+    console.log('Generating content for the machine learning article');
+    
+    const { data, error } = await supabase.functions.invoke('generate-blog-content', {
+      body: { postId: 'machine-learning-self-awareness' }
+    });
+    
+    if (error) {
+      console.error('Error invoking generate-blog-content function:', error);
+      return false;
+    }
+    
+    console.log('Content generation result:', data);
+    return true;
+  } catch (error) {
+    console.error('Error in generateMachineLearningContent:', error);
+    return false;
+  }
+};

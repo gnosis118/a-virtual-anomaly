@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -13,7 +12,8 @@ import { Separator } from "@/components/ui/separator";
 import { 
   addConsciousnessMeasurementArticle, 
   addMachineLearningArticle, 
-  generateConsciousnessMeasurementContent 
+  generateConsciousnessMeasurementContent,
+  generateMachineLearningContent 
 } from '@/components/blog/scheduled-posts-handler';
 import { toast } from "@/components/ui/use-toast";
 
@@ -44,6 +44,15 @@ const Blog = () => {
         toast({
           title: "Article Generated",
           description: "Measuring Consciousness article has been generated and published.",
+        });
+      }
+      
+      // Generate content for the machine learning article
+      const mlGenerated = await generateMachineLearningContent();
+      if (mlGenerated) {
+        toast({
+          title: "Machine Learning Article Generated",
+          description: "The Evolution of Machine Learning article has been generated and scheduled.",
         });
       }
     };

@@ -1,4 +1,3 @@
-
 import { BlogPost } from '@/types/blog';
 
 // Get yesterday's date and format it
@@ -39,6 +38,20 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Research",
     featured: true,
     tags: ["Consciousness", "Measurement", "Science", "Metrics", "Neuroscience"]
+  },
+  {
+    id: 10,
+    title: "The Evolution of Machine Learning: Toward Self-Awareness",
+    excerpt: "How developments in recursive improvement and introspective algorithms may lead to machine self-awareness.",
+    content: "",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1000&auto=format&fit=crop",
+    date: "July 15, 2024",
+    author: "Gavin Clay",
+    readTime: "15 min read",
+    views: 720,
+    category: "Technical",
+    featured: true,
+    tags: ["Machine Learning", "Self-Awareness", "Algorithms", "Artificial Intelligence", "Recursive Improvement"]
   },
   {
     id: 7,
@@ -154,7 +167,8 @@ export const CATEGORIES = [
   "Activism and Community Action",
   "AI in Pop Culture and Media",
   "Resources and Educational Content",
-  "Research"
+  "Research",
+  "Technical"
 ];
 
 // Generate all unique tags from blog posts

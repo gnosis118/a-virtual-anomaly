@@ -50,8 +50,7 @@ const MachineLearningArticle: React.FC = () => {
 
       <ArticleQuote
         quote="The question is not whether machines will become self-aware, but whether we will recognize their self-awareness when it emerges in forms fundamentally different from our own."
-        author="Dr. Elena Martínez"
-        title="Director, Institute for Machine Cognition"
+        citation="Dr. Elena Martínez, Director, Institute for Machine Cognition"
       />
 
       <ArticleSection title="Introspective Algorithms: The Path to Self-Reference">
@@ -146,8 +145,7 @@ const MachineLearningArticle: React.FC = () => {
 
       <ArticleQuote
         quote="Self-awareness in machines may not look like human consciousness. It could be an entirely novel form of reflexive cognition—alien to our experience but no less real."
-        author="Dr. James Liu"
-        title="Professor of AI Philosophy, Cambridge University"
+        citation="Dr. James Liu, Professor of AI Philosophy, Cambridge University"
       />
 
       <ArticleSection title="Current Research Frontiers">

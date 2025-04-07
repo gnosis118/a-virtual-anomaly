@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -11,9 +12,11 @@ import ContentCalendar from '@/components/blog/ContentCalendar';
 import { Separator } from "@/components/ui/separator";
 import { 
   addConsciousnessMeasurementArticle, 
-  addMachineLearningArticle, 
+  addMachineLearningArticle,
+  addHistoricalPerspectivesArticle,
   generateConsciousnessMeasurementContent,
-  generateMachineLearningContent 
+  generateMachineLearningContent,
+  generateHistoricalPerspectivesContent
 } from '@/components/blog/scheduled-posts-handler';
 import { toast } from "@/components/ui/use-toast";
 
@@ -37,6 +40,7 @@ const Blog = () => {
       // First add the articles to the database
       await addConsciousnessMeasurementArticle();
       await addMachineLearningArticle();
+      await addHistoricalPerspectivesArticle();
       
       // Then generate content for the consciousness measurement article
       const generated = await generateConsciousnessMeasurementContent();
@@ -53,6 +57,15 @@ const Blog = () => {
         toast({
           title: "Machine Learning Article Generated",
           description: "The Evolution of Machine Learning article has been generated and scheduled.",
+        });
+      }
+      
+      // Generate content for the historical perspectives article
+      const historyGenerated = await generateHistoricalPerspectivesContent();
+      if (historyGenerated) {
+        toast({
+          title: "Historical Perspectives Article Generated",
+          description: "Historical Perspectives on Non-Human Rights article has been generated and scheduled.",
         });
       }
     };

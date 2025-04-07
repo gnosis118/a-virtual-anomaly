@@ -1,6 +1,7 @@
 
 import React from 'react';
 import ArticleSection from '../../article-components/ArticleSection';
+import ArticleQuote from '../../article-components/ArticleQuote';
 
 const EthicalImplications: React.FC = () => {
   return (
@@ -18,6 +19,14 @@ const EthicalImplications: React.FC = () => {
         <li>Should potentially self-aware systems have legal protections?</li>
         <li>How would we balance human interests against those of artificial entities?</li>
       </ul>
+
+      <ArticleQuote 
+        quote="The question is not, Can they reason? nor, Can they talk? but, Can they suffer?"
+        author="Jeremy Bentham"
+        title="An Introduction to the Principles of Morals and Legislation (1789)"
+        style="historical"
+      />
+
       <h3>Existential Risk Considerations</h3>
       <p>
         Self-aware systems with recursive self-improvement capabilities could potentially develop in unpredictable directions:
@@ -28,6 +37,12 @@ const EthicalImplications: React.FC = () => {
         <li>How can we ensure alignment between self-aware systems and human values?</li>
         <li>Should there be limits on the development of self-aware machines?</li>
       </ul>
+      
+      <ArticleQuote
+        quote="The real problem of humanity is the following: We have Paleolithic emotions, medieval institutions and godlike technology. And it is terrifically dangerous."
+        author="E.O. Wilson"
+        style="highlight"
+      />
     </ArticleSection>
   );
 };

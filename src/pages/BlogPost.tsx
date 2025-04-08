@@ -1,23 +1,91 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { BLOG_POSTS } from '@/data/blogData';
 import AprilSecondPost from '@/components/blog/AprilSecondPost';
 import RegularBlogPost from '@/components/blog/RegularBlogPost';
+import { supabase } from '@/integrations/supabase/client';
+import { BlogPost as BlogPostType } from '@/types/blog';
+import { Loader2 } from 'lucide-react';
 
 const BlogPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const postId = parseInt(id || '1');
+  const [loading, setLoading] = useState(true);
+  const [dynamicPost, setDynamicPost] = useState<BlogPostType | null>(null);
   
-  // Find the blog post by ID
-  const post = BLOG_POSTS.find(post => post.id === postId);
+  // Try to parse the ID as a number for static posts
+  const postId = isNaN(parseInt(id || '')) ? id : parseInt(id || '1');
+  
+  // Find the blog post by ID in the static list
+  const staticPost = BLOG_POSTS.find(post => post.id === postId);
+  
+  // Determine which post to use (static or dynamic)
+  const post = dynamicPost || staticPost;
+  
+  // Fetch dynamic post if needed
+  useEffect(() => {
+    const fetchDynamicPost = async () => {
+      setLoading(true);
+      
+      // If we already have a static post, no need to fetch
+      if (staticPost) {
+        setLoading(false);
+        return;
+      }
+      
+      try {
+        // Try to get the post from the database
+        const { data, error } = await supabase
+          .from('scheduled_posts')
+          .select('*')
+          .eq('id', id)
+          .maybeSingle();
+        
+        if (error) {
+          console.error('Error fetching post:', error);
+          setLoading(false);
+          return;
+        }
+        
+        if (data) {
+          // Convert to BlogPost format
+          const convertedPost: BlogPostType = {
+            id: typeof data.id === 'string' ? data.id : parseInt(data.id.toString()),
+            title: data.title,
+            excerpt: data.excerpt,
+            content: data.content || '',
+            image: data.image_url || 'https://images.unsplash.com/photo-1581547848200-85cb245ebc8d?ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1965&q=80',
+            date: new Date(data.publishdate).toLocaleDateString('en-US', {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric'
+            }),
+            author: data.author,
+            readTime: '10 min read',
+            views: Math.floor(Math.random() * 1000) + 500, // Random view count
+            category: data.category,
+            featured: false,
+            tags: data.tags ? data.tags.split(',').map((tag: string) => tag.trim()) : []
+          };
+          
+          setDynamicPost(convertedPost);
+        }
+      } catch (err) {
+        console.error('Error in fetchDynamicPost:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchDynamicPost();
+  }, [id, staticPost]);
   
   useEffect(() => {
     window.scrollTo(0, 0);
     
-    // If post not found and not a special ID, redirect to blog
-    if (!post && id !== "april2" && id !== "april-2") {
+    // If post not found and not loading, redirect to blog
+    if (!loading && !post && id !== "april2" && id !== "april-2") {
       navigate('/blog');
       return;
     }
@@ -62,7 +130,17 @@ const BlogPost = () => {
       const currentUrl = window.location.href;
       document.querySelector('meta[property="og:url"]')?.setAttribute('content', currentUrl);
     }
-  }, [post, navigate, id]);
+  }, [post, navigate, id, loading]);
+  
+  // Show loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <Loader2 className="h-12 w-12 animate-spin text-accent" />
+        <span className="ml-2 text-lg">Loading article...</span>
+      </div>
+    );
+  }
   
   // Special case for April 2nd post
   if (!post && (id === "april2" || id === "april-2")) {
@@ -72,7 +150,7 @@ const BlogPost = () => {
   // If post not found, return null (redirection will happen)
   if (!post) return null;
 
-  // Regular blog post
+  // Regular blog post - pass all posts for related articles
   return <RegularBlogPost post={post} posts={BLOG_POSTS} />;
 };
 

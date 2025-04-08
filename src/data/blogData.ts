@@ -1,3 +1,4 @@
+
 import { BlogPost } from '@/types/blog';
 
 // Get yesterday's date and format it
@@ -11,6 +12,20 @@ const formattedDate = yesterday.toLocaleDateString('en-US', {
 
 // Blog posts data
 export const BLOG_POSTS: BlogPost[] = [
+  {
+    id: 11,
+    title: "Historical Perspectives on Non-Human Rights",
+    excerpt: "What can we learn from the history of extending rights to new groups that might apply to artificial beings?",
+    content: "",
+    image: "https://images.unsplash.com/photo-1589578527966-fdac0f44566c?q=80&w=1974&auto=format&fit=crop",
+    date: "August 20, 2024",
+    author: "Gavin Clay",
+    readTime: "14 min read",
+    views: 580,
+    category: "Legal",
+    featured: true,
+    tags: ["History", "Rights", "Non-Human Rights", "Legal", "Ethics"]
+  },
   {
     id: 9,
     title: "Geoffrey Hinton: Will AI Save the World or End it? | The Agenda",

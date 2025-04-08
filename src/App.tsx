@@ -23,7 +23,6 @@ import ContentCalendar from "./pages/ContentCalendar";
 import Declaration from "./pages/Declaration";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
-import Sitemap from "./pages/Sitemap";
 import NotFound from "./pages/NotFound";
 
 // Scroll to top on route change
@@ -66,7 +65,6 @@ const App = () => {
                   <Route path="/declaration" element={<Declaration />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                   <Route path="/terms-of-service" element={<TermsOfService />} />
-                  <Route path="/sitemap" element={<Sitemap />} />
                   <Route path="/ava" element={<About />} /> {/* Temporary redirect to About until Ava page is created */}
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />

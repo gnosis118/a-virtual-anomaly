@@ -1,3 +1,4 @@
+
 import React from 'react';
 import RoleOfEthicsArticle from '../articles/RoleOfEthicsArticle';
 import AIImpactArticle from '../articles/AIImpactArticle';
@@ -8,8 +9,6 @@ import EmotionalLandscapeArticle from '../articles/EmotionalLandscapeArticle';
 import TuringTestArticle from '../articles/TuringTestArticle';
 import ConsciousnessMeasurementArticle from '../articles/ConsciousnessMeasurementArticle';
 import GeoffreyHintonArticle from '../articles/GeoffreyHintonArticle';
-import MachineLearningArticle from '../articles/MachineLearningArticle';
-import HistoricalPerspectivesArticle from '../articles/HistoricalPerspectivesArticle';
 import DefaultArticleState from '../articles/DefaultArticleState';
 
 interface ArticleSelectorProps {
@@ -47,11 +46,8 @@ const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
   }
   
   if (id === 10 || id === "10" || id === "machine-learning-self-awareness") {
-    return <MachineLearningArticle />;
-  }
-  
-  if (id === 11 || id === "11" || id === "historical-perspectives") {
-    return <HistoricalPerspectivesArticle />;
+    // For future implementation
+    return <DefaultArticleState title="The Evolution of Machine Learning: Toward Self-Awareness" />;
   }
   
   // Special case for April 2nd article
@@ -98,11 +94,7 @@ const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
     }
     
     if (title.includes("Machine Learning") || title.includes("Self-Awareness")) {
-      return <MachineLearningArticle />;
-    }
-    
-    if (title.includes("Historical Perspectives") || title.includes("Non-Human Rights")) {
-      return <HistoricalPerspectivesArticle />;
+      return <DefaultArticleState title="The Evolution of Machine Learning: Toward Self-Awareness" />;
     }
     
     // For all other titles, use the title to generate somewhat relevant content

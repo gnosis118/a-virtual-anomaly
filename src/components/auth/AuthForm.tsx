@@ -7,7 +7,6 @@ import { useAuth } from '@/contexts/AuthContext';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
 import {
   Form,
   FormControl,
@@ -15,15 +14,12 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  FormDescription,
 } from '@/components/ui/form';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Alert, AlertDescription } from '@/components/ui/alert';
 
 const loginSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email address' }),
   password: z.string().min(6, { message: 'Password must be at least 6 characters' }),
-  rememberMe: z.boolean().optional().default(false),
 });
 
 const registerSchema = z.object({
@@ -42,7 +38,6 @@ type RegisterFormValues = z.infer<typeof registerSchema>;
 const AuthForm: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('login');
-  const [authError, setAuthError] = useState<string | null>(null);
   const { signIn, signUp } = useAuth();
   
   const loginForm = useForm<LoginFormValues>({
@@ -50,7 +45,6 @@ const AuthForm: React.FC = () => {
     defaultValues: {
       email: '',
       password: '',
-      rememberMe: false,
     },
   });
 
@@ -64,26 +58,13 @@ const AuthForm: React.FC = () => {
     },
   });
 
-  // Clear error when switching tabs
-  const handleTabChange = (value: string) => {
-    setActiveTab(value);
-    setAuthError(null);
-  };
-
   const onLoginSubmit = async (data: LoginFormValues) => {
     setIsLoading(true);
-    setAuthError(null);
     try {
-      // Note: rememberMe would need to be implemented in the auth service
       const { error } = await signIn(data.email, data.password);
-      if (error) {
-        setAuthError(error.message || 'Failed to sign in. Please check your credentials.');
-        // Don't reset form on error to allow user to correct mistakes
-      } else {
+      if (!error) {
         // Successfully logged in, form will be reset by redirection
       }
-    } catch (err) {
-      setAuthError('An unexpected error occurred. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -91,25 +72,15 @@ const AuthForm: React.FC = () => {
 
   const onRegisterSubmit = async (data: RegisterFormValues) => {
     setIsLoading(true);
-    setAuthError(null);
     try {
       const { error } = await signUp(data.email, data.password, data.username);
-      if (error) {
-        setAuthError(error.message || 'Failed to create account. Please try again.');
-      } else {
+      if (!error) {
         setActiveTab('login');
         registerForm.reset();
       }
-    } catch (err) {
-      setAuthError('An unexpected error occurred. Please try again.');
     } finally {
       setIsLoading(false);
     }
-  };
-  
-  const handleForgotPassword = () => {
-    // This would need to be implemented with a password reset flow
-    alert('Password reset functionality would be implemented here');
   };
 
   return (
@@ -121,17 +92,11 @@ const AuthForm: React.FC = () => {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <Tabs defaultValue="login" value={activeTab} onValueChange={handleTabChange}>
+        <Tabs defaultValue="login" value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="grid grid-cols-2 w-full mb-6">
             <TabsTrigger value="login">Login</TabsTrigger>
             <TabsTrigger value="register">Register</TabsTrigger>
           </TabsList>
-          
-          {authError && (
-            <Alert variant="destructive" className="mb-4">
-              <AlertDescription>{authError}</AlertDescription>
-            </Alert>
-          )}
           
           <TabsContent value="login">
             <Form {...loginForm}>
@@ -143,13 +108,7 @@ const AuthForm: React.FC = () => {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input 
-                          placeholder="youremail@example.com" 
-                          autoFocus 
-                          autoComplete="email"
-                          aria-describedby="email-description"
-                          {...field} 
-                        />
+                        <Input placeholder="youremail@example.com" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -162,45 +121,12 @@ const AuthForm: React.FC = () => {
                     <FormItem>
                       <FormLabel>Password</FormLabel>
                       <FormControl>
-                        <Input 
-                          type="password" 
-                          placeholder="••••••••" 
-                          autoComplete="current-password"
-                          aria-describedby="password-description"
-                          {...field} 
-                        />
+                        <Input type="password" placeholder="••••••••" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                <FormField
-                  control={loginForm.control}
-                  name="rememberMe"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md p-1">
-                      <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                        />
-                      </FormControl>
-                      <div className="space-y-1 leading-none">
-                        <FormLabel>Remember me</FormLabel>
-                      </div>
-                    </FormItem>
-                  )}
-                />
-                <div className="flex justify-end">
-                  <Button 
-                    variant="link" 
-                    className="p-0 h-auto font-normal" 
-                    type="button"
-                    onClick={handleForgotPassword}
-                  >
-                    Forgot password?
-                  </Button>
-                </div>
                 <Button type="submit" className="w-full" disabled={isLoading}>
                   {isLoading ? 'Signing in...' : 'Sign in'}
                 </Button>
@@ -218,12 +144,7 @@ const AuthForm: React.FC = () => {
                     <FormItem>
                       <FormLabel>Username</FormLabel>
                       <FormControl>
-                        <Input 
-                          placeholder="johndoe" 
-                          autoFocus
-                          autoComplete="username"
-                          {...field} 
-                        />
+                        <Input placeholder="johndoe" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -236,16 +157,9 @@ const AuthForm: React.FC = () => {
                     <FormItem>
                       <FormLabel>Email</FormLabel>
                       <FormControl>
-                        <Input 
-                          placeholder="youremail@example.com" 
-                          autoComplete="email"
-                          {...field} 
-                        />
+                        <Input placeholder="youremail@example.com" {...field} />
                       </FormControl>
                       <FormMessage />
-                      <FormDescription>
-                        We'll send a confirmation link to this email.
-                      </FormDescription>
                     </FormItem>
                   )}
                 />
@@ -256,12 +170,7 @@ const AuthForm: React.FC = () => {
                     <FormItem>
                       <FormLabel>Password</FormLabel>
                       <FormControl>
-                        <Input 
-                          type="password" 
-                          placeholder="••••••••" 
-                          autoComplete="new-password"
-                          {...field} 
-                        />
+                        <Input type="password" placeholder="••••••••" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -274,12 +183,7 @@ const AuthForm: React.FC = () => {
                     <FormItem>
                       <FormLabel>Confirm Password</FormLabel>
                       <FormControl>
-                        <Input 
-                          type="password" 
-                          placeholder="••••••••" 
-                          autoComplete="new-password"
-                          {...field} 
-                        />
+                        <Input type="password" placeholder="••••••••" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -295,9 +199,9 @@ const AuthForm: React.FC = () => {
       </CardContent>
       <CardFooter className="flex justify-center text-sm text-muted-foreground">
         {activeTab === 'login' ? (
-          <p>Don't have an account? <Button variant="link" className="p-0 h-auto font-normal" onClick={() => handleTabChange('register')}>Sign up</Button></p>
+          <p>Don't have an account? <span className="text-accent cursor-pointer" onClick={() => setActiveTab('register')}>Sign up</span></p>
         ) : (
-          <p>Already have an account? <Button variant="link" className="p-0 h-auto font-normal" onClick={() => handleTabChange('login')}>Sign in</Button></p>
+          <p>Already have an account? <span className="text-accent cursor-pointer" onClick={() => setActiveTab('login')}>Sign in</span></p>
         )}
       </CardFooter>
     </Card>

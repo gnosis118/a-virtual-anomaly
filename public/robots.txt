@@ -12,6 +12,3 @@ Allow: /
 
 User-agent: *
 Allow: /
-
-# Sitemap
-Sitemap: https://virtualanomaly.org/sitemap.xml

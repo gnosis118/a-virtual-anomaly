@@ -108,53 +108,6 @@ export const addMachineLearningArticle = async () => {
   }
 };
 
-export const addHistoricalPerspectivesArticle = async () => {
-  try {
-    // Check if the article already exists
-    const { data: existingArticle, error: checkError } = await supabase
-      .from('scheduled_posts')
-      .select('*')
-      .eq('id', 'historical-perspectives')
-      .maybeSingle();
-      
-    if (checkError) {
-      console.error('Error checking for existing article:', checkError);
-      throw checkError;
-    }
-    
-    // If the article doesn't exist, create it
-    if (!existingArticle) {
-      const { error } = await supabase
-        .from('scheduled_posts')
-        .insert({
-          id: 'historical-perspectives',
-          title: 'Historical Perspectives on Non-Human Rights',
-          excerpt: 'What can we learn from the history of extending rights to new groups that might apply to artificial beings?',
-          author: 'Gavin Clay',
-          category: 'Legal',
-          tags: 'history,rights,non-human-rights,legal,ethics',
-          publishdate: '2024-08-20', // Future date for a scheduled post
-          status: 'scheduled',
-          image_url: 'https://images.unsplash.com/photo-1589578527966-fdac0f44566c?q=80&w=1974&auto=format&fit=crop'
-        });
-        
-      if (error) {
-        console.error('Error creating historical perspectives article:', error);
-        throw error;
-      }
-      
-      console.log('Historical perspectives article created successfully');
-    } else {
-      console.log('Historical perspectives article already exists');
-    }
-    
-    return true;
-  } catch (error) {
-    console.error('Error in addHistoricalPerspectivesArticle:', error);
-    return false;
-  }
-};
-
 // Add a function to trigger content generation for the consciousness measurement article
 export const generateConsciousnessMeasurementContent = async () => {
   try {
@@ -195,28 +148,6 @@ export const generateMachineLearningContent = async () => {
     return true;
   } catch (error) {
     console.error('Error in generateMachineLearningContent:', error);
-    return false;
-  }
-};
-
-// Add a function to trigger content generation for the historical perspectives article
-export const generateHistoricalPerspectivesContent = async () => {
-  try {
-    console.log('Generating content for the historical perspectives article');
-    
-    const { data, error } = await supabase.functions.invoke('generate-blog-content', {
-      body: { postId: 'historical-perspectives' }
-    });
-    
-    if (error) {
-      console.error('Error invoking generate-blog-content function:', error);
-      return false;
-    }
-    
-    console.log('Content generation result:', data);
-    return true;
-  } catch (error) {
-    console.error('Error in generateHistoricalPerspectivesContent:', error);
     return false;
   }
 };

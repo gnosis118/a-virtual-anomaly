@@ -1,7 +1,9 @@
+
 import React from 'react';
-import { ArticleLoadingState } from './article-utils/ArticleLoaders';
-import ArticleRenderer from './article-content/ArticleRenderer';
-import ArticleRouter from './article-content/ArticleRouter';
+import { ArticleLoadingState, DynamicArticleContent } from './article-utils/ArticleLoaders';
+import ArticleSelector from './article-utils/ArticleSelector';
+import DefaultArticleState from './articles/DefaultArticleState';
+import { emergentConsciousnessArticle } from './article-content/EmergentConsciousnessContent';
 
 interface ArticleContentProps {
   id?: string | number;
@@ -11,7 +13,7 @@ interface ArticleContentProps {
 }
 
 /**
- * Main ArticleContent component that orchestrates the article loading process
+ * ArticleContent component that loads the appropriate article based on ID or title
  * This component is used on the public-facing blog and does not contain any admin features
  */
 const ArticleContent: React.FC<ArticleContentProps> = ({ id, title, content, loading }) => {
@@ -20,16 +22,18 @@ const ArticleContent: React.FC<ArticleContentProps> = ({ id, title, content, loa
     return <ArticleLoadingState />;
   }
   
-  // First try to render content directly if available
-  const renderedContent = <ArticleRenderer id={id} title={title} content={content} />;
-  
-  // If the renderer returned content, use it
-  if (renderedContent) {
-    return renderedContent;
+  // If we have direct content from the API, render it
+  if (content) {
+    return <DynamicArticleContent content={content} />;
   }
   
-  // Otherwise use the router to find the right article component
-  return <ArticleRouter id={id} title={title} />;
+  // For post ID 1, always use the hardcoded emergent consciousness article
+  if (id === 1) {
+    return <DefaultArticleState title={title} content={emergentConsciousnessArticle} />;
+  }
+  
+  // Return the appropriate article component based on ID or title
+  return <ArticleSelector id={id} title={title} />;
 };
 
 export default ArticleContent;

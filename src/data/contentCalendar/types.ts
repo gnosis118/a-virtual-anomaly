@@ -1,33 +1,17 @@
 
-// This file contains the database schema types for the content calendar
-// These types should match the tables in Supabase
+import { BlogPost } from '@/types/blog';
 
 export interface ScheduledPost {
-  id: number | string;
+  id: string | number;
   title: string;
   excerpt: string;
   content?: string;
   author: string;
   category: string;
   tags: string;
-  publishDate: Date;
+  publishDate: Date; // Frontend representation uses camelCase
   status: 'draft' | 'scheduled' | 'published';
-  image_url?: string; // Added image_url as optional
-}
-
-export interface BlogPost {
-  id: number;
-  title: string;
-  excerpt: string;
-  content: string;
-  image: string;
-  date: string;
-  author: string;
-  readTime: string;
-  views: number;
-  category: string;
-  featured: boolean;
-  tags: string[];
+  image_url?: string; // Explicitly defined as optional
 }
 
 // Convert a ScheduledPost to a BlogPost
@@ -36,7 +20,7 @@ export function convertToBlogPost(scheduledPost: ScheduledPost, imageUrl: string
     title: scheduledPost.title,
     excerpt: scheduledPost.excerpt,
     content: scheduledPost.content || '',
-    image: imageUrl || scheduledPost.image_url || '', // Use provided imageUrl or fallback to post's image_url
+    image: imageUrl || scheduledPost.image_url || '',
     category: scheduledPost.category,
     tags: scheduledPost.tags.split(',').map(tag => tag.trim()),
     author: scheduledPost.author,

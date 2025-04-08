@@ -1,6 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
-import { ScheduledPost, getPostsForDate, getDaysWithPosts, daysWithPosts as fallbackDays } from '@/data/contentCalendarData';
+import { 
+  ScheduledPost, 
+  getPostsForDate, 
+  getDaysWithPosts, 
+  daysWithPosts as fallbackDays 
+} from '@/data/contentCalendarData';
 import CalendarView from './calendar/CalendarView';
 import PostList from './calendar/PostList';
 import AutoPublishSettings from './AutoPublishSettings';

@@ -19,90 +19,20 @@ import {
   generateHistoricalPerspectivesContent
 } from '@/components/blog/scheduled-posts-handler';
 import { toast } from "@/components/ui/use-toast";
-import { supabase } from '@/integrations/supabase/client';
-import { BlogPost } from '@/types/blog';
 
 const Blog = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const tagFromUrl = searchParams.get('tag');
-  const categoryFromUrl = searchParams.get('category');
   
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
-  const [allPosts, setAllPosts] = useState<BlogPost[]>([...BLOG_POSTS]);
-  const [isLoading, setIsLoading] = useState(true);
-  const postsPerPage = 12; // Increased from 6 to show more posts per page
-  
-  // Fetch all published articles including special ones
-  const fetchAllPublishedArticles = async () => {
-    setIsLoading(true);
-    try {
-      // First, get all the articles from the database
-      const { data, error } = await supabase
-        .from('scheduled_posts')
-        .select('*')
-        .eq('status', 'published');
-      
-      if (error) {
-        console.error('Error fetching published articles:', error);
-        return;
-      }
-      
-      if (data && data.length > 0) {
-        // Convert the database articles to BlogPost format
-        const dbPosts: BlogPost[] = data.map(post => ({
-          id: typeof post.id === 'string' ? 999 : parseInt(post.id.toString()), // Use a unique ID for string IDs
-          title: post.title,
-          excerpt: post.excerpt,
-          content: post.content || '',
-          image: post.image_url || 'https://images.unsplash.com/photo-1581547848200-85cb245ebc8d?ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1965&q=80',
-          date: new Date(post.publishdate).toLocaleDateString('en-US', {
-            month: 'long',
-            day: 'numeric',
-            year: 'numeric'
-          }),
-          author: post.author,
-          readTime: '10 min read',
-          views: Math.floor(Math.random() * 1000) + 500, // Random view count
-          category: post.category,
-          featured: false,
-          tags: post.tags ? post.tags.split(',').map((tag: string) => tag.trim()) : []
-        }));
-        
-        // Special handling for april2 post
-        const april2Post = dbPosts.find(post => post.id === 999);
-        if (april2Post) {
-          april2Post.id = 'april2';
-        }
-        
-        // Combine with static blog posts, avoiding duplicates
-        const staticPostIds = new Set(BLOG_POSTS.map(post => post.id));
-        const uniqueDbPosts = dbPosts.filter(post => 
-          typeof post.id === 'string' || !staticPostIds.has(post.id)
-        );
-        
-        // Merge the arrays and sort by date (newest first)
-        const combinedPosts = [...BLOG_POSTS, ...uniqueDbPosts]
-          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-        
-        setAllPosts(combinedPosts);
-      }
-    } catch (err) {
-      console.error('Error in fetchAllPublishedArticles:', err);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const postsPerPage = 6;
   
   useEffect(() => {
     if (tagFromUrl) {
       setSearchQuery(tagFromUrl);
-    }
-    
-    if (categoryFromUrl) {
-      setSelectedCategory(categoryFromUrl);
     }
     
     // Initialize and generate articles in the database
@@ -138,15 +68,12 @@ const Blog = () => {
           description: "Historical Perspectives on Non-Human Rights article has been generated and scheduled.",
         });
       }
-      
-      // Fetch all published articles
-      await fetchAllPublishedArticles();
     };
     
     initializeArticles();
-  }, [tagFromUrl, categoryFromUrl]);
+  }, [tagFromUrl]);
   
-  const filteredPosts = allPosts.filter(post => {
+  const filteredPosts = BLOG_POSTS.filter(post => {
     const matchesSearch = searchQuery.trim() === "" || 
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
       post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -159,16 +86,13 @@ const Blog = () => {
     return matchesSearch && matchesCategory;
   });
 
-  // Get the 5 most recent posts for the featured section
-  const featuredPosts = [...allPosts]
+  const featuredPosts = [...BLOG_POSTS]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 5);
 
-  // Get all posts that aren't in the featured section
   const featuredPostIds = new Set(featuredPosts.map(post => post.id));
   const pastPosts = filteredPosts.filter(post => !featuredPostIds.has(post.id));
 
-  // Pagination logic
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
   const currentPastPosts = pastPosts.slice(indexOfFirstPost, indexOfLastPost);

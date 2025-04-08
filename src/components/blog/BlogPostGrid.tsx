@@ -2,6 +2,7 @@
 import React from 'react';
 import { RefreshCw, ArrowRight, Calendar, User, Clock } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { slugify } from '@/utils/slugify';
 
 interface BlogPostGridProps {
   posts: any[];
@@ -73,7 +74,7 @@ const BlogPostGrid: React.FC<BlogPostGridProps> = ({
           >
             <div className="md:flex">
               <div className="md:w-1/3 h-48 md:h-auto relative">
-                <a href={`/blog/${post.id}`}>
+                <a href={`/blog/${slugify(post.title)}`}>
                   <img 
                     src={post.image} 
                     alt={post.title} 
@@ -90,7 +91,7 @@ const BlogPostGrid: React.FC<BlogPostGridProps> = ({
               </div>
               <div className="p-6 md:w-2/3">
                 <h3 className="text-lg font-semibold mb-2">
-                  <a href={`/blog/${post.id}`} className="hover:text-accent transition-colors">
+                  <a href={`/blog/${slugify(post.title)}`} className="hover:text-accent transition-colors">
                     {post.title}
                   </a>
                 </h3>
@@ -113,7 +114,7 @@ const BlogPostGrid: React.FC<BlogPostGridProps> = ({
                   </div>
                   
                   <Button size="sm" variant="ghost" asChild className="self-start">
-                    <a href={`/blog/${post.id}`} className="flex items-center gap-1 text-xs">
+                    <a href={`/blog/${slugify(post.title)}`} className="flex items-center gap-1 text-xs">
                       Read more
                       <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
                     </a>

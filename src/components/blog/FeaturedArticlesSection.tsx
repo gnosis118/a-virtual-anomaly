@@ -1,75 +1,65 @@
-
 import React from 'react';
-import { BlogPost } from '@/types/blog';
 import { ArrowRight } from 'lucide-react';
-import { Button } from "@/components/ui/button";
+import FeaturedPost from '@/components/blog/FeaturedPost';
+import { slugify } from '@/utils/slugify';
 
 interface FeaturedArticlesSectionProps {
-  posts: BlogPost[];
+  posts: any[];
 }
 
 const FeaturedArticlesSection: React.FC<FeaturedArticlesSectionProps> = ({ posts }) => {
+  const mainFeatured = posts[0];
+  const otherFeatured = posts.slice(1);
+
   return (
-    <section className="mb-16">
-      <h2 className="text-3xl font-bold mb-8">Featured Recent Articles</h2>
+    <div className="mb-12">
+      <h2 className="text-2xl font-bold mb-6">Featured Articles</h2>
       
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {posts.map((post, index) => (
-          <div 
-            key={post.id} 
-            className={`bg-card border border-border rounded-lg overflow-hidden shadow-sm transition-shadow duration-300 hover:shadow-md ${
-              index === 0 ? "lg:col-span-3 md:col-span-2" : ""
-            }`}
-          >
-            <div className={`${index === 0 ? "md:flex" : ""}`}>
-              <div className={`${index === 0 ? "md:w-2/3" : ""}`}>
-                <a href={`/blog/${post.id}`} className="block h-56 overflow-hidden">
-                  <img 
-                    src={post.image} 
-                    alt={post.title}
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                    onError={(e) => {
-                      e.currentTarget.src = "https://images.unsplash.com/photo-1581547848200-85cb245ebc8d?ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1965&q=80";
-                    }}
-                  />
-                </a>
+      {/* Main Featured Post */}
+      {mainFeatured && (
+        <div className="rounded-xl overflow-hidden shadow-lg mb-6 group bg-card">
+          <a href={`/blog/${slugify(mainFeatured.title)}`} className="block relative">
+            <div className="relative h-96 overflow-hidden">
+              <img 
+                src={mainFeatured.image} 
+                alt={mainFeatured.title}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+            </div>
+            
+            <div className="absolute bottom-0 left-0 p-6 w-full text-white">
+              <div className="flex items-center">
+                <span className="px-3 py-1 text-xs font-medium bg-accent/80 rounded-full">
+                  {mainFeatured.category}
+                </span>
+                <span className="ml-3 text-sm opacity-80">{mainFeatured.date}</span>
               </div>
               
-              <div className={`p-6 ${index === 0 ? "md:w-1/3" : ""}`}>
-                <div className="mb-2">
-                  <span className="text-xs font-medium bg-accent/10 text-accent px-2 py-1 rounded-full">
-                    {post.category}
-                  </span>
-                </div>
-                
-                <h3 className="text-xl font-bold mb-2 line-clamp-2">
-                  <a href={`/blog/${post.id}`} className="hover:text-accent transition-colors">
-                    {post.title}
-                  </a>
-                </h3>
-                
-                <p className="text-muted-foreground mb-4 line-clamp-3">
-                  {post.excerpt}
-                </p>
-                
-                <div className="flex items-center justify-between">
-                  <div className="text-xs text-muted-foreground">
-                    <span>{post.date}</span>
-                  </div>
-                  
-                  <Button size="sm" variant="outline" asChild>
-                    <a href={`/blog/${post.id}`} className="flex items-center gap-1">
-                      Read More
-                      <ArrowRight className="h-3.5 w-3.5" />
-                    </a>
-                  </Button>
-                </div>
+              <h3 className="text-2xl md:text-3xl font-bold mt-2 mb-2 group-hover:text-accent transition-colors">
+                {mainFeatured.title}
+              </h3>
+              
+              <p className="text-sm md:text-base opacity-90 mb-4 line-clamp-2">
+                {mainFeatured.excerpt}
+              </p>
+              
+              <div className="inline-flex items-center text-sm font-medium text-accent group-hover:text-accent/80">
+                Read more
+                <ArrowRight size={16} className="ml-2 group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
-          </div>
+          </a>
+        </div>
+      )}
+
+      {/* Other Featured Posts in Grid */}
+      <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+        {otherFeatured.map(post => (
+          <FeaturedPost key={post.id} post={post} />
         ))}
       </div>
-    </section>
+    </div>
   );
 };
 

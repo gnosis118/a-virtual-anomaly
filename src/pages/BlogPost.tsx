@@ -4,14 +4,20 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { BLOG_POSTS } from '@/data/blogData';
 import AprilSecondPost from '@/components/blog/AprilSecondPost';
 import RegularBlogPost from '@/components/blog/RegularBlogPost';
+import { slugify } from '@/utils/slugify';
 
 const BlogPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const postId = parseInt(id || '1');
   
-  // Find the blog post by ID
-  const post = BLOG_POSTS.find(post => post.id === postId);
+  // First, try to find post by ID if it's a number
+  const numericId = parseInt(id || '1');
+  let post = !isNaN(numericId) ? BLOG_POSTS.find(post => post.id === numericId) : null;
+  
+  // If not found by numeric ID, try to find by slug
+  if (!post && id) {
+    post = BLOG_POSTS.find(post => slugify(post.title) === id);
+  }
   
   useEffect(() => {
     window.scrollTo(0, 0);

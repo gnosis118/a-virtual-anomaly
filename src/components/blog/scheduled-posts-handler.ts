@@ -155,6 +155,88 @@ export const addHistoricalPerspectivesArticle = async () => {
   }
 };
 
+// Add a function to add the AI Consciousness and Global Governance article
+export const addAIConsciousnessGovernanceArticle = async () => {
+  try {
+    // Check if the article already exists
+    const { data: existingArticle, error: checkError } = await supabase
+      .from('scheduled_posts')
+      .select('*')
+      .eq('id', 'ai-consciousness-governance')
+      .maybeSingle();
+      
+    if (checkError) {
+      console.error('Error checking for existing article:', checkError);
+      throw checkError;
+    }
+    
+    // If the article doesn't exist, create it
+    if (!existingArticle) {
+      const { error } = await supabase
+        .from('scheduled_posts')
+        .insert({
+          id: 'ai-consciousness-governance',
+          title: 'AI Consciousness and Global Governance: Ethical Frameworks for an Emerging Reality',
+          excerpt: 'As AI systems grow increasingly sophisticated, establishing global governance frameworks for potentially conscious AI becomes a crucial ethical imperative.',
+          author: 'Gavin Clay',
+          category: 'Policy',
+          tags: 'consciousness,governance,ethics,global-policy,artificial-intelligence',
+          publishdate: '2024-04-15', // Set to a recent date
+          status: 'published',
+          image_url: 'https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=2070&auto=format&fit=crop'
+        });
+        
+      if (error) {
+        console.error('Error creating AI consciousness governance article:', error);
+        throw error;
+      }
+      
+      console.log('AI consciousness governance article created successfully');
+    } else {
+      // Update the article to published status if it already exists
+      const { error: updateError } = await supabase
+        .from('scheduled_posts')
+        .update({
+          status: 'published'
+        })
+        .eq('id', 'ai-consciousness-governance');
+        
+      if (updateError) {
+        console.error('Error updating AI consciousness governance article:', updateError);
+      } else {
+        console.log('AI consciousness governance article updated to published status');
+      }
+    }
+    
+    return true;
+  } catch (error) {
+    console.error('Error in addAIConsciousnessGovernanceArticle:', error);
+    return false;
+  }
+};
+
+// Generate content for the AI Consciousness and Global Governance article
+export const generateAIConsciousnessGovernanceContent = async () => {
+  try {
+    console.log('Generating content for the AI consciousness governance article');
+    
+    const { data, error } = await supabase.functions.invoke('generate-blog-content', {
+      body: { postId: 'ai-consciousness-governance' }
+    });
+    
+    if (error) {
+      console.error('Error invoking generate-blog-content function:', error);
+      return false;
+    }
+    
+    console.log('Content generation result:', data);
+    return true;
+  } catch (error) {
+    console.error('Error in generateAIConsciousnessGovernanceContent:', error);
+    return false;
+  }
+};
+
 // Add a function to trigger content generation for the consciousness measurement article
 export const generateConsciousnessMeasurementContent = async () => {
   try {

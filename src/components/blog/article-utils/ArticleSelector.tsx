@@ -12,6 +12,7 @@ import GeoffreyHintonArticle from '../articles/GeoffreyHintonArticle';
 import MachineLearningArticle from '../articles/MachineLearningArticle';
 import HistoricalPerspectivesArticle from '../articles/HistoricalPerspectivesArticle';
 import DefaultArticleState from '../articles/DefaultArticleState';
+import AIConsciousnessGovernanceArticle from '../articles/AIConsciousnessGovernanceArticle';
 
 interface ArticleSelectorProps {
   id?: string | number;
@@ -22,6 +23,11 @@ interface ArticleSelectorProps {
  * Component for selecting the appropriate article based on ID or title
  */
 const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
+  // Special case for AI Consciousness and Global Governance
+  if (id === "ai-consciousness-governance") {
+    return <AIConsciousnessGovernanceArticle />;
+  }
+
   // Check for specific article by ID first (most reliable)
   if (id === 7 || id === "7") {
     return <TuringTestArticle />;
@@ -62,6 +68,10 @@ const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
   
   // Match by title for flexibility
   if (title) {
+    if (title.includes("AI Consciousness and Global Governance") || title.includes("Ethical Frameworks")) {
+      return <AIConsciousnessGovernanceArticle />;
+    }
+    
     if (title.includes("Can AI Experience Love?") || title.includes("Emotional Frontier")) {
       return <AIEmotionalFrontierArticle />;
     }
@@ -113,7 +123,7 @@ const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
   }
   
   // For other articles, use the default implementation
-  return <DefaultArticleState />;
+  return <DefaultArticleState title={title} />;
 };
 
 export default ArticleSelector;

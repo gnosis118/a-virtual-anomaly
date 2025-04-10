@@ -113,3 +113,59 @@ export async function getApril2ndPost(): Promise<ScheduledPost> {
     };
   }
 }
+
+// Handle special post for AI Consciousness and Global Governance
+export async function getAIConsciousnessGovernancePost(): Promise<ScheduledPost> {
+  try {
+    const { data, error } = await supabase
+      .from('scheduled_posts')
+      .select('*')
+      .eq('id', 'ai-consciousness-governance')
+      .maybeSingle();
+      
+    if (!error && data) {
+      // We have the AI Consciousness and Governance post in the database
+      console.log('Found AI Consciousness and Governance post in database');
+      return {
+        id: 'ai-consciousness-governance',
+        title: data.title || "AI Consciousness and Global Governance: Ethical Frameworks for an Emerging Reality",
+        excerpt: data.excerpt || "As AI systems grow increasingly sophisticated, establishing global governance frameworks for potentially conscious AI becomes a crucial ethical imperative.",
+        content: data.content,
+        author: data.author || "Gavin Clay",
+        category: data.category || "Policy",
+        tags: data.tags || "consciousness,governance,ethics,global-policy,artificial-intelligence",
+        publishDate: new Date(data.publishdate || '2024-04-15'),
+        status: data.status as 'draft' | 'scheduled' | 'published' || 'published',
+        image_url: data.image_url || "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=2070&auto=format&fit=crop"
+      };
+    }
+    
+    // Fallback to hardcoded AI Consciousness and Governance post
+    console.log('Using fallback for AI Consciousness and Governance post');
+    return {
+      id: 'ai-consciousness-governance',
+      title: "AI Consciousness and Global Governance: Ethical Frameworks for an Emerging Reality",
+      excerpt: "As AI systems grow increasingly sophisticated, establishing global governance frameworks for potentially conscious AI becomes a crucial ethical imperative.",
+      author: "Gavin Clay",
+      category: "Policy",
+      tags: "consciousness,governance,ethics,global-policy,artificial-intelligence",
+      publishDate: new Date('2024-04-15'),
+      status: 'published',
+      image_url: "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=2070&auto=format&fit=crop"
+    };
+  } catch (error) {
+    console.error('Error checking for AI Consciousness and Governance post:', error);
+    // Fallback to hardcoded post
+    return {
+      id: 'ai-consciousness-governance',
+      title: "AI Consciousness and Global Governance: Ethical Frameworks for an Emerging Reality",
+      excerpt: "As AI systems grow increasingly sophisticated, establishing global governance frameworks for potentially conscious AI becomes a crucial ethical imperative.",
+      author: "Gavin Clay",
+      category: "Policy",
+      tags: "consciousness,governance,ethics,global-policy,artificial-intelligence",
+      publishDate: new Date('2024-04-15'),
+      status: 'published',
+      image_url: "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=2070&auto=format&fit=crop"
+    };
+  }
+}

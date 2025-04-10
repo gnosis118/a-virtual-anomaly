@@ -1,8 +1,7 @@
-
 import { supabase } from "@/integrations/supabase/client";
 import { ScheduledPost } from './types';
 import { getFallbackPostForDate } from './fallbackData';
-import { getApril2ndPost, getApril4thPost } from './specialCases';
+import { getApril2ndPost, getApril4thPost, getAIConsciousnessGovernancePost } from './specialCases';
 
 // Function to get posts for a specific date
 export async function getPostsForDate(date?: Date): Promise<ScheduledPost[]> {
@@ -10,6 +9,13 @@ export async function getPostsForDate(date?: Date): Promise<ScheduledPost[]> {
   
   const formattedDate = date.toISOString().split('T')[0];
   console.log('Formatted date for query:', formattedDate);
+  
+  // Special case for April 15th (AI Consciousness and Governance)
+  const isAprilFifteenth = date.getMonth() === 3 && date.getDate() === 15;
+  if (isAprilFifteenth) {
+    const post = await getAIConsciousnessGovernancePost();
+    return [post];
+  }
   
   // Special case for April 4th
   const isAprilFourth = date.getMonth() === 3 && date.getDate() === 4;

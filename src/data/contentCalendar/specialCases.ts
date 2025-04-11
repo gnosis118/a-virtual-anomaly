@@ -1,4 +1,3 @@
-
 import { supabase } from "@/integrations/supabase/client";
 import { ScheduledPost } from './types';
 
@@ -136,7 +135,7 @@ export async function getAIConsciousnessGovernancePost(): Promise<ScheduledPost>
         tags: data.tags || "consciousness,governance,ethics,global-policy,artificial-intelligence",
         publishDate: new Date(data.publishdate || '2024-04-15'),
         status: data.status as 'draft' | 'scheduled' | 'published' || 'published',
-        image_url: data.image_url || "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=2070&auto=format&fit=crop"
+        image_url: data.image_url || "https://images.unsplash.com/photo-1577375729152-4c8b5fcda381?q=80&w=2940&auto=format&fit=crop"
       };
     }
     
@@ -151,11 +150,11 @@ export async function getAIConsciousnessGovernancePost(): Promise<ScheduledPost>
       tags: "consciousness,governance,ethics,global-policy,artificial-intelligence",
       publishDate: new Date('2024-04-15'),
       status: 'published',
-      image_url: "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=2070&auto=format&fit=crop"
+      image_url: "https://images.unsplash.com/photo-1577375729152-4c8b5fcda381?q=80&w=2940&auto=format&fit=crop"
     };
   } catch (error) {
     console.error('Error checking for AI Consciousness and Governance post:', error);
-    // Fallback to hardcoded post
+    // Fallback to hardcoded AI Consciousness and Governance post
     return {
       id: 'ai-consciousness-governance',
       title: "AI Consciousness and Global Governance: Ethical Frameworks for an Emerging Reality",
@@ -165,7 +164,7 @@ export async function getAIConsciousnessGovernancePost(): Promise<ScheduledPost>
       tags: "consciousness,governance,ethics,global-policy,artificial-intelligence",
       publishDate: new Date('2024-04-15'),
       status: 'published',
-      image_url: "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?q=80&w=2070&auto=format&fit=crop"
+      image_url: "https://images.unsplash.com/photo-1577375729152-4c8b5fcda381?q=80&w=2940&auto=format&fit=crop"
     };
   }
 }

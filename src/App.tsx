@@ -66,6 +66,7 @@ const App = () => {
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                   <Route path="/terms-of-service" element={<TermsOfService />} />
                   <Route path="/ava" element={<About />} /> {/* Temporary redirect to About until Ava page is created */}
+                  <Route path="/blog/ai-consciousness-governance" element={<BlogPost />} /> {/* Special route for the AI Consciousness article */}
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>

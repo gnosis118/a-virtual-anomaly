@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -14,9 +13,11 @@ import {
   addConsciousnessMeasurementArticle, 
   addMachineLearningArticle,
   addHistoricalPerspectivesArticle,
+  addAIConsciousnessGovernanceArticle,
   generateConsciousnessMeasurementContent,
   generateMachineLearningContent,
-  generateHistoricalPerspectivesContent
+  generateHistoricalPerspectivesContent,
+  generateAIConsciousnessGovernanceContent
 } from '@/components/blog/scheduled-posts-handler';
 import { toast } from "@/components/ui/use-toast";
 
@@ -41,6 +42,16 @@ const Blog = () => {
       await addConsciousnessMeasurementArticle();
       await addMachineLearningArticle();
       await addHistoricalPerspectivesArticle();
+      await addAIConsciousnessGovernanceArticle();
+      
+      // Generate content for the AI Consciousness and Governance article
+      const aiGovGenerated = await generateAIConsciousnessGovernanceContent();
+      if (aiGovGenerated) {
+        toast({
+          title: "AI Governance Article Published",
+          description: "AI Consciousness and Global Governance article has been generated and published.",
+        });
+      }
       
       // Then generate content for the consciousness measurement article
       const generated = await generateConsciousnessMeasurementContent();

@@ -12,7 +12,7 @@ import GeoffreyHintonArticle from '../articles/GeoffreyHintonArticle';
 import MachineLearningArticle from '../articles/MachineLearningArticle';
 import HistoricalPerspectivesArticle from '../articles/HistoricalPerspectivesArticle';
 import DefaultArticleState from '../articles/DefaultArticleState';
-import AIConsciousnessGovernanceArticle from '../articles/AIConsciousnessGovernanceArticle';
+import AIConsciousnessGovernanceArticle from '../articles/ai-governance/AIConsciousnessGovernanceArticle';
 
 interface ArticleSelectorProps {
   id?: string | number;

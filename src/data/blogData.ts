@@ -1,8 +1,20 @@
+
 // Add the import for the governance article at the top of the file
 import { slugify } from '@/utils/slugify';
 
 // Export categories for filtering
 export const CATEGORIES = ["all", "Ethics", "Technology", "Policy", "Research", "Legal", "Psychology", "Philosophy", "Technical", "AI Psychology", "Global Policy"];
+
+// Export all tags for sidebar filtering
+export const ALL_TAGS = [
+  "ai-rights", "ethics", "consciousness", "future", "ai-development", 
+  "human-centric", "technology", "ai-impact", "society", "challenges", 
+  "opportunities", "ai-emotions", "love", "human-ai-relationships", 
+  "psychology", "legal-framework", "future-directions", "law", 
+  "emergent-property", "ai-sentience", "philosophy", "turing-test", 
+  "ai", "human-computer-interaction", "governance", "global-policy",
+  "artificial-intelligence", "emotions", "sentience"
+];
 
 // Blog posts data
 export const BLOG_POSTS = [

@@ -21,6 +21,30 @@ import {
 } from '@/components/blog/scheduled-posts-handler';
 import { toast } from "@/components/ui/use-toast";
 
+const governanceArticle = {
+  id: 'ai-consciousness-governance',
+  title: 'AI Consciousness and Global Governance: Ethical Frameworks for an Emerging Reality',
+  excerpt: 'As AI systems grow increasingly sophisticated, establishing global governance frameworks for potentially conscious AI becomes a crucial ethical imperative.',
+  content: '', // Content will be loaded from the component
+  author: 'Gavin Clay',
+  date: 'April 15, 2024',
+  readTime: '25 min read',
+  views: 0,
+  category: 'Policy',
+  tags: ['consciousness', 'governance', 'ethics', 'global-policy', 'artificial-intelligence'],
+  featured: true,
+  image: 'https://images.unsplash.com/photo-1577375729152-4c8b5fcda381?q=80&w=2940&auto=format&fit=crop'
+};
+
+const articleExists = BLOG_POSTS.some(post => 
+  post.id === 'ai-consciousness-governance' || 
+  (typeof post.id === 'string' && post.id.includes('governance'))
+);
+
+if (!articleExists) {
+  BLOG_POSTS.unshift(governanceArticle);
+}
+
 const Blog = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -36,15 +60,12 @@ const Blog = () => {
       setSearchQuery(tagFromUrl);
     }
     
-    // Initialize and generate articles in the database
     const initializeArticles = async () => {
-      // First add the articles to the database
       await addConsciousnessMeasurementArticle();
       await addMachineLearningArticle();
       await addHistoricalPerspectivesArticle();
       await addAIConsciousnessGovernanceArticle();
       
-      // Generate content for the AI Consciousness and Governance article
       const aiGovGenerated = await generateAIConsciousnessGovernanceContent();
       if (aiGovGenerated) {
         toast({
@@ -53,7 +74,6 @@ const Blog = () => {
         });
       }
       
-      // Then generate content for the consciousness measurement article
       const generated = await generateConsciousnessMeasurementContent();
       if (generated) {
         toast({
@@ -62,7 +82,6 @@ const Blog = () => {
         });
       }
       
-      // Generate content for the machine learning article
       const mlGenerated = await generateMachineLearningContent();
       if (mlGenerated) {
         toast({
@@ -71,7 +90,6 @@ const Blog = () => {
         });
       }
       
-      // Generate content for the historical perspectives article
       const historyGenerated = await generateHistoricalPerspectivesContent();
       if (historyGenerated) {
         toast({
@@ -98,6 +116,7 @@ const Blog = () => {
   });
 
   const featuredPosts = [...BLOG_POSTS]
+    .filter(post => post.featured || post.id === 'ai-consciousness-governance')
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     .slice(0, 5);
 
@@ -137,9 +156,7 @@ const Blog = () => {
             clearFilters={clearFilters}
           />
           
-          {!searchQuery && selectedCategory === "all" && (
-            <FeaturedArticlesSection posts={featuredPosts} />
-          )}
+          <FeaturedArticlesSection posts={featuredPosts} />
           
           <PastArticlesSection 
             posts={currentPastPosts}

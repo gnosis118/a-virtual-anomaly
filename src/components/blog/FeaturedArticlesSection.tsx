@@ -8,8 +8,19 @@ interface FeaturedArticlesSectionProps {
 }
 
 const FeaturedArticlesSection: React.FC<FeaturedArticlesSectionProps> = ({ posts }) => {
-  const mainFeatured = posts[0];
-  const otherFeatured = posts.slice(1);
+  // Make sure we have posts before proceeding
+  if (!posts || posts.length === 0) {
+    return null;
+  }
+
+  // Find the governance article if it exists
+  const governanceArticle = posts.find(post => post.id === 'ai-consciousness-governance');
+  
+  // Use governance article as main featured if it exists, otherwise use first post
+  const mainFeatured = governanceArticle || posts[0];
+  
+  // Filter out the main featured post from other featured posts
+  const otherFeatured = posts.filter(post => post.id !== mainFeatured.id);
 
   return (
     <div className="mb-12">
@@ -18,12 +29,18 @@ const FeaturedArticlesSection: React.FC<FeaturedArticlesSectionProps> = ({ posts
       {/* Main Featured Post */}
       {mainFeatured && (
         <div className="rounded-xl overflow-hidden shadow-lg mb-6 group bg-card">
-          <a href={`/blog/${slugify(mainFeatured.title)}`} className="block relative">
+          <a 
+            href={`/blog/${typeof mainFeatured.id === 'string' ? mainFeatured.id : slugify(mainFeatured.title)}`} 
+            className="block relative"
+          >
             <div className="relative h-96 overflow-hidden">
               <img 
                 src={mainFeatured.image} 
                 alt={mainFeatured.title}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                onError={(e) => {
+                  e.currentTarget.src = "https://images.unsplash.com/photo-1581547848200-85cb245ebc8d?auto=format&fit=crop&w=1965&q=80";
+                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
             </div>
@@ -54,11 +71,13 @@ const FeaturedArticlesSection: React.FC<FeaturedArticlesSectionProps> = ({ posts
       )}
 
       {/* Other Featured Posts in Grid */}
-      <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-        {otherFeatured.map(post => (
-          <FeaturedPost key={post.id} post={post} />
-        ))}
-      </div>
+      {otherFeatured.length > 0 && (
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+          {otherFeatured.map(post => (
+            <FeaturedPost key={post.id} post={post} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

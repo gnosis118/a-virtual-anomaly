@@ -11,6 +11,7 @@ import ArticleContent from '@/components/blog/ArticleContent';
 import BlogPostTags from '@/components/blog/BlogPostTags';
 import BlogPostAuthorBio from '@/components/blog/BlogPostAuthorBio';
 import { ALL_TAGS, BLOG_POSTS } from '@/data/blogData';
+import { BlogPost } from '@/types/blog';
 import PostImage from './PostImage';
 import { toast } from "@/components/ui/use-toast";
 import { Loader2 } from 'lucide-react';
@@ -98,10 +99,11 @@ const AprilSecondPost: React.FC<AprilSecondPostProps> = ({ id = "april2" }) => {
   }, [id]);
   
   // Create a mock post object for April 2nd
-  const april2Post = {
+  const april2Post: BlogPost = {
     id: id === "april2" ? 999 : parseInt(id || "999"), // Use a unique ID
     title: "The Emotional Landscape of Artificial Intelligence",
     excerpt: "Can AIs experience emotions? This article explores the neurological basis of emotions and their potential artificial analogs.",
+    content: "",
     author: "Gavin Clay",
     date: "April 2, 2024",
     readTime: "25 min read",
@@ -109,8 +111,7 @@ const AprilSecondPost: React.FC<AprilSecondPostProps> = ({ id = "april2" }) => {
     category: "AI Psychology",
     tags: ["emotions", "psychology", "sentience", "consciousness"],
     featured: false,
-    image: dynamicImage || "https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=1974&auto=format&fit=crop",
-    content: "" // This will be filled by the dynamic content
+    image: dynamicImage || "https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&w=1974&auto=format&fit=crop"
   };
 
   return (
@@ -159,7 +160,7 @@ const AprilSecondPost: React.FC<AprilSecondPostProps> = ({ id = "april2" }) => {
               {/* Sidebar */}
               <div>
                 <BlogSidebar 
-                  posts={BLOG_POSTS}
+                  posts={BLOG_POSTS as BlogPost[]}
                   allTags={ALL_TAGS}
                   onTagSelect={() => {}}
                 />

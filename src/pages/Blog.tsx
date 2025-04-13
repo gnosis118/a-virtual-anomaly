@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -9,6 +10,7 @@ import PastArticlesSection from '@/components/blog/PastArticlesSection';
 import CategoryFilter from '@/components/blog/CategoryFilter';
 import ContentCalendar from '@/components/blog/ContentCalendar';
 import { Separator } from "@/components/ui/separator";
+import { BlogPost } from '@/types/blog';
 import { 
   addConsciousnessMeasurementArticle, 
   addMachineLearningArticle,
@@ -34,7 +36,7 @@ const governanceArticle = {
   tags: ['consciousness', 'governance', 'ethics', 'global-policy', 'artificial-intelligence'],
   featured: true,
   image: 'https://images.unsplash.com/photo-1577375729152-4c8b5fcda381?q=80&w=2940&auto=format&fit=crop'
-};
+} as BlogPost;
 
 const articleExists = BLOG_POSTS.some(post => 
   post.id === 'ai-consciousness-governance' || 
@@ -102,7 +104,7 @@ const Blog = () => {
     initializeArticles();
   }, [tagFromUrl]);
   
-  const filteredPosts = BLOG_POSTS.filter(post => {
+  const filteredPosts = (BLOG_POSTS as BlogPost[]).filter(post => {
     const matchesSearch = searchQuery.trim() === "" || 
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
       post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -156,7 +158,7 @@ const Blog = () => {
             clearFilters={clearFilters}
           />
           
-          <FeaturedArticlesSection posts={featuredPosts} />
+          <FeaturedArticlesSection posts={featuredPosts as BlogPost[]} />
           
           <PastArticlesSection 
             posts={currentPastPosts}

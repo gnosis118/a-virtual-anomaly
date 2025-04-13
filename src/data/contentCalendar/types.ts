@@ -17,6 +17,7 @@ export interface ScheduledPost {
 // Convert a ScheduledPost to a BlogPost
 export function convertToBlogPost(scheduledPost: ScheduledPost, imageUrl: string): Partial<BlogPost> {
   return {
+    id: scheduledPost.id,
     title: scheduledPost.title,
     excerpt: scheduledPost.excerpt,
     content: scheduledPost.content || '',

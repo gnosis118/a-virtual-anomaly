@@ -10,13 +10,29 @@ const BlogPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   
-  // First, try to find post by ID if it's a number
-  const numericId = parseInt(id || '1');
-  let post = !isNaN(numericId) ? BLOG_POSTS.find(post => post.id === numericId) : null;
+  // First, try to find post by numeric ID if it's a number
+  let post = null;
+  const numericId = id && !isNaN(parseInt(id)) ? parseInt(id) : null;
   
-  // If not found by numeric ID, try to find by slug
+  if (numericId !== null) {
+    post = BLOG_POSTS.find(post => {
+      if (typeof post.id === 'number') {
+        return post.id === numericId;
+      }
+      return false;
+    });
+  }
+  
+  // If not found by numeric ID, try to find by string ID or slug
   if (!post && id) {
-    post = BLOG_POSTS.find(post => slugify(post.title) === id);
+    post = BLOG_POSTS.find(post => {
+      // Check for direct string ID match
+      if (typeof post.id === 'string' && post.id === id) {
+        return true;
+      }
+      // Check for slug match
+      return slugify(post.title) === id;
+    });
   }
   
   useEffect(() => {

@@ -1,3 +1,4 @@
+
 import { supabase } from "@/integrations/supabase/client";
 import { ScheduledPost } from './types';
 import { getFallbackPostForDate } from './fallbackData';
@@ -68,7 +69,7 @@ export async function getPostsForDate(date?: Date): Promise<ScheduledPost[]> {
     
     // Convert the date strings to Date objects and map to our ScheduledPost interface
     return data.map(post => ({
-      id: post.id,
+      id: post.id, // This can be either string or number now
       title: post.title,
       excerpt: post.excerpt,
       content: post.content,

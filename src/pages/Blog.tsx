@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -10,7 +9,7 @@ import PastArticlesSection from '@/components/blog/PastArticlesSection';
 import CategoryFilter from '@/components/blog/CategoryFilter';
 import ContentCalendar from '@/components/blog/ContentCalendar';
 import { Separator } from "@/components/ui/separator";
-import type { BlogPost } from '@/types/blog';
+import { BlogPost } from '@/types/blog';
 import { 
   addConsciousnessMeasurementArticle, 
   addMachineLearningArticle,
@@ -106,7 +105,7 @@ const Blog = () => {
     initializeArticles();
   }, [tagFromUrl]);
   
-  const filteredPosts = (BLOG_POSTS as BlogPost[]).filter(post => {
+  const filteredPosts = BLOG_POSTS.filter(post => {
     const matchesSearch = searchQuery.trim() === "" || 
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
       post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -117,7 +116,7 @@ const Blog = () => {
       post.category === selectedCategory;
       
     return matchesSearch && matchesCategory;
-  });
+  }) as BlogPost[];
 
   const featuredPosts = [...BLOG_POSTS]
     .filter(post => post.featured || post.id === 'ai-consciousness-governance')

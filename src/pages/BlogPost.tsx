@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { BLOG_POSTS } from '@/data/blogData';
@@ -11,7 +10,7 @@ const BlogPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   
-  let post = null;
+  let post: BlogPost | null = null;
   const numericId = id && !isNaN(parseInt(id)) ? parseInt(id) : null;
   
   if (numericId !== null) {
@@ -20,7 +19,7 @@ const BlogPost = () => {
         return post.id === numericId;
       }
       return false;
-    });
+    }) as BlogPost || null;
   }
   
   if (!post && id) {
@@ -29,7 +28,7 @@ const BlogPost = () => {
         return true;
       }
       return slugify(post.title) === id;
-    });
+    }) as BlogPost || null;
   }
   
   useEffect(() => {

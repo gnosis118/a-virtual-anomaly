@@ -9,9 +9,9 @@ export interface ScheduledPost {
   author: string;
   category: string;
   tags: string;
-  publishDate: Date; // Frontend representation uses camelCase
+  publishDate: Date;
   status: 'draft' | 'scheduled' | 'published';
-  image_url?: string; // Explicitly defined as optional
+  image_url?: string;
 }
 
 // Convert a ScheduledPost to a BlogPost
@@ -30,7 +30,7 @@ export function convertToBlogPost(scheduledPost: ScheduledPost, imageUrl: string
       day: 'numeric',
       year: 'numeric'
     }),
-    readTime: '20 min read', // Placeholder, will be calculated based on content length
+    readTime: '20 min read',
     views: 0,
     featured: false
   };

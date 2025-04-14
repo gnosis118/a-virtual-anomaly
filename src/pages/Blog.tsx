@@ -122,7 +122,7 @@ const Blog = () => {
   const featuredPosts = [...BLOG_POSTS]
     .filter(post => post.featured || post.id === 'ai-consciousness-governance')
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 5);
+    .slice(0, 5) as BlogPost[];
 
   const featuredPostIds = new Set(featuredPosts.map(post => post.id));
   const pastPosts = filteredPosts.filter(post => !featuredPostIds.has(post.id));
@@ -160,7 +160,7 @@ const Blog = () => {
             clearFilters={clearFilters}
           />
           
-          <FeaturedArticlesSection posts={featuredPosts as BlogPost[]} />
+          <FeaturedArticlesSection posts={featuredPosts} />
           
           <PastArticlesSection 
             posts={currentPastPosts}

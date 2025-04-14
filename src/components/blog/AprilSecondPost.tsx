@@ -100,7 +100,7 @@ const AprilSecondPost: React.FC<AprilSecondPostProps> = ({ id = "april2" }) => {
   
   // Create a mock post object for April 2nd
   const april2Post: BlogPost = {
-    id: id === "april2" ? 999 : parseInt(id || "999"), // Use a unique ID
+    id: id || "april2",
     title: "The Emotional Landscape of Artificial Intelligence",
     excerpt: "Can AIs experience emotions? This article explores the neurological basis of emotions and their potential artificial analogs.",
     content: "",

@@ -5,6 +5,7 @@ import { BLOG_POSTS } from '@/data/blogData';
 import AprilSecondPost from '@/components/blog/AprilSecondPost';
 import RegularBlogPost from '@/components/blog/RegularBlogPost';
 import { slugify } from '@/utils/slugify';
+import { BlogPost } from '@/types/blog';
 
 const BlogPost = () => {
   const { id } = useParams();
@@ -95,7 +96,7 @@ const BlogPost = () => {
   if (!post) return null;
 
   // Regular blog post
-  return <RegularBlogPost post={post} posts={BLOG_POSTS} />;
+  return <RegularBlogPost post={post} posts={BLOG_POSTS as BlogPost[]} />;
 };
 
 export default BlogPost;

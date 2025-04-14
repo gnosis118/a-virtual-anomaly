@@ -23,7 +23,7 @@ import {
 } from '@/components/blog/scheduled-posts-handler';
 import { toast } from "@/components/ui/use-toast";
 
-const governanceArticle = {
+const governanceArticle: BlogPost = {
   id: 'ai-consciousness-governance',
   title: 'AI Consciousness and Global Governance: Ethical Frameworks for an Emerging Reality',
   excerpt: 'As AI systems grow increasingly sophisticated, establishing global governance frameworks for potentially conscious AI becomes a crucial ethical imperative.',
@@ -36,7 +36,7 @@ const governanceArticle = {
   tags: ['consciousness', 'governance', 'ethics', 'global-policy', 'artificial-intelligence'],
   featured: true,
   image: 'https://images.unsplash.com/photo-1577375729152-4c8b5fcda381?q=80&w=2940&auto=format&fit=crop'
-} as BlogPost;
+};
 
 const articleExists = BLOG_POSTS.some(post => 
   post.id === 'ai-consciousness-governance' || 

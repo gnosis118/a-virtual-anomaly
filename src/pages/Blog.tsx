@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -22,6 +23,7 @@ import {
 } from '@/components/blog/scheduled-posts-handler';
 import { toast } from "@/components/ui/use-toast";
 
+// Define the governance article specifically with the BlogPost type
 const governanceArticle: BlogPost = {
   id: 'ai-consciousness-governance',
   title: 'AI Consciousness and Global Governance: Ethical Frameworks for an Emerging Reality',
@@ -118,6 +120,7 @@ const Blog = () => {
     return matchesSearch && matchesCategory;
   }) as BlogPost[];
 
+  // Explicitly cast BLOG_POSTS to BlogPost[] when creating featuredPosts
   const featuredPosts = [...BLOG_POSTS]
     .filter(post => post.featured || post.id === 'ai-consciousness-governance')
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())

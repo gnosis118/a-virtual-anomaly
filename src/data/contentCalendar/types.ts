@@ -1,5 +1,5 @@
 
-import { BlogPost } from '@/types/blog';
+import type { BlogPost } from '@/types/blog';
 
 export interface ScheduledPost {
   id: string | number;

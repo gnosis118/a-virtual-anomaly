@@ -10,7 +10,7 @@ import PastArticlesSection from '@/components/blog/PastArticlesSection';
 import CategoryFilter from '@/components/blog/CategoryFilter';
 import ContentCalendar from '@/components/blog/ContentCalendar';
 import { Separator } from "@/components/ui/separator";
-import { BlogPost } from '@/types/blog';
+import type { BlogPost } from '@/types/blog';
 import { 
   addConsciousnessMeasurementArticle, 
   addMachineLearningArticle,
@@ -38,11 +38,13 @@ const governanceArticle: BlogPost = {
   image: 'https://images.unsplash.com/photo-1577375729152-4c8b5fcda381?q=80&w=2940&auto=format&fit=crop'
 };
 
+// Check if the governance article already exists in BLOG_POSTS
 const articleExists = BLOG_POSTS.some(post => 
   post.id === 'ai-consciousness-governance' || 
   (typeof post.id === 'string' && post.id.includes('governance'))
 );
 
+// Add the governance article if it doesn't exist
 if (!articleExists) {
   BLOG_POSTS.unshift(governanceArticle);
 }

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -10,7 +9,6 @@ import PastArticlesSection from '@/components/blog/PastArticlesSection';
 import CategoryFilter from '@/components/blog/CategoryFilter';
 import ContentCalendar from '@/components/blog/ContentCalendar';
 import { Separator } from "@/components/ui/separator";
-import { BlogPost } from '@/types/blog';
 import { 
   addConsciousnessMeasurementArticle, 
   addMachineLearningArticle,
@@ -23,8 +21,7 @@ import {
 } from '@/components/blog/scheduled-posts-handler';
 import { toast } from "@/components/ui/use-toast";
 
-// Define the governance article specifically with the BlogPost type
-const governanceArticle: BlogPost = {
+const governanceArticle = {
   id: 'ai-consciousness-governance',
   title: 'AI Consciousness and Global Governance: Ethical Frameworks for an Emerging Reality',
   excerpt: 'As AI systems grow increasingly sophisticated, establishing global governance frameworks for potentially conscious AI becomes a crucial ethical imperative.',
@@ -39,13 +36,11 @@ const governanceArticle: BlogPost = {
   image: 'https://images.unsplash.com/photo-1577375729152-4c8b5fcda381?q=80&w=2940&auto=format&fit=crop'
 };
 
-// Check if the governance article already exists in BLOG_POSTS
 const articleExists = BLOG_POSTS.some(post => 
   post.id === 'ai-consciousness-governance' || 
   (typeof post.id === 'string' && post.id.includes('governance'))
 );
 
-// Add the governance article if it doesn't exist
 if (!articleExists) {
   BLOG_POSTS.unshift(governanceArticle);
 }
@@ -118,13 +113,12 @@ const Blog = () => {
       post.category === selectedCategory;
       
     return matchesSearch && matchesCategory;
-  }) as BlogPost[];
+  });
 
-  // Explicitly cast BLOG_POSTS to BlogPost[] when creating featuredPosts
   const featuredPosts = [...BLOG_POSTS]
     .filter(post => post.featured || post.id === 'ai-consciousness-governance')
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 5) as BlogPost[];
+    .slice(0, 5);
 
   const featuredPostIds = new Set(featuredPosts.map(post => post.id));
   const pastPosts = filteredPosts.filter(post => !featuredPostIds.has(post.id));

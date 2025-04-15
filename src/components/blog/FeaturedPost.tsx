@@ -2,16 +2,15 @@
 import React from 'react';
 import { ArrowRight, Calendar, User, Clock } from 'lucide-react';
 import { slugify } from '@/utils/slugify';
-import { BlogPost } from '@/types/blog';
 
 interface FeaturedPostProps {
-  post: BlogPost;
+  post: any;
 }
 
 const FeaturedPost: React.FC<FeaturedPostProps> = ({ post }) => {
   return (
     <div className="rounded-lg overflow-hidden bg-card border border-border group hover:shadow-md transition-shadow duration-300">
-      <a href={`/blog/${typeof post.id === 'string' ? post.id : slugify(post.title)}`}>
+      <a href={`/blog/${slugify(post.title)}`}>
         <div className="overflow-hidden h-48 relative">
           <img 
             src={post.image} 
@@ -30,7 +29,7 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({ post }) => {
       
       <div className="p-4">
         <h3 className="font-semibold mb-2 line-clamp-2 group-hover:text-accent transition-colors">
-          <a href={`/blog/${typeof post.id === 'string' ? post.id : slugify(post.title)}`}>
+          <a href={`/blog/${slugify(post.title)}`}>
             {post.title}
           </a>
         </h3>
@@ -54,7 +53,7 @@ const FeaturedPost: React.FC<FeaturedPostProps> = ({ post }) => {
           {post.excerpt}
         </p>
         
-        <a href={`/blog/${typeof post.id === 'string' ? post.id : slugify(post.title)}`} className="text-accent text-xs font-medium inline-flex items-center hover:underline">
+        <a href={`/blog/${slugify(post.title)}`} className="text-accent text-xs font-medium inline-flex items-center hover:underline">
           Read more
           <ArrowRight size={14} className="ml-1 group-hover:translate-x-1 transition-transform" />
         </a>

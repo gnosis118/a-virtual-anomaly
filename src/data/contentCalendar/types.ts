@@ -1,5 +1,5 @@
 
-import type { BlogPost } from '@/types/blog';
+import { BlogPost } from '@/types/blog';
 
 export interface ScheduledPost {
   id: string | number;
@@ -9,15 +9,14 @@ export interface ScheduledPost {
   author: string;
   category: string;
   tags: string;
-  publishDate: Date;
+  publishDate: Date; // Frontend representation uses camelCase
   status: 'draft' | 'scheduled' | 'published';
-  image_url?: string;
+  image_url?: string; // Explicitly defined as optional
 }
 
 // Convert a ScheduledPost to a BlogPost
 export function convertToBlogPost(scheduledPost: ScheduledPost, imageUrl: string): Partial<BlogPost> {
   return {
-    id: scheduledPost.id,
     title: scheduledPost.title,
     excerpt: scheduledPost.excerpt,
     content: scheduledPost.content || '',
@@ -30,7 +29,7 @@ export function convertToBlogPost(scheduledPost: ScheduledPost, imageUrl: string
       day: 'numeric',
       year: 'numeric'
     }),
-    readTime: '20 min read',
+    readTime: '20 min read', // Placeholder, will be calculated based on content length
     views: 0,
     featured: false
   };

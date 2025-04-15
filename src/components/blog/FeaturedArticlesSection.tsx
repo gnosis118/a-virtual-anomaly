@@ -1,12 +1,10 @@
-
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import FeaturedPost from '@/components/blog/FeaturedPost';
 import { slugify } from '@/utils/slugify';
-import { BlogPost } from '@/types/blog';
 
 interface FeaturedArticlesSectionProps {
-  posts: BlogPost[];
+  posts: any[];
 }
 
 const FeaturedArticlesSection: React.FC<FeaturedArticlesSectionProps> = ({ posts }) => {
@@ -76,7 +74,7 @@ const FeaturedArticlesSection: React.FC<FeaturedArticlesSectionProps> = ({ posts
       {otherFeatured.length > 0 && (
         <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
           {otherFeatured.map(post => (
-            <FeaturedPost key={typeof post.id === 'string' ? post.id : post.id.toString()} post={post} />
+            <FeaturedPost key={post.id} post={post} />
           ))}
         </div>
       )}

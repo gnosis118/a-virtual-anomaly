@@ -1,6 +1,4 @@
-
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import Layout from '@/components/Layout';
 import PageHeader from '@/components/PageHeader';
@@ -27,7 +25,6 @@ export interface DiscussionThread {
 
 const AIDiscussion: React.FC = () => {
   const { user } = useAuth();
-  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<string>("latest");
   const [threads, setThreads] = useState<DiscussionThread[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -40,24 +37,26 @@ const AIDiscussion: React.FC = () => {
     try {
       setLoading(true);
       
-      let query = supabase
+      const { data: threadsData, error } = await supabase
         .from('discussion_threads')
         .select(`
-          *,
-          profiles:user_id(username)
+          id,
+          title,
+          content,
+          user_id,
+          created_at,
+          updated_at,
+          likes,
+          replies_count,
+          tags,
+          profiles:user_id (username)
         `)
-        .order('created_at', { ascending: false });
-        
-      if (activeTab === 'popular') {
-        query = query.order('likes', { ascending: false });
-      }
-      
-      const { data, error } = await query;
+        .order(activeTab === 'popular' ? 'likes' : 'created_at', { ascending: false });
       
       if (error) throw error;
       
-      if (data) {
-        const formattedThreads = data.map(thread => ({
+      if (threadsData) {
+        const formattedThreads: DiscussionThread[] = threadsData.map(thread => ({
           id: thread.id,
           title: thread.title,
           content: thread.content,
@@ -82,21 +81,18 @@ const AIDiscussion: React.FC = () => {
     if (!user) return;
     
     try {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('discussion_threads')
         .insert({
           title: newThread.title,
           content: newThread.content,
           user_id: user.id,
           tags: newThread.tags
-        })
-        .select();
+        });
         
       if (error) throw error;
       
-      if (data) {
-        await fetchThreads();
-      }
+      await fetchThreads();
     } catch (error) {
       console.error('Error creating discussion thread:', error);
     }

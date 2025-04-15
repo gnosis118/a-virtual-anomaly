@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import Layout from '@/components/Layout';
@@ -49,7 +50,7 @@ const AIDiscussion: React.FC = () => {
           likes,
           replies_count,
           tags,
-          profiles:user_id (username)
+          profiles(username)
         `)
         .order(activeTab === 'popular' ? 'likes' : 'created_at', { ascending: false });
       

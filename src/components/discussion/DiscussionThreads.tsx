@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
@@ -37,25 +38,33 @@ const DiscussionThreads: React.FC<DiscussionThreadsProps> = ({ threads, onRefres
         .single();
 
       if (existingLike) {
+        // User already liked the thread, so unlike it
         await supabase
           .from('thread_likes')
           .delete()
           .eq('thread_id', threadId)
           .eq('user_id', user.id);
 
-        await supabase
+        // Update the like count (decrement)
+        const { error } = await supabase
           .from('discussion_threads')
-          .update({ likes: await supabase.rpc('decrement', { x: 1 }) })
+          .update({ likes: supabase.rpc('decrement', { x: 1 }) })
           .eq('id', threadId);
+          
+        if (error) throw error;
       } else {
+        // User hasn't liked the thread, so like it
         await supabase
           .from('thread_likes')
           .insert({ thread_id: threadId, user_id: user.id });
 
-        await supabase
+        // Update the like count (increment)
+        const { error } = await supabase
           .from('discussion_threads')
-          .update({ likes: await supabase.rpc('increment', { x: 1 }) })
+          .update({ likes: supabase.rpc('increment', { x: 1 }) })
           .eq('id', threadId);
+          
+        if (error) throw error;
       }
 
       onRefresh();

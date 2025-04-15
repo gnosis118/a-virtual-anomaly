@@ -48,7 +48,7 @@ const DiscussionThreadPage: React.FC = () => {
         .from('discussion_threads')
         .select(`
           *,
-          profiles:user_id(username)
+          profiles(username)
         `)
         .eq('id', id)
         .single();
@@ -88,7 +88,7 @@ const DiscussionThreadPage: React.FC = () => {
         .from('thread_replies')
         .select(`
           *,
-          profiles:user_id(username)
+          profiles(username)
         `)
         .eq('thread_id', id)
         .order('created_at', { ascending: true });
@@ -149,10 +149,14 @@ const DiscussionThreadPage: React.FC = () => {
       if (error) throw error;
       
       // Update the reply count on the thread
-      await supabase
+      const { error: updateError } = await supabase
         .from('discussion_threads')
-        .update({ replies_count: supabase.rpc('increment', { x: 1 }) })
+        .update({ 
+          replies_count: supabase.rpc('increment', { x: 1 }) 
+        })
         .eq('id', id);
+        
+      if (updateError) throw updateError;
         
       // Refresh the thread and replies
       fetchThreadDetails();

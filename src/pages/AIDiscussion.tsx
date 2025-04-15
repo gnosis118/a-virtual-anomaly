@@ -38,6 +38,7 @@ const AIDiscussion: React.FC = () => {
     try {
       setLoading(true);
       
+      // Join with profiles table to get author name
       const { data: threadsData, error } = await supabase
         .from('discussion_threads')
         .select(`
@@ -50,7 +51,7 @@ const AIDiscussion: React.FC = () => {
           likes,
           replies_count,
           tags,
-          profiles(username)
+          profiles!discussion_threads_user_id_fkey(username)
         `)
         .order(activeTab === 'popular' ? 'likes' : 'created_at', { ascending: false });
       

@@ -38,7 +38,7 @@ const AIDiscussion: React.FC = () => {
     try {
       setLoading(true);
       
-      // Join with profiles table to get author name
+      // Query threads without referencing the profiles relation directly
       const { data: threadsData, error } = await supabase
         .from('discussion_threads')
         .select(`
@@ -50,26 +50,47 @@ const AIDiscussion: React.FC = () => {
           updated_at,
           likes,
           replies_count,
-          tags,
-          profiles!discussion_threads_user_id_fkey(username)
+          tags
         `)
         .order(activeTab === 'popular' ? 'likes' : 'created_at', { ascending: false });
       
       if (error) throw error;
       
       if (threadsData) {
-        const formattedThreads: DiscussionThread[] = threadsData.map(thread => ({
-          id: thread.id,
-          title: thread.title,
-          content: thread.content,
-          user_id: thread.user_id,
-          author_name: thread.profiles?.username || 'Anonymous',
-          created_at: thread.created_at,
-          updated_at: thread.updated_at,
-          likes: thread.likes || 0,
-          replies_count: thread.replies_count || 0,
-          tags: thread.tags || []
+        // For each thread, get author information separately
+        const formattedThreads: DiscussionThread[] = await Promise.all(threadsData.map(async thread => {
+          // Default author name
+          let authorName = 'Anonymous';
+          
+          // Try to get author name from profiles
+          try {
+            const { data: profileData } = await supabase
+              .from('profiles')
+              .select('username')
+              .eq('id', thread.user_id)
+              .single();
+              
+            if (profileData?.username) {
+              authorName = profileData.username;
+            }
+          } catch (e) {
+            console.error('Error fetching author name:', e);
+          }
+          
+          return {
+            id: thread.id,
+            title: thread.title,
+            content: thread.content,
+            user_id: thread.user_id,
+            author_name: authorName,
+            created_at: thread.created_at,
+            updated_at: thread.updated_at,
+            likes: thread.likes || 0,
+            replies_count: thread.replies_count || 0,
+            tags: thread.tags || []
+          };
         }));
+        
         setThreads(formattedThreads);
       }
     } catch (error) {

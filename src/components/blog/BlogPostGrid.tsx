@@ -42,6 +42,17 @@ const BlogPostGrid: React.FC<BlogPostGridProps> = ({
     );
   }
 
+  // Helper function to get the proper URL for an article
+  const getArticleUrl = (post: any) => {
+    if (typeof post.id === 'string') {
+      return `/blog/${post.id}`;
+    } else if (post.id === 999) {
+      return `/blog/april2`;
+    } else {
+      return `/blog/${slugify(post.title)}`;
+    }
+  };
+
   return (
     <div>
       <h2 className="text-2xl font-bold mb-6">All Articles</h2>
@@ -83,7 +94,7 @@ const BlogPostGrid: React.FC<BlogPostGridProps> = ({
                 {post.excerpt}
               </p>
               <a
-                href={typeof post.id === 'string' ? `/blog/${post.id}` : `/blog/${slugify(post.title)}`}
+                href={getArticleUrl(post)}
                 className="inline-flex items-center text-sm text-accent font-medium hover:text-accent/80 transition-colors"
               >
                 Read More

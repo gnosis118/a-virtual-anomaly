@@ -14,24 +14,43 @@ interface ArticleSelectorProps {
 }
 
 const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
-  // Special case for AI Consciousness and Global Governance
-  if (id === "ai-consciousness-governance") {
-    return <AIConsciousnessGovernanceArticle />;
+  // Handle special cases by ID
+  if (typeof id === 'string') {
+    // Special case for AI Consciousness and Global Governance
+    if (id === "ai-consciousness-governance") {
+      return <AIConsciousnessGovernanceArticle />;
+    }
+
+    // Special case for AI Emotional Frontier
+    if (id === "ai-emotional-frontier") {
+      return <AIEmotionalFrontierArticle />;
+    }
+
+    // Special case for Turing Test article
+    if (id === "turing-test") {
+      return <TuringTestArticle />;
+    }
+
+    // Special case for April 2nd article
+    if (id === "april2" || id === "april-2") {
+      return <EmotionalLandscapeArticle />;
+    }
   }
 
-  // Special case for AI Emotional Frontier
-  if (id === "ai-emotional-frontier") {
-    return <AIEmotionalFrontierArticle />;
-  }
-
-  // Special case for Turing Test article
-  if (id === "turing-test") {
-    return <TuringTestArticle />;
-  }
-
-  // Special case for April 2nd article
-  if (id === "april2" || id === "april-2") {
-    return <EmotionalLandscapeArticle />;
+  // Handle special cases by numeric ID
+  if (typeof id === 'number') {
+    switch (id) {
+      case 1:
+        return <DefaultArticleState title="Introduction to A Virtual Anomaly" />;
+      case 2:
+        return <RoleOfEthicsArticle />;
+      case 3:
+        return <AIImpactArticle />;
+      case 4:
+        return <AIEmotionalFrontierArticle />;
+      case 7:
+        return <TuringTestArticle />;
+    }
   }
 
   // Match by title as fallback

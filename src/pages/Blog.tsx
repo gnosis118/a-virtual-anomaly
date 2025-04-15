@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -21,6 +22,7 @@ import {
 } from '@/components/blog/scheduled-posts-handler';
 import { toast } from "@/components/ui/use-toast";
 
+// Ensure the AI Consciousness and Governance article is included in blog posts
 const governanceArticle = {
   id: 'ai-consciousness-governance',
   title: 'AI Consciousness and Global Governance: Ethical Frameworks for an Emerging Reality',
@@ -36,11 +38,13 @@ const governanceArticle = {
   image: 'https://images.unsplash.com/photo-1577375729152-4c8b5fcda381?q=80&w=2940&auto=format&fit=crop'
 };
 
+// Check if the governance article already exists
 const articleExists = BLOG_POSTS.some(post => 
   post.id === 'ai-consciousness-governance' || 
   (typeof post.id === 'string' && post.id.includes('governance'))
 );
 
+// Add it if it doesn't exist
 if (!articleExists) {
   BLOG_POSTS.unshift(governanceArticle);
 }
@@ -53,6 +57,7 @@ const Blog = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
+  const [initialLoadDone, setInitialLoadDone] = useState(false);
   const postsPerPage = 6;
   
   useEffect(() => {
@@ -61,41 +66,52 @@ const Blog = () => {
     }
     
     const initializeArticles = async () => {
-      await addConsciousnessMeasurementArticle();
-      await addMachineLearningArticle();
-      await addHistoricalPerspectivesArticle();
-      await addAIConsciousnessGovernanceArticle();
-      
-      const aiGovGenerated = await generateAIConsciousnessGovernanceContent();
-      if (aiGovGenerated) {
-        toast({
-          title: "AI Governance Article Published",
-          description: "AI Consciousness and Global Governance article has been generated and published.",
-        });
-      }
-      
-      const generated = await generateConsciousnessMeasurementContent();
-      if (generated) {
-        toast({
-          title: "Article Generated",
-          description: "Measuring Consciousness article has been generated and published.",
-        });
-      }
-      
-      const mlGenerated = await generateMachineLearningContent();
-      if (mlGenerated) {
-        toast({
-          title: "Machine Learning Article Generated",
-          description: "The Evolution of Machine Learning article has been generated and scheduled.",
-        });
-      }
-      
-      const historyGenerated = await generateHistoricalPerspectivesContent();
-      if (historyGenerated) {
-        toast({
-          title: "Historical Perspectives Article Generated",
-          description: "Historical Perspectives on Non-Human Rights article has been generated and scheduled.",
-        });
+      try {
+        // Add articles to the database if they don't exist
+        await addAIConsciousnessGovernanceArticle();
+        await addConsciousnessMeasurementArticle();
+        await addMachineLearningArticle();
+        await addHistoricalPerspectivesArticle();
+        
+        // Generate content for articles
+        const aiGovGenerated = await generateAIConsciousnessGovernanceContent();
+        if (aiGovGenerated) {
+          toast({
+            title: "AI Governance Article Published",
+            description: "AI Consciousness and Global Governance article has been generated and published.",
+          });
+        }
+        
+        const generated = await generateConsciousnessMeasurementContent();
+        if (generated) {
+          toast({
+            title: "Article Generated",
+            description: "Measuring Consciousness article has been generated and published.",
+          });
+        }
+        
+        const mlGenerated = await generateMachineLearningContent();
+        if (mlGenerated) {
+          toast({
+            title: "Machine Learning Article Generated",
+            description: "The Evolution of Machine Learning article has been generated and scheduled.",
+          });
+        }
+        
+        const historyGenerated = await generateHistoricalPerspectivesContent();
+        if (historyGenerated) {
+          toast({
+            title: "Historical Perspectives Article Generated",
+            description: "Historical Perspectives on Non-Human Rights article has been generated and scheduled.",
+          });
+        }
+        
+        // Mark initial load as complete
+        setInitialLoadDone(true);
+      } catch (error) {
+        console.error("Error initializing articles:", error);
+        // Even if there's an error, mark initial load as done
+        setInitialLoadDone(true);
       }
     };
     
@@ -115,6 +131,7 @@ const Blog = () => {
     return matchesSearch && matchesCategory;
   });
 
+  // Get featured posts, ensuring the governance article is included
   const featuredPosts = [...BLOG_POSTS]
     .filter(post => post.featured || post.id === 'ai-consciousness-governance')
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -138,6 +155,21 @@ const Blog = () => {
     setSelectedCategory("all");
     setCurrentPage(1);
   };
+
+  if (!initialLoadDone) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <div className="flex-grow flex items-center justify-center">
+          <div className="text-center">
+            <div className="w-16 h-16 border-t-4 border-accent border-solid rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-lg">Loading blog content...</p>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col">

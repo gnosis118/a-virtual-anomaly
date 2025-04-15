@@ -46,14 +46,15 @@ const DiscussionThreads: React.FC<DiscussionThreadsProps> = ({ threads, onRefres
           .eq('user_id', user.id);
 
         // Update the like count (decrement)
-        await supabase.rpc('decrement', { x: 1 })
-          .then(async (result) => {
-            if (result.error) throw result.error;
-            await supabase
-              .from('discussion_threads')
-              .update({ likes: result.data })
-              .eq('id', threadId);
-          });
+        const { data: decrementResult, error: decrementError } = await supabase.rpc('decrement', { x: 1 });
+        if (decrementError) throw decrementError;
+        
+        const { error: updateError } = await supabase
+          .from('discussion_threads')
+          .update({ likes: decrementResult })
+          .eq('id', threadId);
+          
+        if (updateError) throw updateError;
       } else {
         // User hasn't liked the thread, so like it
         await supabase
@@ -61,14 +62,15 @@ const DiscussionThreads: React.FC<DiscussionThreadsProps> = ({ threads, onRefres
           .insert({ thread_id: threadId, user_id: user.id });
 
         // Update the like count (increment)
-        await supabase.rpc('increment', { x: 1 })
-          .then(async (result) => {
-            if (result.error) throw result.error;
-            await supabase
-              .from('discussion_threads')
-              .update({ likes: result.data })
-              .eq('id', threadId);
-          });
+        const { data: incrementResult, error: incrementError } = await supabase.rpc('increment', { x: 1 });
+        if (incrementError) throw incrementError;
+        
+        const { error: updateError } = await supabase
+          .from('discussion_threads')
+          .update({ likes: incrementResult })
+          .eq('id', threadId);
+          
+        if (updateError) throw updateError;
       }
 
       onRefresh();

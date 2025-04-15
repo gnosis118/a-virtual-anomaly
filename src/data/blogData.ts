@@ -1,4 +1,3 @@
-
 // Add the import for the governance article at the top of the file
 import { slugify } from '@/utils/slugify';
 

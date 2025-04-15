@@ -1,37 +1,23 @@
+
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { BLOG_POSTS } from '@/data/blogData';
 import AprilSecondPost from '@/components/blog/AprilSecondPost';
 import RegularBlogPost from '@/components/blog/RegularBlogPost';
-import { slugify } from '@/utils/slugify';
 
 const BlogPost = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const postId = parseInt(id || '1');
   
-  // Special case IDs
-  const specialIds = ["april2", "april-2", "ai-consciousness-governance", "turing-test", "ai-emotional-frontier"];
-  
-  // First, check if it's a special ID case
-  let post = specialIds.includes(id || '') ? 
-    BLOG_POSTS.find(post => post.id === id) : null;
-  
-  // If not a special ID, try to find post by numeric ID
-  if (!post && !isNaN(Number(id))) {
-    const numericId = parseInt(id || '1');
-    post = BLOG_POSTS.find(post => post.id === numericId);
-  }
-  
-  // If still not found, try to find by slug
-  if (!post && id) {
-    post = BLOG_POSTS.find(post => slugify(post.title) === id);
-  }
+  // Find the blog post by ID
+  const post = BLOG_POSTS.find(post => post.id === postId);
   
   useEffect(() => {
     window.scrollTo(0, 0);
     
     // If post not found and not a special ID, redirect to blog
-    if (!post && !specialIds.includes(id || '')) {
+    if (!post && id !== "april2" && id !== "april-2") {
       navigate('/blog');
       return;
     }
@@ -49,17 +35,8 @@ const BlogPost = () => {
         // Keep using post.image for consistency
         document.querySelector('meta[property="og:image"]')?.setAttribute('content', post.image);
         document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', post.image);
-      } 
-      // Special case for AI Consciousness and Global Governance article
-      else if (post.id === 'ai-consciousness-governance') {
-        document.title = `${post.title} | Virtual Anomaly`;
-        document.querySelector('meta[property="og:title"]')?.setAttribute('content', post.title);
-        document.querySelector('meta[property="og:description"]')?.setAttribute('content', post.excerpt);
-        document.querySelector('meta[property="og:image"]')?.setAttribute('content', post.image);
-        document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', post.image);
-      }
-      // Regular posts - use the post data
-      else {
+      } else {
+        // Regular posts - use the post data
         document.title = `${post.title} | Virtual Anomaly`;
         document.querySelector('meta[property="og:title"]')?.setAttribute('content', post.title);
         document.querySelector('meta[property="og:description"]')?.setAttribute('content', post.excerpt);
@@ -90,14 +67,6 @@ const BlogPost = () => {
   // Special case for April 2nd post
   if (!post && (id === "april2" || id === "april-2")) {
     return <AprilSecondPost id={id} />;
-  }
-  
-  // Special case for AI Consciousness and Governance article
-  if (id === "ai-consciousness-governance") {
-    const govPost = BLOG_POSTS.find(p => p.id === 'ai-consciousness-governance');
-    if (govPost) {
-      return <RegularBlogPost post={govPost} posts={BLOG_POSTS} />;
-    }
   }
   
   // If post not found, return null (redirection will happen)

@@ -26,21 +26,8 @@ export async function generateArticle(supabaseClient, postId) {
       
       let defaultPostData;
       
-      // For AI Consciousness and Governance post
-      if (postId === "ai-consciousness-governance") {
-        defaultPostData = {
-          id: "ai-consciousness-governance",
-          title: "AI Consciousness and Global Governance: Ethical Frameworks for an Emerging Reality",
-          excerpt: "As AI systems grow increasingly sophisticated, establishing global governance frameworks for potentially conscious AI becomes a crucial ethical imperative.",
-          author: "Gavin Clay",
-          category: "Policy",
-          tags: "consciousness,governance,ethics,global-policy,artificial-intelligence",
-          status: "scheduled",
-          publishdate: '2024-04-15'
-        };
-      }
       // For April 4th post, we'll create the Measuring Consciousness article
-      else if (postId === "april4") {
+      if (postId === "april4") {
         defaultPostData = {
           id: "april4",
           title: "Measuring Consciousness: Quantitative Approaches",

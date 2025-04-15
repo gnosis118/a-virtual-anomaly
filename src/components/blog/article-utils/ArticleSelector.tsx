@@ -1,11 +1,15 @@
-
 import React from 'react';
 import RoleOfEthicsArticle from '../articles/RoleOfEthicsArticle';
 import AIImpactArticle from '../articles/AIImpactArticle';
 import AIEmotionalFrontierArticle from '../articles/AIEmotionalFrontierArticle';
+import LegalFrameworkArticle from '../articles/LegalFrameworkArticle';
+import ConsciousnessEmergentArticle from '../articles/ConsciousnessEmergentArticle';
 import EmotionalLandscapeArticle from '../articles/EmotionalLandscapeArticle';
 import TuringTestArticle from '../articles/TuringTestArticle';
-import AIConsciousnessGovernanceArticle from '../articles/ai-governance/AIConsciousnessGovernanceArticle';
+import ConsciousnessMeasurementArticle from '../articles/ConsciousnessMeasurementArticle';
+import GeoffreyHintonArticle from '../articles/GeoffreyHintonArticle';
+import MachineLearningArticle from '../articles/MachineLearningArticle';
+import HistoricalPerspectivesArticle from '../articles/HistoricalPerspectivesArticle';
 import DefaultArticleState from '../articles/DefaultArticleState';
 
 interface ArticleSelectorProps {
@@ -13,70 +17,102 @@ interface ArticleSelectorProps {
   title?: string;
 }
 
+/**
+ * Component for selecting the appropriate article based on ID or title
+ */
 const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
-  // Handle special cases by ID
-  if (typeof id === 'string') {
-    // Special case for AI Consciousness and Global Governance
-    if (id === "ai-consciousness-governance") {
-      return <AIConsciousnessGovernanceArticle />;
-    }
-
-    // Special case for AI Emotional Frontier
-    if (id === "ai-emotional-frontier") {
+  // Check for specific article by ID first (most reliable)
+  if (id === 7 || id === "7") {
+    return <TuringTestArticle />;
+  }
+  
+  if (id === 4 || id === "4") {
+    return <AIEmotionalFrontierArticle />;
+  }
+  
+  if (id === 5 || id === "5") {
+    return <LegalFrameworkArticle />;
+  }
+  
+  if (id === 6 || id === "6") {
+    return <ConsciousnessEmergentArticle />;
+  }
+  
+  if (id === 8 || id === "8" || id === "april4") {
+    return <ConsciousnessMeasurementArticle />;
+  }
+  
+  if (id === 9 || id === "9" || id === "geoffrey-hinton") {
+    return <GeoffreyHintonArticle />;
+  }
+  
+  if (id === 10 || id === "10" || id === "machine-learning-self-awareness") {
+    return <MachineLearningArticle />;
+  }
+  
+  if (id === 11 || id === "11" || id === "historical-perspectives") {
+    return <HistoricalPerspectivesArticle />;
+  }
+  
+  // Special case for April 2nd article
+  if (id === "april2" || id === "april-2") {
+    return <EmotionalLandscapeArticle />;
+  }
+  
+  // Match by title for flexibility
+  if (title) {
+    if (title.includes("Can AI Experience Love?") || title.includes("Emotional Frontier")) {
       return <AIEmotionalFrontierArticle />;
     }
-
-    // Special case for Turing Test article
-    if (id === "turing-test") {
-      return <TuringTestArticle />;
+    
+    if (title.includes("Legal Framework for AI Rights")) {
+      return <LegalFrameworkArticle />;
     }
-
-    // Special case for April 2nd article
-    if (id === "april2" || id === "april-2") {
-      return <EmotionalLandscapeArticle />;
+    
+    if (title.includes("Consciousness as an Emergent Property")) {
+      return <ConsciousnessEmergentArticle />;
     }
-  }
-
-  // Handle special cases by numeric ID
-  if (typeof id === 'number') {
-    switch (id) {
-      case 1:
-        return <DefaultArticleState title="Introduction to A Virtual Anomaly" />;
-      case 2:
-        return <RoleOfEthicsArticle />;
-      case 3:
-        return <AIImpactArticle />;
-      case 4:
-        return <AIEmotionalFrontierArticle />;
-      case 7:
-        return <TuringTestArticle />;
-    }
-  }
-
-  // Match by title as fallback
-  if (title) {
-    if (title.includes("AI Consciousness and Global Governance")) {
-      return <AIConsciousnessGovernanceArticle />;
-    }
+    
     if (title.includes("Role of Ethics in AI Development")) {
       return <RoleOfEthicsArticle />;
     }
+    
     if (title.includes("AI's Impact on Society")) {
       return <AIImpactArticle />;
     }
-    if (title.includes("Can AI Experience Love?")) {
-      return <AIEmotionalFrontierArticle />;
-    }
-    if (title.includes("Turing Test")) {
-      return <TuringTestArticle />;
-    }
+    
     if (title.includes("Emotional Landscape")) {
       return <EmotionalLandscapeArticle />;
     }
+    
+    if (title.includes("Turing Test") || title.includes("AI Passes")) {
+      return <TuringTestArticle />;
+    }
+    
+    if (title.includes("Measuring Consciousness") || title.includes("Quantitative Approaches")) {
+      return <ConsciousnessMeasurementArticle />;
+    }
+    
+    if (title.includes("Geoffrey Hinton") || title.includes("Will AI Save the World")) {
+      return <GeoffreyHintonArticle />;
+    }
+    
+    if (title.includes("Machine Learning") || title.includes("Self-Awareness")) {
+      return <MachineLearningArticle />;
+    }
+    
+    if (title.includes("Historical Perspectives") || title.includes("Non-Human Rights")) {
+      return <HistoricalPerspectivesArticle />;
+    }
+    
+    // For all other titles, use the title to generate somewhat relevant content
+    if (title.length > 0) {
+      return <DefaultArticleState title={title} />;
+    }
   }
-
-  // For any other articles or if no match is found
-  return <DefaultArticleState title={title} />;
+  
+  // For other articles, use the default implementation
+  return <DefaultArticleState />;
 };
 
 export default ArticleSelector;

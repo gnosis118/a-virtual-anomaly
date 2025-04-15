@@ -1,69 +1,7 @@
-import { supabase } from "@/integrations/supabase/client";
 
-// Function to generate AI Consciousness and Governance article content
-export async function generateAIConsciousnessGovernanceContent(): Promise<boolean> {
-  try {
-    // Call the Supabase Edge Function to generate the content
-    const { data, error } = await supabase.functions.invoke('generate-blog-content', {
-      body: { postId: 'ai-consciousness-governance' }
-    });
-    
-    if (error) {
-      console.error('Error generating AI Consciousness Governance content:', error);
-      return false;
-    }
-    
-    return data?.success || false;
-  } catch (err) {
-    console.error('Exception generating AI Consciousness Governance content:', err);
-    return false;
-  }
-}
+import { supabase } from '@/integrations/supabase/client';
 
-// Function to add the AI Consciousness and Governance article to the database
-export async function addAIConsciousnessGovernanceArticle(): Promise<boolean> {
-  try {
-    // Check if the article already exists
-    const { data, error } = await supabase
-      .from('scheduled_posts')
-      .select('id')
-      .eq('id', 'ai-consciousness-governance')
-      .maybeSingle();
-    
-    if (!error && data) {
-      // Article already exists, no need to add it
-      return true;
-    }
-    
-    // Add the article to the database
-    const { error: insertError } = await supabase
-      .from('scheduled_posts')
-      .insert({
-        id: 'ai-consciousness-governance',
-        title: 'AI Consciousness and Global Governance: Ethical Frameworks for an Emerging Reality',
-        excerpt: 'As AI systems grow increasingly sophisticated, establishing global governance frameworks for potentially conscious AI becomes a crucial ethical imperative.',
-        author: 'Gavin Clay',
-        category: 'Policy',
-        tags: 'consciousness,governance,ethics,global-policy,artificial-intelligence',
-        publishdate: '2024-04-15',
-        status: 'published',
-        image_url: 'https://images.unsplash.com/photo-1577375729152-4c8b5fcda381?q=80&w=2940&auto=format&fit=crop'
-      });
-    
-    if (insertError) {
-      console.error('Error adding AI Consciousness and Governance article:', insertError);
-      return false;
-    }
-    
-    return true;
-  } catch (err) {
-    console.error('Exception adding AI Consciousness and Governance article:', err);
-    return false;
-  }
-}
-
-// Add other existing functions for April4th, Machine Learning, etc.
-export async function addConsciousnessMeasurementArticle(): Promise<boolean> {
+export const addConsciousnessMeasurementArticle = async () => {
   try {
     // Check if the article already exists
     const { data: existingArticle, error: checkError } = await supabase
@@ -121,9 +59,9 @@ export async function addConsciousnessMeasurementArticle(): Promise<boolean> {
     console.error('Error in addConsciousnessMeasurementArticle:', error);
     return false;
   }
-}
+};
 
-export async function addMachineLearningArticle(): Promise<boolean> {
+export const addMachineLearningArticle = async () => {
   try {
     // Check if the article already exists
     const { data: existingArticle, error: checkError } = await supabase
@@ -148,7 +86,7 @@ export async function addMachineLearningArticle(): Promise<boolean> {
           author: 'Gavin Clay',
           category: 'Technical',
           tags: 'machine-learning,self-awareness,algorithms,artificial-intelligence',
-          publishdate: '2024-07-15',
+          publishdate: '2024-07-15', // Future date for a scheduled post
           status: 'scheduled',
           image_url: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1000&auto=format&fit=crop'
         });
@@ -168,9 +106,9 @@ export async function addMachineLearningArticle(): Promise<boolean> {
     console.error('Error in addMachineLearningArticle:', error);
     return false;
   }
-}
+};
 
-export async function addHistoricalPerspectivesArticle(): Promise<boolean> {
+export const addHistoricalPerspectivesArticle = async () => {
   try {
     // Check if the article already exists
     const { data: existingArticle, error: checkError } = await supabase
@@ -195,7 +133,7 @@ export async function addHistoricalPerspectivesArticle(): Promise<boolean> {
           author: 'Gavin Clay',
           category: 'Legal',
           tags: 'history,rights,non-human-rights,legal,ethics',
-          publishdate: '2024-08-20',
+          publishdate: '2024-08-20', // Future date for a scheduled post
           status: 'scheduled',
           image_url: 'https://images.unsplash.com/photo-1589578527966-fdac0f44566c?q=80&w=1974&auto=format&fit=crop'
         });
@@ -215,9 +153,10 @@ export async function addHistoricalPerspectivesArticle(): Promise<boolean> {
     console.error('Error in addHistoricalPerspectivesArticle:', error);
     return false;
   }
-}
+};
 
-export async function generateConsciousnessMeasurementContent(): Promise<boolean> {
+// Add a function to trigger content generation for the consciousness measurement article
+export const generateConsciousnessMeasurementContent = async () => {
   try {
     console.log('Generating content for the consciousness measurement article');
     
@@ -236,9 +175,10 @@ export async function generateConsciousnessMeasurementContent(): Promise<boolean
     console.error('Error in generateConsciousnessMeasurementContent:', error);
     return false;
   }
-}
+};
 
-export async function generateMachineLearningContent(): Promise<boolean> {
+// Add a function to trigger content generation for the machine learning article
+export const generateMachineLearningContent = async () => {
   try {
     console.log('Generating content for the machine learning article');
     
@@ -257,9 +197,10 @@ export async function generateMachineLearningContent(): Promise<boolean> {
     console.error('Error in generateMachineLearningContent:', error);
     return false;
   }
-}
+};
 
-export async function generateHistoricalPerspectivesContent(): Promise<boolean> {
+// Add a function to trigger content generation for the historical perspectives article
+export const generateHistoricalPerspectivesContent = async () => {
   try {
     console.log('Generating content for the historical perspectives article');
     
@@ -278,4 +219,4 @@ export async function generateHistoricalPerspectivesContent(): Promise<boolean> 
     console.error('Error in generateHistoricalPerspectivesContent:', error);
     return false;
   }
-}
+};

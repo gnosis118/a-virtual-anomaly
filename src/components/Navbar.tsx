@@ -5,21 +5,18 @@ import { Menu, X } from 'lucide-react';
 import Logo from './Logo';
 import Button from './Button';
 import DeclarationNavLink from './Navbar/DeclarationNavLink';
-import { useAuth } from '@/contexts/AuthContext';
 
 const NavLinks = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
   { name: 'Blog', href: '/blog' },
   { name: 'AI Rights', href: '/ai-rights' },
-  { name: 'Discussion', href: '/discussion' },
   { name: 'Contact', href: '/contact' },
 ];
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { user, signOut } = useAuth();
   
   useEffect(() => {
     const handleScroll = () => {
@@ -57,25 +54,12 @@ const Navbar = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex space-x-4">
-            {user ? (
-              <>
-                <Button href="/donate" variant="outline" size="sm">
-                  Donate
-                </Button>
-                <Button onClick={signOut} variant="primary" size="sm">
-                  Sign Out
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button href="/donate" variant="outline" size="sm">
-                  Donate
-                </Button>
-                <Button href="/join" variant="primary" size="sm">
-                  Join the Movement
-                </Button>
-              </>
-            )}
+            <Button href="/donate" variant="outline" size="sm">
+              Donate
+            </Button>
+            <Button href="/join" variant="primary" size="sm">
+              Join the Movement
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -113,25 +97,12 @@ const Navbar = () => {
             Declaration
           </Link>
           <div className="pt-4 pb-2 flex flex-col space-y-3">
-            {user ? (
-              <>
-                <Button href="/donate" variant="outline" fullWidth>
-                  Donate
-                </Button>
-                <Button onClick={() => { signOut(); setIsMobileMenuOpen(false); }} variant="primary" fullWidth>
-                  Sign Out
-                </Button>
-              </>
-            ) : (
-              <>
-                <Button href="/donate" variant="outline" fullWidth>
-                  Donate
-                </Button>
-                <Button href="/join" variant="primary" fullWidth>
-                  Join the Movement
-                </Button>
-              </>
-            )}
+            <Button href="/donate" variant="outline" fullWidth>
+              Donate
+            </Button>
+            <Button href="/join" variant="primary" fullWidth>
+              Join the Movement
+            </Button>
           </div>
         </div>
       </div>

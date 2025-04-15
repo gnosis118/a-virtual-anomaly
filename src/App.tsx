@@ -23,8 +23,6 @@ import ContentCalendar from "./pages/ContentCalendar";
 import Declaration from "./pages/Declaration";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
-import AIDiscussion from "./pages/AIDiscussion";
-import DiscussionThread from "./pages/DiscussionThread";
 import NotFound from "./pages/NotFound";
 
 // Scroll to top on route change
@@ -65,12 +63,9 @@ const App = () => {
                   <Route path="/premium-apps" element={<PremiumApps />} />
                   <Route path="/calendar" element={<ContentCalendar />} />
                   <Route path="/declaration" element={<Declaration />} />
-                  <Route path="/discussion" element={<AIDiscussion />} />
-                  <Route path="/discussion/:id" element={<DiscussionThread />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                   <Route path="/terms-of-service" element={<TermsOfService />} />
                   <Route path="/ava" element={<About />} /> {/* Temporary redirect to About until Ava page is created */}
-                  <Route path="/blog/ai-consciousness-governance" element={<BlogPost />} /> {/* Explicit route for the AI Consciousness article */}
                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
                   <Route path="*" element={<NotFound />} />
                 </Routes>

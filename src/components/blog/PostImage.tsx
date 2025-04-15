@@ -14,33 +14,35 @@ interface PostImageProps {
   src: string;
   alt: string;
   className?: string;
-  priority?: boolean;
+  priority?: boolean; // Added priority prop
 }
 
 const PostImage: React.FC<PostImageProps> = ({ 
   src, 
   alt, 
   className = "w-full h-auto object-cover aspect-video",
-  priority = false
+  priority = false // Default to false
 }) => {
   const [fallbackIndex, setFallbackIndex] = useState(0);
   const [isError, setIsError] = useState(false);
 
   // Function to ensure URLs are absolute (needed for social media sharing)
   const getAbsoluteUrl = (url: string) => {
-    if (!url) return FALLBACK_IMAGES[0];
     if (url.startsWith('http')) return url;
     
-    // Ensure base URL is defined
-    const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'https://virtualanomaly.org';
+    // Assuming we're hosted at virtualanomaly.org
+    const baseUrl = window.location.origin || 'https://virtualanomaly.org';
     return url.startsWith('/') ? `${baseUrl}${url}` : `${baseUrl}/${url}`;
   };
 
   const handleImageError = () => {
     if (fallbackIndex < FALLBACK_IMAGES.length - 1) {
       setFallbackIndex(fallbackIndex + 1);
+      setIsError(true);
+    } else {
+      // If we've gone through all fallbacks, just stay on the last one
+      setIsError(true);
     }
-    setIsError(true);
   };
 
   // If the original source is one of our fallback images already, use it directly
@@ -56,8 +58,7 @@ const PostImage: React.FC<PostImageProps> = ({
       alt={alt} 
       className={className}
       onError={handleImageError}
-      loading={priority ? "eager" : "lazy"}
-      fetchPriority={priority ? "high" : "auto"}
+      loading={priority ? "eager" : "lazy"} // Use priority to determine loading strategy
     />
   );
 };

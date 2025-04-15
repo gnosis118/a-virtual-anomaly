@@ -3,26 +3,9 @@ import React from 'react';
 import Button from './Button';
 import { Calendar, User, ArrowRight } from 'lucide-react';
 import { BLOG_POSTS } from '@/data/blogData';
-import { Link } from 'react-router-dom';
 
-// Use the first 2 blog posts for the homepage section and add the new AI Consciousness article
-const displayedPosts = [
-  ...BLOG_POSTS.slice(0, 2),
-  {
-    id: 'ai-consciousness-governance',
-    title: 'AI Consciousness and Global Governance: Ethical Frameworks for an Emerging Reality',
-    excerpt: 'As AI systems grow increasingly sophisticated, establishing global governance frameworks for potentially conscious AI becomes a crucial ethical imperative.',
-    author: 'Gavin Clay',
-    date: 'April 15, 2024',
-    readTime: '20 min read',
-    views: 0,
-    category: 'Policy',
-    tags: ['consciousness', 'governance', 'ethics', 'global-policy', 'artificial-intelligence'],
-    featured: true,
-    image: 'https://images.unsplash.com/photo-1577375729152-4c8b5fcda381?q=80&w=2940&auto=format&fit=crop',
-    content: ''
-  }
-];
+// Use the first 3 blog posts for the homepage section
+const displayedPosts = BLOG_POSTS.slice(0, 3);
 
 const BlogSection = () => {
   return (
@@ -80,7 +63,7 @@ const BlogSection = () => {
                   {post.excerpt}
                 </p>
                 <Button 
-                  href={typeof post.id === 'string' ? `/blog/${post.id}` : `/blog/${post.id}`} 
+                  href={`/blog/${post.id}`} 
                   variant="ghost" 
                   icon={<ArrowRight size={16} />} 
                   iconPosition="right"

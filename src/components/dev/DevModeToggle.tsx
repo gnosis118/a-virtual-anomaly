@@ -6,6 +6,11 @@ import { Code, Eye } from 'lucide-react';
 
 const DevModeToggle = () => {
   const { isDevMode, toggleDevMode } = useDevMode();
+  
+  // Only show in development environment
+  if (process.env.NODE_ENV !== 'development') {
+    return null;
+  }
 
   return (
     <div className="fixed bottom-4 right-4 z-50">

@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -9,6 +8,7 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import { DevModeProvider } from "@/contexts/DevModeContext";
 import DevModeToggle from "@/components/dev/DevModeToggle";
 import DevPreview from "@/components/dev/DevPreview";
+import CookieConsent from "@/components/CookieConsent";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import Blog from "./pages/Blog";
@@ -25,7 +25,6 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import NotFound from "./pages/NotFound";
 
-// Scroll to top on route change
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   
@@ -37,7 +36,6 @@ const ScrollToTop = () => {
 };
 
 const App = () => {
-  // Create the query client inside the component
   const queryClient = new QueryClient();
   
   return (
@@ -65,12 +63,12 @@ const App = () => {
                   <Route path="/declaration" element={<Declaration />} />
                   <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                   <Route path="/terms-of-service" element={<TermsOfService />} />
-                  <Route path="/ava" element={<About />} /> {/* Temporary redirect to About until Ava page is created */}
-                  {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                  <Route path="/ava" element={<About />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </DevPreview>
               <DevModeToggle />
+              <CookieConsent />
             </BrowserRouter>
           </TooltipProvider>
         </DevModeProvider>

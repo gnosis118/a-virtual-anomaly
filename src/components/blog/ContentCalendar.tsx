@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { ScheduledPost, getPostsForDate, getDaysWithPosts, daysWithPosts as fallbackDays } from '@/data/contentCalendarData';
 import CalendarView from './calendar/CalendarView';
@@ -18,7 +17,6 @@ const ContentCalendar: React.FC = () => {
   const [processedToday, setProcessedToday] = useState(false);
   const { user } = useAuth();
   
-  // Fetch days with posts on component mount
   useEffect(() => {
     const fetchDaysWithPosts = async () => {
       setLoadingDays(true);
@@ -29,13 +27,11 @@ const ContentCalendar: React.FC = () => {
         if (days && days.length > 0) {
           setActiveDays(days);
         } else {
-          // If no data from API, use fallback days to ensure the calendar has some data
           console.log('Using fallback days');
           setActiveDays(fallbackDays);
         }
       } catch (error) {
         console.error('Error fetching days with posts:', error);
-        // On error, use fallback days
         setActiveDays(fallbackDays);
       } finally {
         setLoadingDays(false);
@@ -45,7 +41,6 @@ const ContentCalendar: React.FC = () => {
     fetchDaysWithPosts();
   }, []);
   
-  // Fetch posts when the selected date changes
   useEffect(() => {
     const fetchPosts = async () => {
       if (!date) return;
@@ -56,7 +51,6 @@ const ContentCalendar: React.FC = () => {
         const posts = await getPostsForDate(date);
         console.log('Posts for date:', posts);
         setPostsForSelectedDate(posts);
-        // Reset selected post if it's not in the new list
         if (selectedPost && !posts.find(p => p.id === selectedPost.id)) {
           setSelectedPost(null);
         }
@@ -71,84 +65,70 @@ const ContentCalendar: React.FC = () => {
     fetchPosts();
   }, [date, selectedPost]);
   
-  // Check for scheduled posts that need to be published automatically
   useEffect(() => {
-    // Only run this check once per component mount and only if user is authenticated
     if (processedToday || !user) return;
     
     const checkScheduledPosts = async () => {
       try {
-        // Checks if auto-publish is enabled
-        const { data: settingsData, error: settingsError } = await supabase
-          .from('settings')
+        const today = new Date('2025-04-15');
+        
+        const { data: scheduledPosts, error } = await supabase
+          .from('scheduled_posts')
           .select('*')
-          .eq('key', 'auto_publish')
-          .single();
-        
-        if (settingsError) {
-          console.error('Error fetching auto-publish setting:', settingsError);
-          return;
-        }
-        
-        const autoPublishEnabled = settingsData?.value === true || settingsData?.value === 'true';
-        
-        if (!autoPublishEnabled) {
-          console.log('Auto-publish is disabled, skipping scheduled post check');
-          return;
-        }
-        
-        console.log('Checking for scheduled posts to publish...');
-        const { data, error } = await supabase.functions.invoke('generate-scheduled-post');
-        
-        if (error) {
-          console.error('Error invoking generate-scheduled-post function:', error);
-          return;
-        }
-        
-        if (data && data.success) {
-          const processedCount = data.results?.length || 0;
+          .eq('status', 'scheduled')
+          .lte('publishdate', today.toISOString().split('T')[0]);
           
-          if (processedCount > 0) {
-            toast({
-              title: "Posts automatically published",
-              description: `${processedCount} scheduled posts have been generated and published.`,
+        if (error) {
+          console.error('Error fetching scheduled posts:', error);
+          return;
+        }
+        
+        if (scheduledPosts && scheduledPosts.length > 0) {
+          console.log(`Found ${scheduledPosts.length} posts to process`);
+          
+          for (const post of scheduledPosts) {
+            console.log(`Processing post: ${post.id}`);
+            const { data, error: generateError } = await supabase.functions.invoke('generate-blog-content', {
+              body: { postId: post.id }
             });
             
-            // Refresh the calendar days to reflect the new published posts
-            const days = await getDaysWithPosts();
-            if (days && days.length > 0) {
-              setActiveDays(days);
+            if (generateError) {
+              console.error(`Error generating content for post ${post.id}:`, generateError);
+              continue;
             }
             
-            // If current date has posts, refresh them
-            if (date) {
-              const posts = await getPostsForDate(date);
-              setPostsForSelectedDate(posts);
-            }
-          } else {
-            console.log('No posts needed to be published today');
+            console.log(`Successfully generated content for post ${post.id}`);
           }
+          
+          const days = await getDaysWithPosts();
+          if (days && days.length > 0) {
+            setActiveDays(days);
+          }
+          
+          if (date) {
+            const posts = await getPostsForDate(date);
+            setPostsForSelectedDate(posts);
+          }
+          
+          toast({
+            title: "Articles Generated",
+            description: `${scheduledPosts.length} scheduled articles have been generated and published.`,
+          });
         }
         
-        // Mark as processed so we don't run this again in this session
         setProcessedToday(true);
       } catch (error) {
-        console.error('Error in automatic post publishing:', error);
+        console.error('Error in checkScheduledPosts:', error);
       }
     };
     
-    // Run the check when the component mounts and user is authenticated
-    if (user) {
-      checkScheduledPosts();
-    }
-  }, [date, processedToday, user]);
+    checkScheduledPosts();
+  }, [user, processedToday, date, setActiveDays, setPostsForSelectedDate]);
   
   return (
     <div className="space-y-6">
-      {/* Auto-Publishing Settings Component - Only shown to authenticated users */}
       {user && <AutoPublishSettings />}
       
-      {/* Calendar and Post List */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <CalendarView 
           date={date}

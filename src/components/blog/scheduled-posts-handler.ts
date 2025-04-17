@@ -1,4 +1,3 @@
-
 import { supabase } from '@/integrations/supabase/client';
 
 export const addConsciousnessMeasurementArticle = async () => {
@@ -155,7 +154,6 @@ export const addHistoricalPerspectivesArticle = async () => {
   }
 };
 
-// Add a function to trigger content generation for the consciousness measurement article
 export const generateConsciousnessMeasurementContent = async () => {
   try {
     console.log('Generating content for the consciousness measurement article');
@@ -177,7 +175,6 @@ export const generateConsciousnessMeasurementContent = async () => {
   }
 };
 
-// Add a function to trigger content generation for the machine learning article
 export const generateMachineLearningContent = async () => {
   try {
     console.log('Generating content for the machine learning article');
@@ -199,7 +196,6 @@ export const generateMachineLearningContent = async () => {
   }
 };
 
-// Add a function to trigger content generation for the historical perspectives article
 export const generateHistoricalPerspectivesContent = async () => {
   try {
     console.log('Generating content for the historical perspectives article');
@@ -217,6 +213,52 @@ export const generateHistoricalPerspectivesContent = async () => {
     return true;
   } catch (error) {
     console.error('Error in generateHistoricalPerspectivesContent:', error);
+    return false;
+  }
+};
+
+export const generateAllScheduledContent = async () => {
+  try {
+    const today = new Date('2025-04-15'); // Current date in app timeline
+    
+    // Get all scheduled posts up to today
+    const { data: scheduledPosts, error } = await supabase
+      .from('scheduled_posts')
+      .select('*')
+      .eq('status', 'scheduled')
+      .lte('publishdate', today.toISOString().split('T')[0]);
+      
+    if (error) {
+      console.error('Error fetching scheduled posts:', error);
+      return false;
+    }
+    
+    if (!scheduledPosts || scheduledPosts.length === 0) {
+      console.log('No scheduled posts to generate');
+      return true;
+    }
+    
+    console.log(`Found ${scheduledPosts.length} posts to generate`);
+    
+    // Process each post
+    for (const post of scheduledPosts) {
+      console.log(`Generating content for post: ${post.id}`);
+      
+      const { data, error: generateError } = await supabase.functions.invoke('generate-blog-content', {
+        body: { postId: post.id }
+      });
+      
+      if (generateError) {
+        console.error(`Error generating content for post ${post.id}:`, generateError);
+        continue;
+      }
+      
+      console.log(`Successfully generated content for post ${post.id}`);
+    }
+    
+    return true;
+  } catch (error) {
+    console.error('Error in generateAllScheduledContent:', error);
     return false;
   }
 };

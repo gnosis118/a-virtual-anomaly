@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
@@ -14,20 +15,24 @@ interface Profile {
 }
 
 interface Reply {
-  id: number;
+  id: string;  // Changed from number to string to match Supabase data
   content: string;
   created_at: string;
   user_id: string;
+  thread_id: string; // Added to match Supabase data
+  likes: number | null;
   profiles: Profile | null;
 }
 
 interface Thread {
-  id: number;
+  id: string;  // Changed from number to string to match Supabase data
   title: string;
   content: string;
   created_at: string;
   user_id: string;
-  replies_count: number;
+  replies_count: number | null;
+  tags: string[] | null;
+  likes: number | null;
   profiles: Profile | null;
 }
 
@@ -68,8 +73,8 @@ const DiscussionThread = () => {
 
         if (repliesError) throw repliesError;
         
-        setThread(threadData);
-        setReplies(repliesData || []);
+        setThread(threadData as Thread);
+        setReplies(repliesData as Reply[] || []);
         setIsLoading(false);
       } catch (error) {
         console.error('Error fetching thread:', error);
@@ -118,7 +123,7 @@ const DiscussionThread = () => {
       if (error) throw error;
 
       if (data) {
-        setReplies(prev => [...prev, data]);
+        setReplies(prev => [...prev, data as Reply]);
         setReply('');
         
         // Update the replies count

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import RoleOfEthicsArticle from '../articles/RoleOfEthicsArticle';
 import AIImpactArticle from '../articles/AIImpactArticle';
@@ -10,6 +11,7 @@ import ConsciousnessMeasurementArticle from '../articles/ConsciousnessMeasuremen
 import GeoffreyHintonArticle from '../articles/GeoffreyHintonArticle';
 import MachineLearningArticle from '../articles/MachineLearningArticle';
 import HistoricalPerspectivesArticle from '../articles/HistoricalPerspectivesArticle';
+import AIGovernanceArticle from '../articles/AIGovernanceArticle';
 import DefaultArticleState from '../articles/DefaultArticleState';
 
 interface ArticleSelectorProps {
@@ -52,6 +54,10 @@ const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
   
   if (id === 11 || id === "11" || id === "historical-perspectives") {
     return <HistoricalPerspectivesArticle />;
+  }
+  
+  if (id === 12 || id === "12" || id === "ai-governance") {
+    return <AIGovernanceArticle />;
   }
   
   // Special case for April 2nd article
@@ -103,6 +109,10 @@ const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
     
     if (title.includes("Historical Perspectives") || title.includes("Non-Human Rights")) {
       return <HistoricalPerspectivesArticle />;
+    }
+    
+    if (title.includes("AI Consciousness and Global Governance") || title.includes("Global Governance")) {
+      return <AIGovernanceArticle />;
     }
     
     // For all other titles, use the title to generate somewhat relevant content

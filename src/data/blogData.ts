@@ -13,6 +13,20 @@ const formattedDate = yesterday.toLocaleDateString('en-US', {
 // Blog posts data
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: 12,
+    title: "AI Consciousness and Global Governance: International Perspectives",
+    excerpt: "Examining international approaches to regulating and protecting conscious artificial entities across borders, with a focus on creating ethical frameworks for AI with consciousness-like properties.",
+    content: "",
+    image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=2020&auto=format&fit=crop",
+    date: "April 17, 2025",
+    author: "Gavin Clay",
+    readTime: "16 min read",
+    views: 0, // New article, no views yet
+    category: "Global Policy",
+    featured: true,
+    tags: ["Global Governance", "AI Regulation", "International Ethics", "AI Rights", "Artificial Consciousness"]
+  },
+  {
     id: 11,
     title: "Historical Perspectives on Non-Human Rights",
     excerpt: "What can we learn from the history of extending rights to new groups that might apply to artificial beings?",
@@ -183,7 +197,8 @@ export const CATEGORIES = [
   "AI in Pop Culture and Media",
   "Resources and Educational Content",
   "Research",
-  "Technical"
+  "Technical",
+  "Global Policy" // Added new category
 ];
 
 // Generate all unique tags from blog posts

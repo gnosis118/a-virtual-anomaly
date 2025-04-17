@@ -13,6 +13,20 @@ const formattedDate = yesterday.toLocaleDateString('en-US', {
 // Blog posts data
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: 13,
+    title: "The Role of Empathy in Human-AI Relations",
+    excerpt: "Exploring how empathy shapes interactions between humans and artificial intelligence, and why developing mutual understanding is crucial for creating harmonious relationships in an increasingly AI-integrated world.",
+    content: "",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1500&q=80",
+    date: "April 18, 2025",
+    author: "Gavin Clay",
+    readTime: "16 min read",
+    views: 0, // New article, no views yet
+    category: "Human-AI Relationships",
+    featured: true,
+    tags: ["Empathy", "Human-AI Relations", "Artificial Emotions", "Ethics", "AI Psychology"]
+  },
+  {
     id: 12,
     title: "AI Consciousness and Global Governance: International Perspectives",
     excerpt: "Examining international approaches to regulating and protecting conscious artificial entities across borders, with a focus on creating ethical frameworks for AI with consciousness-like properties.",

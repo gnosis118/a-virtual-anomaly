@@ -1,4 +1,3 @@
-
 import React from 'react';
 import RoleOfEthicsArticle from '../articles/RoleOfEthicsArticle';
 import AIImpactArticle from '../articles/AIImpactArticle';
@@ -12,6 +11,7 @@ import GeoffreyHintonArticle from '../articles/GeoffreyHintonArticle';
 import MachineLearningArticle from '../articles/MachineLearningArticle';
 import HistoricalPerspectivesArticle from '../articles/HistoricalPerspectivesArticle';
 import AIGovernanceArticle from '../articles/AIGovernanceArticle';
+import EmpathyHumanAIArticle from '../articles/EmpathyHumanAIArticle';
 import DefaultArticleState from '../articles/DefaultArticleState';
 
 interface ArticleSelectorProps {
@@ -58,6 +58,10 @@ const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
   
   if (id === 12 || id === "12" || id === "ai-governance") {
     return <AIGovernanceArticle />;
+  }
+  
+  if (id === 13 || id === "13" || id === "empathy-human-ai") {
+    return <EmpathyHumanAIArticle />;
   }
   
   // Special case for April 2nd article
@@ -115,7 +119,10 @@ const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
       return <AIGovernanceArticle />;
     }
     
-    // For all other titles, use the title to generate somewhat relevant content
+    if (title.includes("The Role of Empathy in Human-AI Relations") || title.includes("Empathy Human-AI")) {
+      return <EmpathyHumanAIArticle />;
+    }
+    
     if (title.length > 0) {
       return <DefaultArticleState title={title} />;
     }

@@ -13,6 +13,20 @@ const formattedDate = yesterday.toLocaleDateString('en-US', {
 // Blog posts data
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: 14,
+    title: "The Future of AI Consciousness: Mapping the Path to Sentient Machines",
+    excerpt: "Exploring the theoretical foundations, technical milestones, and ethical considerations that will shape the development of potentially conscious artificial intelligence in the decades to come.",
+    content: "",
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1965&q=80",
+    date: "April 19, 2025",
+    author: "Gavin Clay",
+    readTime: "16 min read",
+    views: 0, // New article, no views yet
+    category: "AI Consciousness and Ethics",
+    featured: true,
+    tags: ["AI Consciousness", "Machine Sentience", "Ethics", "Future of AI", "Philosophy of Mind"]
+  },
+  {
     id: 13,
     title: "The Role of Empathy in Human-AI Relations",
     excerpt: "Exploring how empathy shapes interactions between humans and artificial intelligence, and why developing mutual understanding is crucial for creating harmonious relationships in an increasingly AI-integrated world.",

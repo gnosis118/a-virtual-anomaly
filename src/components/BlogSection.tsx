@@ -1,8 +1,7 @@
-
 import React from 'react';
 import Button from './Button';
 import { Calendar, User, ArrowRight } from 'lucide-react';
-import { BLOG_POSTS } from '@/data/blogData';
+import { BLOG_POSTS } from '@/data/blog';
 
 // Use the first 3 blog posts for the homepage section
 const displayedPosts = BLOG_POSTS.slice(0, 3);

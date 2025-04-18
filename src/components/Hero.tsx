@@ -1,8 +1,7 @@
-
 import React from 'react';
 import Button from './Button';
 import { ArrowRight } from 'lucide-react';
-import { BLOG_POSTS } from '@/data/blogData';
+import { BLOG_POSTS } from '@/data/blog';
 
 // Get the most recent blog post
 const latestPost = BLOG_POSTS[0];

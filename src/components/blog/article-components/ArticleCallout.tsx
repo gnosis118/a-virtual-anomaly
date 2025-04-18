@@ -1,31 +1,28 @@
 
-import React, { ReactNode } from 'react';
+import React from 'react';
 
-interface ArticleCalloutProps {
-  title?: string;
-  children: ReactNode;
-  variant?: 'default' | 'accent' | 'muted' | 'info' | 'warning';
+export interface ArticleCalloutProps {
+  children: React.ReactNode;
+  variant?: 'info' | 'warning' | 'success' | 'error';
 }
 
-const ArticleCallout: React.FC<ArticleCalloutProps> = ({ 
-  title, 
-  children, 
-  variant = 'default' 
-}) => {
-  const bgClass = {
-    default: 'bg-muted/30',
-    accent: 'bg-accent/10',
-    muted: 'bg-secondary/10',
-    info: 'bg-blue-500/10',
-    warning: 'bg-amber-500/10'
-  }[variant];
+const ArticleCallout: React.FC<ArticleCalloutProps> = ({ children, variant = 'info' }) => {
+  const getVariantStyles = () => {
+    switch (variant) {
+      case 'warning':
+        return 'bg-yellow-50 border-yellow-200 text-yellow-800';
+      case 'success':
+        return 'bg-green-50 border-green-200 text-green-800';
+      case 'error':
+        return 'bg-red-50 border-red-200 text-red-800';
+      default:
+        return 'bg-blue-50 border-blue-200 text-blue-800';
+    }
+  };
 
   return (
-    <div className={`p-6 rounded-lg my-8 ${bgClass}`}>
-      {title && <h3 className="text-lg font-semibold mb-4">{title}</h3>}
-      <div className="space-y-4">
-        {children}
-      </div>
+    <div className={`my-6 p-4 border-l-4 rounded-r ${getVariantStyles()}`}>
+      {children}
     </div>
   );
 };

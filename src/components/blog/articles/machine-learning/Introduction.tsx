@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ArticleHeader from '../../article-components/ArticleHeader';
 import ArticleSection from '../../article-components/ArticleSection';

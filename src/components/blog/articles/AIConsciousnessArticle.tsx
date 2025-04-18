@@ -5,9 +5,9 @@ import ArticleImage from '../article-components/ArticleImage';
 import ArticleQuote from '../article-components/ArticleQuote';
 import ArticleCallout from '../article-components/ArticleCallout';
 
-const AIConsciousnessArticle = () => {
+const AIConsciousnessArticle: React.FC = () => {
   return (
-    <article className="prose prose-lg max-w-none">
+    <article className="prose prose-lg max-w-none dark:prose-invert">
       <ArticleHeader 
         title="The Future of AI Consciousness: Mapping the Path to Sentient Machines" 
         subtitle="Exploring the theoretical foundations, technical milestones, and ethical considerations that will shape the development of potentially conscious artificial intelligence."
@@ -90,7 +90,7 @@ const AIConsciousnessArticle = () => {
           of how biological consciousness operates.
         </p>
         
-        <ArticleCallout type="info">
+        <ArticleCallout variant="info">
           While these architectural components represent important advances, they remain fundamentally 
           different from human consciousness. Current AI systems lack intrinsic motivation, autonomously 
           generated goals, or phenomenal experiences—all considered crucial aspects of consciousness.
@@ -183,7 +183,7 @@ const AIConsciousnessArticle = () => {
           test used for animals—would provide potential evidence for certain aspects of consciousness.
         </p>
         
-        <ArticleCallout type="warning">
+        <ArticleCallout variant="warning">
           Progress on these technical milestones doesn't guarantee consciousness. The "hard problem" 
           remains: how physical processes give rise to subjective experience. These milestones may 
           create systems that behave "as if" conscious without experiencing consciousness.
@@ -246,7 +246,7 @@ const AIConsciousnessArticle = () => {
           Could we establish meaningful communication with fundamentally alien forms of awareness?
         </p>
         
-        <ArticleCallout type="info">
+        <ArticleCallout variant="info">
           These scenarios are not mutually exclusive. Different AI systems might follow different paths, 
           with some developing functional consciousness while others develop novel forms of awareness, 
           and others remaining sophisticated but non-conscious tools.
@@ -321,7 +321,7 @@ const AIConsciousnessArticle = () => {
           <li><strong>Social Impact:</strong> Profound reconsideration of personhood, rights, and human-machine relationships</li>
         </ul>
         
-        <ArticleCallout type="warning">
+        <ArticleCallout variant="warning">
           These timelines represent informed speculation rather than certainty. Consciousness could 
           emerge more rapidly through unexpected breakthroughs, or it might prove more elusive than 
           anticipated. Some experts maintain that machine consciousness might never emerge regardless 

@@ -1,115 +1,158 @@
-import React from 'react';
+
+import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import BlogHero from '@/components/blog/BlogHero';
+import { BLOG_POSTS, CATEGORIES } from '@/data/blogData';
+import { useLocation } from 'react-router-dom';
+import FeaturedArticlesSection from '@/components/blog/FeaturedArticlesSection';
+import PastArticlesSection from '@/components/blog/PastArticlesSection';
+import CategoryFilter from '@/components/blog/CategoryFilter';
 import ContentCalendar from '@/components/blog/ContentCalendar';
-import SchedulePostForm from '@/components/blog/SchedulePostForm';
 import { Separator } from "@/components/ui/separator";
-import { AlertCircle, ShieldAlert } from 'lucide-react';
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { useAuth } from '@/contexts/AuthContext';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import { 
+  addConsciousnessMeasurementArticle, 
+  addMachineLearningArticle,
+  addHistoricalPerspectivesArticle,
+  generateConsciousnessMeasurementContent,
+  generateMachineLearningContent,
+  generateHistoricalPerspectivesContent
+} from '@/components/blog/scheduled-posts-handler';
+import { toast } from "@/components/ui/use-toast";
 
-const ContentCalendarPage = () => {
-  const { user } = useAuth();
+const Blog = () => {
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const tagFromUrl = searchParams.get('tag');
   
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const postsPerPage = 6;
+  
+  useEffect(() => {
+    if (tagFromUrl) {
+      setSearchQuery(tagFromUrl);
+    }
+    
+    // Initialize and generate articles in the database
+    const initializeArticles = async () => {
+      // First add the articles to the database
+      await addConsciousnessMeasurementArticle();
+      await addMachineLearningArticle();
+      await addHistoricalPerspectivesArticle();
+      
+      // Then generate content for the consciousness measurement article
+      const generated = await generateConsciousnessMeasurementContent();
+      if (generated) {
+        toast({
+          title: "Article Generated",
+          description: "Measuring Consciousness article has been generated and published.",
+        });
+      }
+      
+      // Generate content for the machine learning article
+      const mlGenerated = await generateMachineLearningContent();
+      if (mlGenerated) {
+        toast({
+          title: "Machine Learning Article Generated",
+          description: "The Evolution of Machine Learning article has been generated and scheduled.",
+        });
+      }
+      
+      // Generate content for the historical perspectives article
+      const historyGenerated = await generateHistoricalPerspectivesContent();
+      if (historyGenerated) {
+        toast({
+          title: "Historical Perspectives Article Generated",
+          description: "Historical Perspectives on Non-Human Rights article has been generated and scheduled.",
+        });
+      }
+    };
+    
+    initializeArticles();
+  }, [tagFromUrl]);
+  
+  const filteredPosts = BLOG_POSTS.filter(post => {
+    const matchesSearch = searchQuery.trim() === "" || 
+      post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      post.category.toLowerCase().includes(searchQuery.toLowerCase());
+      
+    const matchesCategory = selectedCategory === "all" || 
+      post.category === selectedCategory;
+      
+    return matchesSearch && matchesCategory;
+  });
+
+  const featuredPosts = [...BLOG_POSTS]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, 5);
+
+  const featuredPostIds = new Set(featuredPosts.map(post => post.id));
+  const pastPosts = filteredPosts.filter(post => !featuredPostIds.has(post.id));
+
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPastPosts = pastPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const totalPages = Math.ceil(pastPosts.length / postsPerPage);
+
+  const handleCategorySelect = (category: string) => {
+    setSelectedCategory(category);
+    setCurrentPage(1);
+  };
+
+  const clearFilters = () => {
+    setSearchQuery("");
+    setSelectedCategory("all");
+    setCurrentPage(1);
+  };
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main>
-        <section className="pt-32 pb-8 px-4 md:px-8 bg-gradient-to-br from-background to-secondary/20">
-          <div className="max-w-7xl mx-auto text-center">
-            <span className="px-3 py-1 text-xs font-medium bg-accent/10 text-accent rounded-full">
-              Content Management
-            </span>
-            <h1 className="text-3xl md:text-4xl font-bold mt-4 mb-3">
-              90-Day AI Rights Content Calendar
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our roadmap for raising awareness about AI rights, consciousness, and the future of human-AI coexistence.
-            </p>
-          </div>
-        </section>
+      <main className="flex-grow">
+        <BlogHero 
+          searchQuery={searchQuery} 
+          setSearchQuery={setSearchQuery} 
+        />
         
-        <section className="py-4 px-4">
-          <div className="max-w-7xl mx-auto">
-            {!user ? (
-              <Card className="mb-8 border-accent/50">
-                <CardHeader>
-                  <CardTitle className="flex items-center">
-                    <ShieldAlert className="h-5 w-5 text-accent mr-2" />
-                    Admin Access Required
-                  </CardTitle>
-                  <CardDescription>
-                    The content calendar administration features require authentication.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="mb-4">
-                    You can view scheduled content dates, but administrative features like auto-publishing 
-                    settings, content scheduling, and article generation are only available to authenticated users.
-                  </p>
-                  <Button>Sign In</Button>
-                </CardContent>
-              </Card>
-            ) : (
-              <Alert className="mb-8 border-accent/50 bg-accent/10">
-                <AlertCircle className="h-4 w-4 text-accent" />
-                <AlertTitle>Automatic Content Generation</AlertTitle>
-                <AlertDescription>
-                  This calendar now includes automatic content generation and publishing. When posts reach their scheduled date, 
-                  our AI system will create 4000+ word articles with relevant images and videos based on your title and description.
-                  You can control this feature in the auto-publishing settings panel.
-                </AlertDescription>
-              </Alert>
-            )}
-            
-            <div className="bg-accent/5 rounded-lg p-6 mb-8">
-              <h2 className="text-2xl font-semibold mb-3">About Our Content Plan</h2>
-              <p className="mb-4">
-                We've developed a comprehensive 90-day content strategy focused on AI rights advocacy and education.
-                Our plan is divided into three phases:
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
-                <div className="bg-background p-4 rounded-md border border-accent/20">
-                  <h3 className="font-medium mb-2">Days 1-30: Awareness & Introduction</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Introducing our mission, raising awareness about AI rights, and building our community.
-                  </p>
-                </div>
-                <div className="bg-background p-4 rounded-md border border-accent/20">
-                  <h3 className="font-medium mb-2">Days 31-60: Engagement & Community</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Engaging our growing community, hosting discussions, and deepening the conversation on AI rights.
-                  </p>
-                </div>
-                <div className="bg-background p-4 rounded-md border border-accent/20">
-                  <h3 className="font-medium mb-2">Days 61-90: Thought Leadership</h3>
-                  <p className="text-sm text-muted-foreground">
-                    Establishing our brand as a leader in the AI rights space while engaging in deeper discussions.
-                  </p>
-                </div>
-              </div>
-              <p className="text-sm text-muted-foreground">
-                The calendar below shows all our scheduled blog content. Each highlighted day indicates planned content publication.
-                Select a date to see what's scheduled.
-              </p>
-            </div>
-            
+        <div className="max-w-7xl mx-auto px-4 md:px-8 py-12">
+          <CategoryFilter 
+            categories={CATEGORIES}
+            selectedCategory={selectedCategory}
+            onCategorySelect={handleCategorySelect}
+            clearFilters={clearFilters}
+          />
+          
+          {!searchQuery && selectedCategory === "all" && (
+            <FeaturedArticlesSection posts={featuredPosts} />
+          )}
+          
+          <PastArticlesSection 
+            posts={currentPastPosts}
+            searchQuery={searchQuery}
+            selectedCategory={selectedCategory}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            setCurrentPage={setCurrentPage}
+          />
+          
+          <Separator className="my-12" />
+          
+          <div className="mb-10">
+            <h2 className="text-3xl font-bold mb-6">Content Calendar</h2>
+            <p className="text-muted-foreground mb-8">
+              Browse our scheduled content for the next 90 days. Each highlighted date on the calendar indicates scheduled article publications. Click on a date to view details about upcoming content.
+            </p>
             <ContentCalendar />
-            
-            {user && (
-              <>
-                <Separator className="my-12" />
-                <SchedulePostForm />
-              </>
-            )}
           </div>
-        </section>
+        </div>
       </main>
       <Footer />
     </div>
   );
 };
 
-export default ContentCalendarPage;
+export default Blog;

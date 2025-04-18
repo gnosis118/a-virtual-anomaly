@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { BLOG_POSTS } from '@/data/blog';
+import { BLOG_POSTS } from '@/data/blogData';
 import AprilSecondPost from '@/components/blog/AprilSecondPost';
 import RegularBlogPost from '@/components/blog/RegularBlogPost';
 

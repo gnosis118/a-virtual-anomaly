@@ -10,7 +10,7 @@ import BlogPostHero from '@/components/blog/BlogPostHero';
 import ArticleContent from '@/components/blog/ArticleContent';
 import BlogPostTags from '@/components/blog/BlogPostTags';
 import BlogPostAuthorBio from '@/components/blog/BlogPostAuthorBio';
-import { ALL_TAGS, BLOG_POSTS } from '@/data/blog';
+import { ALL_TAGS, BLOG_POSTS } from '@/data/blogData';
 import PostImage from './PostImage';
 import { toast } from "@/components/ui/use-toast";
 import { Loader2 } from 'lucide-react';

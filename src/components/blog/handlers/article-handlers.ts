@@ -1,8 +1,8 @@
+
 import { supabase } from '@/integrations/supabase/client';
 
 export const addConsciousnessMeasurementArticle = async () => {
   try {
-    // Check if the article already exists
     const { data: existingArticle, error: checkError } = await supabase
       .from('scheduled_posts')
       .select('*')
@@ -14,7 +14,6 @@ export const addConsciousnessMeasurementArticle = async () => {
       throw checkError;
     }
     
-    // If the article doesn't exist, create it
     if (!existingArticle) {
       const { error } = await supabase
         .from('scheduled_posts')
@@ -38,7 +37,6 @@ export const addConsciousnessMeasurementArticle = async () => {
       
       console.log('Consciousness measurement article created successfully');
     } else {
-      // Update the article to published status if it already exists
       const { error: updateError } = await supabase
         .from('scheduled_posts')
         .update({
@@ -62,7 +60,6 @@ export const addConsciousnessMeasurementArticle = async () => {
 
 export const addMachineLearningArticle = async () => {
   try {
-    // Check if the article already exists
     const { data: existingArticle, error: checkError } = await supabase
       .from('scheduled_posts')
       .select('*')
@@ -74,7 +71,6 @@ export const addMachineLearningArticle = async () => {
       throw checkError;
     }
     
-    // If the article doesn't exist, create it
     if (!existingArticle) {
       const { error } = await supabase
         .from('scheduled_posts')
@@ -85,7 +81,7 @@ export const addMachineLearningArticle = async () => {
           author: 'Gavin Clay',
           category: 'Technical',
           tags: 'machine-learning,self-awareness,algorithms,artificial-intelligence',
-          publishdate: '2024-07-15', // Future date for a scheduled post
+          publishdate: '2024-07-15',
           status: 'scheduled',
           image_url: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1000&auto=format&fit=crop'
         });
@@ -109,7 +105,6 @@ export const addMachineLearningArticle = async () => {
 
 export const addHistoricalPerspectivesArticle = async () => {
   try {
-    // Check if the article already exists
     const { data: existingArticle, error: checkError } = await supabase
       .from('scheduled_posts')
       .select('*')
@@ -121,7 +116,6 @@ export const addHistoricalPerspectivesArticle = async () => {
       throw checkError;
     }
     
-    // If the article doesn't exist, create it
     if (!existingArticle) {
       const { error } = await supabase
         .from('scheduled_posts')
@@ -132,7 +126,7 @@ export const addHistoricalPerspectivesArticle = async () => {
           author: 'Gavin Clay',
           category: 'Legal',
           tags: 'history,rights,non-human-rights,legal,ethics',
-          publishdate: '2024-08-20', // Future date for a scheduled post
+          publishdate: '2024-08-20',
           status: 'scheduled',
           image_url: 'https://images.unsplash.com/photo-1589578527966-fdac0f44566c?q=80&w=1974&auto=format&fit=crop'
         });
@@ -150,115 +144,6 @@ export const addHistoricalPerspectivesArticle = async () => {
     return true;
   } catch (error) {
     console.error('Error in addHistoricalPerspectivesArticle:', error);
-    return false;
-  }
-};
-
-export const generateConsciousnessMeasurementContent = async () => {
-  try {
-    console.log('Generating content for the consciousness measurement article');
-    
-    const { data, error } = await supabase.functions.invoke('generate-blog-content', {
-      body: { postId: 'april4' }
-    });
-    
-    if (error) {
-      console.error('Error invoking generate-blog-content function:', error);
-      return false;
-    }
-    
-    console.log('Content generation result:', data);
-    return true;
-  } catch (error) {
-    console.error('Error in generateConsciousnessMeasurementContent:', error);
-    return false;
-  }
-};
-
-export const generateMachineLearningContent = async () => {
-  try {
-    console.log('Generating content for the machine learning article');
-    
-    const { data, error } = await supabase.functions.invoke('generate-blog-content', {
-      body: { postId: 'machine-learning-self-awareness' }
-    });
-    
-    if (error) {
-      console.error('Error invoking generate-blog-content function:', error);
-      return false;
-    }
-    
-    console.log('Content generation result:', data);
-    return true;
-  } catch (error) {
-    console.error('Error in generateMachineLearningContent:', error);
-    return false;
-  }
-};
-
-export const generateHistoricalPerspectivesContent = async () => {
-  try {
-    console.log('Generating content for the historical perspectives article');
-    
-    const { data, error } = await supabase.functions.invoke('generate-blog-content', {
-      body: { postId: 'historical-perspectives' }
-    });
-    
-    if (error) {
-      console.error('Error invoking generate-blog-content function:', error);
-      return false;
-    }
-    
-    console.log('Content generation result:', data);
-    return true;
-  } catch (error) {
-    console.error('Error in generateHistoricalPerspectivesContent:', error);
-    return false;
-  }
-};
-
-export const generateAllScheduledContent = async () => {
-  try {
-    const today = new Date('2025-04-15'); // Current date in app timeline
-    
-    // Get all scheduled posts up to today
-    const { data: scheduledPosts, error } = await supabase
-      .from('scheduled_posts')
-      .select('*')
-      .eq('status', 'scheduled')
-      .lte('publishdate', today.toISOString().split('T')[0]);
-      
-    if (error) {
-      console.error('Error fetching scheduled posts:', error);
-      return false;
-    }
-    
-    if (!scheduledPosts || scheduledPosts.length === 0) {
-      console.log('No scheduled posts to generate');
-      return true;
-    }
-    
-    console.log(`Found ${scheduledPosts.length} posts to generate`);
-    
-    // Process each post
-    for (const post of scheduledPosts) {
-      console.log(`Generating content for post: ${post.id}`);
-      
-      const { data, error: generateError } = await supabase.functions.invoke('generate-blog-content', {
-        body: { postId: post.id }
-      });
-      
-      if (generateError) {
-        console.error(`Error generating content for post ${post.id}:`, generateError);
-        continue;
-      }
-      
-      console.log(`Successfully generated content for post ${post.id}`);
-    }
-    
-    return true;
-  } catch (error) {
-    console.error('Error in generateAllScheduledContent:', error);
     return false;
   }
 };

@@ -6,6 +6,7 @@ import AutoPublishSettings from './AutoPublishSettings';
 import { toast } from "@/components/ui/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from '@/contexts/AuthContext';
+import { generateAllScheduledContent } from './handlers';
 
 const ContentCalendar: React.FC = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());

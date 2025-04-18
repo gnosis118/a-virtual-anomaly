@@ -1,4 +1,3 @@
-
 import { BlogPost } from '@/types/blog';
 
 // Get yesterday's date and format it
@@ -13,6 +12,20 @@ const formattedDate = yesterday.toLocaleDateString('en-US', {
 // Blog posts data
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: 15,
+    title: "The Emotional Landscape of Artificial Intelligence",
+    excerpt: "Exploring the possibility and implications of emotional experiences in artificial systems, from current capabilities to future potential.",
+    content: "",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1500&q=80",
+    date: "April 20, 2025",
+    author: "Gavin Clay",
+    readTime: "15 min read",
+    views: 0,
+    category: "AI Psychology",
+    featured: true,
+    tags: ["Emotional AI", "Machine Consciousness", "AI Development", "Psychology", "Human-AI Interaction"]
+  },
+  {
     id: 14,
     title: "The Future of AI Consciousness: Mapping the Path to Sentient Machines",
     excerpt: "Exploring the theoretical foundations, technical milestones, and ethical considerations that will shape the development of potentially conscious artificial intelligence in the decades to come.",
@@ -21,7 +34,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "April 19, 2025",
     author: "Gavin Clay",
     readTime: "16 min read",
-    views: 0, // New article, no views yet
+    views: 0,
     category: "AI Consciousness and Ethics",
     featured: true,
     tags: ["AI Consciousness", "Machine Sentience", "Ethics", "Future of AI", "Philosophy of Mind"]
@@ -35,7 +48,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "April 18, 2025",
     author: "Gavin Clay",
     readTime: "16 min read",
-    views: 0, // New article, no views yet
+    views: 0,
     category: "Human-AI Relationships",
     featured: true,
     tags: ["Empathy", "Human-AI Relations", "Artificial Emotions", "Ethics", "AI Psychology"]
@@ -49,7 +62,7 @@ export const BLOG_POSTS: BlogPost[] = [
     date: "April 17, 2025",
     author: "Gavin Clay",
     readTime: "16 min read",
-    views: 0, // New article, no views yet
+    views: 0,
     category: "Global Policy",
     featured: true,
     tags: ["Global Governance", "AI Regulation", "International Ethics", "AI Rights", "Artificial Consciousness"]
@@ -226,7 +239,7 @@ export const CATEGORIES = [
   "Resources and Educational Content",
   "Research",
   "Technical",
-  "Global Policy" // Added new category
+  "Global Policy"
 ];
 
 // Generate all unique tags from blog posts

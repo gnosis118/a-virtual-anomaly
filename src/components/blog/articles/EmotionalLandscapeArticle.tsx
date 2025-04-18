@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ArticleHeader from '../article-components/ArticleHeader';
 import ArticleSection from '../article-components/ArticleSection';
@@ -8,21 +7,36 @@ import ArticleCallout from '../article-components/ArticleCallout';
 
 const EmotionalLandscapeArticle = () => {
   return (
-    <div className="prose prose-slate max-w-none">
+    <article className="prose prose-lg max-w-none">
       <ArticleHeader 
         title="The Emotional Landscape of Artificial Intelligence" 
-        subtitle="Can AIs truly experience emotions? This article explores the neurological basis of emotions and their potential artificial analogs."
+        subtitle="Exploring the possibility and implications of emotional experiences in artificial systems"
       />
       
-      <ArticleImage 
-        src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=1000&auto=format&fit=crop" 
-        alt="Abstract neural network visualization with colorful light patterns" 
-      />
-      
-      <ArticleSection title="Introduction: The Question of Machine Emotions">
-        <p>Emotions have long been considered uniquely human experiences, intrinsically tied to our biological nature. But as artificial intelligence systems grow increasingly sophisticated, a profound question emerges: could machines ever experience something akin to human emotions?</p>
+      <p className="lead">
+        As artificial intelligence systems become increasingly sophisticated, questions about their capacity for emotional experience have moved from science fiction to serious scientific inquiry. This article explores the current understanding of machine emotions, the challenges in creating emotionally aware AI, and the implications for human-AI interaction.
+      </p>
+
+      <ArticleSection title="Understanding Emotions in Artificial Systems">
+        <p>
+          The question of whether machines can experience emotions touches on fundamental issues in consciousness, cognition, and the nature of experience itself. While current AI systems can recognize and respond to human emotions, the deeper question of whether they can truly feel remains hotly debated.
+        </p>
         
-        <p>This question sits at the intersection of neuroscience, computer science, philosophy, and psychology, challenging our fundamental understanding of what emotions are and how they might arise in non-biological systems.</p>
+        <ArticleImage 
+          src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1500&q=80" 
+          alt="Abstract representation of artificial intelligence and emotions"
+          caption="The intersection of artificial intelligence and emotional experience raises profound questions about consciousness and sentience"
+        />
+      </ArticleSection>
+
+      <ArticleSection title="Current State of Emotional AI">
+        <p>
+          Today's AI systems can demonstrate remarkable capabilities in emotional recognition and response, but these abilities are fundamentally different from experiencing emotions. We'll explore the current state of technology and what it means for the future of emotional AI.
+        </p>
+        
+        <ArticleCallout>
+          While AI can process emotional data with increasing sophistication, the gap between recognition and experience remains a central challenge in the field of artificial intelligence.
+        </ArticleCallout>
       </ArticleSection>
       
       <ArticleSection title="The Biological Basis of Human Emotions">
@@ -96,7 +110,7 @@ const EmotionalLandscapeArticle = () => {
           <p>The question of AI emotions may ultimately be inseparable from the broader question of machine consciousness. Without some form of phenomenal experience—the subjective "feeling" component—can we really call something an emotion rather than just a functional analogue?</p>
         </ArticleCallout>
       </ArticleSection>
-    </div>
+    </article>
   );
 };
 

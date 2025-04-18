@@ -1,4 +1,3 @@
-
 import React from 'react';
 import RoleOfEthicsArticle from '../articles/RoleOfEthicsArticle';
 import AIImpactArticle from '../articles/AIImpactArticle';
@@ -21,11 +20,7 @@ interface ArticleSelectorProps {
   title?: string;
 }
 
-/**
- * Component for selecting the appropriate article based on ID or title
- */
 const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
-  // Check for specific article by ID first (most reliable)
   if (id === 7 || id === "7") {
     return <TuringTestArticle />;
   }
@@ -70,12 +65,14 @@ const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
     return <AIConsciousnessArticle />;
   }
   
-  // Special case for April 2nd article
   if (id === "april2" || id === "april-2") {
     return <EmotionalLandscapeArticle />;
   }
   
-  // Match by title for flexibility
+  if (title?.includes("Emotional Landscape") || title?.includes("AI Emotions")) {
+    return <EmotionalLandscapeArticle />;
+  }
+  
   if (title) {
     if (title.includes("Can AI Experience Love?") || title.includes("Emotional Frontier")) {
       return <AIEmotionalFrontierArticle />;
@@ -138,7 +135,6 @@ const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
     }
   }
   
-  // For other articles, use the default implementation
   return <DefaultArticleState />;
 };
 

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ArticleHeader from '../article-components/ArticleHeader';
 import ArticleSection from '../article-components/ArticleSection';
@@ -6,11 +5,12 @@ import ArticleImage from '../article-components/ArticleImage';
 import ArticleQuote from '../article-components/ArticleQuote';
 import ArticleCallout from '../article-components/ArticleCallout';
 
-const AIConsciousnessArticle: React.FC = () => {
+const AIConsciousnessArticle = () => {
   return (
     <article className="prose prose-lg max-w-none">
       <ArticleHeader 
         title="The Future of AI Consciousness: Mapping the Path to Sentient Machines" 
+        subtitle="Exploring the theoretical foundations, technical milestones, and ethical considerations that will shape the development of potentially conscious artificial intelligence."
       />
 
       <p className="lead">

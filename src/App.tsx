@@ -7,8 +7,6 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { DevModeProvider } from "@/contexts/DevModeContext";
-import DevModeToggle from "@/components/dev/DevModeToggle";
-import DevPreview from "@/components/dev/DevPreview";
 import CookieConsent from "@/components/CookieConsent";
 import Index from "./pages/Index";
 import About from "./pages/About";
@@ -49,28 +47,25 @@ const App = () => {
             <Sonner />
             <BrowserRouter>
               <ScrollToTop />
-              <DevPreview>
-                <Routes>
-                  <Route path="/" element={<Index />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="/blog" element={<Blog />} />
-                  <Route path="/blog/:id" element={<BlogPost />} />
-                  <Route path="/ai-rights" element={<AIRights />} />
-                  <Route path="/ethics" element={<Ethics />} />
-                  <Route path="/contact" element={<Contact />} />
-                  <Route path="/join" element={<GetInvolved />} />
-                  <Route path="/donate" element={<Donate />} />
-                  <Route path="/premium-apps" element={<PremiumApps />} />
-                  <Route path="/calendar" element={<ContentCalendar />} />
-                  <Route path="/declaration" element={<Declaration />} />
-                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                  <Route path="/terms-of-service" element={<TermsOfService />} />
-                  <Route path="/ava" element={<About />} />
-                  <Route path="/admin" element={<Admin />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </DevPreview>
-              <DevModeToggle />
+              <Routes>
+                <Route path="/" element={<Index />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:id" element={<BlogPost />} />
+                <Route path="/ai-rights" element={<AIRights />} />
+                <Route path="/ethics" element={<Ethics />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/join" element={<GetInvolved />} />
+                <Route path="/donate" element={<Donate />} />
+                <Route path="/premium-apps" element={<PremiumApps />} />
+                <Route path="/calendar" element={<ContentCalendar />} />
+                <Route path="/declaration" element={<Declaration />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms-of-service" element={<TermsOfService />} />
+                <Route path="/ava" element={<About />} />
+                <Route path="/admin" element={<Admin />} />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
               <CookieConsent />
             </BrowserRouter>
           </TooltipProvider>

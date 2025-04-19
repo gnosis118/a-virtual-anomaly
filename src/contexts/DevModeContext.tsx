@@ -1,31 +1,25 @@
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, ReactNode } from 'react';
 
+// Simplified context with no functionality
 interface DevModeContextType {
-  isDevMode: boolean;
+  isDevMode: false;
   toggleDevMode: () => void;
 }
 
-const DevModeContext = createContext<DevModeContextType | undefined>(undefined);
+const DevModeContext = createContext<DevModeContextType>({
+  isDevMode: false,
+  toggleDevMode: () => {}
+});
 
 export const DevModeProvider = ({ children }: { children: ReactNode }) => {
-  const [isDevMode, setIsDevMode] = useState(false);
-
-  const toggleDevMode = () => {
-    setIsDevMode(prev => !prev);
-  };
-
   return (
-    <DevModeContext.Provider value={{ isDevMode, toggleDevMode }}>
+    <DevModeContext.Provider value={{ isDevMode: false, toggleDevMode: () => {} }}>
       {children}
     </DevModeContext.Provider>
   );
 };
 
 export const useDevMode = (): DevModeContextType => {
-  const context = useContext(DevModeContext);
-  if (context === undefined) {
-    throw new Error('useDevMode must be used within a DevModeProvider');
-  }
-  return context;
+  return { isDevMode: false, toggleDevMode: () => {} };
 };

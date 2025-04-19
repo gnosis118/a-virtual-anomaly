@@ -11,6 +11,7 @@ import SiteSettings from '@/components/admin/SiteSettings';
 import MediaManager from '@/components/admin/MediaManager';
 import AuthScreen from '@/components/admin/AuthScreen';
 import { toast } from "@/components/ui/use-toast";
+import { supabase } from "@/integrations/supabase/client";
 
 const AdminPage = () => {
   const { user } = useAuth();

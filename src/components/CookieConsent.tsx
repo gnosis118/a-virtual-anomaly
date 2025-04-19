@@ -32,13 +32,17 @@ const CookieConsent = () => {
           .eq('key', 'site_settings')
           .maybeSingle();
 
-        if (!error && data && data.value && data.value.cookie_consent) {
-          setSettings({
-            enabled: data.value.cookie_consent.enabled ?? defaultSettings.enabled,
-            notice: data.value.cookie_consent.notice ?? defaultSettings.notice,
-            policy_link: data.value.cookie_consent.policy_link ?? defaultSettings.policy_link,
-            expire_days: data.value.cookie_consent.expire_days ?? defaultSettings.expire_days,
-          });
+        if (!error && data && data.value && typeof data.value === 'object') {
+          const siteSettings = data.value as Record<string, any>;
+          
+          if (siteSettings.cookie_consent) {
+            setSettings({
+              enabled: siteSettings.cookie_consent.enabled ?? defaultSettings.enabled,
+              notice: siteSettings.cookie_consent.notice ?? defaultSettings.notice,
+              policy_link: siteSettings.cookie_consent.policy_link ?? defaultSettings.policy_link,
+              expire_days: siteSettings.cookie_consent.expire_days ?? defaultSettings.expire_days,
+            });
+          }
         }
       } catch (error) {
         console.error('Error fetching cookie settings:', error);

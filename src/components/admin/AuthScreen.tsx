@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from "@/components/ui/use-toast";
-import { FcGoogle } from 'react-icons/fc';
+import { Users } from 'lucide-react';
 import { supabase } from "@/integrations/supabase/client";
 
 const AuthScreen = () => {
@@ -197,7 +197,7 @@ const AuthScreen = () => {
           </div>
           
           <Button variant="outline" type="button" onClick={handleGoogleSignIn} className="w-full">
-            <FcGoogle className="mr-2 h-4 w-4" />
+            <Users className="mr-2 h-4 w-4" />
             Google
           </Button>
         </CardContent>

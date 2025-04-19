@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from "@/components/ui/button";
@@ -15,7 +14,8 @@ import {
   DialogContent, 
   DialogHeader, 
   DialogTitle, 
-  DialogFooter 
+  DialogFooter,
+  DialogDescription
 } from "@/components/ui/dialog";
 import { toast } from "@/components/ui/use-toast";
 import { User, Shield, ShieldAlert, ShieldCheck, ShieldX } from 'lucide-react';
@@ -27,7 +27,7 @@ type UserProfile = {
   username: string | null;
   created_at: string;
   avatar_url: string | null;
-  role: string;
+  role: 'admin' | 'user' | 'moderator';
 };
 
 const UserManagement = () => {
@@ -43,26 +43,22 @@ const UserManagement = () => {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      // Get auth users
       const { data: authUsers, error: authError } = await supabase.auth.admin.listUsers();
       
       if (authError) throw authError;
       
-      // Get user roles
       const { data: userRoles, error: rolesError } = await supabase
         .from('user_roles')
         .select('user_id, role');
         
       if (rolesError) throw rolesError;
       
-      // Get user profiles
       const { data: profiles, error: profilesError } = await supabase
         .from('profiles')
         .select('*');
         
       if (profilesError) throw profilesError;
       
-      // Map users with roles and profiles
       const mappedUsers = authUsers.users.map(user => {
         const userRole = userRoles?.find(role => role.user_id === user.id);
         const profile = profiles?.find(profile => profile.id === user.id);
@@ -95,55 +91,37 @@ const UserManagement = () => {
     setShowUserDialog(true);
   };
   
-  const handleRoleChange = async (userId: string, newRole: string) => {
+  const handleRoleChange = async (userId: string, newRole: 'admin' | 'user' | 'moderator') => {
     try {
-      // Check if user has a role already
-      const { data: existingRole, error: fetchError } = await supabase
+      const { error } = await supabase
         .from('user_roles')
-        .select('*')
-        .eq('user_id', userId)
-        .maybeSingle();
+        .upsert({ 
+          user_id: userId, 
+          role: newRole 
+        }, { 
+          onConflict: 'user_id,role' 
+        });
         
-      if (fetchError) throw fetchError;
-      
-      if (existingRole) {
-        // Update existing role
-        const { error } = await supabase
-          .from('user_roles')
-          .update({ role: newRole })
-          .eq('user_id', userId);
-          
-        if (error) throw error;
-      } else {
-        // Insert new role
-        const { error } = await supabase
-          .from('user_roles')
-          .insert({ user_id: userId, role: newRole });
-          
-        if (error) throw error;
-      }
+      if (error) throw error;
       
       toast({
-        title: 'Role updated',
-        description: `User role has been updated to ${newRole}.`,
+        title: "Role Updated",
+        description: `User role has been updated to ${newRole}. They can now access admin features.`,
       });
       
-      // Update local state
       setUsers(users.map(user => 
         user.id === userId ? { ...user, role: newRole } : user
       ));
       
-      // Update selected user if dialog is open
       if (selectedUser && selectedUser.id === userId) {
         setSelectedUser({ ...selectedUser, role: newRole });
       }
-      
     } catch (error) {
       console.error('Error updating user role:', error);
       toast({
-        title: 'Error',
+        title: "Error",
         description: `Failed to update user role: ${error.message}`,
-        variant: 'destructive',
+        variant: "destructive",
       });
     }
   };
@@ -256,7 +234,6 @@ const UserManagement = () => {
         </div>
       )}
       
-      {/* User Details Dialog */}
       <Dialog open={showUserDialog} onOpenChange={setShowUserDialog}>
         <DialogContent>
           <DialogHeader>

@@ -1,3 +1,4 @@
+
 import React from 'react';
 import RoleOfEthicsArticle from '../articles/RoleOfEthicsArticle';
 import AIImpactArticle from '../articles/AIImpactArticle';
@@ -13,6 +14,7 @@ import HistoricalPerspectivesArticle from '../articles/HistoricalPerspectivesArt
 import AIGovernanceArticle from '../articles/AIGovernanceArticle';
 import EmpathyHumanAIArticle from '../articles/EmpathyHumanAIArticle';
 import AIConsciousnessArticle from '../articles/AIConsciousnessArticle';
+import DigitalPersonhoodArticle from '../articles/DigitalPersonhoodArticle';
 import DefaultArticleState from '../articles/DefaultArticleState';
 
 interface ArticleSelectorProps {
@@ -63,6 +65,10 @@ const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
 
   if (id === 14 || id === "14" || id === "future-ai-consciousness") {
     return <AIConsciousnessArticle />;
+  }
+  
+  if (id === 15 || id === "15" || id === "digital-personhood") {
+    return <DigitalPersonhoodArticle />;
   }
   
   if (id === "april2" || id === "april-2") {
@@ -128,6 +134,10 @@ const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
 
     if (title.includes("The Future of AI Consciousness") || title.includes("Future AI Consciousness")) {
       return <AIConsciousnessArticle />;
+    }
+    
+    if (title.includes("Digital Personhood") || title.includes("Beyond Human-Centric Rights")) {
+      return <DigitalPersonhoodArticle />;
     }
     
     if (title.length > 0) {

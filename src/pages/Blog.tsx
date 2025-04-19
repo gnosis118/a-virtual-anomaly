@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -14,9 +13,11 @@ import {
   addConsciousnessMeasurementArticle, 
   addMachineLearningArticle,
   addHistoricalPerspectivesArticle,
+  addDigitalPersonhoodArticle,
   generateConsciousnessMeasurementContent,
   generateMachineLearningContent,
-  generateHistoricalPerspectivesContent
+  generateHistoricalPerspectivesContent,
+  generateDigitalPersonhoodContent
 } from '@/components/blog/scheduled-posts-handler';
 import { toast } from "@/components/ui/use-toast";
 
@@ -41,6 +42,7 @@ const Blog = () => {
       await addConsciousnessMeasurementArticle();
       await addMachineLearningArticle();
       await addHistoricalPerspectivesArticle();
+      await addDigitalPersonhoodArticle();
       
       // Then generate content for the consciousness measurement article
       const generated = await generateConsciousnessMeasurementContent();
@@ -66,6 +68,15 @@ const Blog = () => {
         toast({
           title: "Historical Perspectives Article Generated",
           description: "Historical Perspectives on Non-Human Rights article has been generated and scheduled.",
+        });
+      }
+      
+      // Generate content for the digital personhood article
+      const digitalPersonhoodGenerated = await generateDigitalPersonhoodContent();
+      if (digitalPersonhoodGenerated) {
+        toast({
+          title: "Digital Personhood Article Generated",
+          description: "Digital Personhood: Beyond Human-Centric Rights article has been generated and published.",
         });
       }
     };

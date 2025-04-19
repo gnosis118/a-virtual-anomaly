@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from "@/components/ui/button";
@@ -21,13 +22,15 @@ import { toast } from "@/components/ui/use-toast";
 import { User, Shield, ShieldAlert, ShieldCheck, ShieldX } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
+type UserRole = 'admin' | 'user' | 'moderator';
+
 type UserProfile = {
   id: string;
   email: string;
   username: string | null;
   created_at: string;
   avatar_url: string | null;
-  role: 'admin' | 'user' | 'moderator';
+  role: UserRole;
 };
 
 const UserManagement = () => {
@@ -69,7 +72,7 @@ const UserManagement = () => {
           username: profile?.username || user.email?.split('@')[0] || 'Unknown',
           created_at: user.created_at,
           avatar_url: profile?.avatar_url || null,
-          role: userRole?.role || 'user'
+          role: (userRole?.role as UserRole) || 'user'
         };
       });
       
@@ -91,15 +94,13 @@ const UserManagement = () => {
     setShowUserDialog(true);
   };
   
-  const handleRoleChange = async (userId: string, newRole: 'admin' | 'user' | 'moderator') => {
+  const handleRoleChange = async (userId: string, newRole: UserRole) => {
     try {
       const { error } = await supabase
         .from('user_roles')
         .upsert({ 
           user_id: userId, 
           role: newRole 
-        }, { 
-          onConflict: 'user_id,role' 
         });
         
       if (error) throw error;

@@ -508,4 +508,25 @@ export const generateDigitalPersonhoodContent = async () => {
       
       <h3 class="text-xl font-semibold mt-8 mb-4">The Historical Evolution of Personhood</h3>
       
-      <p class="mb-6">To understand the significance of digital personhood, we must first appreciate how our concept of personhood has evolved over time. Throughout human history, societies have
+      <p class="mb-6">To understand the significance of digital personhood, we must first appreciate how our concept of personhood has evolved over time. Throughout human history, societies have repeatedly confronted the question of who counts as a full person under moral and legal frameworks.</p>
+      
+      <p class="mb-6">The concept of digital personhood challenges us to reconsider our most fundamental assumptions about personhood, rights, and moral status. While current AI systems may not yet warrant full personhood recognition, the trajectory of technological development suggests that this question will become increasingly pressing in the coming decades.</p>
+    </div>
+  `;
+  
+  // Update the database with the generated content
+  const { error } = await supabase
+    .from('scheduled_posts')
+    .update({
+      content: content,
+      status: 'published'
+    })
+    .eq('id', '15');
+    
+  if (error) {
+    console.error('Error generating Digital Personhood content:', error);
+    return false;
+  }
+  
+  return true;
+};

@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from "@/components/ui/button";
@@ -111,9 +112,11 @@ const SiteSettings = () => {
       if (fetchError) throw fetchError;
 
       if (data) {
+        // Fix the spread types error by ensuring we're merging objects properly
         const updatedSettings = { 
-          ...(typeof settings === 'object' ? settings : {}), 
-          ...(typeof data.value === 'object' ? data.value : {}) 
+          ...defaultSettings,
+          ...(data.value as object || {}),  
+          ...settings
         };
 
         const { error } = await supabase

@@ -22,6 +22,7 @@ import { toast } from "@/components/ui/use-toast";
 import { User, Shield, ShieldAlert, ShieldCheck, ShieldX } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
+// Define the allowed role types to match what's in the database
 type UserRole = 'admin' | 'user' | 'moderator';
 
 type UserProfile = {
@@ -105,20 +106,20 @@ const UserManagement = () => {
       if (checkError) throw checkError;
 
       if (existingRole && existingRole.length > 0) {
-        // Update existing role
+        // Use type casting to ensure compatibility with the database schema
         const { error } = await supabase
           .from('user_roles')
-          .update({ role: newRole })
+          .update({ role: newRole as any })
           .eq('user_id', userId);
           
         if (error) throw error;
       } else {
-        // Insert new role
+        // Use type casting for insertion as well
         const { error } = await supabase
           .from('user_roles')
           .insert({ 
             user_id: userId, 
-            role: newRole 
+            role: newRole as any
           });
           
         if (error) throw error;

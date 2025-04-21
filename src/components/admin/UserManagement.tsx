@@ -96,18 +96,37 @@ const UserManagement = () => {
   
   const handleRoleChange = async (userId: string, newRole: UserRole) => {
     try {
-      const { error } = await supabase
+      // First, check if the user_role exists
+      const { data: existingRole, error: checkError } = await supabase
         .from('user_roles')
-        .upsert({ 
-          user_id: userId, 
-          role: newRole 
-        });
-        
-      if (error) throw error;
+        .select('*')
+        .eq('user_id', userId);
+
+      if (checkError) throw checkError;
+
+      if (existingRole && existingRole.length > 0) {
+        // Update existing role
+        const { error } = await supabase
+          .from('user_roles')
+          .update({ role: newRole })
+          .eq('user_id', userId);
+          
+        if (error) throw error;
+      } else {
+        // Insert new role
+        const { error } = await supabase
+          .from('user_roles')
+          .insert({ 
+            user_id: userId, 
+            role: newRole 
+          });
+          
+        if (error) throw error;
+      }
       
       toast({
         title: "Role Updated",
-        description: `User role has been updated to ${newRole}. They can now access admin features.`,
+        description: `User role has been updated to ${newRole}.`,
       });
       
       setUsers(users.map(user => 

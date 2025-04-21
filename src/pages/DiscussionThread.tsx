@@ -47,8 +47,15 @@ const DiscussionThread = () => {
         if (repliesError) throw repliesError;
 
         // Cast the data to the correct types after validating the profile structure
-        const validatedThread = { ...threadData, profiles: threadData.profiles || null } as Thread;
-        const validatedReplies = (repliesData || []).map(reply => ({ ...reply, profiles: reply.profiles || null })) as Reply[];
+        const validatedThread = { 
+          ...threadData, 
+          profiles: threadData.profiles || { username: null } 
+        } as Thread;
+        
+        const validatedReplies = (repliesData || []).map(reply => ({ 
+          ...reply, 
+          profiles: reply.profiles || { username: null } 
+        })) as Reply[];
         
         setThread(validatedThread);
         setReplies(validatedReplies);
@@ -91,7 +98,11 @@ const DiscussionThread = () => {
       if (error) throw error;
 
       if (data) {
-        const validatedReply = { ...data, profiles: data.profiles || null } as Reply;
+        const validatedReply = { 
+          ...data, 
+          profiles: data.profiles || { username: null } 
+        } as Reply;
+        
         setReplies(prev => [...prev, validatedReply]);
         setReply('');
         

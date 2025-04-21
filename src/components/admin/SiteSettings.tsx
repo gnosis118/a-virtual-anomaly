@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from "@/components/ui/button";
@@ -112,15 +111,18 @@ const SiteSettings = () => {
       if (fetchError) throw fetchError;
 
       if (data) {
-        // Update existing settings
+        const updatedSettings = { 
+          ...(typeof settings === 'object' ? settings : {}), 
+          ...(typeof data.value === 'object' ? data.value : {}) 
+        };
+
         const { error } = await supabase
           .from('settings')
-          .update({ value: settings })
+          .update({ value: updatedSettings })
           .eq('id', data.id);
 
         if (error) throw error;
       } else {
-        // Create new settings
         const { error } = await supabase
           .from('settings')
           .insert({ key: 'site_settings', value: settings });

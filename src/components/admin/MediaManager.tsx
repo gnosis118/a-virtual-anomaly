@@ -31,7 +31,9 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
+import { FileObject as SupabaseFileObject } from '@supabase/storage-js';
 
+// Define our own FileObject type that matches what we need
 type FileObject = {
   name: string;
   id: string;
@@ -103,8 +105,17 @@ const MediaManager = () => {
       if (error) throw error;
       
       if (data) {
-        // Filter out folder objects
-        const fileObjects = data.filter(item => !item.id.endsWith('/'));
+        // Filter out folder objects and map to our FileObject type
+        const fileObjects = data
+          .filter(item => !item.id.endsWith('/'))
+          .map(item => ({
+            ...item,
+            metadata: {
+              size: item.metadata?.size || 0,
+              mimetype: item.metadata?.mimetype || 'application/octet-stream'
+            }
+          })) as FileObject[];
+          
         setFiles(fileObjects);
       }
     } catch (error) {
@@ -249,22 +260,23 @@ const MediaManager = () => {
             <RefreshCw className="h-4 w-4 mr-1" />
             Refresh
           </Button>
-          <Button 
-            as="label"
-            htmlFor="file-upload"
-            className="relative cursor-pointer"
-            disabled={uploading}
-          >
-            <UploadCloud className="h-4 w-4 mr-1" />
-            {uploading ? 'Uploading...' : 'Upload File'}
+          <div className="relative">
+            <Button
+              onClick={() => document.getElementById('file-upload')?.click()}
+              className="cursor-pointer"
+              disabled={uploading}
+            >
+              <UploadCloud className="h-4 w-4 mr-1" />
+              {uploading ? 'Uploading...' : 'Upload File'}
+            </Button>
             <Input 
               id="file-upload"
               type="file"
               onChange={handleFileUpload}
-              className="absolute inset-0 opacity-0 w-full cursor-pointer"
+              className="hidden"
               disabled={uploading}
             />
-          </Button>
+          </div>
         </div>
       </div>
       
@@ -281,23 +293,24 @@ const MediaManager = () => {
           <p className="text-sm text-muted-foreground mb-4">
             Upload images and other files to use in your blog posts.
           </p>
-          <Button 
-            as="label"
-            htmlFor="file-upload-empty"
-            variant="secondary"
-            className="relative cursor-pointer"
-            disabled={uploading}
-          >
-            <UploadCloud className="h-4 w-4 mr-1" />
-            Upload your first file
+          <div className="relative">
+            <Button 
+              variant="secondary"
+              onClick={() => document.getElementById('file-upload-empty')?.click()}
+              className="cursor-pointer"
+              disabled={uploading}
+            >
+              <UploadCloud className="h-4 w-4 mr-1" />
+              Upload your first file
+            </Button>
             <Input 
               id="file-upload-empty"
               type="file"
               onChange={handleFileUpload}
-              className="absolute inset-0 opacity-0 w-full cursor-pointer"
+              className="hidden"
               disabled={uploading}
             />
-          </Button>
+          </div>
         </div>
       ) : (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">

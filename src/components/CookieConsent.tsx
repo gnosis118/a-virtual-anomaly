@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
@@ -13,36 +13,40 @@ const CookieConsent = ({
   notice = "We use cookies to improve your experience. By continuing to use this site, you agree to our cookie policy.", 
   policyLink = "/privacy-policy" 
 }: CookieConsentProps) => {
-  const [showBanner, setShowBanner] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
-    const consent = localStorage.getItem('cookieConsent');
-    if (!consent) {
-      setShowBanner(true);
+    // Cookiebot initialization
+    const initCookiebot = () => {
+      if (window.Cookiebot) {
+        window.Cookiebot.consent.functional = true;
+        window.Cookiebot.consent.statistics = false;
+        window.Cookiebot.consent.marketing = false;
+        window.Cookiebot.consent.preferences = false;
+        
+        window.Cookiebot.runScripts();
+      }
+    };
+
+    // Check if Cookiebot is already loaded
+    if (window.Cookiebot) {
+      initCookiebot();
+    } else {
+      // If not loaded, wait for it
+      document.addEventListener('cookiebotLoadComplete', initCookiebot);
     }
+
+    return () => {
+      document.removeEventListener('cookiebotLoadComplete', initCookiebot);
+    };
   }, []);
 
-  const acceptCookies = () => {
-    localStorage.setItem('cookieConsent', 'accepted');
-    setShowBanner(false);
-    toast({
-      title: "Cookies Accepted",
-      description: "Cookie preferences have been saved.",
-    });
+  const openCookieDeclaration = () => {
+    // Open Cookiebot's cookie declaration modal
+    if (window.Cookiebot && window.Cookiebot.dialog) {
+      window.Cookiebot.dialog.showCookieDeclaration();
+    }
   };
-
-  const rejectCookies = () => {
-    localStorage.setItem('cookieConsent', 'rejected');
-    setShowBanner(false);
-    toast({
-      title: "Cookies Rejected",
-      description: "You can change your preferences in the privacy policy.",
-      variant: "destructive"
-    });
-  };
-
-  if (!showBanner) return null;
 
   return (
     <div className="fixed bottom-0 left-0 right-0 p-4 bg-background/80 backdrop-blur-sm z-50">
@@ -50,23 +54,23 @@ const CookieConsent = ({
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-sm">
             {notice}
-            <a 
-              href={policyLink} 
+            <button 
+              onClick={openCookieDeclaration} 
               className="ml-1 underline hover:text-accent"
             >
-              Learn more
-            </a>
+              Manage Cookies
+            </button>
           </div>
           <div className="flex gap-2">
             <Button 
-              onClick={rejectCookies} 
+              onClick={() => window.Cookiebot?.consent.decline()} 
               variant="outline" 
               size="sm"
             >
               Reject
             </Button>
             <Button 
-              onClick={acceptCookies} 
+              onClick={() => window.Cookiebot?.consent.accept()} 
               size="sm"
             >
               Accept

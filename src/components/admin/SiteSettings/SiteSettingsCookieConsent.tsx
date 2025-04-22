@@ -1,6 +1,6 @@
 
 import React from "react";
-import CookieConsentSettingsSection from "./SiteSettings/CookieConsentSettingsSection";
+import CookieConsentSettingsSection from "./CookieConsentSettingsSection";
 
 type SiteSettingsCookieConsentProps = {
   cookie_consent: {
@@ -17,4 +17,3 @@ const SiteSettingsCookieConsent = ({ cookie_consent, updateCookieConsent }: Site
 };
 
 export default SiteSettingsCookieConsent;
-

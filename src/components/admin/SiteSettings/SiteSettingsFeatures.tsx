@@ -1,6 +1,6 @@
 
 import React from "react";
-import FeatureSettingsSection from "./SiteSettings/FeatureSettingsSection";
+import FeatureSettingsSection from "./FeatureSettingsSection";
 
 type SiteSettingsFeaturesProps = {
   features_enabled: {
@@ -19,4 +19,3 @@ const SiteSettingsFeatures = ({ features_enabled, updateFeatureEnabled }: SiteSe
 };
 
 export default SiteSettingsFeatures;
-

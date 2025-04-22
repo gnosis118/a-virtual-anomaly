@@ -1,6 +1,6 @@
 
 import React from "react";
-import SocialSettingsSection from "./SiteSettings/SocialSettingsSection";
+import SocialSettingsSection from "./SocialSettingsSection";
 
 type SiteSettingsSocialProps = {
   social_links: {
@@ -19,4 +19,3 @@ const SiteSettingsSocial = ({ social_links, updateSocialLink }: SiteSettingsSoci
 };
 
 export default SiteSettingsSocial;
-

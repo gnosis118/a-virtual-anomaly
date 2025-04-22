@@ -1,13 +1,12 @@
-
 import React, { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import SiteSettingsGeneral from "./SiteSettingsGeneral";
-import SiteSettingsSocial from "./SiteSettingsSocial";
-import SiteSettingsFeatures from "./SiteSettingsFeatures";
-import SiteSettingsCookieConsent from "./SiteSettingsCookieConsent";
+import SiteSettingsGeneral from "./SiteSettings/SiteSettingsGeneral";
+import SiteSettingsSocial from "./SiteSettings/SiteSettingsSocial";
+import SiteSettingsFeatures from "./SiteSettings/SiteSettingsFeatures";
+import SiteSettingsCookieConsent from "./SiteSettings/SiteSettingsCookieConsent";
 
 type SiteSettings = {
   site_title?: string;
@@ -252,4 +251,3 @@ const SiteSettings = () => {
 };
 
 export default SiteSettings;
-

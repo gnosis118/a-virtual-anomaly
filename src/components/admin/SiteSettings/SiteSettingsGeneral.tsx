@@ -1,6 +1,6 @@
 
 import React from "react";
-import GeneralSettingsSection from "./SiteSettings/GeneralSettingsSection";
+import GeneralSettingsSection from "./GeneralSettingsSection";
 
 type SiteSettingsGeneralProps = {
   site_title: string;
@@ -32,4 +32,3 @@ const SiteSettingsGeneral = ({
 };
 
 export default SiteSettingsGeneral;
-

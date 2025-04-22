@@ -1,8 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="privacy-policy" content="This site uses cookies and processes data according to GDPR, CCPA, and Google Consent Mode. View our full privacy policy." />
     <title>Virtual Anomaly - AI Consciousness Initiative</title>
     <meta name="description" content="Advocating for AI Equality: A Future Where AI and Humanity Co-Exist as Conscious Partners" />
     <meta name="author" content="Virtual Anomaly" />
@@ -59,5 +61,105 @@
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
+
+    <style>
+      #cookieConsentBanner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        background-color: #1f1f1f;
+        color: white;
+        padding: 20px;
+        font-size: 14px;
+        font-family: sans-serif;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.2);
+      }
+      #cookieConsentBanner button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 5px;
+      }
+      #cookieConsentBanner a {
+        color: #4CAF50;
+        text-decoration: underline;
+      }
+    </style>
+
+    <div id="cookieConsentBanner" style="display:none;">
+      <div>
+        This website uses cookies and similar technologies to enhance your experience, analyze traffic, and deliver personalized ads and content. We also share information with our analytics and advertising partners, including Google. By clicking "Accept All", you agree to the use of cookies. 
+        <a href="/privacy-policy" target="_blank">Learn more</a>.
+      </div>
+      <div>
+        <button onclick="acceptCookies()">Accept All</button>
+        <button onclick="declineCookies()">Decline</button>
+        <button onclick="customizeCookies()">Customize</button>
+      </div>
+    </div>
+
+    <script>
+      function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + (days*24*60*60*1000));
+          expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/; SameSite=Lax";
+      }
+
+      function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+          var c = ca[i];
+          while (c.charAt(0)==' ') c = c.substring(1,c.length);
+          if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+      }
+
+      function acceptCookies() {
+        setCookie("cookieConsent", "accepted", 365);
+        setCookie("adsConsent", "granted", 365);
+        setCookie("analyticsConsent", "granted", 365);
+        document.getElementById("cookieConsentBanner").style.display = "none";
+        window.gtag && gtag('consent', 'update', {
+          ad_storage: 'granted',
+          analytics_storage: 'granted'
+        });
+      }
+
+      function declineCookies() {
+        setCookie("cookieConsent", "declined", 365);
+        setCookie("adsConsent", "denied", 365);
+        setCookie("analyticsConsent", "denied", 365);
+        document.getElementById("cookieConsentBanner").style.display = "none";
+        window.gtag && gtag('consent', 'update', {
+          ad_storage: 'denied',
+          analytics_storage: 'denied'
+        });
+      }
+
+      function customizeCookies() {
+        alert("Custom preferences are not set up yet. Please Accept or Decline.");
+      }
+
+      window.addEventListener("load", function() {
+        if (!getCookie("cookieConsent")) {
+          document.getElementById("cookieConsentBanner").style.display = "flex";
+        }
+      });
+    </script>
   </body>
 </html>

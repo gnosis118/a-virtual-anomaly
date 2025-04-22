@@ -23,8 +23,6 @@ const CookieConsent = ({
         window.Cookiebot.consent.statistics = false;
         window.Cookiebot.consent.marketing = false;
         window.Cookiebot.consent.preferences = false;
-        
-        window.Cookiebot.runScripts();
       }
     };
 

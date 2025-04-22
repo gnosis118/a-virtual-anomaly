@@ -9,7 +9,6 @@ interface Window {
       preferences: boolean;
       accept: () => void;
       decline: () => void;
-      runScripts: () => void;
     };
     dialog?: {
       showCookieDeclaration: () => void;

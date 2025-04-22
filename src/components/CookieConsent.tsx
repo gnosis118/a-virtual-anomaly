@@ -9,7 +9,10 @@ type CookieConsentProps = {
   policyLink?: string;
 };
 
-const CookieConsent = ({ notice = "We use cookies to improve your experience. By continuing to use this site, you agree to our cookie policy.", policyLink = "/privacy-policy" }: CookieConsentProps) => {
+const CookieConsent = ({ 
+  notice = "We use cookies to improve your experience. By continuing to use this site, you agree to our cookie policy.", 
+  policyLink = "/privacy-policy" 
+}: CookieConsentProps) => {
   const [showBanner, setShowBanner] = useState(false);
   const { toast } = useToast();
 
@@ -24,8 +27,18 @@ const CookieConsent = ({ notice = "We use cookies to improve your experience. By
     localStorage.setItem('cookieConsent', 'accepted');
     setShowBanner(false);
     toast({
-      title: "Cookies accepted",
-      description: "Your preferences have been saved.",
+      title: "Cookies Accepted",
+      description: "Cookie preferences have been saved.",
+    });
+  };
+
+  const rejectCookies = () => {
+    localStorage.setItem('cookieConsent', 'rejected');
+    setShowBanner(false);
+    toast({
+      title: "Cookies Rejected",
+      description: "You can change your preferences in the privacy policy.",
+      variant: "destructive"
     });
   };
 
@@ -37,12 +50,25 @@ const CookieConsent = ({ notice = "We use cookies to improve your experience. By
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-sm">
             {notice}
-            <a href={policyLink} className="ml-1 underline hover:text-accent">
+            <a 
+              href={policyLink} 
+              className="ml-1 underline hover:text-accent"
+            >
               Learn more
             </a>
           </div>
           <div className="flex gap-2">
-            <Button onClick={acceptCookies} size="sm">
+            <Button 
+              onClick={rejectCookies} 
+              variant="outline" 
+              size="sm"
+            >
+              Reject
+            </Button>
+            <Button 
+              onClick={acceptCookies} 
+              size="sm"
+            >
               Accept
             </Button>
           </div>

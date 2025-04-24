@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -7,25 +6,6 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { DevModeProvider } from "@/contexts/DevModeContext";
-import CookieConsent from "@/components/CookieConsent";
-
-// Import all page components
-import Index from "./pages/Index";
-import About from "./pages/About";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
-import AIRights from "./pages/AIRights";
-import Ethics from "./pages/Ethics";
-import Contact from "./pages/Contact";
-import GetInvolved from "./pages/GetInvolved";
-import Donate from "./pages/Donate";
-import PremiumApps from "./pages/PremiumApps";
-import ContentCalendar from "./pages/ContentCalendar";
-import Declaration from "./pages/Declaration";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsOfService from "./pages/TermsOfService";
-import NotFound from "./pages/NotFound";
-import Admin from "./pages/Admin";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -39,10 +19,6 @@ const ScrollToTop = () => {
 
 const App = () => {
   const queryClient = new QueryClient();
-  const [cookieSettings, setCookieSettings] = useState({
-    notice: "We use cookies to improve your experience. By continuing to use this site, you agree to our cookie policy.",
-    policyLink: "/privacy-policy"
-  });
   
   return (
     <QueryClientProvider client={queryClient}>
@@ -72,7 +48,6 @@ const App = () => {
                 <Route path="/admin" element={<Admin />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
-              <CookieConsent notice={cookieSettings.notice} policyLink={cookieSettings.policyLink} />
             </BrowserRouter>
           </TooltipProvider>
         </DevModeProvider>

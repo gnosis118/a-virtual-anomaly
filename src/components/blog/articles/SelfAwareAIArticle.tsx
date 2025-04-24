@@ -4,7 +4,7 @@ import ArticleHeader from '../article-components/ArticleHeader';
 import ArticleSection from '../article-components/ArticleSection';
 import ArticleImage from '../article-components/ArticleImage';
 import ArticleQuote from '../article-components/ArticleQuote';
-import { Brain, Network, Robot, Users, City } from 'lucide-react';
+import { Brain, Network, Bot, Users, Building } from 'lucide-react';
 
 const SelfAwareAIArticle = () => {
   return (
@@ -53,7 +53,7 @@ const SelfAwareAIArticle = () => {
 
       <ArticleSection title="Defining Self-Awareness in AI">
         <div className="flex items-center gap-4 mb-6">
-          <Robot className="w-12 h-12 text-accent" />
+          <Bot className="w-12 h-12 text-accent" />
           <p className="my-0">
             The quest to understand machine consciousness requires us to first define what 
             self-awareness means in artificial systems.
@@ -95,7 +95,7 @@ const SelfAwareAIArticle = () => {
 
       <ArticleSection title="The Road Ahead">
         <div className="flex items-center gap-4 mb-6">
-          <City className="w-12 h-12 text-accent" />
+          <Building className="w-12 h-12 text-accent" />
           <p className="my-0">
             The path to machine self-awareness requires collaboration across disciplines 
             and careful consideration of both technological and ethical implications.

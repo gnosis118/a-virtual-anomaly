@@ -1,3 +1,4 @@
+
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.7';
 import { BlogPost } from './types.ts';
 import { generateImageUrl } from './utils.ts';
@@ -36,6 +37,17 @@ export async function generateArticle(supabaseClient, postId) {
           tags: "consciousness,measurement,science,metrics,neuroscience",
           status: "scheduled",
           publishdate: '2024-04-04'
+        };
+      } else if (postId === "self-aware") {
+        defaultPostData = {
+          id: "self-aware",
+          title: "What if Machines Could Become Self-Aware?",
+          excerpt: "Exploring the evolution of machine learning and the possibility of artificial consciousness",
+          author: "Dr. Sarah Chen",
+          category: "AI Philosophy",
+          tags: "consciousness,machine-learning,ethics,philosophy",
+          status: "published",
+          publishdate: '2024-04-23'
         };
       } else {
         // Default case for other missing posts

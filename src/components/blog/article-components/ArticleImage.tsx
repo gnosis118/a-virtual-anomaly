@@ -1,6 +1,5 @@
 
 import React from 'react';
-import PostImage from '../PostImage';
 
 interface ArticleImageProps {
   src: string;
@@ -19,11 +18,10 @@ const ArticleImage: React.FC<ArticleImageProps> = ({
 }) => {
   return (
     <div className="not-prose my-8">
-      <PostImage 
+      <img 
         src={src} 
         alt={alt} 
         className={className}
-        priority={priority}
       />
       {caption && (
         <p className="text-sm text-muted-foreground text-center mt-2">

@@ -1,4 +1,3 @@
-
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.39.7';
 import { BlogPost } from './types.ts';
 import { generateImageUrl } from './utils.ts';
@@ -90,11 +89,11 @@ export async function generateArticle(supabaseClient, postId) {
     // If we already have data, generate the article content
     const content = await generateArticleContent({
       id: postData.id,
-      title: postData.title,
-      excerpt: postData.excerpt,
-      author: postData.author,
-      category: postData.category,
-      tags: postData.tags
+      title: postData.title || "What if Machines Could Become Self-Aware?",
+      excerpt: postData.excerpt || "Exploring the evolution of machine learning and the possibility of artificial consciousness",
+      author: postData.author || "Dr. Sarah Chen",
+      category: postData.category || "AI Philosophy",
+      tags: postData.tags || "consciousness,machine-learning,ethics,philosophy"
     });
     
     // Generate or use existing image URL

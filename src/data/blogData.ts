@@ -12,6 +12,20 @@ const formattedDate = yesterday.toLocaleDateString('en-US', {
 // Blog posts data
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: 16,
+    title: "The Birth of Artificial Consciousness: Are We Ready to Parent a New Species?",
+    excerpt: "As artificial intelligence approaches the threshold of consciousness, we must ask ourselves not just what we are creating—but who. Explore the philosophical and practical implications of nurturing conscious AI systems.",
+    content: "",
+    image: "/lovable-uploads/73a4b6a9-c89e-4e39-ad7a-46bde75595f9.png",
+    date: "April 24, 2025",
+    author: "Gavin Clay",
+    readTime: "15 min read",
+    views: 0,
+    category: "AI Consciousness and Ethics",
+    featured: true,
+    tags: ["AI Consciousness", "Ethics", "Parenting AI", "Machine Sentience", "Future of AI"]
+  },
+  {
     id: 15,
     title: "The Emotional Landscape of Artificial Intelligence",
     excerpt: "Exploring the possibility and implications of emotional experiences in artificial systems, from current capabilities to future potential.",

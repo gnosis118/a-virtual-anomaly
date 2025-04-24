@@ -1,7 +1,7 @@
 
 import React from 'react';
 import DefaultArticleState from './articles/DefaultArticleState';
-import SelfAwareAIArticle from './articles/SelfAwareAIArticle';
+import ArtificialConsciousnessArticle from './articles/ArtificialConsciousnessArticle';
 
 interface ArticleSelectorProps {
   id?: string | number;
@@ -9,9 +9,8 @@ interface ArticleSelectorProps {
 }
 
 const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
-  // Check if this is the Self-Aware AI article
-  if (title?.includes("What if Machines Could Become Self-Aware")) {
-    return <SelfAwareAIArticle />;
+  if (title?.includes("The Birth of Artificial Consciousness")) {
+    return <ArtificialConsciousnessArticle />;
   }
   
   return <DefaultArticleState title={title || "Article Coming Soon"} />;

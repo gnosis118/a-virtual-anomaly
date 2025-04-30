@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { ArticleLoadingState, DynamicArticleContent } from './article-utils/ArticleLoaders';
-import ArticleSelector from './article-utils/ArticleSelector';
+import ArticleSelector from './ArticleSelector';
 import DefaultArticleState from './articles/DefaultArticleState';
 import { emergentConsciousnessArticle } from './article-content/EmergentConsciousnessContent';
 

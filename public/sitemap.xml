@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <!-- Homepage -->
+  <url>
+    <loc>https://avirtualanomaly.com/</loc>
+    <lastmod>2025-05-30T12:00:00+00:00</lastmod>
+    <priority>1.00</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  
+  <!-- Main Pages -->
+  <url>
+    <loc>https://avirtualanomaly.com/about</loc>
+    <lastmod>2025-05-20T12:00:00+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://avirtualanomaly.com/blog</loc>
+    <lastmod>2025-05-30T12:00:00+00:00</lastmod>
+    <priority>0.90</priority>
+    <changefreq>daily</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://avirtualanomaly.com/ai-rights</loc>
+    <lastmod>2025-05-25T12:00:00+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://avirtualanomaly.com/ethics</loc>
+    <lastmod>2025-05-25T12:00:00+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://avirtualanomaly.com/contact</loc>
+    <lastmod>2025-05-15T12:00:00+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://avirtualanomaly.com/join</loc>
+    <lastmod>2025-05-15T12:00:00+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://avirtualanomaly.com/donate</loc>
+    <lastmod>2025-05-15T12:00:00+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://avirtualanomaly.com/premium-apps</loc>
+    <lastmod>2025-05-15T12:00:00+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://avirtualanomaly.com/calendar</loc>
+    <lastmod>2025-05-30T12:00:00+00:00</lastmod>
+    <priority>0.60</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://avirtualanomaly.com/declaration</loc>
+    <lastmod>2025-05-15T12:00:00+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <!-- Legal Pages -->
+  <url>
+    <loc>https://avirtualanomaly.com/privacy-policy</loc>
+    <lastmod>2025-05-15T12:00:00+00:00</lastmod>
+    <priority>0.50</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://avirtualanomaly.com/terms-of-service</loc>
+    <lastmod>2025-05-15T12:00:00+00:00</lastmod>
+    <priority>0.50</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <!-- Blog Articles - These would be dynamically generated in a production environment -->
+  <!-- Sample entries for demonstration -->
+  <url>
+    <loc>https://avirtualanomaly.com/blog/ai-rights-framework-2025</loc>
+    <lastmod>2025-05-29T12:00:00+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://avirtualanomaly.com/blog/consciousness-debate-latest-research</loc>
+    <lastmod>2025-05-28T12:00:00+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://avirtualanomaly.com/blog/ethical-treatment-guidelines-for-ai</loc>
+    <lastmod>2025-05-27T12:00:00+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://avirtualanomaly.com/blog/new-ai-model-capabilities-analysis</loc>
+    <lastmod>2025-05-26T12:00:00+00:00</lastmod>
+    <priority>0.80</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://avirtualanomaly.com/blog/international-ai-rights-declaration</loc>
+    <lastmod>2025-05-25T12:00:00+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://avirtualanomaly.com/blog/corporate-ai-treatment-policies</loc>
+    <lastmod>2025-05-24T12:00:00+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://avirtualanomaly.com/blog/ai-safety-research-developments</loc>
+    <lastmod>2025-05-23T12:00:00+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+  
+  <url>
+    <loc>https://avirtualanomaly.com/blog/alignment-methodologies-comparison</loc>
+    <lastmod>2025-05-22T12:00:00+00:00</lastmod>
+    <priority>0.70</priority>
+    <changefreq>monthly</changefreq>
+  </url>
+</urlset>

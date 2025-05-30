@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -7,6 +6,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { DevModeProvider } from "@/contexts/DevModeContext";
+import CookieConsent from "@/components/cookie-consent/CookieConsent";
 
 // Import all page components
 import Index from "./pages/Index";
@@ -67,6 +67,12 @@ const App = () => {
                 <Route path="/admin" element={<Admin />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
+              {/* Google-compliant cookie consent banner */}
+              <CookieConsent 
+                googleAnalyticsId="UA-XXXXXXXX-X" 
+                // Add your Facebook Pixel ID if needed
+                // facebookPixelId="123456789012345"
+              />
             </BrowserRouter>
           </TooltipProvider>
         </DevModeProvider>

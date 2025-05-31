@@ -20,6 +20,7 @@ import {
   generateDigitalPersonhoodContent
 } from '@/components/blog/scheduled-posts-handler';
 import { toast } from "@/components/ui/use-toast";
+import ArticleGeneratorIntegration from '@/components/blog/ArticleGeneratorIntegration';
 
 const Blog = () => {
   const location = useLocation();
@@ -124,6 +125,9 @@ const Blog = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
+        {/* Integrate the automatic article generator */}
+        <ArticleGeneratorIntegration />
+        
         <BlogHero 
           searchQuery={searchQuery} 
           setSearchQuery={setSearchQuery} 

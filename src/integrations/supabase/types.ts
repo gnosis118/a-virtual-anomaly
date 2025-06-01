@@ -173,6 +173,42 @@ export type Database = {
           },
         ]
       }
+      reviews: {
+        Row: {
+          created_at: string
+          customer_email: string
+          customer_name: string
+          feedback: string | null
+          id: string
+          rating: number
+          source: string | null
+          status: Database["public"]["Enums"]["review_status"]
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          customer_email: string
+          customer_name: string
+          feedback?: string | null
+          id?: string
+          rating: number
+          source?: string | null
+          status?: Database["public"]["Enums"]["review_status"]
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          customer_email?: string
+          customer_name?: string
+          feedback?: string | null
+          id?: string
+          rating?: number
+          source?: string | null
+          status?: Database["public"]["Enums"]["review_status"]
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       scheduled_posts: {
         Row: {
           author: string
@@ -239,6 +275,48 @@ export type Database = {
           key?: string
           updated_at?: string
           value?: Json
+        }
+        Relationships: []
+      }
+      subscribers: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          stripe_customer_id: string | null
+          subscribed: boolean
+          subscription_end: string | null
+          subscription_tier:
+            | Database["public"]["Enums"]["subscription_tier"]
+            | null
+          updated_at: string
+          user_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          stripe_customer_id?: string | null
+          subscribed?: boolean
+          subscription_end?: string | null
+          subscription_tier?:
+            | Database["public"]["Enums"]["subscription_tier"]
+            | null
+          updated_at?: string
+          user_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          stripe_customer_id?: string | null
+          subscribed?: boolean
+          subscription_end?: string | null
+          subscription_tier?:
+            | Database["public"]["Enums"]["subscription_tier"]
+            | null
+          updated_at?: string
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -370,6 +448,8 @@ export type Database = {
     Enums: {
       app_role: "admin" | "user"
       contribution_status: "pending" | "approved" | "rejected"
+      review_status: "new" | "responded" | "archived"
+      subscription_tier: "basic" | "premium" | "enterprise"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -487,6 +567,8 @@ export const Constants = {
     Enums: {
       app_role: ["admin", "user"],
       contribution_status: ["pending", "approved", "rejected"],
+      review_status: ["new", "responded", "archived"],
+      subscription_tier: ["basic", "premium", "enterprise"],
     },
   },
 } as const

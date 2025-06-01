@@ -34,7 +34,7 @@ export class ArticleScheduler {
         await this.generateAndScheduleArticle();
       }
       
-      // Set up the next scheduled run
+      // Set up the next scheduled run using the settings table
       await this.scheduleNextRun();
       
       return true;
@@ -97,7 +97,7 @@ export class ArticleScheduler {
   }
   
   /**
-   * Schedule the next article generation run
+   * Schedule the next article generation run using the settings table
    */
   private async scheduleNextRun(): Promise<void> {
     try {
@@ -178,8 +178,23 @@ export class ArticleScheduler {
         return false;
       }
       
-      const configValue = data.value as SchedulerConfig;
-      const nextRun = new Date(configValue.next_run);
+      // Type-safe access to the configuration
+      const configValue = data.value as unknown;
+      
+      // Validate that we have the expected structure
+      if (!configValue || typeof configValue !== 'object' || configValue === null) {
+        console.error('Invalid scheduler configuration format');
+        return false;
+      }
+      
+      const config = configValue as { next_run?: string; frequency?: string; last_updated?: string };
+      
+      if (!config.next_run) {
+        console.error('No next_run date in scheduler configuration');
+        return false;
+      }
+      
+      const nextRun = new Date(config.next_run);
       const now = new Date();
       
       // If it's time to run the scheduler
@@ -198,7 +213,7 @@ export class ArticleScheduler {
         };
         
         const scheduleConfig: ScheduleConfig = {
-          frequency: (configValue.frequency || 'every_other_day') as 'daily' | 'every_other_day' | 'weekly',
+          frequency: (config.frequency || 'every_other_day') as 'daily' | 'every_other_day' | 'weekly',
           startDate: new Date(),
           timeOfDay: '09:00'
         };

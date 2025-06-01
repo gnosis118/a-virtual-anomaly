@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -67,12 +68,7 @@ const App = () => {
                 <Route path="/admin" element={<Admin />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
-              {/* Google-compliant cookie consent banner */}
-              <CookieConsent 
-                googleAnalyticsId="UA-XXXXXXXX-X" 
-                // Add your Facebook Pixel ID if needed
-                // facebookPixelId="123456789012345"
-              />
+              <CookieConsent />
             </BrowserRouter>
           </TooltipProvider>
         </DevModeProvider>

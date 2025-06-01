@@ -1,7 +1,9 @@
+
 import { supabase } from "@/integrations/supabase/client";
 import { ArticleGenerator } from "./articleGenerator";
 import { ArticleScheduler } from "./articleScheduler";
 import { validateContent } from "./contentGenerator";
+import { ArticleGenerationConfig } from "./types";
 
 /**
  * Main entry point for the automatic article generator system
@@ -10,8 +12,7 @@ export async function initializeArticleGenerationSystem() {
   try {
     console.log('Initializing automatic article generation system...');
     
-    // Define the article generation configuration
-    const articleConfig = {
+    const articleConfig: ArticleGenerationConfig = {
       topics: ['AI Rights', 'AI Ethics', 'AI Consciousness', 'Digital Personhood', 'Machine Sentience'],
       minWordCount: 2000,
       maxWordCount: 3000,
@@ -28,23 +29,18 @@ export async function initializeArticleGenerationSystem() {
       defaultCategory: 'AI Ethics'
     };
     
-    // Define the scheduling configuration
     const scheduleConfig = {
-      frequency: 'every_other_day',
+      frequency: 'every_other_day' as const,
       startDate: new Date(),
       timeOfDay: '09:00'
     };
     
-    // Create the scheduler
     const scheduler = new ArticleScheduler(articleConfig, scheduleConfig);
-    
-    // Initialize the scheduler
     const initialized = await scheduler.initialize();
     
     if (initialized) {
       console.log('Article generation system initialized successfully');
       
-      // Generate the first article immediately if requested
       const generateNow = true;
       if (generateNow) {
         console.log('Generating first article immediately...');
@@ -65,14 +61,11 @@ export async function initializeArticleGenerationSystem() {
 /**
  * Generate and validate an article
  */
-export async function generateAndValidateArticle(config) {
+export async function generateAndValidateArticle(config: ArticleGenerationConfig) {
   try {
     console.log('Generating new article...');
     
-    // Create the article generator
     const generator = new ArticleGenerator(config);
-    
-    // Generate the article
     const result = await generator.generateArticle();
     
     if (!result.success || !result.metadata || !result.content) {
@@ -80,7 +73,6 @@ export async function generateAndValidateArticle(config) {
       return false;
     }
     
-    // Validate the generated content
     const validation = validateContent(result.content, result.metadata, config);
     
     console.log('Article validation results:', {
@@ -89,7 +81,6 @@ export async function generateAndValidateArticle(config) {
       issues: validation.issues
     });
     
-    // If the content is valid, save it to the database
     if (validation.valid) {
       console.log('Article passed validation, saving to database...');
       const saved = await generator.saveArticle(result.metadata, result.content);
@@ -112,48 +103,15 @@ export async function generateAndValidateArticle(config) {
 }
 
 /**
- * Setup database tables required for the article generation system
- */
-export async function setupArticleGenerationTables() {
-  try {
-    // Check if the scheduler_config table exists
-    const { error: checkError } = await supabase
-      .from('scheduler_config')
-      .select('id')
-      .limit(1);
-      
-    // If the table doesn't exist, create it
-    if (checkError && checkError.code === 'PGRST116') {
-      console.log('Creating scheduler_config table...');
-      
-      // This would typically be done through migrations, but for simplicity:
-      const { error: createError } = await supabase.rpc('create_scheduler_config_table');
-      
-      if (createError) {
-        console.error('Error creating scheduler_config table:', createError);
-        return false;
-      }
-    }
-    
-    return true;
-  } catch (error) {
-    console.error('Error setting up article generation tables:', error);
-    return false;
-  }
-}
-
-/**
  * Check for and process any scheduled articles that are due to be published
  */
 export async function checkScheduledArticles() {
   try {
     console.log('Checking for scheduled articles...');
     
-    // Get the current date
     const today = new Date();
     const formattedDate = today.toISOString().split('T')[0];
     
-    // Get all scheduled articles for today or earlier
     const { data, error } = await supabase
       .from('scheduled_posts')
       .select('*')
@@ -172,11 +130,9 @@ export async function checkScheduledArticles() {
     
     console.log(`Found ${data.length} scheduled articles to publish`);
     
-    // Publish each article
     for (const article of data) {
       console.log(`Publishing article: ${article.title}`);
       
-      // Update the article status to published
       const { error: updateError } = await supabase
         .from('scheduled_posts')
         .update({ status: 'published' })

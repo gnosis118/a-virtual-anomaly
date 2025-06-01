@@ -1,6 +1,13 @@
+
 import { supabase } from "@/integrations/supabase/client";
 import { ArticleGenerator } from "./articleGenerator";
 import { ArticleGenerationConfig, ScheduleConfig } from "./types";
+
+interface SchedulerConfig {
+  next_run: string;
+  frequency: string;
+  last_updated: string;
+}
 
 /**
  * Scheduler for automatic article generation and publishing
@@ -97,14 +104,16 @@ export class ArticleScheduler {
       // Calculate the next run date based on frequency
       const nextRunDate = this.calculateNextRunDate();
       
-      // Store the next run date in the database or another persistent storage
+      // Store the next run date in the settings table
       const { error } = await supabase
-        .from('scheduler_config')
+        .from('settings')
         .upsert({
-          id: 'article_generator',
-          next_run: nextRunDate.toISOString(),
-          frequency: this.scheduleConfig.frequency,
-          last_updated: new Date().toISOString()
+          key: 'article_generator_next_run',
+          value: {
+            next_run: nextRunDate.toISOString(),
+            frequency: this.scheduleConfig.frequency,
+            last_updated: new Date().toISOString()
+          }
         });
         
       if (error) {
@@ -152,24 +161,25 @@ export class ArticleScheduler {
    */
   public static async checkAndRunScheduler(): Promise<boolean> {
     try {
-      // Get the scheduler configuration from the database
+      // Get the scheduler configuration from the settings table
       const { data, error } = await supabase
-        .from('scheduler_config')
+        .from('settings')
         .select('*')
-        .eq('id', 'article_generator')
-        .single();
+        .eq('key', 'article_generator_next_run')
+        .maybeSingle();
         
       if (error) {
         console.error('Error checking scheduler config:', error);
         return false;
       }
       
-      if (!data) {
+      if (!data || !data.value) {
         console.log('No scheduler configuration found');
         return false;
       }
       
-      const nextRun = new Date(data.next_run);
+      const configValue = data.value as SchedulerConfig;
+      const nextRun = new Date(configValue.next_run);
       const now = new Date();
       
       // If it's time to run the scheduler
@@ -188,7 +198,7 @@ export class ArticleScheduler {
         };
         
         const scheduleConfig: ScheduleConfig = {
-          frequency: data.frequency || 'every_other_day',
+          frequency: (configValue.frequency || 'every_other_day') as 'daily' | 'every_other_day' | 'weekly',
           startDate: new Date(),
           timeOfDay: '09:00'
         };

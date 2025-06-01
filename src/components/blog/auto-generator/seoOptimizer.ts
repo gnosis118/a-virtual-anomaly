@@ -1,4 +1,5 @@
-import { ArticleMetadata, ArticleGenerationConfig } from "./types";
+
+import { ArticleGenerationConfig } from "./types";
 
 /**
  * Generate SEO-optimized metadata for an article
@@ -42,7 +43,7 @@ export async function generateSEOMetadata(config: ArticleGenerationConfig): Prom
  */
 function generateTitle(topic: string, keywords: string[]): string {
   // Title templates for different topics
-  const titleTemplates = {
+  const titleTemplates: Record<string, string[]> = {
     'AI Rights': [
       "The Evolution of {keyword}: How {topic} Are Reshaping Society",
       "Beyond Human Rights: The Case for {topic} in the Digital Age",
@@ -97,8 +98,8 @@ function generateTitle(topic: string, keywords: string[]): string {
   
   // Replace placeholders with actual values
   return template
-    .replace('{topic}', topic)
-    .replace('{keyword}', keyword);
+    .replace(/{topic}/g, topic)
+    .replace(/{keyword}/g, keyword);
 }
 
 /**
@@ -120,8 +121,8 @@ function generateExcerpt(title: string, keywords: string[]): string {
   
   // Replace placeholders with actual values
   return template
-    .replace('{title}', title.toLowerCase())
-    .replace('{keyword}', keyword);
+    .replace(/{title}/g, title.toLowerCase())
+    .replace(/{keyword}/g, keyword);
 }
 
 /**
@@ -129,7 +130,7 @@ function generateExcerpt(title: string, keywords: string[]): string {
  */
 function selectCategory(topic: string): string {
   // Category mapping
-  const categoryMap = {
+  const categoryMap: Record<string, string> = {
     'AI Rights': 'AI Rights',
     'AI Ethics': 'Ethics',
     'AI Consciousness': 'Consciousness',

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from "@/components/ui/button";
@@ -51,13 +50,13 @@ const UserManagement = () => {
       
       if (authError) throw authError;
       
-      const { data: userRoles, error: rolesError } = await supabase
+      const { data: userRoles, error: rolesError } = await (supabase as any)
         .from('user_roles')
         .select('user_id, role');
         
       if (rolesError) throw rolesError;
       
-      const { data: profiles, error: profilesError } = await supabase
+      const { data: profiles, error: profilesError } = await (supabase as any)
         .from('profiles')
         .select('*');
         
@@ -98,7 +97,7 @@ const UserManagement = () => {
   const handleRoleChange = async (userId: string, newRole: UserRole) => {
     try {
       // First, check if the user_role exists
-      const { data: existingRole, error: checkError } = await supabase
+      const { data: existingRole, error: checkError } = await (supabase as any)
         .from('user_roles')
         .select('*')
         .eq('user_id', userId);
@@ -107,7 +106,7 @@ const UserManagement = () => {
 
       if (existingRole && existingRole.length > 0) {
         // Use type casting to ensure compatibility with the database schema
-        const { error } = await supabase
+        const { error } = await (supabase as any)
           .from('user_roles')
           .update({ role: newRole as any })
           .eq('user_id', userId);
@@ -115,7 +114,7 @@ const UserManagement = () => {
         if (error) throw error;
       } else {
         // Use type casting for insertion as well
-        const { error } = await supabase
+        const { error } = await (supabase as any)
           .from('user_roles')
           .insert({ 
             user_id: userId, 

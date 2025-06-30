@@ -16,7 +16,7 @@ const AutoPublishSettings = () => {
   useEffect(() => {
     const fetchSetting = async () => {
       try {
-        const { data, error } = await supabase
+        const { data, error } = await (supabase as any)
           .from('settings')
           .select('*')
           .eq('key', 'auto_publish')

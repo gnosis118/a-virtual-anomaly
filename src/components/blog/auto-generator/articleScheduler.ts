@@ -52,7 +52,7 @@ export class ArticleScheduler {
     const nextWeek = new Date(today);
     nextWeek.setDate(today.getDate() + 7);
     
-    const { data, error } = await supabase
+    const { data, error } = await (supabase as any)
       .from('scheduled_posts')
       .select('id')
       .eq('status', 'scheduled')
@@ -105,7 +105,7 @@ export class ArticleScheduler {
       const nextRunDate = this.calculateNextRunDate();
       
       // Store the next run date in the settings table
-      const { error } = await supabase
+      const { error } = await (supabase as any)
         .from('settings')
         .upsert({
           key: 'article_generator_next_run',
@@ -162,7 +162,7 @@ export class ArticleScheduler {
   public static async checkAndRunScheduler(): Promise<boolean> {
     try {
       // Get the scheduler configuration from the settings table
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from('settings')
         .select('*')
         .eq('key', 'article_generator_next_run')

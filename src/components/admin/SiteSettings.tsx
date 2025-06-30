@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -70,7 +71,7 @@ const SiteSettings = () => {
   const fetchSettings = async () => {
     setLoading(true);
     try {
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from("settings")
         .select("*")
         .eq("key", "site_settings")
@@ -99,7 +100,7 @@ const SiteSettings = () => {
   const saveSettings = async () => {
     setSaving(true);
     try {
-      const { data, error: fetchError } = await supabase
+      const { data, error: fetchError } = await (supabase as any)
         .from("settings")
         .select("*")
         .eq("key", "site_settings")
@@ -113,13 +114,13 @@ const SiteSettings = () => {
           ...(typeof data.value === "object" ? data.value : {}),
           ...settings,
         };
-        const { error } = await supabase
+        const { error } = await (supabase as any)
           .from("settings")
           .update({ value: updatedSettings })
           .eq("id", data.id);
         if (error) throw error;
       } else {
-        const { error } = await supabase
+        const { error } = await (supabase as any)
           .from("settings")
           .insert({ key: "site_settings", value: settings });
 

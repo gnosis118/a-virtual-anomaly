@@ -24,7 +24,7 @@ const ToggleSection: React.FC<ToggleSectionProps> = ({ isEnabled, setIsEnabled }
     
     // Update the setting in the database
     try {
-      const { error } = await supabase
+      const { error } = await (supabase as any)
         .from('settings')
         .upsert({ 
           key: 'auto_publish', 

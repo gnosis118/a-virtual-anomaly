@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Button } from "@/components/ui/button";
@@ -40,31 +39,17 @@ import {
 } from "@/components/ui/alert-dialog";
 import { toast } from "@/components/ui/use-toast";
 import { PlusCircle, Pencil, Trash, Star, StarOff } from 'lucide-react';
-
-type Post = {
-  id: string;
-  title: string;
-  excerpt: string;
-  content: string;
-  author: string;
-  category: string;
-  tags: string;
-  status: string;
-  publishdate: string;
-  image_url: string;
-  created_at: string;
-  updated_at: string;
-};
+import { ScheduledPost } from '@/lib/database-types';
 
 const PostManagement = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<ScheduledPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [isEditing, setIsEditing] = useState(false);
-  const [postToDelete, setPostToDelete] = useState<Post | null>(null);
+  const [postToDelete, setPostToDelete] = useState<ScheduledPost | null>(null);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [showPostDialog, setShowPostDialog] = useState(false);
   
-  const [currentPost, setCurrentPost] = useState<Post>({
+  const [currentPost, setCurrentPost] = useState<ScheduledPost>({
     id: '',
     title: '',
     excerpt: '',
@@ -86,7 +71,7 @@ const PostManagement = () => {
   const fetchPosts = async () => {
     setLoading(true);
     try {
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from('scheduled_posts')
         .select('*')
         .order('publishdate', { ascending: false });
@@ -124,7 +109,7 @@ const PostManagement = () => {
     setShowPostDialog(true);
   };
   
-  const handleEditPost = (post: Post) => {
+  const handleEditPost = (post: ScheduledPost) => {
     setIsEditing(true);
     setCurrentPost({...post});
     setShowPostDialog(true);
@@ -142,7 +127,7 @@ const PostManagement = () => {
       }
       
       if (isEditing) {
-        const { error } = await supabase
+        const { error } = await (supabase as any)
           .from('scheduled_posts')
           .update({
             title: currentPost.title,
@@ -165,7 +150,7 @@ const PostManagement = () => {
           description: 'The post was successfully updated.',
         });
       } else {
-        const { error } = await supabase
+        const { error } = await (supabase as any)
           .from('scheduled_posts')
           .insert({
             title: currentPost.title,
@@ -203,7 +188,7 @@ const PostManagement = () => {
     if (!postToDelete) return;
     
     try {
-      const { error } = await supabase
+      const { error } = await (supabase as any)
         .from('scheduled_posts')
         .delete()
         .eq('id', postToDelete.id);
@@ -228,11 +213,11 @@ const PostManagement = () => {
     }
   };
   
-  const handleToggleFeatured = async (post: Post) => {
+  const handleToggleFeatured = async (post: ScheduledPost) => {
     try {
       const newStatus = post.status === 'published' ? 'featured' : 'published';
       
-      const { error } = await supabase
+      const { error } = await (supabase as any)
         .from('scheduled_posts')
         .update({ status: newStatus })
         .eq('id', post.id);
@@ -257,6 +242,7 @@ const PostManagement = () => {
     }
   };
 
+  
   return (
     <div>
       <div className="flex justify-between items-center mb-6">
@@ -390,7 +376,7 @@ const PostManagement = () => {
                 </label>
                 <Textarea
                   id="content"
-                  value={currentPost.content}
+                  value={currentPost.content || ''}
                   onChange={(e) => setCurrentPost({...currentPost, content: e.target.value})}
                   rows={8}
                 />
@@ -402,7 +388,7 @@ const PostManagement = () => {
                 </label>
                 <Input
                   id="author"
-                  value={currentPost.author}
+                  value={currentPost.author || ''}
                   onChange={(e) => setCurrentPost({...currentPost, author: e.target.value})}
                 />
               </div>
@@ -413,7 +399,7 @@ const PostManagement = () => {
                 </label>
                 <Input
                   id="category"
-                  value={currentPost.category}
+                  value={currentPost.category || ''}
                   onChange={(e) => setCurrentPost({...currentPost, category: e.target.value})}
                 />
               </div>
@@ -424,7 +410,7 @@ const PostManagement = () => {
                 </label>
                 <Input
                   id="tags"
-                  value={currentPost.tags}
+                  value={currentPost.tags || ''}
                   onChange={(e) => setCurrentPost({...currentPost, tags: e.target.value})}
                   placeholder="e.g. AI,ethics,technology"
                 />

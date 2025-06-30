@@ -53,7 +53,7 @@ const ContributionForm: React.FC<ContributionFormProps> = ({ userId, onSubmitSuc
   const onSubmit = async (data: ContributionFormValues) => {
     setIsSubmitting(true);
     try {
-      const { error } = await supabase
+      const { error } = await (supabase as any)
         .from('contributions')
         .insert([
           {
@@ -73,7 +73,7 @@ const ContributionForm: React.FC<ContributionFormProps> = ({ userId, onSubmitSuc
       
       form.reset();
       onSubmitSuccess();
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error submitting contribution:', error);
       toast({
         title: 'Submission failed',

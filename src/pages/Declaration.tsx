@@ -17,9 +17,9 @@ const Declaration = () => {
   const fetchSignatureCount = async () => {
     setIsLoadingCount(true);
     try {
-      // Use the generic interface for the query
-      const { count, error } = await supabase
-        .from('declaration_signatures' as any)
+      // Use type assertion to bypass TypeScript checking for missing table
+      const { count, error } = await (supabase as any)
+        .from('declaration_signatures')
         .select('*', { count: 'exact', head: true });
       
       if (error) {

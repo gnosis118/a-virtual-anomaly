@@ -17,7 +17,7 @@ export const useContributions = (userId?: string) => {
     queryFn: async () => {
       if (!userId) return [];
       
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from('contributions')
         .select('*')
         .eq('user_id', userId)
@@ -37,7 +37,7 @@ export const useContributions = (userId?: string) => {
   } = useQuery({
     queryKey: ['publicContributions'],
     queryFn: async () => {
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from('contributions')
         .select('*')
         .eq('status', 'approved')
@@ -51,7 +51,7 @@ export const useContributions = (userId?: string) => {
   // Create new contribution
   const createContribution = useMutation({
     mutationFn: async (newContribution: Omit<Contribution, 'id' | 'created_at' | 'updated_at' | 'status'>) => {
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from('contributions')
         .insert(newContribution)
         .select()
@@ -85,7 +85,7 @@ export const useContributions = (userId?: string) => {
       donation_type: string;
       is_premium: boolean;
     }) => {
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from('contributions')
         .insert({
           ...donation,

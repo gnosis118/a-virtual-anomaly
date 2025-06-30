@@ -45,14 +45,14 @@ const SignatureForm: React.FC<SignatureFormProps> = ({ isOpen, onOpenChange, onS
     setIsSubmitting(true);
     
     try {
-      // Use the generic interface to insert data (avoids type issues)
-      const { error } = await supabase
+      // Use type assertion to bypass TypeScript checking for missing table
+      const { error } = await (supabase as any)
         .from('declaration_signatures')
         .insert({
           user_name: name,
           email: email,
           is_public: isPublic,
-        } as any);
+        });
       
       if (error) {
         if (error.code === '23505') { // Unique constraint violation

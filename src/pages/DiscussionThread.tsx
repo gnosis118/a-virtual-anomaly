@@ -20,7 +20,7 @@ const DiscussionThread = () => {
   useEffect(() => {
     const fetchThread = async () => {
       try {
-        const { data: threadData, error: threadError } = await supabase
+        const { data: threadData, error: threadError } = await (supabase as any)
           .from('discussion_threads')
           .select(`
             *,
@@ -33,7 +33,7 @@ const DiscussionThread = () => {
 
         if (threadError) throw threadError;
         
-        const { data: repliesData, error: repliesError } = await supabase
+        const { data: repliesData, error: repliesError } = await (supabase as any)
           .from('thread_replies')
           .select(`
             *,
@@ -80,7 +80,7 @@ const DiscussionThread = () => {
     if (!reply.trim()) return;
 
     try {
-      const { data, error } = await supabase
+      const { data, error } = await (supabase as any)
         .from('thread_replies')
         .insert([{
           thread_id: id,
@@ -107,7 +107,7 @@ const DiscussionThread = () => {
         setReply('');
         
         // Update the replies count
-        const { error: updateError } = await supabase
+        const { error: updateError } = await (supabase as any)
           .from('discussion_threads')
           .update({ 
             replies_count: (thread?.replies_count || 0) + 1 

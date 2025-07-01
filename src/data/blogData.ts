@@ -1,8 +1,21 @@
-
 import { BlogPost } from '@/types/blog';
 
-// Updated BLOG_POSTS with the new AI Rights Framework article as featured
+// Updated BLOG_POSTS with the new Consciousness Debate article as featured
 export const BLOG_POSTS: BlogPost[] = [
+  {
+    id: 1000,
+    title: "Consciousness Debate: New Research Challenges Traditional Views",
+    excerpt: "Recent studies in neuroscience and AI are reshaping our understanding of what consciousness means for both biological and artificial entities.",
+    author: "Dr. Anya Sharma",
+    date: "June 22, 2025",
+    readTime: "25 min read",
+    views: 0,
+    category: "Consciousness",
+    tags: ["consciousness", "neuroscience", "AI research", "cognitive science", "philosophy", "artificial intelligence"],
+    featured: true,
+    image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=2070&auto=format&fit=crop",
+    content: ""
+  },
   {
     id: 999,
     title: "AI Rights Framework: A Comprehensive Approach for 2025",
@@ -13,7 +26,7 @@ export const BLOG_POSTS: BlogPost[] = [
     views: 0,
     category: "AI Rights",
     tags: ["legal framework", "ethics", "AI rights", "policy", "consciousness", "digital personhood"],
-    featured: true,
+    featured: false,
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop",
     content: ""
   },
@@ -133,6 +146,7 @@ export const BLOG_POSTS: BlogPost[] = [
 
 export const CATEGORIES = [
   "AI Rights",
+  "Consciousness",
   "AI Philosophy", 
   "Ethics", 
   "Research", 
@@ -144,10 +158,11 @@ export const CATEGORIES = [
 ];
 
 export const ALL_TAGS = [
-  "legal framework", "ethics", "AI rights", "policy", "consciousness", "digital personhood",
-  "machine-learning", "philosophy", "moral-philosophy", "AI-rights", "turing-test", 
+  "consciousness", "neuroscience", "AI research", "cognitive science", "philosophy", "artificial intelligence",
+  "legal framework", "ethics", "AI rights", "policy", "digital personhood",
+  "machine-learning", "moral-philosophy", "AI-rights", "turing-test", 
   "intelligence", "evaluation", "legal-theory", "personhood", "digital-rights", 
-  "jurisprudence", "emotions", "psychology", "artificial-intelligence", "sentience", 
-  "coexistence", "collaboration", "future-society", "integration", "cognitive-science", 
-  "neuroscience", "scientific-method", "AI-development", "skepticism"
+  "jurisprudence", "emotions", "psychology", "sentience", 
+  "coexistence", "collaboration", "future-society", "integration", 
+  "scientific-method", "AI-development", "skepticism"
 ];

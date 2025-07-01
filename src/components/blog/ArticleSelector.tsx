@@ -1,6 +1,7 @@
 
 import React from 'react';
 import AIRightsFramework2025 from './articles/AIRightsFramework2025';
+import ConsciousnessDebateArticle from './articles/ConsciousnessDebateArticle';
 import DefaultArticleState from './articles/DefaultArticleState';
 import { emergentConsciousnessArticle } from './article-content/EmergentConsciousnessContent';
 
@@ -14,6 +15,10 @@ interface ArticleSelectorProps {
  */
 const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
   // Route to specific articles based on ID
+  if (id === 1000 || (typeof id === 'string' && id === '1000')) {
+    return <ConsciousnessDebateArticle />;
+  }
+  
   if (id === 999 || (typeof id === 'string' && id === '999')) {
     return <AIRightsFramework2025 />;
   }
@@ -23,6 +28,10 @@ const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
   }
   
   // Route based on title matching
+  if (title?.includes("Consciousness Debate") || title?.includes("New Research Challenges")) {
+    return <ConsciousnessDebateArticle />;
+  }
+  
   if (title?.includes("AI Rights Framework") || title?.includes("Comprehensive Approach")) {
     return <AIRightsFramework2025 />;
   }

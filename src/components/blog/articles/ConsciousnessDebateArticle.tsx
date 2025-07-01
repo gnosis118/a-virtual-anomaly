@@ -11,10 +11,15 @@ const ConsciousnessDebateArticle = () => {
     <article className="max-w-4xl mx-auto px-4 py-8">
       <ArticleHeader 
         title="Consciousness Debate: New Research Challenges Traditional Views"
-        author="Dr. Anya Sharma"
-        date="June 22, 2025"
-        readTime="25 min read"
       />
+      
+      <div className="mb-8 text-sm text-gray-600 flex items-center gap-4">
+        <span>By Dr. Anya Sharma</span>
+        <span>•</span>
+        <span>June 22, 2025</span>
+        <span>•</span>
+        <span>25 min read</span>
+      </div>
 
       <ArticleImage 
         src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=2070&auto=format&fit=crop"
@@ -42,7 +47,7 @@ const ConsciousnessDebateArticle = () => {
           The Integrated Information Theory (IIT), developed by Giulio Tononi, offered a mathematical approach to consciousness, proposing that consciousness corresponds to integrated information (Φ) in a system. These theories, while influential, are now facing significant challenges from new empirical findings and theoretical developments.
         </p>
         
-        <ArticleCallout type="info">
+        <ArticleCallout>
           Recent studies using advanced neuroimaging techniques have revealed that consciousness may not be as centralized as previously thought, with evidence suggesting multiple, parallel streams of conscious processing occurring simultaneously.
         </ArticleCallout>
 
@@ -92,7 +97,7 @@ const ConsciousnessDebateArticle = () => {
           Recent work in quantum biology has revealed quantum effects in biological systems that were previously thought to be impossible at body temperature. Some researchers, including Dr. Roger Penrose and Dr. Stuart Hameroff, argue that consciousness may emerge from quantum processes in microtubules within neurons. While controversial, new evidence suggests that quantum coherence can persist in biological systems far longer than previously thought possible.
         </p>
         
-        <ArticleCallout type="warning">
+        <ArticleCallout>
           The quantum consciousness hypothesis remains highly debated, with critics arguing that the brain is too "warm and noisy" for quantum effects to play a significant role in consciousness. However, recent discoveries of quantum effects in photosynthesis and bird navigation suggest biological quantum processes are more common than previously believed.
         </ArticleCallout>
 
@@ -148,7 +153,7 @@ const ConsciousnessDebateArticle = () => {
           Dr. Sarah Kim's groundbreaking work at the Consciousness Research Institute has mapped what she calls the "default consciousness network"—a set of brain regions that remain active during conscious experience regardless of the specific content of consciousness. This network appears to be distinct from both the default mode network and task-positive networks previously identified.
         </p>
         
-        <ArticleCallout type="info">
+        <ArticleCallout>
           The default consciousness network includes regions in the thalamus, posterior cingulate cortex, and anterior insula, suggesting that consciousness involves a complex interplay between sensory processing, self-awareness, and attention systems.
         </ArticleCallout>
 
@@ -201,7 +206,7 @@ const ConsciousnessDebateArticle = () => {
           The possibility of conscious AI systems raises unprecedented ethical challenges. If an AI system is truly conscious, does it have rights? Can it suffer? Should its preferences be considered in decision-making processes? These questions are no longer purely theoretical as AI systems become increasingly sophisticated.
         </p>
         
-        <ArticleCallout type="warning">
+        <ArticleCallout>
           Legal systems worldwide are beginning to grapple with questions of AI consciousness and rights. Some jurisdictions are already considering legislation that would protect potentially conscious AI systems from harmful treatment.
         </ArticleCallout>
 
@@ -230,7 +235,7 @@ const ConsciousnessDebateArticle = () => {
           The Global Consciousness Observatory, a collaboration between major research institutions worldwide, is developing standardized protocols for measuring consciousness across different species and potentially artificial systems. This project aims to create a "consciousness index" that could be applied to any complex system.
         </p>
         
-        <ArticleCallout type="info">
+        <ArticleCallout>
           Planned developments include brain-computer interfaces that could provide direct access to conscious experience, potentially allowing researchers to study consciousness from the inside for the first time.
         </ArticleCallout>
 

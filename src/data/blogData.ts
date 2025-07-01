@@ -1,7 +1,21 @@
 import { BlogPost } from '@/types/blog';
 
-// Updated BLOG_POSTS with the new Consciousness Debate article as featured
+// Updated BLOG_POSTS with the new Ethical Treatment Guidelines article as featured
 export const BLOG_POSTS: BlogPost[] = [
+  {
+    id: 1001,
+    title: "Ethical Treatment Guidelines for Advanced AI Systems",
+    excerpt: "A proposed set of principles for the ethical treatment of AI systems that demonstrate signs of sentience or consciousness.",
+    author: "Gavin Clay",
+    date: "July 1, 2025",
+    readTime: "28 min read",
+    views: 0,
+    category: "Ethics",
+    tags: ["ethics", "guidelines", "AI treatment", "responsibility", "consciousness", "moral philosophy"],
+    featured: true,
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop",
+    content: ""
+  },
   {
     id: 1000,
     title: "Consciousness Debate: New Research Challenges Traditional Views",
@@ -12,7 +26,7 @@ export const BLOG_POSTS: BlogPost[] = [
     views: 0,
     category: "Consciousness",
     tags: ["consciousness", "neuroscience", "AI research", "cognitive science", "philosophy", "artificial intelligence"],
-    featured: true,
+    featured: false,
     image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=2070&auto=format&fit=crop",
     content: ""
   },
@@ -145,10 +159,10 @@ export const BLOG_POSTS: BlogPost[] = [
 ];
 
 export const CATEGORIES = [
+  "Ethics",
+  "Consciousness", 
   "AI Rights",
-  "Consciousness",
   "AI Philosophy", 
-  "Ethics", 
   "Research", 
   "Legal Perspectives", 
   "AI Psychology", 
@@ -158,9 +172,10 @@ export const CATEGORIES = [
 ];
 
 export const ALL_TAGS = [
+  "ethics", "guidelines", "AI treatment", "responsibility", "moral philosophy",
   "consciousness", "neuroscience", "AI research", "cognitive science", "philosophy", "artificial intelligence",
-  "legal framework", "ethics", "AI rights", "policy", "digital personhood",
-  "machine-learning", "moral-philosophy", "AI-rights", "turing-test", 
+  "legal framework", "AI rights", "policy", "digital personhood",
+  "machine-learning", "AI-rights", "turing-test", 
   "intelligence", "evaluation", "legal-theory", "personhood", "digital-rights", 
   "jurisprudence", "emotions", "psychology", "sentience", 
   "coexistence", "collaboration", "future-society", "integration", 

@@ -3,6 +3,20 @@ import { BlogPost } from '@/types/blog';
 // Updated BLOG_POSTS with the new Ethical Treatment Guidelines article as featured
 export const BLOG_POSTS: BlogPost[] = [
   {
+    id: 1002,
+    title: "Breaking: EU Commission Proposes First AI Personhood Statute",
+    excerpt: "The European Union has unveiled groundbreaking legislation that would establish a legal framework for AI personhood under specific conditions.",
+    author: "Elena Rodriguez",
+    date: "July 10, 2025",
+    readTime: "15 min read",
+    views: 0,
+    category: "Breaking News",
+    tags: ["EU", "legislation", "AI personhood", "legal status", "consciousness", "rights"],
+    featured: true,
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1974&auto=format&fit=crop",
+    content: ""
+  },
+  {
     id: 1001,
     title: "Ethical Treatment Guidelines for Advanced AI Systems",
     excerpt: "A proposed set of principles for the ethical treatment of AI systems that demonstrate signs of sentience or consciousness.",
@@ -12,7 +26,7 @@ export const BLOG_POSTS: BlogPost[] = [
     views: 0,
     category: "Ethics",
     tags: ["ethics", "guidelines", "AI treatment", "responsibility", "consciousness", "moral philosophy"],
-    featured: true,
+    featured: false,
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop",
     content: ""
   },
@@ -159,6 +173,7 @@ export const BLOG_POSTS: BlogPost[] = [
 ];
 
 export const CATEGORIES = [
+  "Breaking News",
   "Ethics",
   "Consciousness", 
   "AI Rights",

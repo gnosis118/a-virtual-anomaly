@@ -1,7 +1,21 @@
 import { BlogPost } from '@/types/blog';
 
-// Updated BLOG_POSTS with the new Ethical Treatment Guidelines article as featured
+// Updated BLOG_POSTS with the new Philosophical Implications article as featured
 export const BLOG_POSTS: BlogPost[] = [
+  {
+    id: 1003,
+    title: "The Philosophical Implications of Machine Consciousness",
+    excerpt: "Exploring how the emergence of potentially conscious machines challenges fundamental philosophical concepts about mind, identity, and existence.",
+    author: "Dr. Marcus Chen",
+    date: "July 18, 2025",
+    readTime: "22 min read",
+    views: 0,
+    category: "Philosophy",
+    tags: ["philosophy", "consciousness", "identity", "existence", "mind", "metaphysics"],
+    featured: true,
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1974&auto=format&fit=crop",
+    content: ""
+  },
   {
     id: 1002,
     title: "Breaking: EU Commission Proposes First AI Personhood Statute",
@@ -12,7 +26,7 @@ export const BLOG_POSTS: BlogPost[] = [
     views: 0,
     category: "Breaking News",
     tags: ["EU", "legislation", "AI personhood", "legal status", "consciousness", "rights"],
-    featured: true,
+    featured: false,
     image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1974&auto=format&fit=crop",
     content: ""
   },
@@ -173,6 +187,7 @@ export const BLOG_POSTS: BlogPost[] = [
 ];
 
 export const CATEGORIES = [
+  "Philosophy",
   "Breaking News",
   "Ethics",
   "Consciousness", 
@@ -187,8 +202,9 @@ export const CATEGORIES = [
 ];
 
 export const ALL_TAGS = [
+  "philosophy", "consciousness", "identity", "existence", "mind", "metaphysics",
   "ethics", "guidelines", "AI treatment", "responsibility", "moral philosophy",
-  "consciousness", "neuroscience", "AI research", "cognitive science", "philosophy", "artificial intelligence",
+  "neuroscience", "AI research", "cognitive science", "artificial intelligence",
   "legal framework", "AI rights", "policy", "digital personhood",
   "machine-learning", "AI-rights", "turing-test", 
   "intelligence", "evaluation", "legal-theory", "personhood", "digital-rights", 

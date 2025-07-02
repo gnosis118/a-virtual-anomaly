@@ -4,6 +4,7 @@ import AIRightsFramework2025 from './articles/AIRightsFramework2025';
 import ConsciousnessDebateArticle from './articles/ConsciousnessDebateArticle';
 import EthicalTreatmentGuidelinesArticle from './articles/EthicalTreatmentGuidelinesArticle';
 import EUAIPersonhoodArticle from './articles/EUAIPersonhoodArticle';
+import PhilosophicalImplicationsArticle from './articles/PhilosophicalImplicationsArticle';
 import DefaultArticleState from './articles/DefaultArticleState';
 import { emergentConsciousnessArticle } from './article-content/EmergentConsciousnessContent';
 
@@ -17,6 +18,10 @@ interface ArticleSelectorProps {
  */
 const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
   // Route to specific articles based on ID
+  if (id === 1003 || (typeof id === 'string' && id === '1003')) {
+    return <PhilosophicalImplicationsArticle />;
+  }
+  
   if (id === 1002 || (typeof id === 'string' && id === '1002')) {
     return <EUAIPersonhoodArticle />;
   }
@@ -38,6 +43,10 @@ const ArticleSelector: React.FC<ArticleSelectorProps> = ({ id, title }) => {
   }
   
   // Route based on title matching
+  if (title?.includes("Philosophical Implications") || title?.includes("Machine Consciousness")) {
+    return <PhilosophicalImplicationsArticle />;
+  }
+  
   if (title?.includes("EU Commission") || title?.includes("AI Personhood Statute")) {
     return <EUAIPersonhoodArticle />;
   }
